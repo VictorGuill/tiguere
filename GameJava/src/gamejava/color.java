@@ -26,40 +26,58 @@ public class color {
 
         String fgColor = "", bgColor = "";
 
-        if (color.toLowerCase().equals("black")) {
-            fgColor = ANSI_BLACK;
-        } else if (color.toLowerCase().equals("red")) {
-            fgColor = ANSI_RED;
-        } else if (color.toLowerCase().equals("green")) {
-            fgColor = ANSI_GREEN;
-        } else if (color.toLowerCase().equals("yellow")) {
-            fgColor = ANSI_YELLOW;
-        } else if (color.toLowerCase().equals("blue")) {
-            fgColor = ANSI_BLUE;
-        } else if (color.toLowerCase().equals("purple")) {
-            fgColor = ANSI_PURPLE;
-        } else if (color.toLowerCase().equals("cyan")) {
-            fgColor = ANSI_CYAN;
-        } else if (color.toLowerCase().equals("white")) {
-            fgColor = ANSI_WHITE;
+        switch (color.toLowerCase()) {
+            case "black":
+                fgColor = ANSI_BLACK;
+                break;
+            case "red":
+                fgColor = ANSI_RED;
+                break;
+            case "green":
+                fgColor = ANSI_GREEN;
+                break;
+            case "yellow":
+                fgColor = ANSI_YELLOW;
+                break;
+            case "blue":
+                fgColor = ANSI_BLUE;
+                break;
+            case "purple":
+                fgColor = ANSI_PURPLE;
+                break;
+            case "cyan":
+                fgColor = ANSI_CYAN;
+                break;
+            case "white":
+                fgColor = ANSI_WHITE;
+                break;
         }
 
-        if (bg.toLowerCase().equals("black")) {
-            bgColor = ANSI_BLACK_BACKGROUND;
-        } else if (bg.toLowerCase().equals("red")) {
-            bgColor = ANSI_RED_BACKGROUND;
-        } else if (bg.toLowerCase().equals("green")) {
-            bgColor = ANSI_GREEN_BACKGROUND;
-        } else if (bg.toLowerCase().equals("yellow")) {
-            bgColor = ANSI_YELLOW_BACKGROUND;
-        } else if (bg.toLowerCase().equals("blue")) {
-            bgColor = ANSI_BLUE_BACKGROUND;
-        } else if (bg.toLowerCase().equals("purple")) {
-            bgColor = ANSI_PURPLE_BACKGROUND;
-        } else if (bg.toLowerCase().equals("cyan")) {
-            bgColor = ANSI_CYAN_BACKGROUND;
-        } else if (bg.toLowerCase().equals("white")) {
-            bgColor = ANSI_WHITE_BACKGROUND;
+        switch (bg.toLowerCase()) {
+            case "black":
+                bgColor = ANSI_BLACK_BACKGROUND;
+                break;
+            case "red":
+                bgColor = ANSI_RED_BACKGROUND;
+                break;
+            case "green":
+                bgColor = ANSI_GREEN_BACKGROUND;
+                break;
+            case "yellow":
+                bgColor = ANSI_YELLOW_BACKGROUND;
+                break;
+            case "blue":
+                bgColor = ANSI_BLUE_BACKGROUND;
+                break;
+            case "purple":
+                bgColor = ANSI_PURPLE_BACKGROUND;
+                break;
+            case "cyan":
+                bgColor = ANSI_CYAN_BACKGROUND;
+                break;
+            case "white":
+                bgColor = ANSI_WHITE_BACKGROUND;
+                break;
         }
 
         return bgColor + fgColor + text + ANSI_RESET;
