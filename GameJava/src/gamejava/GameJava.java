@@ -90,9 +90,9 @@ public class GameJava {
     //imprime la pantalla de espera para empezar
     public static void printStartSection() {
         int w = 40, h = 9;
-        String title = color.print("cyan", "", "▒▒▒▒▒▒▒▒ ")
-                + "Press " + color.print("white", "red", "ENTER")
-                + " to start..." + color.print("cyan", "", " ▒▒▒▒▒▒▒");
+        String title = Tools.print("cyan", "", "▒▒▒▒▒▒▒▒ ")
+                + "Press " + Tools.print("white", "red", "ENTER")
+                + " to start..." + Tools.print("cyan", "", " ▒▒▒▒▒▒▒");
 
         for (int i = 0; i < h; i++) {
             for (int j = 0; j < w; j++) {
@@ -101,7 +101,7 @@ public class GameJava {
                         System.out.print(title);
                     }
                 } else {
-                    System.out.print(color.print("cyan", "", "▒"));
+                    System.out.print(Tools.print("cyan", "", "▒"));
                 }
             }
             System.out.println("");
@@ -110,34 +110,34 @@ public class GameJava {
 
     public static void printGameBoard() {
         int w = 40, h = 9;
-        
+
         for (int i = 0; i < h + 2; i++) {
             if (i == 0) { //primera linea
                 for (int j = 0; j < w + 2; j++) {
                     if (j == 0) {
-                        System.out.print(color.print("red", "", "╔"));
+                        System.out.print(Tools.print("red", "", "╔"));
                     } else if (j == w + 1) {
-                        System.out.print(color.print("red", "", "╗"));
+                        System.out.print(Tools.print("red", "", "╗"));
                     } else {
-                        System.out.print(color.print("red", "", "═"));
+                        System.out.print(Tools.print("red", "", "═"));
                     }
                 }
             } else if (i == h + 1) { //ultima linea
                 for (int j = 0; j < w + 2; j++) {
                     if (j == 0) {
-                        System.out.print(color.print("red", "", "╚"));
+                        System.out.print(Tools.print("red", "", "╚"));
                     } else if (j == w + 1) {
-                        System.out.print(color.print("red", "", "╝"));
+                        System.out.print(Tools.print("red", "", "╝"));
                     } else {
-                        System.out.print(color.print("red", "", "═"));
+                        System.out.print(Tools.print("red", "", "═"));
                     }
                 }
             } else { //lineas intemedias
                 for (int j = 0; j < w + 2; j++) {
                     if (j == 0 || j == w + 1) {
-                        System.out.print(color.print("red", "", "║"));
+                        System.out.print(Tools.print("red", "", "║"));
                     } else {
-                        System.out.print(color.print("cyan", "", "▒"));
+                        System.out.print(Tools.print("cyan", "", "▒"));
                     }
                 }
             }
@@ -152,42 +152,43 @@ public class GameJava {
             if (i == 0) { //primera linea
                 for (int j = 0; j < w + 2; j++) {
                     if (j == 0) {
-                        System.out.print(color.print("red", "", "╔"));
+                        System.out.print(Tools.print("red", "", "╔"));
                     } else if (j == w + 1) {
-                        System.out.print(color.print("red", "", "╗"));
+                        System.out.print(Tools.print("red", "", "╗"));
                     } else {
-                        System.out.print(color.print("red", "", "═"));
+                        System.out.print(Tools.print("red", "", "═"));
                     }
                 }
             } else if (i == h + 1) { //ultima linea
                 for (int j = 0; j < w + 2; j++) {
                     if (j == 0) {
-                        System.out.print(color.print("red", "", "╚"));
+                        System.out.print(Tools.print("red", "", "╚"));
                     } else if (j == w + 1) {
-                        System.out.print(color.print("red", "", "╝"));
+                        System.out.print(Tools.print("red", "", "╝"));
                     } else {
-                        System.out.print(color.print("red", "", "═"));
+                        System.out.print(Tools.print("red", "", "═"));
                     }
                 }
             } else if (i == (h / 2) + 1) { // linea media
                 for (int j = 0; j < w + 2; j++) {
                     if (j == 0 || j == w + 1) {
-                        System.out.print(color.print("red", "", "║"));
+                        System.out.print(Tools.print("red", "", "║"));
                     } else if (j == 1) {
-                        System.out.print(color.print("cyan", "", "                 -" + color.print("white", "red", " " + String.valueOf(userInteger) + " ") + "-                  "));
+                        System.out.print(Tools.print("cyan", "", "                 -" + Tools.print("white", "red", " " + String.valueOf(userInteger) + " ") + "-                  "));
                     }
                 }
             } else { //lineas intemedias
                 for (int j = 0; j < w + 2; j++) {
                     if (j == 0 || j == w + 1) {
-                        System.out.print(color.print("red", "", "║"));
+                        System.out.print(Tools.print("red", "", "║"));
                     } else {
-                        System.out.print(color.print("cyan", "", " "));
+                        System.out.print(Tools.print("cyan", "", " "));
                     }
                 }
             }
             System.out.println("");
         }
+        System.out.println("Pulsa 'Enter' para aceptar valor");
     }
 
     //reseteal el input a "" (vacio)
