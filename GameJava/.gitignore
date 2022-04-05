@@ -71,6 +71,8 @@ dist/
 nbdist/
 nbactions.xml
 nb-configuration.xml
+GameJava/nbproject/private/private.xml
+GameJava/nbproject/private/private.properties
 
 ##############################
 ## Visual Studio Code
