@@ -110,8 +110,6 @@ public class GameJava {
 
     public static void printGameBoard() {
         int w = 40, h = 9;
-
-        String aojd = "║▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒ENTER▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒║";
         
         for (int i = 0; i < h + 2; i++) {
             if (i == 0) { //primera linea
