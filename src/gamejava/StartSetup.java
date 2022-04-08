@@ -205,4 +205,90 @@ public class StartSetup {
             System.out.println("");
         }
     }
+
+    public static void boardSizeScreen(int wValue, int hValue, int optionSelected) {
+        Tools.clearConsole();
+
+        for (int i = 0; i < h; i++) {
+            if (i == 0) {
+                for (int j = 0; j < w; j++) {
+                    if (j == 0) {
+                        System.out.print(Tools.print(colorUI, "", "╔"));
+                    } else if (j == w - 1) {
+                        System.out.print(Tools.print(colorUI, "", "╗"));
+                    } else {
+                        System.out.print(Tools.print(colorUI, "", "═"));
+                    }
+                }
+            } else if (i == h - 1) {
+                for (int j = 0; j < w; j++) {
+                    if (j == 0) {
+                        System.out.print(Tools.print(colorUI, "", "╚"));
+                    } else if (j == w - 1) {
+                        System.out.print(Tools.print(colorUI, "", "╝"));
+                    } else {
+                        System.out.print(Tools.print(colorUI, "", "═"));
+                    }
+                }
+            } else if (i == 2) {
+                System.out.print(Tools.print(colorUI, "", "║               "));
+                System.out.print(Tools.print("blue", colorText, " BOARD  SIZE "));
+                System.out.print(Tools.print(colorUI, "", "               ║"));
+            } else if (i == 4) {
+                System.out.print(Tools.print(colorUI, "", "║               " + spaceSingleDigit(wValue - 1) + "                " + spaceSingleDigit(hValue - 1) + "        ║"));
+            } else if (i == 5) {
+                System.out.print(Tools.print(colorUI, "", "║"));
+                System.out.print(Tools.print(colorText, "", "       WIDTH: "));
+                System.out.print(Tools.print(colorUI, "", "║"));
+                if (optionSelected == 1) {
+                    System.out.print(Tools.print("white", "red", spaceSingleDigit(wValue)));
+                } else {
+                    System.out.print(Tools.print("white", "", spaceSingleDigit(wValue)));
+                }
+                System.out.print(Tools.print(colorUI, "", "║"));
+                System.out.print(Tools.print(colorText, "", "      HEIGHT: "));
+                System.out.print(Tools.print(colorUI, "", "║"));
+                if (optionSelected == 2) {
+                    System.out.print(Tools.print("white", "red", spaceSingleDigit(hValue)));
+                } else {
+                    System.out.print(Tools.print("white", "", spaceSingleDigit(hValue)));
+                }
+                System.out.print(Tools.print(colorUI, "", "║       ║"));
+            } else if (i == 6) {
+                System.out.print(Tools.print(colorUI, "", "║               " + spaceSingleDigit(wValue + 1) + "                " + spaceSingleDigit(hValue + 1) + "        ║"));
+            } else if (i == 9) {
+                if (optionSelected == 3) {
+                    System.out.print(Tools.print(colorUI, "", "║                 "));
+                    System.out.print(Tools.print("white", "red", " N E X T "));
+                    System.out.print(Tools.print(colorUI, "", "                 ║"));
+                } else {
+                    System.out.print(Tools.print(colorUI, "", "║                  N E X T                  ║"));
+                }
+            } else {
+                for (int j = 0; j < w; j++) {
+                    if (j == 0 || j == w - 1) {
+                        System.out.print(Tools.print(colorUI, "", "║"));
+                    } else {
+                        System.out.print(" ");
+                    }
+                }
+
+            }
+            System.out.println("");
+        }
+    }
+
+    /**
+     * Coje un int y le añade un 0 si es solo 1 digito.
+     *
+     * @param number Numero a formatear.
+     * @return String formateada.
+     */
+    public static String spaceSingleDigit(int number) {
+        if (number < 10) {
+            return "0" + String.valueOf(number);
+        } else {
+            return String.valueOf(number);
+        }
+    }
 }
