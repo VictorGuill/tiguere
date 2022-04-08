@@ -4,9 +4,15 @@ import java.io.IOException;
 
 public class Tools {
 
-    //////////////////////////////////////////////
-    /////////////  PRINT CON COLORES  ////////////
-    //////////////////////////////////////////////
+    /**
+     * Imprime un String con colores
+     *
+     * @author Victor Guillén Alcaraz
+     * @param color Indica el color del texto.
+     * @param bg Indica el color de fondo.
+     * @param text El String a imprimir.
+     * @return Devuelve el String formateado.
+     */
     public static String print(String color, String bg, String text) {
 
         String ANSI_RESET = "\u001B[0m";
@@ -88,9 +94,37 @@ public class Tools {
         return bgColor + fgColor + text + ANSI_RESET;
     }
 
-    //////////////////////////////////////////////
-    ///////////  CLEAR CONSOLE METHOD  ///////////
-    //////////////////////////////////////////////
+    /**
+     * Recibe los caracteres y imprime una barra de carga.
+     *
+     * @author Victor Guillén Alcaraz
+     * @param lenght INT: Largada de la barra
+     * @param loaded INT: Parte carga de la barra
+     * @param start Char inicio. Ej: '[' '(' '{'
+     * @param end Char final. Ej: '[' '(' '{'
+     * @param fill Char relleno parte cargada. Ej '#' '█' '▓'
+     * @param empty Char espacio sin cargar. Ej '_' '-' '░'
+     */
+    public static void loadBar(int lenght, int loaded, char start, char end, char fill, char empty) {
+        System.out.print(start);
+        for (int i = 1; i <= lenght; i++) {
+            if (i <= loaded) {
+                System.out.print(fill);
+            } else {
+                System.out.print(empty);
+            }
+        }
+        System.out.print(end);
+    }
+
+    /**
+     * Limpia la consola dependiendo el entorno donde se ejecuta el programa.
+     * Detecta si esta corriendo en un IDE o un CMD real. Si es CMD real,
+     * detecta la plataforma y utiliza el metodo correspondiente. Si no hay
+     * compatibilidad, utiliza el metodo de imprimir saltos de linea.
+     *
+     * @author Victor Guillén Alcaraz
+     */
     public static void clearConsole() {
         if (isRunningCMD() == true) {
             if (isWindows()) {
@@ -103,7 +137,9 @@ public class Tools {
         }
     }
 
-    //////////////// DETECT IF RUNNING ON IDE OR REAL CONSOLE ////////////////
+    //////////////// DETECT PLATFORM /////////////////
+    private static String OS = System.getProperty("os.name").toLowerCase();
+
     public static boolean isRunningCMD() {
         if (System.console() != null) {
             return true;
@@ -111,9 +147,6 @@ public class Tools {
             return false;
         }
     }
-
-    //////////////// DETECT PLATFORM /////////////////
-    private static String OS = System.getProperty("os.name").toLowerCase();
 
     public static boolean isWindows() {
         return OS.contains("win");
@@ -127,21 +160,29 @@ public class Tools {
         return (OS.contains("nix") || OS.contains("nux") || OS.contains("aix"));
     }
 
-    ////////// CLEAR CONSOLE FUNCTIONS /////////
-    // IDE
+    /**
+     * Imprime saltos de linea para dar la impresion de que la consola se ha
+     * vaciado.
+     */
     public static void clearIDE() {
-        for (int i = 0; i < 30; i++) {
+        int newLines = 30;
+        for (int i = 0; i < newLines; i++) {
             System.out.println("");
         }
     }
 
-    // BASH
+    /**
+     * Imprime una secuencia de caracteres que BASH reconoce como limpiar la
+     * consola.
+     */
     public static void clearBash() {
         System.out.print("\033[H\033[2J");
         System.out.flush();
     }
 
-    // WINDOWS
+    /**
+     * Ejecuta un 'cls' (clear screen) en la consola de windows.
+     */
     public static void clearCMD() {
         try {
             if (System.getProperty("os.name").contains("Windows")) {
