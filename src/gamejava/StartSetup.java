@@ -235,7 +235,19 @@ public class StartSetup {
                 System.out.print(Tools.print("blue", colorText, " BOARD  SIZE "));
                 System.out.print(Tools.print(colorUI, "", "               ║"));
             } else if (i == 4) {
-                System.out.print(Tools.print(colorUI, "", "║               " + spaceSingleDigit(wValue - 1) + "                " + spaceSingleDigit(hValue - 1) + "        ║"));
+                System.out.print(Tools.print(colorUI, "", "║               "));
+                if (wValue <= GameJava.MIN_BOARD_SIZE) {
+                    System.out.print("  ");
+                } else {
+                    System.out.print(Tools.print(colorUI, "", spaceSingleDigit(wValue - 1)));
+                }
+                System.out.print("                ");
+                if (hValue <= GameJava.MIN_BOARD_SIZE) {
+                    System.out.print("  ");
+                } else {
+                    System.out.print(Tools.print(colorUI, "", spaceSingleDigit(hValue - 1)));
+                }
+                System.out.print(Tools.print(colorUI, "", "        ║"));
             } else if (i == 5) {
                 System.out.print(Tools.print(colorUI, "", "║"));
                 System.out.print(Tools.print(colorText, "", "       WIDTH: "));
@@ -255,7 +267,19 @@ public class StartSetup {
                 }
                 System.out.print(Tools.print(colorUI, "", "║       ║"));
             } else if (i == 6) {
-                System.out.print(Tools.print(colorUI, "", "║               " + spaceSingleDigit(wValue + 1) + "                " + spaceSingleDigit(hValue + 1) + "        ║"));
+                System.out.print(Tools.print(colorUI, "", "║               "));
+                if (wValue >= GameJava.MAX_BOARD_SIZE) {
+                    System.out.print("  ");
+                } else {
+                    System.out.print(Tools.print(colorUI, "", spaceSingleDigit(wValue + 1)));
+                }
+                System.out.print("                ");
+                if (hValue >= GameJava.MAX_BOARD_SIZE) {
+                    System.out.print("  ");
+                } else {
+                    System.out.print(Tools.print(colorUI, "", spaceSingleDigit(hValue + 1)));
+                }
+                System.out.print(Tools.print(colorUI, "", "        ║"));
             } else if (i == 9) {
                 if (optionSelected == 3) {
                     System.out.print(Tools.print(colorUI, "", "║                 "));
@@ -273,6 +297,79 @@ public class StartSetup {
                     }
                 }
 
+            }
+            System.out.println("");
+        }
+    }
+
+    public static void characterSelectorScreen(int optionSelected) {
+        Tools.clearConsole();
+
+        for (int i = 0; i < h; i++) {
+            if (i == 0) {
+                for (int j = 0; j < w; j++) {
+                    if (j == 0) {
+                        System.out.print(Tools.print(colorUI, "", "╔"));
+                    } else if (j == w - 1) {
+                        System.out.print(Tools.print(colorUI, "", "╗"));
+                    } else {
+                        System.out.print(Tools.print(colorUI, "", "═"));
+                    }
+                }
+            } else if (i == h - 1) {
+                for (int j = 0; j < w; j++) {
+                    if (j == 0) {
+                        System.out.print(Tools.print(colorUI, "", "╚"));
+                    } else if (j == w - 1) {
+                        System.out.print(Tools.print(colorUI, "", "╝"));
+                    } else {
+                        System.out.print(Tools.print(colorUI, "", "═"));
+                    }
+                }
+            } else if (i == 2) {
+                System.out.print(Tools.print(colorUI, "", "║             "));
+                System.out.print(Tools.print("blue", colorText, " CHOOSE CHARACTER "));
+                System.out.print(Tools.print(colorUI, "", "            ║"));
+            } else if (i == 5) {
+                System.out.print(Tools.print(colorUI, "", "║                             ┌─────┐       ║"));
+            } else if (i == 6) {
+                if (optionSelected == 1) {
+                    System.out.print(Tools.print(colorUI, "", "║             "));
+                    System.out.print(Tools.print("white", "red", "WARRIOR"));
+                    System.out.print(Tools.print(colorUI, "", " >       │  "));
+                    System.out.print(Tools.print(colorText, "", String.valueOf(GameJava.CHAR_GUERRERO)));
+                    System.out.print(Tools.print(colorUI, "", "  │       ║"));
+                } else if (optionSelected == 2) {
+                    System.out.print(Tools.print(colorUI, "", "║           < "));
+                    System.out.print(Tools.print("white", "red", "WIZARD"));
+                    System.out.print(Tools.print(colorUI, "", " >        │  "));
+                    System.out.print(Tools.print(colorText, "", String.valueOf(GameJava.CHAR_MAGO)));
+                    System.out.print(Tools.print(colorUI, "", "  │       ║"));
+                } else if (optionSelected == 3) {
+                    System.out.print(Tools.print(colorUI, "", "║             "));
+                    System.out.print(Tools.print("white", "red", "PRIEST"));
+                    System.out.print(Tools.print(colorUI, "", " >        │  "));
+                    System.out.print(Tools.print(colorText, "", String.valueOf(GameJava.CHAR_SACERDOTE)));
+                    System.out.print(Tools.print(colorUI, "", "  │       ║"));
+                }
+            } else if (i == 7) {
+                System.out.print(Tools.print(colorUI, "", "║                             └─────┘       ║"));
+            } else if (i == 9) {
+                if (1 == 2) {
+                    System.out.print(Tools.print(colorUI, "", "║                 "));
+                    System.out.print(Tools.print("white", "red", " N E X T "));
+                    System.out.print(Tools.print(colorUI, "", "                 ║"));
+                } else {
+                    System.out.print(Tools.print(colorUI, "", "║                  N E X T                  ║"));
+                }
+            } else {
+                for (int j = 0; j < w; j++) {
+                    if (j == 0 || j == w - 1) {
+                        System.out.print(Tools.print(colorUI, "", "║"));
+                    } else {
+                        System.out.print(" ");
+                    }
+                }
             }
             System.out.println("");
         }

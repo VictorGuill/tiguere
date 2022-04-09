@@ -5,10 +5,13 @@ import java.util.concurrent.TimeUnit;
 public class GameJava {
 
     final static int INPUT_RATE = 20; //delay entre consultas del input
+    final static int MIN_BOARD_SIZE = 5, MAX_BOARD_SIZE = 15; //maximo y minimo permitido valores tamaño tablero
+    final static char CHAR_GUERRERO = '¥', CHAR_MAGO = '£', CHAR_SACERDOTE = '±';
+
     public static String INPUT = ""; //guarda la ultima tecla pulsada
     public static int menuOption = 1,
-            widthBoard = 5,
-            heightBoard = 5;
+            widthBoard = 8, //valor inicial ancho del tablero
+            heightBoard = 8; //valor inicial alto del tablero
     public static boolean SECTION_RUNNING = true;
 
     public static void main(String[] args) throws InterruptedException {
@@ -46,7 +49,11 @@ public class GameJava {
                     case "enter":
                         switch (menuOption) {
                             case 1: //play
-                                playScreen();
+                                //boardSizeScreen();
+                                characterSelectorScreen();
+                                gameDifficultyScreen();
+                                Tools.clearConsole();
+                                System.out.println("ee");
                                 break;
                             case 2: //tutorial
                                 break;
@@ -93,7 +100,12 @@ public class GameJava {
         } while (noUserActivity);
     }
 
-    public static void playScreen() throws InterruptedException {
+    /**
+     * Menu donde el usuario escoje el tamaño del tablero.
+     *
+     * @throws InterruptedException
+     */
+    public static void boardSizeScreen() throws InterruptedException {
         INPUT = "";
         SECTION_RUNNING = true;
         Tools.clearConsole();
@@ -104,21 +116,29 @@ public class GameJava {
             switch (INPUT) {
                 case "up":
                     if (menuOption == 1) {
-                        widthBoard--;
-                        StartSetup.boardSizeScreen(widthBoard, heightBoard, menuOption);
+                        if (widthBoard > MIN_BOARD_SIZE) {
+                            widthBoard--;
+                            StartSetup.boardSizeScreen(widthBoard, heightBoard, menuOption);
+                        }
                     } else if (menuOption == 2) {
-                        heightBoard--;
-                        StartSetup.boardSizeScreen(widthBoard, heightBoard, menuOption);
+                        if (heightBoard > MIN_BOARD_SIZE) {
+                            heightBoard--;
+                            StartSetup.boardSizeScreen(widthBoard, heightBoard, menuOption);
+                        }
                     }
                     INPUT = "";
                     break;
                 case "down":
                     if (menuOption == 1) {
-                        widthBoard++;
-                        StartSetup.boardSizeScreen(widthBoard, heightBoard, menuOption);
+                        if (widthBoard < MAX_BOARD_SIZE) {
+                            widthBoard++;
+                            StartSetup.boardSizeScreen(widthBoard, heightBoard, menuOption);
+                        }
                     } else if (menuOption == 2) {
-                        heightBoard++;
-                        StartSetup.boardSizeScreen(widthBoard, heightBoard, menuOption);
+                        if (heightBoard < MAX_BOARD_SIZE) {
+                            heightBoard++;
+                            StartSetup.boardSizeScreen(widthBoard, heightBoard, menuOption);
+                        }
                     }
                     INPUT = "";
                     break;
@@ -134,7 +154,7 @@ public class GameJava {
                         menuOption++;
                         StartSetup.boardSizeScreen(widthBoard, heightBoard, menuOption);
                     } else if (menuOption == 3) {
-                        System.out.println("Next");
+                        SECTION_RUNNING = false;
                     }
                     INPUT = "";
                     break;
@@ -143,12 +163,56 @@ public class GameJava {
                         menuOption++;
                         StartSetup.boardSizeScreen(widthBoard, heightBoard, menuOption);
                     } else if (menuOption == 3) {
-                        System.out.println("Next");
+                        SECTION_RUNNING = false;
                     }
                     INPUT = "";
                     break;
             }
             TimeUnit.MILLISECONDS.sleep(1000 / INPUT_RATE);
+        } while (SECTION_RUNNING);
+    }
+
+    public static void characterSelectorScreen() throws InterruptedException {
+        INPUT = "";
+        SECTION_RUNNING = true;
+        Tools.clearConsole();
+        menuOption = 1;
+        StartSetup.characterSelectorScreen(menuOption);
+
+        do {
+            switch (INPUT) {
+                case "up":
+                    INPUT = "";
+                    break;
+                case "down":
+                    INPUT = "";
+                    break;
+                case "left":
+                    if (menuOption > 1) {
+                        menuOption--;
+                        StartSetup.characterSelectorScreen(menuOption);
+                    }
+                    INPUT = "";
+                    break;
+                case "right":
+                    if (menuOption < 3) {
+                        menuOption++;
+                        StartSetup.characterSelectorScreen(menuOption);
+                    }
+                    INPUT = "";
+                    break;
+                case "enter":
+                    INPUT = "";
+                    break;
+            }
+            TimeUnit.MILLISECONDS.sleep(1000 / INPUT_RATE);
+        } while (SECTION_RUNNING);
+    }
+
+    public static void gameDifficultyScreen() {
+
+        do {
+
         } while (SECTION_RUNNING);
     }
 }

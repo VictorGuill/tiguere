@@ -165,7 +165,7 @@ public class Tools {
      * vaciado.
      */
     public static void clearIDE() {
-        int newLines = 30;
+        int newLines = 20;
         for (int i = 0; i < newLines; i++) {
             System.out.println("");
         }
