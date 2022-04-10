@@ -5,6 +5,18 @@ import java.io.IOException;
 public class Tools {
 
     /**
+     * Genera un numero aleatorio entre el min y el max.
+     *
+     * @param min Valor minimo.
+     * @param max Valor maximo.
+     * @return Devuelte un entero dentro del rango.
+     */
+    public static int random(int min, int max) {
+        double random = Math.random() * (max - min + 1) + min;
+        return (int) random;
+    }
+
+    /**
      * Imprime un String con colores
      *
      * @author Victor Guillén Alcaraz

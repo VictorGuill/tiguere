@@ -302,7 +302,7 @@ public class StartSetup {
         }
     }
 
-    public static void characterSelectorScreen(int optionSelected) {
+    public static void characterSelectorScreen(int optionSelected, int secondSelection) {
         Tools.clearConsole();
 
         for (int i = 0; i < h; i++) {
@@ -335,27 +335,39 @@ public class StartSetup {
             } else if (i == 6) {
                 if (optionSelected == 1) {
                     System.out.print(Tools.print(colorUI, "", "║             "));
-                    System.out.print(Tools.print("white", "red", "WARRIOR"));
+                    if (secondSelection == 1) {
+                        System.out.print(Tools.print("white", "red", "WARRIOR"));
+                    } else {
+                        System.out.print(Tools.print(colorText, "", "WARRIOR"));
+                    }
                     System.out.print(Tools.print(colorUI, "", " >       │  "));
                     System.out.print(Tools.print(colorText, "", String.valueOf(GameJava.CHAR_GUERRERO)));
                     System.out.print(Tools.print(colorUI, "", "  │       ║"));
                 } else if (optionSelected == 2) {
                     System.out.print(Tools.print(colorUI, "", "║           < "));
-                    System.out.print(Tools.print("white", "red", "WIZARD"));
+                    if (secondSelection == 1) {
+                        System.out.print(Tools.print("white", "red", "WIZARD"));
+                    } else {
+                        System.out.print(Tools.print(colorText, "", "WIZARD"));
+                    }
                     System.out.print(Tools.print(colorUI, "", " >        │  "));
                     System.out.print(Tools.print(colorText, "", String.valueOf(GameJava.CHAR_MAGO)));
                     System.out.print(Tools.print(colorUI, "", "  │       ║"));
                 } else if (optionSelected == 3) {
-                    System.out.print(Tools.print(colorUI, "", "║             "));
-                    System.out.print(Tools.print("white", "red", "PRIEST"));
-                    System.out.print(Tools.print(colorUI, "", " >        │  "));
+                    System.out.print(Tools.print(colorUI, "", "║           < "));
+                    if (secondSelection == 1) {
+                        System.out.print(Tools.print("white", "red", "PRIEST"));
+                    } else {
+                        System.out.print(Tools.print(colorText, "", "PRIEST"));
+                    }
+                    System.out.print(Tools.print(colorUI, "", "          │  "));
                     System.out.print(Tools.print(colorText, "", String.valueOf(GameJava.CHAR_SACERDOTE)));
                     System.out.print(Tools.print(colorUI, "", "  │       ║"));
                 }
             } else if (i == 7) {
                 System.out.print(Tools.print(colorUI, "", "║                             └─────┘       ║"));
             } else if (i == 9) {
-                if (1 == 2) {
+                if (secondSelection == 2) {
                     System.out.print(Tools.print(colorUI, "", "║                 "));
                     System.out.print(Tools.print("white", "red", " N E X T "));
                     System.out.print(Tools.print(colorUI, "", "                 ║"));
@@ -370,6 +382,78 @@ public class StartSetup {
                         System.out.print(" ");
                     }
                 }
+            }
+            System.out.println("");
+        }
+    }
+
+    public static void gameDifficultyScreen(int menuOption) {
+        Tools.clearConsole();
+
+        for (int i = 0; i < h; i++) {
+            if (i == 0) {
+                for (int j = 0; j < w; j++) {
+                    if (j == 0) {
+                        System.out.print(Tools.print(colorUI, "", "╔"));
+                    } else if (j == w - 1) {
+                        System.out.print(Tools.print(colorUI, "", "╗"));
+                    } else {
+                        System.out.print(Tools.print(colorUI, "", "═"));
+                    }
+                }
+            } else if (i == h - 1) {
+                for (int j = 0; j < w; j++) {
+                    if (j == 0) {
+                        System.out.print(Tools.print(colorUI, "", "╚"));
+                    } else if (j == w - 1) {
+                        System.out.print(Tools.print(colorUI, "", "╝"));
+                    } else {
+                        System.out.print(Tools.print(colorUI, "", "═"));
+                    }
+                }
+            } else if (i == 2) {
+                System.out.print(Tools.print(colorUI, "", "║             "));
+                System.out.print(Tools.print("blue", colorText, " GAME DIFFICULTY "));
+                System.out.print(Tools.print(colorUI, "", "             ║"));
+            } else if (i == 5) {
+                System.out.print(Tools.print(colorUI, "", "║"));
+                if (menuOption == 1) {
+                    System.out.print("                 > ");
+                    System.out.print(Tools.print("white", colorHighlight, "EASY"));
+                    System.out.print("                    ");
+                } else {
+                    System.out.print(Tools.print(colorText, "", "                   EASY                    "));
+                }
+                System.out.print(Tools.print(colorUI, "", "║"));
+            } else if (i == 6) {
+                System.out.print(Tools.print(colorUI, "", "║"));
+                if (menuOption == 2) {
+                    System.out.print("                > ");
+                    System.out.print(Tools.print("white", colorHighlight, "MEDIUM"));
+                    System.out.print("                   ");
+                } else {
+                    System.out.print(Tools.print(colorText, "", "                  MEDIUM                   "));
+                }
+                System.out.print(Tools.print(colorUI, "", "║"));
+            } else if (i == 7) {
+                System.out.print(Tools.print(colorUI, "", "║"));
+                if (menuOption == 3) {
+                    System.out.print("                 > ");
+                    System.out.print(Tools.print("white", colorHighlight, "HARD"));
+                    System.out.print("                    ");
+                } else {
+                    System.out.print(Tools.print(colorText, "", "                   HARD                    "));
+                }
+                System.out.print(Tools.print(colorUI, "", "║"));
+            } else {
+                for (int j = 0; j < w; j++) {
+                    if (j == 0 || j == w - 1) {
+                        System.out.print(Tools.print(colorUI, "", "║"));
+                    } else {
+                        System.out.print(" ");
+                    }
+                }
+
             }
             System.out.println("");
         }

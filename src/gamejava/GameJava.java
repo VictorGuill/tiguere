@@ -10,15 +10,16 @@ public class GameJava {
 
     public static String INPUT = ""; //guarda la ultima tecla pulsada
     public static int menuOption = 1,
+            secondSelection = 1, //valor para cuando hay mas de una selecion en un menu (Ej: choose caracter)
             widthBoard = 8, //valor inicial ancho del tablero
-            heightBoard = 8; //valor inicial alto del tablero
+            heightBoard = 8, //valor inicial alto del tablero
+            character = 1, //personage del jugador
+            numEnemies = 1; //numero de enemigos dependiendo la dificultad
     public static boolean SECTION_RUNNING = true;
 
     public static void main(String[] args) throws InterruptedException {
 
         InputListener keyInput = new InputListener(); //crea y abre la ventana java
-        int numEnemies,
-                character;
         boolean isGameRunning = true;
 
         /////////////////////////////////////////////////////
@@ -29,7 +30,6 @@ public class GameJava {
         StartSetup.startMenu(menuOption); //pantalla mnn  menu
 
         do {
-
             do {
                 switch (INPUT) {
                     case "up":
@@ -49,11 +49,12 @@ public class GameJava {
                     case "enter":
                         switch (menuOption) {
                             case 1: //play
-                                //boardSizeScreen();
+                                boardSizeScreen();
                                 characterSelectorScreen();
                                 gameDifficultyScreen();
                                 Tools.clearConsole();
-                                System.out.println("ee");
+                                System.out.println("TABLERO:\nAlto: " + heightBoard + "\tAncho: " + widthBoard); //print los valores, borrar en un futuro
+                                System.out.println("Personaje escogido: " + character + "\tNumero enemigos: " + numEnemies);
                                 break;
                             case 2: //tutorial
                                 break;
@@ -172,36 +173,56 @@ public class GameJava {
         } while (SECTION_RUNNING);
     }
 
+    /**
+     * Menu elecion personaje con el que se empieza la partida.
+     *
+     * @throws InterruptedException
+     */
     public static void characterSelectorScreen() throws InterruptedException {
         INPUT = "";
         SECTION_RUNNING = true;
         Tools.clearConsole();
         menuOption = 1;
-        StartSetup.characterSelectorScreen(menuOption);
+        StartSetup.characterSelectorScreen(menuOption, secondSelection);
 
         do {
             switch (INPUT) {
                 case "up":
+                    if (secondSelection == 2) {
+                        secondSelection = 1;
+                        StartSetup.characterSelectorScreen(menuOption, secondSelection);
+                    }
                     INPUT = "";
                     break;
                 case "down":
+                    if (secondSelection == 1) {
+                        secondSelection = 2;
+                        StartSetup.characterSelectorScreen(menuOption, secondSelection);
+                    }
                     INPUT = "";
                     break;
                 case "left":
-                    if (menuOption > 1) {
+                    if (menuOption > 1 && secondSelection == 1) {
                         menuOption--;
-                        StartSetup.characterSelectorScreen(menuOption);
+                        StartSetup.characterSelectorScreen(menuOption, secondSelection);
                     }
                     INPUT = "";
                     break;
                 case "right":
-                    if (menuOption < 3) {
+                    if (menuOption < 3 && secondSelection == 1) {
                         menuOption++;
-                        StartSetup.characterSelectorScreen(menuOption);
+                        StartSetup.characterSelectorScreen(menuOption, secondSelection);
                     }
                     INPUT = "";
                     break;
                 case "enter":
+                    if (secondSelection == 1) {
+                        secondSelection = 2;
+                        StartSetup.characterSelectorScreen(menuOption, secondSelection);
+                    } else if (secondSelection == 2) {
+                        character = menuOption;
+                        SECTION_RUNNING = false;
+                    }
                     INPUT = "";
                     break;
             }
@@ -209,10 +230,55 @@ public class GameJava {
         } while (SECTION_RUNNING);
     }
 
-    public static void gameDifficultyScreen() {
+    /**
+     * Menu donde escogemos la dificultad del juego.
+     *
+     * @throws InterruptedException
+     */
+    public static void gameDifficultyScreen() throws InterruptedException {
+        INPUT = "";
+        SECTION_RUNNING = true;
+        Tools.clearConsole();
+        numEnemies = 1;
+        menuOption = 1;
+        StartSetup.gameDifficultyScreen(menuOption);
 
         do {
-
+            switch (INPUT) {
+                case "up":
+                    if (menuOption > 1) {
+                        menuOption--;
+                        StartSetup.gameDifficultyScreen(menuOption);
+                        INPUT = "";
+                    }
+                    break;
+                case "down":
+                    if (menuOption < 3) {
+                        menuOption++;
+                        StartSetup.gameDifficultyScreen(menuOption);
+                        INPUT = "";
+                    }
+                    break;
+                case "right":
+                case "enter":
+                    //dependiendo la dificultad, hay un rango de enemigos que apareceran
+                    switch (menuOption) {
+                        case 1: //easy
+                            numEnemies = Tools.random(1, 2);
+                            break;
+                        case 2: //medium
+                            numEnemies = Tools.random(2, 3);
+                            break;
+                        case 3: //hard
+                            numEnemies = Tools.random(4, 6);
+                            break;
+                    }
+                    Tools.clearConsole();
+                    SECTION_RUNNING = false;
+                    INPUT = "";
+                    break;
+            }
+            TimeUnit.MILLISECONDS.sleep(1000 / INPUT_RATE);
         } while (SECTION_RUNNING);
     }
 }
