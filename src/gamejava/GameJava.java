@@ -46,6 +46,7 @@ public class GameJava {
                             INPUT = "";
                         }
                         break;
+                    case "right":
                     case "enter":
                         switch (menuOption) {
                             case 1: //play
@@ -212,6 +213,9 @@ public class GameJava {
                     if (menuOption < 3 && secondSelection == 1) {
                         menuOption++;
                         StartSetup.characterSelectorScreen(menuOption, secondSelection);
+                    } else if (secondSelection == 2) {
+                        character = menuOption;
+                        SECTION_RUNNING = false;
                     }
                     INPUT = "";
                     break;
