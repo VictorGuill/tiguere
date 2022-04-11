@@ -27,7 +27,7 @@ public class GameJava {
         /////////////////////////////////////////////////////
         printWaitScreen(); //pantalla de espera para empezar
         StartSetup.loadingAnimation(); //animacion de carga
-        StartSetup.startMenu(menuOption); //pantalla mnn  menu
+        StartSetup.startMenu(menuOption); //pantalla menu
 
         do {
             do {
@@ -89,16 +89,29 @@ public class GameJava {
      */
     public static void printWaitScreen() throws InterruptedException {
         boolean noUserActivity = true;
+        int counter = 0, state = 0;
 
-        Tools.clearConsole();
-
-        StartSetup.waitScreen();
+        StartSetup.waitScreen(state);
         do {
+            //truco para cambiar fotograma inicio cada 1s pero seguir leyendo el INPUT cada 50ms.
+            //sin el truco, leeriamos el input cada 1s al imprimir el nuevo fotograma y no seria muy instantaneo el pulsar enter.
+            if (counter == 18) {
+                if (state == 0) {
+                    state++;
+                    StartSetup.waitScreen(state);
+                } else {
+                    state--;
+                    StartSetup.waitScreen(state);
+                }
+                counter = 0;
+            }
+
             TimeUnit.MILLISECONDS.sleep(1000 / INPUT_RATE);
             if (!INPUT.equals("")) {
                 INPUT = "";
                 noUserActivity = false;
             }
+            counter++;
         } while (noUserActivity);
     }
 
