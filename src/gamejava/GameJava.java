@@ -37,8 +37,8 @@ public class GameJava {
         /////////////////////////////////////////////////////
         //////////////   EMPIEZA EL PROGRAMA   //////////////
         /////////////////////////////////////////////////////
-        //printWaitScreen(); //pantalla de espera para empezar
-        //StartSetup.loadingAnimation(); //animacion de carga
+        printWaitScreen(); //pantalla de espera para empezar
+        StartSetup.loadingAnimation(); //animacion de carga
         StartSetup.startMenu(menuOption); //pantalla menu
 
         do {
