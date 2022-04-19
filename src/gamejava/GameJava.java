@@ -24,6 +24,15 @@ public class GameJava {
 
         boolean isGameRunning = true,
                 sectionRunning;
+        magician m1 = new magician();
+        priest p1 = new priest();
+        warrior w1 = new warrior();
+        
+        Player[]playable;
+        playable = new Player [3];
+        playable [0] = w1;
+        playable [1]= m1;
+        playable [2]= p1;
 
         /////////////////////////////////////////////////////
         //////////////   EMPIEZA EL PROGRAMA   //////////////
