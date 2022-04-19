@@ -18,18 +18,19 @@ public class GameJava {
             numCoins = 1;
     public static boolean SECTION_RUNNING = true;
     public static String[][] board;
+	public static magician m1 = new magician();
+    public static priest p1 = new priest();
+    public static warrior w1 = new warrior();
+        
+    public static Player[]playable;
+        
 
     public static void main(String[] args) throws InterruptedException {
         InputListener keyInput = new InputListener(); //crea y abre la ventana java
 
         boolean isGameRunning = true,
                 sectionRunning;
-        magician m1 = new magician();
-        priest p1 = new priest();
-        warrior w1 = new warrior();
-        
-        Player[]playable;
-        playable = new Player [3];
+        playable = new Player[3];
         playable [0] = w1;
         playable [1]= m1;
         playable [2]= p1;

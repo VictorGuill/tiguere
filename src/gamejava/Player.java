@@ -3,13 +3,13 @@ package gamejava;
 
 
 public abstract class Player {
-    protected int LV;
-    protected int sackOfCoins;
-    protected String icon;
-    protected int xpos;
-    protected int ypos;
-    protected int HP;
-    protected int DMG;
+    public static int LV;
+    public static int sackOfCoins;
+    public static String icon;
+    public static int xpos;
+    public static int ypos;
+    public static int HP;
+    public static int DMG;
 
     public Player() {
     }
@@ -21,35 +21,35 @@ public abstract class Player {
         Metodes mov , augmenta una casella en cas de que la seguent casella sigui un "-"
         nullsCells = constant del main que indicara que es troba a les caselles nul·les.
     */
-    public void movXPositive(int mov, String[][] board, Player[]playable,int character,int widthBoard ,int heigthBoard,String NULL_CELLS){
+    public static void movXPositive(int mov, String[][] board, Player[]playable,int character,int widthBoard ,int heigthBoard,String NULL_CELLS){
        String nextPosition = nextXPositive(board,playable,character,widthBoard,heigthBoard,mov);
        if(nextPosition.equals(NULL_CELLS)){
         board[playable[character].getYpos()][playable[character].getXpos()] = NULL_CELLS;
-        this.xpos += mov;
+        Player.xpos += mov;
         board[playable[character].getYpos()][playable[character].getXpos()] = playable[character].getIcon();
        }
     }
-    public void movXNegative(int mov,String[][] board,Player[]playable,int character,int widthBoard ,int heigthBoard,String NULL_CELLS){
+    public static void movXNegative(int mov,String[][] board,Player[]playable,int character,int widthBoard ,int heigthBoard,String NULL_CELLS){
        String nextPosition = nextXNegative(board,playable,character,widthBoard,heigthBoard,mov);
        if(nextPosition.equals(NULL_CELLS)){
         board[playable[character].getYpos()][playable[character].getXpos()] = NULL_CELLS;
-        this.xpos -= mov;
+        Player.xpos -= mov;
         board[playable[character].getYpos()][playable[character].getXpos()] = playable[character].getIcon();
        }
     }
-    public void movYPositive(int mov,String[][] board,Player[]playable,int character,int widthBoard ,int heigthBoard,String NULL_CELLS){
+    public static void movYPositive(int mov,String[][] board,Player[]playable,int character,int widthBoard ,int heigthBoard,String NULL_CELLS){
        String nextPosition = nextYPositive(board,playable,character,widthBoard,heigthBoard,mov);
        if(nextPosition.equals(NULL_CELLS)){
          board[playable[character].getYpos()][playable[character].getXpos()] = NULL_CELLS;
-        this.ypos -= mov;
+        Player.ypos -= mov;
         board[playable[character].getYpos()][playable[character].getXpos()] = playable[character].getIcon();
        }
     }
-    public void movYNegative(int mov,String[][] board,Player[]playable,int character,int widthBoard ,int heigthBoard,String NULL_CELLS){
+    public static void movYNegative(int mov,String[][] board,Player[]playable,int character,int widthBoard ,int heigthBoard,String NULL_CELLS){
        String nextPosition = nextYNegative(board,playable,character,widthBoard,heigthBoard,mov);
        if(nextPosition.equals(NULL_CELLS)){
          board[playable[character].getYpos()][playable[character].getXpos()] = NULL_CELLS;
-        this.ypos += mov;
+        Player.ypos += mov;
         board[playable[character].getYpos()][playable[character].getXpos()] = playable[character].getIcon();
        }
     }
@@ -102,64 +102,64 @@ public abstract class Player {
         return playable[character].getDMG()* (playable[character].getLV()/10);
     }
     
-    public void gainCoins(){
-        this.sackOfCoins += 1;
+    public static void gainCoins(){
+        sackOfCoins += 1;
     }
-    public void loseCoins(){
-        this.sackOfCoins -= 1;
+    public static void loseCoins(){
+        sackOfCoins -= 1;
     }
  
 
     //Getters i setters
-    public int getLV() {
+    public static int getLV() {
         return LV;
     }
-    public int getSackOfCoins() {
+    public static int getSackOfCoins() {
         return sackOfCoins;
     }
 
-    public int getDMG() {
+    public static int getDMG() {
         return DMG;
     }
 
-    public String getIcon() {
+    public static String getIcon() {
         return icon;
     }
 
-    public int getXpos() {
+    public static int getXpos() {
         return xpos;
     }
 
-    public int getYpos() {
+    public static int getYpos() {
         return ypos;
     }
 
-    public int getHP() {
+    public  static int getHP() {
         return HP;
     }
 
-    public void setLV(int LV) {
-        this.LV = LV;
+    public  static void setLV(int LV) {
+        Player.LV = LV;
     }
 
-    public void setSackOfCoins(int sackOfCoins) {
-        this.sackOfCoins = sackOfCoins;
+    public static void setSackOfCoins(int sackOfCoins) {
+        Player.sackOfCoins = sackOfCoins;
     }
 
-    public void setIcon(String icon) {
-        this.icon = icon;
+    public static void setIcon(String icon) {
+        Player.icon = icon;
     }
 
-    public void setHP(int HP) {
-        this.HP = HP;
+    public  static void setHP(int HP) {
+        Player.HP = HP;
     }
 
-    public void setXpos(int xpos) {
-        this.xpos = xpos;
+    public  static void setXpos(int xpos) {
+        Player.xpos = xpos;
     }
 
-    public void setYpos(int ypos) {
-        this.ypos = ypos;
+    public  static void setYpos(int ypos) {
+        Player.ypos = ypos;
     }
     
 }
