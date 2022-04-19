@@ -313,4 +313,29 @@ public class GameJava {
             TimeUnit.MILLISECONDS.sleep(1000 / INPUT_RATE);
         } while (SECTION_RUNNING);
     }
+	public static void playingGame() {
+		INPUT = "";
+        SECTION_RUNNING = true;
+		do {
+			Board.printBoard(widthBoard, heightBoard);
+            Board.showMenu();
+			switch (INPUT) {
+				case "up":
+//					movYPositive(int mov,String[][] board,Player[]playable,int character,int widthBoard ,int heigthBoard,String NULL_CELLS)
+					Player.movYPositive(1,board, playable, character, widthBoard, heightBoard, Board.voidSquare);
+					break;
+				case "down":
+					Player.movYNegative(1,board, playable, character, widthBoard, heightBoard, Board.voidSquare);
+					break;
+				case "left":
+					break;
+				case "right":
+					break;
+				case "2":
+					break;
+				
+			}
+			
+		}while(SECTION_RUNNING);
+	}
 }
