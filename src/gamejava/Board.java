@@ -164,7 +164,6 @@ public class Board {
         System.out.println("1 - ATACK           2 - CHANGE CHARACTER  \n"
                             + "3 - PICK UP OBJECT  4 - EXIT ");
     }
-    
 
     
     public static String saveCharacter() {
