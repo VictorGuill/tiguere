@@ -16,11 +16,14 @@ public class Board {
     public static String HP[] = new String[10];
     public static boolean firstPrint = true;
     public static String Character,
-            voidSquare = "░░░░░";
+            voidSquare = "░░░░░",
+            voidCharacterSides = "░░";
     public static int coins;
 
     public static void printBoard(int wBoard, int hBoard) {
 
+        Tools.clearConsole();
+        
         Character = saveCharacter();
         if (firstPrint) {
             coins = randomCoin();
@@ -168,11 +171,11 @@ public class Board {
 
     public static String saveCharacter() {
         if (GameJava.character == 1) {
-            Character = ("░░" + GameJava.CHAR_GUERRERO + "░░");
+            Character = (voidCharacterSides + GameJava.CHAR_GUERRERO + voidCharacterSides);
         } else if (GameJava.character == 2) {
-            Character = ("░░" + GameJava.CHAR_MAGO + "░░");
+            Character = (voidCharacterSides + GameJava.CHAR_MAGO + voidCharacterSides);
         } else {
-            Character = ("░░" + GameJava.CHAR_SACERDOTE + "░░");
+            Character = (voidCharacterSides + GameJava.CHAR_SACERDOTE + voidCharacterSides);
         }
         return Character;
     }
@@ -228,8 +231,8 @@ public class Board {
                 }
             }
         }
-        randomPositions(GameJava.numCoins, height - 1, width - 1, ("░░" + GameJava.CHAR_COIN + "░░"));
-        randomPositions(GameJava.numEnemies, height - 1, width - 1, ("░░" + GameJava.CHAR_ENEMY + "░░"));
+        randomPositions(GameJava.numCoins, height - 1, width - 1, (voidCharacterSides + GameJava.CHAR_COIN + voidCharacterSides));
+        randomPositions(GameJava.numEnemies, height - 1, width - 1, (voidCharacterSides + GameJava.CHAR_ENEMY + voidCharacterSides));
         GameJava.board[0][0] = Character;
 
     }

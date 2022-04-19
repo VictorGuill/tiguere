@@ -18,12 +18,11 @@ public class GameJava {
             numCoins = 1;
     public static boolean SECTION_RUNNING = true;
     public static String[][] board;
-	public static magician m1 = new magician();
+    public static magician m1 = new magician();
     public static priest p1 = new priest();
     public static warrior w1 = new warrior();
-        
-    public static Player[]playable;
-        
+
+    public static Player[] playable;
 
     public static void main(String[] args) throws InterruptedException {
         InputListener keyInput = new InputListener(); //crea y abre la ventana java
@@ -31,17 +30,16 @@ public class GameJava {
         boolean isGameRunning = true,
                 sectionRunning;
         playable = new Player[3];
-        playable [0] = w1;
-        playable [1]= m1;
-        playable [2]= p1;
+        playable[0] = w1;
+        playable[1] = m1;
+        playable[2] = p1;
 
         /////////////////////////////////////////////////////
         //////////////   EMPIEZA EL PROGRAMA   //////////////
         /////////////////////////////////////////////////////
-        printWaitScreen(); //pantalla de espera para empezar
-        StartSetup.loadingAnimation(); //animacion de carga
+        //printWaitScreen(); //pantalla de espera para empezar
+        //StartSetup.loadingAnimation(); //animacion de carga
         StartSetup.startMenu(menuOption); //pantalla menu
-        Tools.clearConsole(); //sin este primer clear, no funcionan los colores en CMD windows
 
         do {
             do {
@@ -68,8 +66,6 @@ public class GameJava {
                                 characterSelectorScreen();
                                 gameDifficultyScreen();
                                 //Tools.clearConsole();
-                                Board.printBoard(widthBoard, heightBoard);
-                                Board.showMenu();
                                 playingGame();
                                 break;
                             case 2: //tutorial
@@ -93,7 +89,6 @@ public class GameJava {
             INPUT = "";
         } while (isGameRunning);
     }
-
 
     //////////////////////////////////////////
     //////////////  FUNCIONES  ///////////////
@@ -131,7 +126,7 @@ public class GameJava {
             counter++;
         } while (noUserActivity);
     }
-    
+
     /**
      * Menu donde el usuario escoje el tamaño del tablero.
      *
@@ -315,28 +310,38 @@ public class GameJava {
             TimeUnit.MILLISECONDS.sleep(1000 / INPUT_RATE);
         } while (SECTION_RUNNING);
     }
-	
-    
-    public static void playingGame() throws InterruptedException {
-        INPUT = "";
-        SECTION_RUNNING = true;
-        do {
-            Tools.clearConsole();
 
-            Board.printBoard(widthBoard, heightBoard);
-            Board.showMenu();
+    public static void playingGame() throws InterruptedException {
+
+        SECTION_RUNNING = true;
+        Board.printBoard(widthBoard, heightBoard);
+        Board.showMenu();
+
+        do {
             switch (INPUT) {
                 case "up":
                     Player.movYPositive(1, board, playable, character, widthBoard, heightBoard, Board.voidSquare);
+                    Board.printBoard(widthBoard, heightBoard);
+                    Board.showMenu();
                     INPUT = "";
                     break;
                 case "down":
                     Player.movYNegative(1, board, playable, character, widthBoard, heightBoard, Board.voidSquare);
+                    Board.printBoard(widthBoard, heightBoard);
+                    Board.showMenu();
                     INPUT = "";
                     break;
                 case "left":
+                    Player.movXNegative(1, board, playable, character, widthBoard, heightBoard, Board.voidSquare);
+                    Board.printBoard(widthBoard, heightBoard);
+                    Board.showMenu();
+                    INPUT = "";
                     break;
                 case "right":
+                    Player.movXPositive(1, board, playable, character, widthBoard, heightBoard, Board.voidSquare);
+                    Board.printBoard(widthBoard, heightBoard);
+                    Board.showMenu();
+                    INPUT = "";
                     break;
                 case "2":
                     break;
@@ -345,10 +350,8 @@ public class GameJava {
                     System.out.println("[PANTALLA ADIOS]");
                     SECTION_RUNNING = false;
                     break;
-
             }
             TimeUnit.MILLISECONDS.sleep(1000 / INPUT_RATE);
-
         } while (SECTION_RUNNING);
     }
 }
