@@ -76,6 +76,8 @@ public class InputListener extends JFrame implements KeyListener {
             case 27: // ESC
                 GameJava.INPUT = "escape";
                 break;
+            case 52: 
+                GameJava.INPUT = "4";
             default:
                 GameJava.INPUT = String.valueOf(e.getKeyChar());
         }

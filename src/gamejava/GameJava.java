@@ -67,9 +67,10 @@ public class GameJava {
                                 boardSizeScreen();
                                 characterSelectorScreen();
                                 gameDifficultyScreen();
-                                Tools.clearConsole();
+                                //Tools.clearConsole();
                                 Board.printBoard(widthBoard, heightBoard);
                                 Board.showMenu();
+                                playingGame();
                                 break;
                             case 2: //tutorial
                                 break;
@@ -89,6 +90,7 @@ public class GameJava {
                 }
                 TimeUnit.MILLISECONDS.sleep(1000 / INPUT_RATE);
             } while (SECTION_RUNNING);
+            INPUT = "";
         } while (isGameRunning);
     }
 
@@ -313,29 +315,40 @@ public class GameJava {
             TimeUnit.MILLISECONDS.sleep(1000 / INPUT_RATE);
         } while (SECTION_RUNNING);
     }
-	public static void playingGame() {
-		INPUT = "";
+	
+    
+    public static void playingGame() throws InterruptedException {
+        INPUT = "";
         SECTION_RUNNING = true;
-		do {
-			Board.printBoard(widthBoard, heightBoard);
+        do {
+            Tools.clearConsole();
+
+            Board.printBoard(widthBoard, heightBoard);
             Board.showMenu();
-			switch (INPUT) {
-				case "up":
-//					movYPositive(int mov,String[][] board,Player[]playable,int character,int widthBoard ,int heigthBoard,String NULL_CELLS)
-					Player.movYPositive(1,board, playable, character, widthBoard, heightBoard, Board.voidSquare);
-					break;
-				case "down":
-					Player.movYNegative(1,board, playable, character, widthBoard, heightBoard, Board.voidSquare);
-					break;
-				case "left":
-					break;
-				case "right":
-					break;
-				case "2":
-					break;
-				
-			}
-			
-		}while(SECTION_RUNNING);
-	}
+            switch (INPUT) {
+                case "up":
+                    Player.movYPositive(1, board, playable, character, widthBoard, heightBoard, Board.voidSquare);
+                    INPUT = "";
+                    break;
+                case "down":
+                    Player.movYNegative(1, board, playable, character, widthBoard, heightBoard, Board.voidSquare);
+                    INPUT = "";
+                    break;
+                case "left":
+                    break;
+                case "right":
+                    break;
+                case "2":
+                    break;
+                case "4": //exit
+                    Tools.clearConsole();
+                    System.out.println("[PANTALLA ADIOS]");
+                    SECTION_RUNNING = false;
+                    break;
+
+            }
+            TimeUnit.MILLISECONDS.sleep(1000 / INPUT_RATE);
+
+        } while (SECTION_RUNNING);
+    }
 }

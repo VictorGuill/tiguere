@@ -26,7 +26,7 @@ public abstract class Player {
        if(nextPosition.equals(NULL_CELLS)){
         board[playable[character].getYpos()][playable[character].getXpos()] = NULL_CELLS;
         Player.xpos += mov;
-        board[playable[character].getYpos()][playable[character].getXpos()] = playable[character].getIcon();
+        board[playable[character].getYpos()][playable[character].getXpos()] = Board.Character;
        }
     }
     public static void movXNegative(int mov,String[][] board,Player[]playable,int character,int widthBoard ,int heigthBoard,String NULL_CELLS){
@@ -34,7 +34,7 @@ public abstract class Player {
        if(nextPosition.equals(NULL_CELLS)){
         board[playable[character].getYpos()][playable[character].getXpos()] = NULL_CELLS;
         Player.xpos -= mov;
-        board[playable[character].getYpos()][playable[character].getXpos()] = playable[character].getIcon();
+        board[playable[character].getYpos()][playable[character].getXpos()] = Board.Character;
        }
     }
     public static void movYPositive(int mov,String[][] board,Player[]playable,int character,int widthBoard ,int heigthBoard,String NULL_CELLS){
@@ -42,7 +42,7 @@ public abstract class Player {
        if(nextPosition.equals(NULL_CELLS)){
          board[playable[character].getYpos()][playable[character].getXpos()] = NULL_CELLS;
         Player.ypos -= mov;
-        board[playable[character].getYpos()][playable[character].getXpos()] = playable[character].getIcon();
+        board[playable[character].getYpos()][playable[character].getXpos()] = Board.Character;
        }
     }
     public static void movYNegative(int mov,String[][] board,Player[]playable,int character,int widthBoard ,int heigthBoard,String NULL_CELLS){
@@ -50,7 +50,7 @@ public abstract class Player {
        if(nextPosition.equals(NULL_CELLS)){
          board[playable[character].getYpos()][playable[character].getXpos()] = NULL_CELLS;
         Player.ypos += mov;
-        board[playable[character].getYpos()][playable[character].getXpos()] = playable[character].getIcon();
+        board[playable[character].getYpos()][playable[character].getXpos()] = Board.Character;
        }
     }
     
