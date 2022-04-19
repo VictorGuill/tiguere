@@ -5,7 +5,7 @@ import java.util.concurrent.TimeUnit;
 public class GameJava {
 
     final static int INPUT_RATE = 20; //delay entre consultas del input
-    final static int MIN_BOARD_SIZE = 5, MAX_BOARD_SIZE = 15; //maximo y minimo permitido valores tamaño tablero
+    final static int MIN_BOARD_SIZE = 10, MAX_BOARD_SIZE = 20; //maximo y minimo permitido valores tamaño tablero
     final static char CHAR_GUERRERO = '¥', CHAR_MAGO = '£', CHAR_SACERDOTE = '±', CHAR_ENEMY = '¤', CHAR_COIN = 'O';
 
     public static String INPUT = ""; //guarda la ultima tecla pulsada

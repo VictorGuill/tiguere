@@ -38,7 +38,7 @@ public class Board {
                     if (j == 0) {
                         System.out.print(Tools.print(StartSetup.colorUI, "", "╔"));
                     } else if (j == (wBoard * 5) + 1) {
-                        System.out.print(Tools.print(StartSetup.colorUI, "", "╗"));
+                        System.out.print(Tools.print(StartSetup.colorUI, "", "╦"));
                     } else if (j > (wBoard * 5) + 2 && j != (wBoard * 5) + 19) {
                         System.out.print(Tools.print(StartSetup.colorUI, "", "═"));
                     } else if (j == (wBoard * 5) + 19) {
@@ -142,14 +142,129 @@ public class Board {
                     } else if (j < wBoard + 1) {
                         printPosition(j - 1, i - 1);
                     } else if (j == (wBoard + 1)) {
+                        System.out.print(Tools.print(colorUI, "", "╠"));
+                    } else if (j < wBoard + 19) {
+                        System.out.print(Tools.print(StartSetup.colorUI, "", "═"));
+                    } else {
+                        System.out.print(Tools.print(StartSetup.colorUI, "", "╣"));
+                    }
+                }
+            } else if (i > 5 && i < 10){
+                switch (i) {
+                    case 6:
+                        for (int j = 0; j < wBoard + 20; j++) {
+                            if (j == 0) {
+                                System.out.print(Tools.print(colorUI, "", "║"));
+                            } else if (j < wBoard + 1) {
+                                printPosition(j - 1, i - 1);
+
+                            } else if (j == (wBoard + 1)) {
+                                System.out.print(Tools.print(colorUI, "", "║"));
+                            } else if (j == wBoard + 19) {
+                                System.out.print(Tools.print(colorUI, "", "║"));
+                            } else {
+                                System.out.print(" ");
+                            }
+                        }
+                        break;
+                    case 7:
+                        for (int j = 0; j < wBoard + 20; j++) {
+                            if (j == 0) {
+                                System.out.print(Tools.print(colorUI, "", "║"));
+                            } else if (j < wBoard + 1) {
+                                printPosition(j - 1, i - 1);
+
+                            } else if (j == (wBoard + 1)) {
+                                System.out.print(Tools.print(colorUI, "", "║"));
+                            } else if (j == wBoard + 19) {
+                                System.out.print(Tools.print(colorUI, "", "║"));
+                            }  else if (j == wBoard + 3) {
+                                System.out.print("H");
+                            } else if (j == wBoard + 4) {
+                                System.out.print("P");
+                            } else if (j == wBoard + 6) {
+                                System.out.print("N");
+                            } else if (j == wBoard + 7) {
+                                System.out.print("E");
+                            } else if (j == wBoard + 8) {
+                                System.out.print("M");
+                            } else if (j == wBoard + 9) {
+                                System.out.print("I");
+                            } else if (j == wBoard + 10) {
+                                System.out.print("E");
+                            } else if (j == wBoard + 11) {
+                                System.out.print("S");
+                            } else {
+                                System.out.print(" ");
+                            }
+                        }
+                        break;
+                    case 8:
+                        for (int j = 0; j < wBoard + 20; j++) {
+                            if (j == 0) {
+                                System.out.print(Tools.print(colorUI, "", "║"));
+                            } else if (j < wBoard + 1) {
+                                printPosition(j - 1, i - 1);
+
+                            } else if (j == (wBoard + 1)) {
+                                System.out.print(Tools.print(colorUI, "", "║"));
+                            } else if (j == wBoard + 19) {
+                                System.out.print(Tools.print(colorUI, "", "║"));
+                            }  else if (j == wBoard + 3) {
+                                System.out.print("L");
+                            } else if (j == wBoard + 4) {
+                                System.out.print("V");
+                            } else if (j == wBoard + 5) {
+                                System.out.print("L");
+                            } else if (j == wBoard + 7) {
+                                System.out.print("E");
+                            } else if (j == wBoard + 8) {
+                                System.out.print("M");
+                            } else if (j == wBoard + 9) {
+                                System.out.print("I");
+                            } else if (j == wBoard + 10) {
+                                System.out.print("E");
+                            } else if (j == wBoard + 11) {
+                                System.out.print("S");
+                            } else {
+                                System.out.print(" ");
+                            }
+                        }
+                        break;
+                    case 9:
+                        for (int j = 0; j < wBoard + 20; j++) {
+                            if (j == 0) {
+                                System.out.print(Tools.print(colorUI, "", "║"));
+                            } else if (j < wBoard + 1) {
+                                printPosition(j - 1, i - 1);
+
+                            } else if (j == (wBoard + 1)) {
+                                System.out.print(Tools.print(colorUI, "", "║"));
+                            } else if (j == wBoard + 19) {
+                                System.out.print(Tools.print(colorUI, "", "║"));
+                            } else {
+                                System.out.print(" ");
+                            }
+                        }
+                        break;
+                        
+                    
+                }
+            } else if (i == 10) {
+                for (int j = 0; j < wBoard + 20; j++) {
+                    if (j == 0) {
                         System.out.print(Tools.print(colorUI, "", "║"));
+                    } else if (j < wBoard + 1) {
+                        printPosition(j - 1, i - 1);
+                    } else if (j == (wBoard + 1)) {
+                        System.out.print(Tools.print(colorUI, "", "╠"));
                     } else if (j < wBoard + 19) {
                         System.out.print(Tools.print(StartSetup.colorUI, "", "═"));
                     } else {
                         System.out.print(Tools.print(StartSetup.colorUI, "", "╝"));
                     }
                 }
-            } else {
+            }else {
                 for (int j = 0; j < wBoard + 2; j++) {
                     if (j == 0 || j == wBoard + 1) {
                         System.out.print(Tools.print(colorUI, "", "║"));
