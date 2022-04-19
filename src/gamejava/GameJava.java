@@ -6,7 +6,7 @@ public class GameJava {
 
     final static int INPUT_RATE = 20; //delay entre consultas del input
     final static int MIN_BOARD_SIZE = 5, MAX_BOARD_SIZE = 15; //maximo y minimo permitido valores tamaño tablero
-    final static char CHAR_GUERRERO = '¥', CHAR_MAGO = '£', CHAR_SACERDOTE = '±';
+    final static char CHAR_GUERRERO = '¥', CHAR_MAGO = '£', CHAR_SACERDOTE = '±', CHAR_ENEMY = '¤', CHAR_COIN = 'O';
 
     public static String INPUT = ""; //guarda la ultima tecla pulsada
     public static int menuOption = 1,
@@ -14,13 +14,16 @@ public class GameJava {
             widthBoard = 8, //valor inicial ancho del tablero
             heightBoard = 8, //valor inicial alto del tablero
             character = 1, //personage del jugador
-            numEnemies = 1; //numero de enemigos dependiendo la dificultad
+            numEnemies = 1, //numero de enemigos dependiendo la dificultad
+            numCoins = 1;
     public static boolean SECTION_RUNNING = true;
+    public static String[][] board;
 
     public static void main(String[] args) throws InterruptedException {
-
         InputListener keyInput = new InputListener(); //crea y abre la ventana java
-        boolean isGameRunning = true;
+
+        boolean isGameRunning = true,
+                sectionRunning;
 
         /////////////////////////////////////////////////////
         //////////////   EMPIEZA EL PROGRAMA   //////////////
@@ -28,6 +31,7 @@ public class GameJava {
         printWaitScreen(); //pantalla de espera para empezar
         StartSetup.loadingAnimation(); //animacion de carga
         StartSetup.startMenu(menuOption); //pantalla menu
+        Tools.clearConsole(); //sin este primer clear, no funcionan los colores en CMD windows
 
         do {
             do {
@@ -54,8 +58,8 @@ public class GameJava {
                                 characterSelectorScreen();
                                 gameDifficultyScreen();
                                 Tools.clearConsole();
-                                System.out.println("TABLERO:\nAlto: " + heightBoard + "\tAncho: " + widthBoard); //print los valores, borrar en un futuro
-                                System.out.println("Personaje escogido: " + character + "\tNumero enemigos: " + numEnemies);
+                                Board.printBoard(widthBoard, heightBoard);
+                                Board.showMenu();
                                 break;
                             case 2: //tutorial
                                 break;
@@ -77,6 +81,7 @@ public class GameJava {
             } while (SECTION_RUNNING);
         } while (isGameRunning);
     }
+
 
     //////////////////////////////////////////
     //////////////  FUNCIONES  ///////////////
@@ -114,7 +119,7 @@ public class GameJava {
             counter++;
         } while (noUserActivity);
     }
-
+    
     /**
      * Menu donde el usuario escoje el tamaño del tablero.
      *
