@@ -20,7 +20,10 @@ public class Board {
         GameJava.board = new String[hBoard][wBoard];
         int coins = randomCoin();
         Character = saveCharacter();
-        setMap(wBoard,hBoard);
+        if (firstPrint) {
+			setMap(wBoard,hBoard);
+			firstPrint = false;
+		}
         
         for (int i = 0; i < hBoard + 2; i++) {
             if (i == 0){
