@@ -344,6 +344,9 @@ public class GameJava {
                 case "2":
                     changeCharacter(playable);
                     break;
+                case "3":
+                    Player.pickUpCoin(board, playable, character, widthBoard, heightBoard, (" " + GameJava.CHAR_COIN + " "));
+                    break;
                 case "4": //exit
                     Tools.clearConsole();
                     StartSetup.startMenu(1);

@@ -18,7 +18,7 @@ public class Board {
     public static String Character,
             voidSquare = "░░░",
             voidCharacterSides = "░";
-    public static int coins;
+    
 
     public static void printBoard(int wBoard, int hBoard) {
     int hueco = voidSquare.length();
@@ -28,7 +28,7 @@ public class Board {
         
         Character = saveCharacter();
         if (firstPrint) {
-            coins = randomCoin();
+            GameJava.numCoins= randomCoin();
             GameJava.board = new String[hBoard][wBoard];
             setMap(wBoard, hBoard);
             firstPrint = false;
@@ -70,7 +70,7 @@ public class Board {
                             } else if (j == wBoard + 19) {
                                 System.out.print(Tools.print(colorUI, "", "║"));
                             } else if (j == wBoard + 3) {
-                                System.out.print(coins);
+                                System.out.print(GameJava.numCoins);
                             } else if (j == wBoard + 5) {
                                 System.out.print("C");
                             } else if (j == wBoard + 6) {

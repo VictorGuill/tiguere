@@ -4,7 +4,7 @@ package gamejava;
 
 public abstract class Player {
     public static int LV;
-    public static int sackOfCoins;
+    public static int sackOfCoins = 0;
     public static int xpos;
     public static int ypos;
     public static int HP;
@@ -94,6 +94,41 @@ public abstract class Player {
             nextPosition = board[yTemp][playable[character].getXpos()];
         }
        return nextPosition;
+    }
+    
+    public static void pickUpCoin(String[][] board, Player[]playable,int character,int widthBoard ,int heigthBoard,String NULL_CELLS) {
+        boolean isCoin = false;
+        int x = getXpos();
+        int y = getYpos();
+        String nextXPositive = nextXPositive(board,playable,character,widthBoard,heigthBoard,1);
+        String nextXNegative = nextXNegative(board,playable,character,widthBoard,heigthBoard,1);
+        String nextYPositive = nextYPositive(board,playable,character,widthBoard,heigthBoard,1);
+        String nextYNegative = nextYNegative(board,playable,character,widthBoard,heigthBoard,1);
+        do {
+            if (nextXPositive.equals(NULL_CELLS)) {
+                GameJava.board[y][x+1] = Board.voidSquare;
+                sackOfCoins++;
+                GameJava.numCoins--;
+                isCoin = true;
+            } else if(nextXNegative.equals(NULL_CELLS)) {
+                GameJava.board [y][x-1] = Board.voidSquare;
+                sackOfCoins++;
+                GameJava.numCoins--;
+                isCoin = true;
+            } else if (nextYPositive.equals(NULL_CELLS)){
+                GameJava.board[y-1][x] = Board.voidSquare;
+                sackOfCoins++;
+                GameJava.numCoins--;
+                isCoin = true;
+            } else if(nextYNegative.equals(NULL_CELLS)) {
+                GameJava.board[y+1][x] = Board.voidSquare;
+                sackOfCoins++;
+                GameJava.numCoins--;
+                isCoin = true;
+            } else {
+                isCoin = true;
+            }
+        }while(!isCoin);
     }
     
     ///Mètode basicAttack que retorna un dany a un enemic en base al nivell del personatge i el seu dany base.
