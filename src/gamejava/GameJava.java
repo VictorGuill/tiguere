@@ -27,8 +27,7 @@ public class GameJava {
     public static void main(String[] args) throws InterruptedException {
         InputListener keyInput = new InputListener(); //crea y abre la ventana java
 
-        boolean isGameRunning = true,
-                sectionRunning;
+        boolean isGameRunning = true;
         playable = new Player[3];
         playable[0] = w1;
         playable[1] = m1;
@@ -65,7 +64,6 @@ public class GameJava {
                                 boardSizeScreen();
                                 characterSelectorScreen();
                                 gameDifficultyScreen();
-                                //Tools.clearConsole();
                                 playingGame();
                                 break;
                             case 2: //tutorial
@@ -80,13 +78,10 @@ public class GameJava {
                                 keyInput.dispose(); //elimina ventana creada por JAVA
                                 break;
                         }
-                        INPUT = "";
-                        SECTION_RUNNING = false;
                         break;
                 }
                 TimeUnit.MILLISECONDS.sleep(1000 / INPUT_RATE);
             } while (SECTION_RUNNING);
-            INPUT = "";
         } while (isGameRunning);
     }
 
