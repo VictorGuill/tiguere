@@ -13,6 +13,7 @@ public class GameJava {
         InputListener keyInput = new InputListener(); //crea y abre la ventana java
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
         int widthBoard,
                 heightBoard,
                 numEnemies,
@@ -21,6 +22,8 @@ public class GameJava {
         boolean isGameRunning = true,
                 sectionRunning;
 =======
+=======
+>>>>>>> Stashed changes
         boolean isGameRunning = true;
         playable = new Player[3];
         playable[0] = w1;
@@ -68,7 +71,21 @@ public class GameJava {
                         break;
                     case "enter":
                         switch (menuOption) {
+<<<<<<< Updated upstream
                             case 4:
+=======
+                            case 1: //play
+                                boardSizeScreen();
+                                characterSelectorScreen();
+                                gameDifficultyScreen();
+                                playingGame();
+                                break;
+                            case 2: //tutorial
+                                break;
+                            case 3: //config
+                                break;
+                            case 4: //exit
+>>>>>>> Stashed changes
                                 Tools.clearConsole();
                                 System.out.println("[PANTALLA ADIOS]");
                                 sectionRunning = false;
@@ -317,7 +334,7 @@ public class GameJava {
 
     public static void playingGame() throws InterruptedException {
 
-        SECTION_RUNNING = true;
+        boolean playingGame = true;
         Board.printBoard(widthBoard, heightBoard);
         Board.showMenu();
 
@@ -351,12 +368,12 @@ public class GameJava {
                     break;
                 case "4": //exit
                     Tools.clearConsole();
-                    System.out.println("[PANTALLA ADIOS]");
-                    SECTION_RUNNING = false;
+                    StartSetup.startMenu(menuOption);
+                    playingGame = false;
                     break;
             }
             TimeUnit.MILLISECONDS.sleep(1000 / INPUT_RATE);
-        } while (SECTION_RUNNING);
+        } while (playingGame);
     }
     
 >>>>>>> Stashed changes
