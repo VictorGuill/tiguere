@@ -11,9 +11,9 @@ public class GameJava {
     public static String INPUT = ""; //guarda la ultima tecla pulsada
     public static int menuOption = 1,
             secondSelection = 1, //valor para cuando hay mas de una selecion en un menu (Ej: choose caracter)
-            widthBoard = 8, //valor inicial ancho del tablero
-            heightBoard = 8, //valor inicial alto del tablero
             character = 1, //personage del jugador
+            widthBoard,
+            heightBoard,
             numEnemies = 1, //numero de enemigos dependiendo la dificultad
             numCoins = 1;
     public static boolean SECTION_RUNNING = true;
@@ -37,8 +37,8 @@ public class GameJava {
         /////////////////////////////////////////////////////
         //////////////   EMPIEZA EL PROGRAMA   //////////////
         /////////////////////////////////////////////////////
-        printWaitScreen(); //pantalla de espera para empezar
-        StartSetup.loadingAnimation(); //animacion de carga
+        //printWaitScreen(); //pantalla de espera para empezar
+        //StartSetup.loadingAnimation(); //animacion de carga
         StartSetup.startMenu(menuOption); //pantalla menu
 
         do {
@@ -133,11 +133,14 @@ public class GameJava {
      * @throws InterruptedException
      */
     public static void boardSizeScreen() throws InterruptedException {
+        int valorInicial = (MIN_BOARD_SIZE + MAX_BOARD_SIZE) / 2;
         INPUT = "";
         SECTION_RUNNING = true;
         Tools.clearConsole();
         menuOption = 1;
-        StartSetup.boardSizeScreen(widthBoard, heightBoard, menuOption);
+        widthBoard = valorInicial;
+        heightBoard = valorInicial;
+        StartSetup.boardSizeScreen(valorInicial, valorInicial, menuOption);
 
         do {
             switch (INPUT) {
