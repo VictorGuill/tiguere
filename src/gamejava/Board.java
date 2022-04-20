@@ -285,9 +285,9 @@ public class Board {
     }
 
     public static String saveCharacter() {
-        if (GameJava.character == 1) {
+        if (GameJava.character == 0) {
             Character = (" " + GameJava.CHAR_GUERRERO + " ");
-        } else if (GameJava.character == 2) {
+        } else if (GameJava.character == 1) {
             Character = (" " + GameJava.CHAR_MAGO + " ");
         } else {
             Character = (" " + GameJava.CHAR_SACERDOTE + " ");
