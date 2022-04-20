@@ -16,12 +16,14 @@ public class Board {
     public static String HP[] = new String[10];
     public static boolean firstPrint = true;
     public static String Character,
-            voidSquare = "░░░░░",
-            voidCharacterSides = "░░";
+            voidSquare = "░░░",
+            voidCharacterSides = "░";
     public static int coins;
 
     public static void printBoard(int wBoard, int hBoard) {
-
+    int hueco = voidSquare.length();
+        
+        
         Tools.clearConsole();
         
         Character = saveCharacter();
@@ -34,24 +36,22 @@ public class Board {
 
         for (int i = 0; i < hBoard + 2; i++) {
             if (i == 0) {
-                for (int j = 0; j < (wBoard * 5) + 20; j++) {
+                for (int j = 0; j < (wBoard * hueco) + 20; j++) {
                     if (j == 0) {
                         System.out.print(Tools.print(StartSetup.colorUI, "", "╔"));
-                    } else if (j == (wBoard * 5) + 1) {
+                    } else if (j == (wBoard * hueco) + 1) {
                         System.out.print(Tools.print(StartSetup.colorUI, "", "╦"));
-                    } else if (j > (wBoard * 5) + 2 && j != (wBoard * 5) + 19) {
-                        System.out.print(Tools.print(StartSetup.colorUI, "", "═"));
-                    } else if (j == (wBoard * 5) + 19) {
+                    } else if (j == (wBoard * hueco) + 19) {
                         System.out.print(Tools.print(StartSetup.colorUI, "", "╗"));
                     } else {
                         System.out.print(Tools.print(StartSetup.colorUI, "", "═"));
                     }
                 }
             } else if (i == hBoard + 1) {
-                for (int j = 0; j < (wBoard * 5) + 2; j++) {
+                for (int j = 0; j < (wBoard * hueco) + 2; j++) {
                     if (j == 0) {
                         System.out.print(Tools.print(StartSetup.colorUI, "", "╚"));
-                    } else if (j == (wBoard * 5) + 1) {
+                    } else if (j == (wBoard * hueco) + 1) {
                         System.out.print(Tools.print(StartSetup.colorUI, "", "╝"));
                     } else {
                         System.out.print(Tools.print(StartSetup.colorUI, "", "═"));
@@ -286,11 +286,11 @@ public class Board {
 
     public static String saveCharacter() {
         if (GameJava.character == 1) {
-            Character = (voidCharacterSides + GameJava.CHAR_GUERRERO + voidCharacterSides);
+            Character = (" " + GameJava.CHAR_GUERRERO + " ");
         } else if (GameJava.character == 2) {
-            Character = (voidCharacterSides + GameJava.CHAR_MAGO + voidCharacterSides);
+            Character = (" " + GameJava.CHAR_MAGO + " ");
         } else {
-            Character = (voidCharacterSides + GameJava.CHAR_SACERDOTE + voidCharacterSides);
+            Character = (" " + GameJava.CHAR_SACERDOTE + " ");
         }
         return Character;
     }
@@ -346,8 +346,8 @@ public class Board {
                 }
             }
         }
-        randomPositions(GameJava.numCoins, height - 1, width - 1, (voidCharacterSides + GameJava.CHAR_COIN + voidCharacterSides));
-        randomPositions(GameJava.numEnemies, height - 1, width - 1, (voidCharacterSides + GameJava.CHAR_ENEMY + voidCharacterSides));
+        randomPositions(GameJava.numCoins, height - 1, width - 1, (" " + GameJava.CHAR_COIN + " "));
+        randomPositions(GameJava.numEnemies, height - 1, width - 1, (" " + GameJava.CHAR_ENEMY + " "));
         GameJava.board[0][0] = Character;
 
     }

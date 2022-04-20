@@ -6,7 +6,7 @@ public class GameJava {
 
     final static int INPUT_RATE = 20; //delay entre consultas del input
     final static int MIN_BOARD_SIZE = 10, MAX_BOARD_SIZE = 20; //maximo y minimo permitido valores tamaño tablero
-    final static char CHAR_GUERRERO = '¥', CHAR_MAGO = '£', CHAR_SACERDOTE = '±', CHAR_ENEMY = '¤', CHAR_COIN = 'O';
+    final static char CHAR_GUERRERO = '¥', CHAR_MAGO = '£', CHAR_SACERDOTE = '±', CHAR_ENEMY = '¤', CHAR_COIN = '$';
 
     public static String INPUT = ""; //guarda la ultima tecla pulsada
     public static int menuOption = 1,
@@ -37,8 +37,8 @@ public class GameJava {
         /////////////////////////////////////////////////////
         //////////////   EMPIEZA EL PROGRAMA   //////////////
         /////////////////////////////////////////////////////
-        //printWaitScreen(); //pantalla de espera para empezar
-        //StartSetup.loadingAnimation(); //animacion de carga
+        printWaitScreen(); //pantalla de espera para empezar
+        StartSetup.loadingAnimation(); //animacion de carga
         StartSetup.startMenu(menuOption); //pantalla menu
 
         do {

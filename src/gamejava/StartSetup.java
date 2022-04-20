@@ -135,6 +135,7 @@ public class StartSetup {
 
     public static void loadingAnimation() throws InterruptedException {
         Tools.clearConsole();
+        /*
         TimeUnit.MILLISECONDS.sleep(200);
         System.out.println("RCPI: SSDT Ox0000000077FD4000 000360");
         TimeUnit.MILLISECONDS.sleep(150);
@@ -169,6 +170,8 @@ public class StartSetup {
 
         TimeUnit.MILLISECONDS.sleep(300);
 
+        */
+        
         for (int i = 0; i < 7; i++) {
             Tools.clearConsole();
             loadingStartScreen(i);
