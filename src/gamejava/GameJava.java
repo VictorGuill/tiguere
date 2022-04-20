@@ -357,4 +357,16 @@ public class GameJava {
             TimeUnit.MILLISECONDS.sleep(1000 / INPUT_RATE);
         } while (SECTION_RUNNING);
     }
+    public static void changeCharacter (Player[]playable) throws InterruptedException{
+            int yTemp = playable[character].getYpos();
+            int xTemp = playable[character].getXpos();
+                   
+            characterSelectorScreen();
+
+            Player.setYpos(yTemp);
+            Player.setXpos(xTemp);
+            
+            board[yTemp][xTemp] = Board.Character;
+                    
+    }
 }
