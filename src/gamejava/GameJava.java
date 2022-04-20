@@ -316,7 +316,7 @@ public class GameJava {
 
     public static void playingGame() throws InterruptedException {
 
-        SECTION_RUNNING = true;
+        boolean playingGame = true;
         Board.printBoard(widthBoard, heightBoard);
         Board.showMenu();
 
@@ -351,12 +351,12 @@ public class GameJava {
                     break;
                 case "4": //exit
                     Tools.clearConsole();
-                    System.out.println("[PANTALLA ADIOS]");
-                    SECTION_RUNNING = false;
+                    StartSetup.startMenu(1);
+                    playingGame = false;
                     break;
             }
             TimeUnit.MILLISECONDS.sleep(1000 / INPUT_RATE);
-        } while (SECTION_RUNNING);
+        } while (playingGame);
     }
 
     public static void changeCharacter(Player[] playable) throws InterruptedException {

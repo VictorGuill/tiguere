@@ -5,7 +5,6 @@ package gamejava;
 public abstract class Player {
     public static int LV;
     public static int sackOfCoins;
-    public static String icon;
     public static int xpos;
     public static int ypos;
     public static int HP;
@@ -65,7 +64,7 @@ public abstract class Player {
         int xTemp = playable[character].getXpos()+mov;
         
         if(xTemp>=0&&xTemp<=widthBoard-1){
-            nextPosition =board[playable[character].getYpos()][xTemp];
+            nextPosition = board[playable[character].getYpos()][xTemp];
         }
        return nextPosition;
     }
@@ -74,7 +73,7 @@ public abstract class Player {
         int xTemp = playable[character].getXpos()-mov;
         
         if(xTemp>=0&&xTemp<=widthBoard-1){
-            nextPosition =board[playable[character].getYpos()][xTemp];
+            nextPosition = board[playable[character].getYpos()][xTemp];
         }
        return nextPosition;
     }
@@ -83,7 +82,7 @@ public abstract class Player {
         int yTemp = playable[character].getYpos()+mov;
         
         if(yTemp>=0&&yTemp<=heigthBoard-1){
-            nextPosition =board[yTemp][playable[character].getXpos()];
+            nextPosition = board[yTemp][playable[character].getXpos()];
         }
        return nextPosition;
     }
@@ -92,7 +91,7 @@ public abstract class Player {
         int yTemp = playable[character].getYpos()-mov;
         
         if(yTemp>=0&&yTemp<=heigthBoard-1){
-            nextPosition =board[yTemp][playable[character].getXpos()];
+            nextPosition = board[yTemp][playable[character].getXpos()];
         }
        return nextPosition;
     }
@@ -108,12 +107,12 @@ public abstract class Player {
     public static void loseCoins(){
         sackOfCoins -= 1;
     }
- 
 
     //Getters i setters
     public static int getLV() {
         return LV;
     }
+    
     public static int getSackOfCoins() {
         return sackOfCoins;
     }
@@ -121,11 +120,7 @@ public abstract class Player {
     public static int getDMG() {
         return DMG;
     }
-
-    public static String getIcon() {
-        return icon;
-    }
-
+    
     public static int getXpos() {
         return xpos;
     }
@@ -144,10 +139,6 @@ public abstract class Player {
 
     public static void setSackOfCoins(int sackOfCoins) {
         Player.sackOfCoins = sackOfCoins;
-    }
-
-    public static void setIcon(String icon) {
-        Player.icon = icon;
     }
 
     public  static void setHP(int HP) {
