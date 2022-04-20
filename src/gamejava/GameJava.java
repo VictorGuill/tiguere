@@ -242,7 +242,7 @@ public class GameJava {
                         menuOption++;
                         StartSetup.characterSelectorScreen(menuOption, secondSelection);
                     } else if (secondSelection == 2) {
-                        character = menuOption;
+                        character = menuOption-1;
                         SECTION_RUNNING = false;
                     }
                     INPUT = "";
@@ -252,7 +252,7 @@ public class GameJava {
                         secondSelection = 2;
                         StartSetup.characterSelectorScreen(menuOption, secondSelection);
                     } else if (secondSelection == 2) {
-                        character = menuOption;
+                        character = menuOption-1;
                         SECTION_RUNNING = false;
                     }
                     INPUT = "";
@@ -347,6 +347,7 @@ public class GameJava {
                     INPUT = "";
                     break;
                 case "2":
+                    changeCharacter(playable);
                     break;
                 case "4": //exit
                     Tools.clearConsole();
@@ -357,16 +358,18 @@ public class GameJava {
             TimeUnit.MILLISECONDS.sleep(1000 / INPUT_RATE);
         } while (SECTION_RUNNING);
     }
-    public static void changeCharacter (Player[]playable) throws InterruptedException{
-            int yTemp = playable[character].getYpos();
-            int xTemp = playable[character].getXpos();
-                   
-            characterSelectorScreen();
 
-            Player.setYpos(yTemp);
-            Player.setXpos(xTemp);
-            
-            board[yTemp][xTemp] = Board.Character;
-                    
+    public static void changeCharacter(Player[] playable) throws InterruptedException {
+        int yTemp = playable[character].getYpos();
+        int xTemp = playable[character].getXpos();
+
+        characterSelectorScreen();
+        SECTION_RUNNING = true;
+        
+        Player.setYpos(yTemp);
+        Player.setXpos(xTemp);
+
+        board[yTemp][xTemp] = Board.Character;
+
     }
 }
