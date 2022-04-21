@@ -352,6 +352,13 @@ public class GameJava {
                     StartSetup.startMenu(1);
                     playingGame = false;
                     break;
+                case "5":
+                    if (Board.Character.equals((" " + GameJava.CHAR_MAGO + " "))){
+                        magician.motionSkill(1, board, playable, character, widthBoard, heightBoard, Board.voidSquare);
+                        Board.printBoard(widthBoard, heightBoard);
+                        Board.showMenu();
+                    }
+                    break;
             }
             TimeUnit.MILLISECONDS.sleep(1000 / INPUT_RATE);
         } while (playingGame);

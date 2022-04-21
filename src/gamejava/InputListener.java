@@ -91,6 +91,9 @@ public class InputListener extends JFrame implements KeyListener {
             case 52: // número 4
                 GameJava.INPUT = "4";
                 break;
+            case 53: // número 5
+                GameJava.INPUT = "5";
+                break;
             default:
                 GameJava.INPUT = String.valueOf(e.getKeyChar());
         }

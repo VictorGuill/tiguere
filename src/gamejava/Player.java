@@ -21,8 +21,8 @@ public abstract class Player {
         Metodes mov , augmenta una casella en cas de que la seguent casella sigui un "-"
         nullsCells = constant del main que indicara que es troba a les caselles nul·les.
     */
-    public static void movXPositive(int mov, String[][] board, Player[]playable,int character,int widthBoard ,int heigthBoard,String NULL_CELLS){
-       String nextPosition = nextXPositive(board,playable,character,widthBoard,heigthBoard,mov);
+    public static void movXPositive(int mov, String[][] board, Player[]playable,int character,int widthBoard ,int heightBoard,String NULL_CELLS){
+       String nextPosition = nextXPositive(board,playable,character,widthBoard,heightBoard,mov);
        if(nextPosition.equals(NULL_CELLS)){
         board[playable[character].getYpos()][playable[character].getXpos()] = NULL_CELLS;
         Player.xpos += mov;
