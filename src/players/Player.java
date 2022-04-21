@@ -34,6 +34,11 @@ public abstract class Player {
         Board.saveCharacter(direction);
         board[playable[character].getYpos()][playable[character].getXpos()] = Board.Character;
        }
+       if(Player.xpos==widthBoard-1){
+        direction = "left";
+        Board.saveCharacter(direction);
+        board[playable[character].getYpos()][playable[character].getXpos()] = Board.Character;
+       }
     }
     public static void movXNegative(int mov, String[][] board, Player[]playable, int character, int widthBoard, int heigthBoard, String NULL_CELLS){
        String nextPosition = nextXNegative(board,playable,character,widthBoard,heigthBoard,mov);
@@ -41,6 +46,11 @@ public abstract class Player {
         board[playable[character].getYpos()][playable[character].getXpos()] = NULL_CELLS;
         Player.xpos -= mov;
         direction = "left";
+        Board.saveCharacter(direction);
+        board[playable[character].getYpos()][playable[character].getXpos()] = Board.Character;
+       }
+       if(Player.xpos==0){
+        direction = "right";
         Board.saveCharacter(direction);
         board[playable[character].getYpos()][playable[character].getXpos()] = Board.Character;
        }
