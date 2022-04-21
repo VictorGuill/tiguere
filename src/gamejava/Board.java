@@ -70,7 +70,7 @@ public class Board {
                             } else if (j == wBoard + 19) {
                                 System.out.print(Tools.print(colorUI, "", "║"));
                             } else if (j == wBoard + 3) {
-                                System.out.print(GameJava.numCoins);
+                                System.out.print(Player.sackOfCoins);
                             } else if (j == wBoard + 5) {
                                 System.out.print("C");
                             } else if (j == wBoard + 6) {
@@ -97,22 +97,18 @@ public class Board {
                             } else if (j == wBoard + 19) {
                                 System.out.print(Tools.print(colorUI, "", "║"));
                             } else if (j == wBoard + 3) {
-                                System.out.print(GameJava.numEnemies);
+                                System.out.print(Player.kills);
                             } else if (j == wBoard + 5) {
-                                System.out.print("E");
+                                System.out.print("K");
                             } else if (j == wBoard + 6) {
-                                System.out.print("N");
-                            } else if (j == wBoard + 7) {
-                                System.out.print("E");
-                            } else if (j == wBoard + 8) {
-                                System.out.print("M");
-                            } else if (j == wBoard + 9) {
                                 System.out.print("I");
-                            } else if (j == wBoard + 10) {
-                                System.out.print("E");
-                            } else if (j == wBoard + 11) {
+                            } else if (j == wBoard + 7) {
+                                System.out.print("L");
+                            } else if (j == wBoard + 8) {
+                                System.out.print("L");
+                            } else if (j == wBoard + 9) {
                                 System.out.print("S");
-                            } else {
+                            }  else {
                                 System.out.print(" ");
                             }
                         }
@@ -168,7 +164,7 @@ public class Board {
                         }
                         break;
                     case 7:
-                        for (int j = 0; j < wBoard + 20; j++) {
+                        for (int j = 0; j < wBoard + 18; j++) {
                             if (j == 0) {
                                 System.out.print(Tools.print(colorUI, "", "║"));
                             } else if (j < wBoard + 1) {
@@ -176,24 +172,14 @@ public class Board {
 
                             } else if (j == (wBoard + 1)) {
                                 System.out.print(Tools.print(colorUI, "", "║"));
-                            } else if (j == wBoard + 19) {
+                            } else if (j == wBoard + 17) {
                                 System.out.print(Tools.print(colorUI, "", "║"));
                             }  else if (j == wBoard + 3) {
                                 System.out.print("H");
                             } else if (j == wBoard + 4) {
                                 System.out.print("P");
                             } else if (j == wBoard + 6) {
-                                System.out.print("N");
-                            } else if (j == wBoard + 7) {
-                                System.out.print("E");
-                            } else if (j == wBoard + 8) {
-                                System.out.print("M");
-                            } else if (j == wBoard + 9) {
-                                System.out.print("I");
-                            } else if (j == wBoard + 10) {
-                                System.out.print("E");
-                            } else if (j == wBoard + 11) {
-                                System.out.print("S");
+                                System.out.print(String.valueOf(Player.HP));
                             } else {
                                 System.out.print(" ");
                             }
@@ -217,16 +203,8 @@ public class Board {
                             } else if (j == wBoard + 5) {
                                 System.out.print("L");
                             } else if (j == wBoard + 7) {
-                                System.out.print("E");
-                            } else if (j == wBoard + 8) {
-                                System.out.print("M");
-                            } else if (j == wBoard + 9) {
-                                System.out.print("I");
-                            } else if (j == wBoard + 10) {
-                                System.out.print("E");
-                            } else if (j == wBoard + 11) {
-                                System.out.print("S");
-                            } else {
+                                System.out.print(String.valueOf(Player.LV));
+                            }  else {
                                 System.out.print(" ");
                             }
                         }

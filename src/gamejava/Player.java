@@ -3,12 +3,13 @@ package gamejava;
 
 
 public abstract class Player {
-    public static int LV;
+    public static int LV = 1;
     public static int sackOfCoins = 0;
     public static int xpos;
     public static int ypos;
-    public static int HP;
+    public static int HP = 100;
     public static int DMG;
+    public static int kills = 0;
 
     public Player() {
     }
@@ -129,6 +130,7 @@ public abstract class Player {
                 isCoin = true;
             }
         }while(!isCoin);
+        
     }
     
     ///Mètode basicAttack que retorna un dany a un enemic en base al nivell del personatge i el seu dany base.
