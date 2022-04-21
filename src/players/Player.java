@@ -6,13 +6,13 @@ import gamejava.GameJava;
 
 
 public abstract class Player {
-    public static int LV = 1;
-    public static int sackOfCoins = 0;
+    public static int LV;
+    public static int sackOfCoins;
     public static int xpos;
     public static int ypos;
-    public static int HP = 100;
+    public static int HP;
     public static int DMG;
-    public static int kills = 0;
+    public static int kills;
 
     public Player() {
     }
@@ -24,7 +24,7 @@ public abstract class Player {
         Metodes mov , augmenta una casella en cas de que la seguent casella sigui un "-"
         nullsCells = constant del main que indicara que es troba a les caselles nul·les.
     */
-    public static void movXPositive(int mov, String[][] board, Player[]playable,int character,int widthBoard ,int heightBoard,String NULL_CELLS){
+    public static void movXPositive(int mov, String[][] board, Player[]playable, int character, int widthBoard, int heightBoard, String NULL_CELLS){
        String nextPosition = nextXPositive(board,playable,character,widthBoard,heightBoard,mov);
        if(nextPosition.equals(NULL_CELLS)){
         board[playable[character].getYpos()][playable[character].getXpos()] = NULL_CELLS;
@@ -32,7 +32,7 @@ public abstract class Player {
         board[playable[character].getYpos()][playable[character].getXpos()] = Board.Character;
        }
     }
-    public static void movXNegative(int mov,String[][] board,Player[]playable,int character,int widthBoard ,int heigthBoard,String NULL_CELLS){
+    public static void movXNegative(int mov, String[][] board, Player[]playable, int character, int widthBoard, int heigthBoard, String NULL_CELLS){
        String nextPosition = nextXNegative(board,playable,character,widthBoard,heigthBoard,mov);
        if(nextPosition.equals(NULL_CELLS)){
         board[playable[character].getYpos()][playable[character].getXpos()] = NULL_CELLS;
@@ -40,7 +40,7 @@ public abstract class Player {
         board[playable[character].getYpos()][playable[character].getXpos()] = Board.Character;
        }
     }
-    public static void movYPositive(int mov,String[][] board,Player[]playable,int character,int widthBoard ,int heigthBoard,String NULL_CELLS){
+    public static void movYPositive(int mov, String[][] board, Player[]playable, int character, int widthBoard, int heigthBoard, String NULL_CELLS){
        String nextPosition = nextYPositive(board,playable,character,widthBoard,heigthBoard,mov);
        if(nextPosition.equals(NULL_CELLS)){
          board[playable[character].getYpos()][playable[character].getXpos()] = NULL_CELLS;
@@ -48,7 +48,7 @@ public abstract class Player {
         board[playable[character].getYpos()][playable[character].getXpos()] = Board.Character;
        }
     }
-    public static void movYNegative(int mov,String[][] board,Player[]playable,int character,int widthBoard ,int heigthBoard,String NULL_CELLS){
+    public static void movYNegative(int mov, String[][] board, Player[]playable, int character, int widthBoard, int heigthBoard, String NULL_CELLS){
        String nextPosition = nextYNegative(board,playable,character,widthBoard,heigthBoard,mov);
        if(nextPosition.equals(NULL_CELLS)){
          board[playable[character].getYpos()][playable[character].getXpos()] = NULL_CELLS;
@@ -63,7 +63,7 @@ public abstract class Player {
         Mètodes nextPosition que ens retornen el contingut de la seguent casella, 
         en cas de que es surti de la graella ens retornarà el String = "DON'T EXISTS".
     */
-    public static String nextXPositive(String[][] board,Player[]playable,int character,int widthBoard ,int heigthBoard, int mov){
+    public static String nextXPositive(String[][] board, Player[]playable, int character, int widthBoard, int heigthBoard, int mov){
         String nextPosition="DON'T EXISTS";
         int xTemp = playable[character].getXpos()+mov;
         
@@ -72,7 +72,7 @@ public abstract class Player {
         }
        return nextPosition;
     }
-    public static String nextXNegative(String[][] board,Player[]playable,int character,int widthBoard ,int heigthBoard, int mov){
+    public static String nextXNegative(String[][] board, Player[]playable, int character, int widthBoard, int heigthBoard, int mov){
         String nextPosition="DON'T EXISTS";
         int xTemp = playable[character].getXpos()-mov;
         
@@ -81,7 +81,7 @@ public abstract class Player {
         }
        return nextPosition;
     }
-    public static String nextYNegative(String[][] board,Player[]playable,int character,int widthBoard ,int heigthBoard, int mov){
+    public static String nextYNegative(String[][] board, Player[]playable, int character, int widthBoard, int heigthBoard, int mov){
         String nextPosition="DON'T EXISTS";
         int yTemp = playable[character].getYpos()+mov;
         
@@ -90,7 +90,7 @@ public abstract class Player {
         }
        return nextPosition;
     }
-    public static String nextYPositive(String[][] board,Player[]playable,int character,int widthBoard ,int heigthBoard, int mov){
+    public static String nextYPositive(String[][] board, Player[]playable, int character, int widthBoard ,int heigthBoard, int mov){
         String nextPosition="DON'T EXISTS";
         int yTemp = playable[character].getYpos()-mov;
         
@@ -100,7 +100,7 @@ public abstract class Player {
        return nextPosition;
     }
     
-    public static void pickUpCoin(String[][] board, Player[]playable,int character,int widthBoard ,int heigthBoard,String NULL_CELLS) {
+    public static void pickUpCoin(String[][] board, Player[]playable, int character, int widthBoard, int heigthBoard, String NULL_CELLS) {
         boolean isCoin = false;
         int x = getXpos();
         int y = getYpos();
@@ -108,6 +108,7 @@ public abstract class Player {
         String nextXNegative = nextXNegative(board,playable,character,widthBoard,heigthBoard,1);
         String nextYPositive = nextYPositive(board,playable,character,widthBoard,heigthBoard,1);
         String nextYNegative = nextYNegative(board,playable,character,widthBoard,heigthBoard,1);
+        
         do {
             if (nextXPositive.equals(NULL_CELLS)) {
                 GameJava.board[y][x+1] = Board.voidSquare;
@@ -115,7 +116,7 @@ public abstract class Player {
                 GameJava.numCoins--;
                 isCoin = true;
             } else if(nextXNegative.equals(NULL_CELLS)) {
-                GameJava.board [y][x-1] = Board.voidSquare;
+                GameJava.board[y][x-1] = Board.voidSquare;
                 sackOfCoins++;
                 GameJava.numCoins--;
                 isCoin = true;
@@ -135,10 +136,44 @@ public abstract class Player {
         }while(!isCoin);
         
     }
-    
+   
     ///Mètode basicAttack que retorna un dany a un enemic en base al nivell del personatge i el seu dany base.
-    public static float basicAttack(Player[]playable,int character){
-        return playable[character].getDMG()* (playable[character].getLV()/10);
+    public static void basicAttack(String[][] board, Player[]playable,int character,int widthBoard ,int heigthBoard, String NULL_CELLS){
+        boolean isAttack;
+        
+        int x = getXpos();
+        int y = getYpos();
+        
+        String nextXPositive = nextXPositive(board,playable,character,widthBoard,heigthBoard,1);
+        String nextXNegative = nextXNegative(board,playable,character,widthBoard,heigthBoard,1);
+        String nextYPositive = nextYPositive(board,playable,character,widthBoard,heigthBoard,1);
+        String nextYNegative = nextYNegative(board,playable,character,widthBoard,heigthBoard,1);
+        
+        do {
+            if (nextXPositive.equals(NULL_CELLS)){
+                GameJava.board[y][x+1] = Board.voidSquare;
+                kills++;
+                GameJava.numEnemies--;
+                isAttack = false;
+            } else if (nextXNegative.equals(NULL_CELLS)){
+                GameJava.board[y][x-1] = Board.voidSquare;
+                kills++;
+                GameJava.numEnemies--;
+                isAttack = false;
+            } else if (nextYPositive.equals(NULL_CELLS)){
+                GameJava.board[y-1][x] = Board.voidSquare;
+                kills++;
+                GameJava.numEnemies--;
+                isAttack = false;
+            } else if (nextYNegative.equals(NULL_CELLS)){
+                GameJava.board[y+1][x] = Board.voidSquare;
+                kills++;
+                GameJava.numEnemies--;
+                isAttack = false;
+            } else {
+                isAttack = false;
+            }
+        }  while (isAttack);
     }
     
     public static void gainCoins(){

@@ -44,9 +44,9 @@ public class GameJava {
         /////////////////////////////////////////////////////
         //////////////   EMPIEZA EL PROGRAMA   //////////////
         /////////////////////////////////////////////////////
-        Screens.printWaitScreen(); //pantalla de espera para empezar
-        Screens.loadingAnimation(); //animacion de carga
-        Screens.startMenu(menuOption); //pantalla menu
+        //Screens.printWaitScreen(); //pantalla de espera para empezar
+        //Screens.loadingAnimation(); //animacion de carga
+        //Screens.startMenu(menuOption); //pantalla menu
 
         do {
             do {
@@ -89,7 +89,9 @@ public class GameJava {
                         break;
                 }
                 TimeUnit.MILLISECONDS.sleep(1000 / INPUT_RATE);
+                
             } while (SECTION_RUNNING);
+            
         } while (isGameRunning);
     }
 }

@@ -48,6 +48,9 @@ public class Play {
                     Board.showMenu();
                     INPUT = "";
                     break;
+                case "1":
+                    Player.basicAttack(board, playable, character, widthBoard, heightBoard, (" " + GameJava.CHAR_ENEMY + " "));
+                    break;
                 case "2":
                     changeCharacter(playable);
                     break;

@@ -330,12 +330,15 @@ public class Board {
         }
         randomPositions(GameJava.numCoins, height - 1, width - 1, (" " + GameJava.CHAR_COIN + " "));
         randomPositions(GameJava.numEnemies, height - 1, width - 1, (" " + GameJava.CHAR_ENEMY + " "));
+        
+        //Inicialitzem els valors
         GameJava.board[0][0] = Character;
         Player.xpos = 0;
         Player.ypos = 0;
-         
-        
-
+        Player.kills = 0;
+        Player.sackOfCoins = 0;
+        Player.HP = 100;
+        Player.LV = 1;
     }
 
 }
