@@ -73,6 +73,8 @@ nbactions.xml
 nb-configuration.xml
 GameJava/nbproject/private/private.xml
 GameJava/nbproject/private/private.properties
+.DS_Store
+src/gamejava/stale_outputs_checked
 
 ##############################
 ## Visual Studio Code
