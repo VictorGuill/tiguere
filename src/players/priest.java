@@ -1,4 +1,4 @@
-package gamejava;
+package players;
 
 /**
  *

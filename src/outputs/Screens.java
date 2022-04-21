@@ -1,8 +1,11 @@
-package gamejava;
+package outputs;
 
+import gamejava.GameJava;
+import utilities.Tools;
+import static gamejava.GameJava.*;
 import java.util.concurrent.TimeUnit;
 
-public class StartSetup {
+public class Screens {
 
     public static String colorUI = "cyan",
             colorText = "yellow",
@@ -10,6 +13,7 @@ public class StartSetup {
 
     public static int w = 45,
             h = 11;
+    public static boolean firstTime = true;
 
     ////////// PANTALLA ESPERA INICIO //////////
     public static void waitScreen(int State) {
@@ -547,5 +551,232 @@ public class StartSetup {
         } else {
             return String.valueOf(number);
         }
+    }
+    /**
+     * Imprime la pantalla de espera inicial. No continua hasta recibir un
+     * INPUT.
+     *
+     * @throws InterruptedException
+     */
+    public static void printWaitScreen() throws InterruptedException {
+        boolean noUserActivity = true;
+        int counter = 0, state = 0;
+
+        Screens.waitScreen(state);
+        do {
+            //truco para cambiar fotograma inicio cada 1s pero seguir leyendo el INPUT cada 50ms.
+            //sin el truco, leeriamos el input cada 1s al imprimir el nuevo fotograma y no seria muy instantaneo el pulsar enter.
+            if (counter == 18) {
+                if (state == 0) {
+                    state++;
+                    Screens.waitScreen(state);
+                } else {
+                    state--;
+                    Screens.waitScreen(state);
+                }
+                counter = 0;
+            }
+
+            TimeUnit.MILLISECONDS.sleep(1000 / INPUT_RATE);
+            if (!INPUT.equals("")) {
+                INPUT = "";
+                noUserActivity = false;
+            }
+            counter++;
+        } while (noUserActivity);
+    }
+
+    /**
+     * Menu donde el usuario escoje el tamaño del tablero.
+     *
+     * @throws InterruptedException
+     */
+    public static void boardSizeScreen() throws InterruptedException {
+        int valorInicial = (MIN_BOARD_SIZE + MAX_BOARD_SIZE) / 2;
+        INPUT = "";
+        SECTION_RUNNING = true;
+        Tools.clearConsole();
+        menuOption = 1;
+        if (firstTime) {
+            widthBoard = valorInicial;
+            heightBoard = valorInicial;
+            Screens.boardSizeScreen(valorInicial, valorInicial, menuOption);
+            firstTime = false;
+            Board.firstPrint = true;
+        } else {
+            Screens.boardSizeScreen(widthBoard, heightBoard, menuOption);
+        }
+        
+
+        do {
+            switch (INPUT) {
+                case "up":
+                    if (menuOption == 1) {
+                        if (widthBoard > MIN_BOARD_SIZE) {
+                            widthBoard--;
+                            Screens.boardSizeScreen(widthBoard, heightBoard, menuOption);
+                        }
+                    } else if (menuOption == 2) {
+                        if (heightBoard > MIN_BOARD_SIZE) {
+                            heightBoard--;
+                            Screens.boardSizeScreen(widthBoard, heightBoard, menuOption);
+                        }
+                    }
+                    INPUT = "";
+                    break;
+                case "down":
+                    if (menuOption == 1) {
+                        if (widthBoard < MAX_BOARD_SIZE) {
+                            widthBoard++;
+                            Screens.boardSizeScreen(widthBoard, heightBoard, menuOption);
+                        }
+                    } else if (menuOption == 2) {
+                        if (heightBoard < MAX_BOARD_SIZE) {
+                            heightBoard++;
+                            Screens.boardSizeScreen(widthBoard, heightBoard, menuOption);
+                        }
+                    }
+                    INPUT = "";
+                    break;
+                case "left":
+                    if (menuOption > 1) {
+                        menuOption--;
+                        Screens.boardSizeScreen(widthBoard, heightBoard, menuOption);
+                    }
+                    INPUT = "";
+                    break;
+                case "right":
+                    if (menuOption < 3) {
+                        menuOption++;
+                        Screens.boardSizeScreen(widthBoard, heightBoard, menuOption);
+                    } else if (menuOption == 3) {
+                        SECTION_RUNNING = false;
+                    }
+                    INPUT = "";
+                    break;
+                case "enter":
+                    if (menuOption < 3) {
+                        menuOption++;
+                        Screens.boardSizeScreen(widthBoard, heightBoard, menuOption);
+                    } else if (menuOption == 3) {
+                        SECTION_RUNNING = false;
+                    }
+                    INPUT = "";
+                    break;
+            }
+            TimeUnit.MILLISECONDS.sleep(1000 / INPUT_RATE);
+        } while (SECTION_RUNNING);
+    }
+
+    /**
+     * Menu elecion personaje con el que se empieza la partida.
+     *
+     * @throws InterruptedException
+     */
+    public static void characterSelectorScreen() throws InterruptedException {
+        INPUT = "";
+        SECTION_RUNNING = true;
+        Tools.clearConsole();
+        menuOption = 1;
+        Screens.characterSelectorScreen(menuOption, secondSelection);
+
+        do {
+            switch (INPUT) {
+                case "up":
+                    if (secondSelection == 2) {
+                        secondSelection = 1;
+                        Screens.characterSelectorScreen(menuOption, secondSelection);
+                    }
+                    INPUT = "";
+                    break;
+                case "down":
+                    if (secondSelection == 1) {
+                        secondSelection = 2;
+                        Screens.characterSelectorScreen(menuOption, secondSelection);
+                    }
+                    INPUT = "";
+                    break;
+                case "left":
+                    if (menuOption > 1 && secondSelection == 1) {
+                        menuOption--;
+                        Screens.characterSelectorScreen(menuOption, secondSelection);
+                    }
+                    INPUT = "";
+                    break;
+                case "right":
+                    if (menuOption < 3 && secondSelection == 1) {
+                        menuOption++;
+                        Screens.characterSelectorScreen(menuOption, secondSelection);
+                    } else if (secondSelection == 2) {
+                        character = menuOption-1;
+                        SECTION_RUNNING = false;
+                    }
+                    INPUT = "";
+                    break;
+                case "enter":
+                    if (secondSelection == 1) {
+                        secondSelection = 2;
+                        Screens.characterSelectorScreen(menuOption, secondSelection);
+                    } else if (secondSelection == 2) {
+                        character = menuOption-1;
+                        SECTION_RUNNING = false;
+                    }
+                    INPUT = "";
+                    break;
+            }
+            TimeUnit.MILLISECONDS.sleep(1000 / INPUT_RATE);
+        } while (SECTION_RUNNING);
+    }
+
+    /**
+     * Menu donde escogemos la dificultad del juego.
+     *
+     * @throws InterruptedException
+     */
+    public static void gameDifficultyScreen() throws InterruptedException {
+        INPUT = "";
+        SECTION_RUNNING = true;
+        Tools.clearConsole();
+        numEnemies = 1;
+        menuOption = 1;
+        Screens.gameDifficultyScreen(menuOption);
+
+        do {
+            switch (INPUT) {
+                case "up":
+                    if (menuOption > 1) {
+                        menuOption--;
+                        Screens.gameDifficultyScreen(menuOption);
+                        INPUT = "";
+                    }
+                    break;
+                case "down":
+                    if (menuOption < 3) {
+                        menuOption++;
+                        Screens.gameDifficultyScreen(menuOption);
+                        INPUT = "";
+                    }
+                    break;
+                case "right":
+                case "enter":
+                    //dependiendo la dificultad, hay un rango de enemigos que apareceran
+                    switch (menuOption) {
+                        case 1: //easy
+                            numEnemies = Tools.random(1, 2);
+                            break;
+                        case 2: //medium
+                            numEnemies = Tools.random(2, 3);
+                            break;
+                        case 3: //hard
+                            numEnemies = Tools.random(4, 6);
+                            break;
+                    }
+                    Tools.clearConsole();
+                    SECTION_RUNNING = false;
+                    INPUT = "";
+                    break;
+            }
+            TimeUnit.MILLISECONDS.sleep(1000 / INPUT_RATE);
+        } while (SECTION_RUNNING);
     }
 }

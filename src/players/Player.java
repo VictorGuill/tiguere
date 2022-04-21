@@ -1,5 +1,8 @@
 
-package gamejava;
+package players;
+
+import outputs.Board;
+import gamejava.GameJava;
 
 
 public abstract class Player {

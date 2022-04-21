@@ -3,9 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package gamejava;
+package outputs;
 
-import static gamejava.StartSetup.colorUI;
+import gamejava.GameJava;
+import utilities.Tools;
+import players.Player;
+import static outputs.Screens.colorUI;
 
 /**
  *
@@ -38,23 +41,23 @@ public class Board {
             if (i == 0) {
                 for (int j = 0; j < (wBoard * hueco) + 20; j++) {
                     if (j == 0) {
-                        System.out.print(Tools.print(StartSetup.colorUI, "", "╔"));
+                        System.out.print(Tools.print(Screens.colorUI, "", "╔"));
                     } else if (j == (wBoard * hueco) + 1) {
-                        System.out.print(Tools.print(StartSetup.colorUI, "", "╦"));
+                        System.out.print(Tools.print(Screens.colorUI, "", "╦"));
                     } else if (j == (wBoard * hueco) + 19) {
-                        System.out.print(Tools.print(StartSetup.colorUI, "", "╗"));
+                        System.out.print(Tools.print(Screens.colorUI, "", "╗"));
                     } else {
-                        System.out.print(Tools.print(StartSetup.colorUI, "", "═"));
+                        System.out.print(Tools.print(Screens.colorUI, "", "═"));
                     }
                 }
             } else if (i == hBoard + 1) {
                 for (int j = 0; j < (wBoard * hueco) + 2; j++) {
                     if (j == 0) {
-                        System.out.print(Tools.print(StartSetup.colorUI, "", "╚"));
+                        System.out.print(Tools.print(Screens.colorUI, "", "╚"));
                     } else if (j == (wBoard * hueco) + 1) {
-                        System.out.print(Tools.print(StartSetup.colorUI, "", "╝"));
+                        System.out.print(Tools.print(Screens.colorUI, "", "╝"));
                     } else {
-                        System.out.print(Tools.print(StartSetup.colorUI, "", "═"));
+                        System.out.print(Tools.print(Screens.colorUI, "", "═"));
                     }
                 }
             } else if (i > 0 && i < 5) {
@@ -140,9 +143,9 @@ public class Board {
                     } else if (j == (wBoard + 1)) {
                         System.out.print(Tools.print(colorUI, "", "╠"));
                     } else if (j < wBoard + 19) {
-                        System.out.print(Tools.print(StartSetup.colorUI, "", "═"));
+                        System.out.print(Tools.print(Screens.colorUI, "", "═"));
                     } else {
-                        System.out.print(Tools.print(StartSetup.colorUI, "", "╣"));
+                        System.out.print(Tools.print(Screens.colorUI, "", "╣"));
                     }
                 }
             } else if (i > 5 && i < 10){
@@ -237,9 +240,9 @@ public class Board {
                     } else if (j == (wBoard + 1)) {
                         System.out.print(Tools.print(colorUI, "", "╠"));
                     } else if (j < wBoard + 19) {
-                        System.out.print(Tools.print(StartSetup.colorUI, "", "═"));
+                        System.out.print(Tools.print(Screens.colorUI, "", "═"));
                     } else {
-                        System.out.print(Tools.print(StartSetup.colorUI, "", "╝"));
+                        System.out.print(Tools.print(Screens.colorUI, "", "╝"));
                     }
                 }
             }else {

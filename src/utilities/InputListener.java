@@ -1,5 +1,6 @@
-package gamejava;
+package utilities;
 
+import gamejava.GameJava;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Toolkit;
@@ -17,7 +18,7 @@ public class InputListener extends JFrame implements KeyListener {
     double height = screenSize.getHeight(); //obtiene el alto de la pantalla en px
     int windowWidth = 200, windowHeight = 100, xOffset = 400, yOffset = 200; //separacion de la ventana respecto la esquina inferior derecha
 
-    InputListener() {
+    public InputListener() {
         this.setTitle("Input listener"); //titulo de la ventana java
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //comportamineto al cerrar la ventana
         this.setResizable(false); //no permite el redimensionado de la ventana

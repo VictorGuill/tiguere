@@ -1,4 +1,6 @@
-package gamejava;
+package players;
+import outputs.Board;
+import gamejava.GameJava;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -8,40 +10,6 @@ import java.util.concurrent.TimeUnit;
 public class magician extends Player{
     //spells list
     //Create potion
-    
-    //Move +2 @override
-    public static void movXPositive(int mov, String[][] board, Player[]playable,int character,int widthBoard ,int heightBoard,String NULL_CELLS){
-       String nextPosition = nextXPositive(board,playable,character,widthBoard,heightBoard,mov);
-       if(nextPosition.equals(NULL_CELLS)){
-        board[playable[character].getYpos()][playable[character].getXpos()] = NULL_CELLS;
-        Player.xpos += mov;
-        board[playable[character].getYpos()][playable[character].getXpos()] = Board.Character;
-       }
-    }
-    public static void movXNegative(int mov,String[][] board,Player[]playable,int character,int widthBoard ,int heightBoard,String NULL_CELLS){
-       String nextPosition = nextXNegative(board,playable,character,widthBoard,heightBoard,mov);
-       if(nextPosition.equals(NULL_CELLS)){
-        board[playable[character].getYpos()][playable[character].getXpos()] = NULL_CELLS;
-        Player.xpos -= mov;
-        board[playable[character].getYpos()][playable[character].getXpos()] = Board.Character;
-       }
-    }
-    public static void movYPositive(int mov,String[][] board,Player[]playable,int character,int widthBoard ,int heightBoard,String NULL_CELLS){
-       String nextPosition = nextYPositive(board,playable,character,widthBoard,heightBoard,mov);
-       if(nextPosition.equals(NULL_CELLS)){
-         board[playable[character].getYpos()][playable[character].getXpos()] = NULL_CELLS;
-        Player.ypos -= mov;
-        board[playable[character].getYpos()][playable[character].getXpos()] = Board.Character;
-       }
-    }
-    public static void movYNegative(int mov,String[][] board,Player[]playable,int character,int widthBoard ,int heightBoard,String NULL_CELLS){
-       String nextPosition = nextYNegative(board,playable,character,widthBoard,heightBoard,mov);
-       if(nextPosition.equals(NULL_CELLS)){
-         board[playable[character].getYpos()][playable[character].getXpos()] = NULL_CELLS;
-        Player.ypos += mov;
-        board[playable[character].getYpos()][playable[character].getXpos()] = Board.Character;
-       }
-    }
     
     public static void motionSkill(int mov, String[][] board, Player[] playable, int character, int widthBoard, int heightBoard, String NULL_CELLS) throws InterruptedException {
         GameJava.INPUT = "";
