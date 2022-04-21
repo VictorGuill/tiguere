@@ -417,25 +417,9 @@ public class Screens {
     public static void loadingStartScreen(int counter) throws InterruptedException {
         for (int i = 0; i < h; i++) {
             if (i == 0) {
-                for (int j = 0; j < w; j++) {
-                    if (j == 0) {
-                        System.out.print(Tools.print(colorUI, "", "╔"));
-                    } else if (j == w - 1) {
-                        System.out.print(Tools.print(colorUI, "", "╗"));
-                    } else {
-                        System.out.print(Tools.print(colorUI, "", "═"));
-                    }
-                }
+                Tools.printRow('╔', '═', w, '╗', colorUI);
             } else if (i == h - 1) {
-                for (int j = 0; j < w; j++) {
-                    if (j == 0) {
-                        System.out.print(Tools.print(colorUI, "", "╚"));
-                    } else if (j == w - 1) {
-                        System.out.print(Tools.print(colorUI, "", "╝"));
-                    } else {
-                        System.out.print(Tools.print(colorUI, "", "═"));
-                    }
-                }
+                Tools.printRow('╚', '═', w, '╝', colorUI);
             } else if (i == 6) {
                 for (int j = 0; j < w; j++) {
                     if (j == 0 || j == w - 1) {
@@ -529,25 +513,9 @@ public class Screens {
 
         for (int i = 0; i < h; i++) {
             if (i == 0) {
-                for (int j = 0; j < w; j++) {
-                    if (j == 0) {
-                        System.out.print(Tools.print(colorUI, "", "╔"));
-                    } else if (j == w - 1) {
-                        System.out.print(Tools.print(colorUI, "", "╗"));
-                    } else {
-                        System.out.print(Tools.print(colorUI, "", "═"));
-                    }
-                }
+                Tools.printRow('╔', '═', w, '╗', colorUI);
             } else if (i == h - 1) {
-                for (int j = 0; j < w; j++) {
-                    if (j == 0) {
-                        System.out.print(Tools.print(colorUI, "", "╚"));
-                    } else if (j == w - 1) {
-                        System.out.print(Tools.print(colorUI, "", "╝"));
-                    } else {
-                        System.out.print(Tools.print(colorUI, "", "═"));
-                    }
-                }
+                Tools.printRow('╚', '═', w, '╝', colorUI);
             } else if (i == 2) {
                 System.out.print(Tools.print(colorUI, "", "║               "));
                 System.out.print(Tools.print("blue", colorText, " BOARD  SIZE "));
@@ -632,25 +600,9 @@ public class Screens {
 
         for (int i = 0; i < h; i++) {
             if (i == 0) {
-                for (int j = 0; j < w; j++) {
-                    if (j == 0) {
-                        System.out.print(Tools.print(colorUI, "", "╔"));
-                    } else if (j == w - 1) {
-                        System.out.print(Tools.print(colorUI, "", "╗"));
-                    } else {
-                        System.out.print(Tools.print(colorUI, "", "═"));
-                    }
-                }
+                Tools.printRow('╔', '═', w, '╗', colorUI);
             } else if (i == h - 1) {
-                for (int j = 0; j < w; j++) {
-                    if (j == 0) {
-                        System.out.print(Tools.print(colorUI, "", "╚"));
-                    } else if (j == w - 1) {
-                        System.out.print(Tools.print(colorUI, "", "╝"));
-                    } else {
-                        System.out.print(Tools.print(colorUI, "", "═"));
-                    }
-                }
+                Tools.printRow('╚', '═', w, '╝', colorUI);
             } else if (i == 2) {
                 System.out.print(Tools.print(colorUI, "", "║             "));
                 System.out.print(Tools.print("blue", colorText, " CHOOSE CHARACTER "));
@@ -722,25 +674,9 @@ public class Screens {
 
         for (int i = 0; i < h; i++) {
             if (i == 0) {
-                for (int j = 0; j < w; j++) {
-                    if (j == 0) {
-                        System.out.print(Tools.print(colorUI, "", "╔"));
-                    } else if (j == w - 1) {
-                        System.out.print(Tools.print(colorUI, "", "╗"));
-                    } else {
-                        System.out.print(Tools.print(colorUI, "", "═"));
-                    }
-                }
+                Tools.printRow('╔', '═', w, '╗', colorUI);
             } else if (i == h - 1) {
-                for (int j = 0; j < w; j++) {
-                    if (j == 0) {
-                        System.out.print(Tools.print(colorUI, "", "╚"));
-                    } else if (j == w - 1) {
-                        System.out.print(Tools.print(colorUI, "", "╝"));
-                    } else {
-                        System.out.print(Tools.print(colorUI, "", "═"));
-                    }
-                }
+                Tools.printRow('╚', '═', w, '╝', colorUI);
             } else if (i == 2) {
                 System.out.print(Tools.print(colorUI, "", "║             "));
                 System.out.print(Tools.print("blue", colorText, " GAME DIFFICULTY "));
