@@ -605,6 +605,7 @@ public class Screens {
             Board.firstPrint = true;
         } else {
             Screens.boardSizeScreen(widthBoard, heightBoard, menuOption);
+            Board.firstPrint = true;
         }
         
 

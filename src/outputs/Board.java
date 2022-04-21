@@ -18,6 +18,7 @@ public class Board {
 
     public static String HP[] = new String[10];
     public static boolean firstPrint = true;
+    public static boolean firstCharacter = true;
     public static String Character,
             voidSquare = "░░░",
             voidCharacterSides = "░";
@@ -330,6 +331,10 @@ public class Board {
         randomPositions(GameJava.numCoins, height - 1, width - 1, (" " + GameJava.CHAR_COIN + " "));
         randomPositions(GameJava.numEnemies, height - 1, width - 1, (" " + GameJava.CHAR_ENEMY + " "));
         GameJava.board[0][0] = Character;
+        Player.xpos = 0;
+        Player.ypos = 0;
+         
+        
 
     }
 
