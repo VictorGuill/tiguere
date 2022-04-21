@@ -10,6 +10,7 @@ public abstract class Player {
     public static int sackOfCoins;
     public static int xpos;
     public static int ypos;
+    public static String direction;
     public static int HP;
     public static int DMG;
     public static int kills;
@@ -29,7 +30,8 @@ public abstract class Player {
        if(nextPosition.equals(NULL_CELLS)){
         board[playable[character].getYpos()][playable[character].getXpos()] = NULL_CELLS;
         Player.xpos += mov;
-        Board.saveCharacter("right");
+        direction = "right";
+        Board.saveCharacter(direction);
         board[playable[character].getYpos()][playable[character].getXpos()] = Board.Character;
        }
     }
@@ -38,7 +40,8 @@ public abstract class Player {
        if(nextPosition.equals(NULL_CELLS)){
         board[playable[character].getYpos()][playable[character].getXpos()] = NULL_CELLS;
         Player.xpos -= mov;
-        Board.saveCharacter("left");
+        direction = "left";
+        Board.saveCharacter(direction);
         board[playable[character].getYpos()][playable[character].getXpos()] = Board.Character;
        }
     }
@@ -47,6 +50,7 @@ public abstract class Player {
        if(nextPosition.equals(NULL_CELLS)){
          board[playable[character].getYpos()][playable[character].getXpos()] = NULL_CELLS;
         Player.ypos -= mov;
+        Board.saveCharacter(direction);
         board[playable[character].getYpos()][playable[character].getXpos()] = Board.Character;
        }
     }
@@ -55,6 +59,7 @@ public abstract class Player {
        if(nextPosition.equals(NULL_CELLS)){
          board[playable[character].getYpos()][playable[character].getXpos()] = NULL_CELLS;
         Player.ypos += mov;
+        Board.saveCharacter(direction);
         board[playable[character].getYpos()][playable[character].getXpos()] = Board.Character;
        }
     }
