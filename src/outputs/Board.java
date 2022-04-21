@@ -30,7 +30,7 @@ public class Board {
         
         Tools.clearConsole();
         
-        Character = saveCharacter();
+        Character = saveCharacter("none");
         if (firstPrint) {
             GameJava.numCoins= randomCoin();
             GameJava.board = new String[hBoard][wBoard];
@@ -266,13 +266,38 @@ public class Board {
                 + "3 - PICK UP OBJECT  4 - EXIT ");
     }
 
-    public static String saveCharacter() {
+       public static String saveCharacter(String direction) {
         if (GameJava.character == 0) {
-            Character = (" " + GameJava.CHAR_GUERRERO + " ");
+            if(direction.equals("right")){
+                Character = (" " + GameJava.CHAR_GUERRERO + "/");
+            }
+            else if (direction.equals("left")){
+                Character = ("\\" + GameJava.CHAR_GUERRERO + " ");
+            }
+            else{
+                Character = (" " + GameJava.CHAR_GUERRERO + " ");
+            }
         } else if (GameJava.character == 1) {
-            Character = (" " + GameJava.CHAR_MAGO + " ");
+            if(direction.equals("right")){
+                Character = (" " + GameJava.CHAR_MAGO + "/");
+            }
+            else if (direction.equals("left")){
+                Character = ("\\" + GameJava.CHAR_MAGO + " ");
+            }
+            else{
+                Character = (" " + GameJava.CHAR_MAGO + " ");
+            }
         } else {
-            Character = (" " + GameJava.CHAR_SACERDOTE + " ");
+            if(direction.equals("right")){
+                Character = (" " + GameJava.CHAR_SACERDOTE + "/");
+            }
+            else if (direction.equals("left")){
+                Character = ("\\" + GameJava.CHAR_SACERDOTE + " ");
+            }
+            else{
+                Character = (" " + GameJava.CHAR_SACERDOTE + " ");
+            }
+           
         }
         return Character;
     }

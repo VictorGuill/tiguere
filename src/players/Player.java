@@ -29,6 +29,7 @@ public abstract class Player {
        if(nextPosition.equals(NULL_CELLS)){
         board[playable[character].getYpos()][playable[character].getXpos()] = NULL_CELLS;
         Player.xpos += mov;
+        Board.saveCharacter("right");
         board[playable[character].getYpos()][playable[character].getXpos()] = Board.Character;
        }
     }
@@ -37,6 +38,7 @@ public abstract class Player {
        if(nextPosition.equals(NULL_CELLS)){
         board[playable[character].getYpos()][playable[character].getXpos()] = NULL_CELLS;
         Player.xpos -= mov;
+        Board.saveCharacter("left");
         board[playable[character].getYpos()][playable[character].getXpos()] = Board.Character;
        }
     }
