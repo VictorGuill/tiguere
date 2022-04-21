@@ -49,49 +49,39 @@ public class GameJava {
         Screens.startMenu(menuOption); //pantalla menu
 
         do {
-            do {
-                switch (INPUT) {
-                    case "up":
-                        if (menuOption > 1) {
-                            menuOption--;
-                            Screens.startMenu(menuOption);
-                            INPUT = "";
-                        }
-                        break;
-                    case "down":
-                        if (menuOption < 4) {
-                            menuOption++;
-                            Screens.startMenu(menuOption);
-                            INPUT = "";
-                        }
-                        break;
-                    case "right":
-                    case "enter":
-                        switch (menuOption) {
-                            case 1: //play
-                                Screens.boardSizeScreen();
-                                Screens.characterSelectorScreen();
-                                Screens.gameDifficultyScreen();
-                                Play.playingGame();
-                                break;
-                            case 2: //tutorial
-                                break;
-                            case 3: //config
-                                break;
-                            case 4: //exit
-                                Tools.clearConsole();
-                                System.out.println("[PANTALLA ADIOS]");
-                                SECTION_RUNNING = false;
-                                isGameRunning = false;
-                                keyInput.dispose(); //elimina ventana creada por JAVA
-                                break;
-                        }
-                        break;
-                }
-                TimeUnit.MILLISECONDS.sleep(1000 / INPUT_RATE);
-                
-            } while (SECTION_RUNNING);
-            
+            switch (INPUT) {
+                case "up":
+                    if (menuOption > 1) {
+                        menuOption--;
+                        Screens.startMenu(menuOption);
+                    }
+                    break;
+                case "down":
+                    if (menuOption < 3) {
+                        menuOption++;
+                        Screens.startMenu(menuOption);
+                    }
+                    break;
+                case "enter":
+                    switch (menuOption) {
+                        case 1: //play
+                            Play.playingGame();
+                            break;
+                        case 2: //tutorial
+                            break;
+                        case 3: //exit
+                            Screens.credits();
+                            isGameRunning = false;
+                            keyInput.dispose(); //elimina ventana creada por JAVA
+                            break;
+                    }
+                case "escape":
+                    isGameRunning = false;
+                    keyInput.dispose(); //elimina ventana creada por JAVA
+                    break;
+            }
+            INPUT = "";
+            TimeUnit.MILLISECONDS.sleep(1000 / INPUT_RATE);
         } while (isGameRunning);
     }
 }

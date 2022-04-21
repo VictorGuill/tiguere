@@ -22,7 +22,7 @@ public class Screens {
         System.out.println(""
                 + "           ________________________          \n"
                 + "          / ╦ ╦╦   ╔═╗╔═╗╔═╗╔═╗╔╦╗ \\        \n"
-                + "         /  ╠═╣║───╚═╗╠═╝║╣ ║╣  ║║  \\       \n"
+                + "         /  ╠═╣║ ═ ╚═╗╠═╝║╣ ║╣  ║║  \\       \n"
                 + "        /   ╩ ╩╩   ╚═╝╩  ╚═╝╚═╝═╩╝   \\      \n"
                 + "       /   ╔╗╔╔═╗╦ ╦  ╦ ╦╔═╗╦  ╦╔═╗   \\     \n"
                 + "      /    ║║║║╣ ║║║  ║║║╠═╣╚╗╔╝║╣     \\    \n"
@@ -38,7 +38,7 @@ public class Screens {
                 ""
                 + Tools.print(colorUI, "", "           ________________________          \n")
                 + Tools.print(colorUI, "", "          / ") + Tools.print(colorText, "", "╦ ╦╦   ╔═╗╔═╗╔═╗╔═╗╔╦╗") + Tools.print(colorUI, "", " \\        \n")
-                + Tools.print(colorUI, "", "         /  ") + Tools.print(colorText, "", "╠═╣║───╚═╗╠═╝║╣ ║╣  ║║") + Tools.print(colorUI, "", "  \\       \n")
+                + Tools.print(colorUI, "", "         /  ") + Tools.print(colorText, "", "╠═╣║ ═ ╚═╗╠═╝║╣ ║╣  ║║") + Tools.print(colorUI, "", "  \\       \n")
                 + Tools.print(colorUI, "", "        /   ") + Tools.print(colorText, "", "╩ ╩╩   ╚═╝╩  ╚═╝╚═╝═╩╝") + Tools.print(colorUI, "", "   \\      \n")
                 + Tools.print(colorUI, "", "       /   ") + Tools.print(colorText, "", "╔╗╔╔═╗╦ ╦  ╦ ╦╔═╗╦  ╦╔═╗") + Tools.print(colorUI, "", "   \\     \n")
                 + Tools.print(colorUI, "", "      /    ") + Tools.print(colorText, "", "║║║║╣ ║║║  ║║║╠═╣╚╗╔╝║╣") + Tools.print(colorUI, "", "     \\    \n")
@@ -58,83 +58,79 @@ public class Screens {
     public static void startMenu(int menuOption) {
         Tools.clearConsole();
 
-        for (int i = 0; i < h; i++) {
-            if (i == 0) {
-                for (int j = 0; j < w; j++) {
-                    if (j == 0) {
-                        System.out.print(Tools.print(colorUI, "", "╔"));
-                    } else if (j == w - 1) {
-                        System.out.print(Tools.print(colorUI, "", "╗"));
-                    } else {
-                        System.out.print(Tools.print(colorUI, "", "═"));
-                    }
-                }
-            } else if (i == h - 1) {
-                for (int j = 0; j < w; j++) {
-                    if (j == 0) {
-                        System.out.print(Tools.print(colorUI, "", "╚"));
-                    } else if (j == w - 1) {
-                        System.out.print(Tools.print(colorUI, "", "╝"));
-                    } else {
-                        System.out.print(Tools.print(colorUI, "", "═"));
-                    }
-                }
-            } else if (i == 2) {
-                System.out.print(Tools.print(colorUI, "", "║                  "));
-                System.out.print(Tools.print("blue", colorText, " MENU "));
-                System.out.print(Tools.print(colorUI, "", "                   ║"));
-            } else if (i == 5) {
-                System.out.print(Tools.print(colorUI, "", "║"));
-                if (menuOption == 1) {
-                    System.out.print("              > ");
-                    System.out.print(Tools.print("white", colorHighlight, "PLAY"));
-                    System.out.print("                       ");
-                } else {
-                    System.out.print(Tools.print(colorText, "", "               PLAY                        "));
-                }
-                System.out.print(Tools.print(colorUI, "", "║"));
-            } else if (i == 6) {
-                System.out.print(Tools.print(colorUI, "", "║"));
-                if (menuOption == 2) {
-                    System.out.print("              > ");
-                    System.out.print(Tools.print("white", colorHighlight, "TUTORIAL"));
-                    System.out.print("                   ");
-                } else {
-                    System.out.print(Tools.print(colorText, "", "               TUTORIAL                    "));
-                }
-                System.out.print(Tools.print(colorUI, "", "║"));
-            } else if (i == 7) {
-                System.out.print(Tools.print(colorUI, "", "║"));
-                if (menuOption == 3) {
-                    System.out.print("              > ");
-                    System.out.print(Tools.print("white", colorHighlight, "CONFIG"));
-                    System.out.print("                     ");
-                } else {
-                    System.out.print(Tools.print(colorText, "", "               CONFIG                      "));
-                }
-                System.out.print(Tools.print(colorUI, "", "║"));
-            } else if (i == 8) {
-                System.out.print(Tools.print(colorUI, "", "║"));
-                if (menuOption == 4) {
-                    System.out.print("              > ");
-                    System.out.print(Tools.print("white", colorHighlight, "EXIT"));
-                    System.out.print("                       ");
-                } else {
-                    System.out.print(Tools.print(colorText, "", "               EXIT                        "));
-                }
-                System.out.print(Tools.print(colorUI, "", "║"));
-            } else {
-                for (int j = 0; j < w; j++) {
-                    if (j == 0 || j == w - 1) {
-                        System.out.print(Tools.print(colorUI, "", "║"));
-                    } else {
-                        System.out.print(" ");
-                    }
-                }
+        for (int i = 1; i <= h; i++) {
+            //utilitzamos un if para detectar la ultima linea porque switch no funciona con variables
 
+            switch (i) {
+                case 1:
+                    System.out.print(Tools.print(colorUI, "", "╔════════════════════════════════════════╗"));
+                    break;
+                case 2:
+                    System.out.print(Tools.print(colorUI, "", "║"));
+                    System.out.print(Tools.print(colorText, "", "  ┌┬┐┌─┐┌┐┌┬ ┬                          "));
+                    System.out.print(Tools.print(colorUI, "", "╚╗"));
+                    break;
+                case 3:
+                    System.out.print(Tools.print(colorUI, "", "║"));
+                    System.out.print(Tools.print(colorText, "", "  │││├┤ ││││ │                           "));
+                    System.out.print(Tools.print(colorUI, "", "╚╗"));
+                    break;
+                case 4:
+                    System.out.print(Tools.print(colorUI, "", "║"));
+                    System.out.print(Tools.print(colorText, "", "  ┴ ┴└─┘┘└┘└─┘                            "));
+                    System.out.print(Tools.print(colorUI, "", "╚╗"));
+                    break;
+                case 5:
+                    System.out.print(Tools.print(colorUI, "", "║                 ┌─"));
+                    System.out.print(Tools.print(colorText, "", "INFO"));
+                    System.out.print(Tools.print(colorUI, "", "───────────────┐    ║"));
+                    break;
+                case 6:
+                    if (menuOption == 1) {
+                        System.out.print(Tools.print(colorUI, "", "║    > "));
+                        System.out.print(Tools.print("white", "red", "PLAY"));
+                        System.out.print(Tools.print(colorUI, "", "       │ Survive agaist the │    ║"));
+                    } else if (menuOption == 2) {
+                        System.out.print(Tools.print(colorUI, "", "║     PLAY        │ Learn the basics   │    ║"));
+                    } else if (menuOption == 3) {
+                        System.out.print(Tools.print(colorUI, "", "║     PLAY        │ Bye bye...         │    ║"));
+                    }
+                    break;
+                case 7:
+                    if (menuOption == 2) {
+                        System.out.print(Tools.print(colorUI, "", "║    > "));
+                        System.out.print(Tools.print("white", "red", "TUTORIAL"));
+                        System.out.print(Tools.print(colorUI, "", "   │ to play & archive  │    ║"));
+                    } else if (menuOption == 1) {
+                        System.out.print(Tools.print(colorUI, "", "║     TUTORIAL    │ creatures of this  │    ║"));
+                    } else if (menuOption == 3) {
+                        System.out.print(Tools.print(colorUI, "", "║     TUTORIAL    │ I guess you aren't │    ║"));
+                    }
+                    break;
+                case 8:
+                    if (menuOption == 3) {
+                        System.out.print(Tools.print(colorUI, "", "║    > "));
+                        System.out.print(Tools.print("white", "red", "EXIT"));
+                        System.out.print(Tools.print(colorUI, "", "       │ strong enought.    │    ║"));
+                    } else if (menuOption == 1) {
+                        System.out.print(Tools.print(colorUI, "", "║     EXIT        │ world. If you can. │    ║"));
+                    } else if (menuOption == 2) {
+                        System.out.print(Tools.print(colorUI, "", "║     EXIT        │ good scores.       │    ║"));
+                    }
+                    break;
+                case 9:
+                    System.out.print(Tools.print(colorUI, "", "║                 └────────────────────┘    ║"));
+                    break;
+                default:
+                    if (i == h) { //╚══╝ 
+                        System.out.print(Tools.print(colorUI, "", "╚═══════════════════════════════════════════╝"));
+                    } else {
+                        System.out.print(Tools.print(colorUI, "", "║                                           ║"));
+                    }
             }
             System.out.println("");
         }
+        System.out.println("[Añadir explicacion teclas]");
     }
 
     public static void loadingAnimation() throws InterruptedException {
@@ -174,8 +170,8 @@ public class Screens {
 
         TimeUnit.MILLISECONDS.sleep(300);
 
-        */
-        
+         */
+
         for (int i = 0; i < 7; i++) {
             Tools.clearConsole();
             loadingStartScreen(i);
@@ -552,6 +548,7 @@ public class Screens {
             return String.valueOf(number);
         }
     }
+
     /**
      * Imprime la pantalla de espera inicial. No continua hasta recibir un
      * INPUT.
@@ -593,7 +590,6 @@ public class Screens {
      */
     public static void boardSizeScreen() throws InterruptedException {
         int valorInicial = (MIN_BOARD_SIZE + MAX_BOARD_SIZE) / 2;
-        INPUT = "";
         SECTION_RUNNING = true;
         Tools.clearConsole();
         menuOption = 1;
@@ -607,7 +603,6 @@ public class Screens {
             Screens.boardSizeScreen(widthBoard, heightBoard, menuOption);
             Board.firstPrint = true;
         }
-        
 
         do {
             switch (INPUT) {
@@ -675,7 +670,6 @@ public class Screens {
      * @throws InterruptedException
      */
     public static void characterSelectorScreen() throws InterruptedException {
-        INPUT = "";
         SECTION_RUNNING = true;
         Tools.clearConsole();
         menuOption = 1;
@@ -709,7 +703,7 @@ public class Screens {
                         menuOption++;
                         Screens.characterSelectorScreen(menuOption, secondSelection);
                     } else if (secondSelection == 2) {
-                        character = menuOption-1;
+                        character = menuOption - 1;
                         SECTION_RUNNING = false;
                     }
                     INPUT = "";
@@ -719,7 +713,7 @@ public class Screens {
                         secondSelection = 2;
                         Screens.characterSelectorScreen(menuOption, secondSelection);
                     } else if (secondSelection == 2) {
-                        character = menuOption-1;
+                        character = menuOption - 1;
                         SECTION_RUNNING = false;
                     }
                     INPUT = "";
@@ -735,7 +729,6 @@ public class Screens {
      * @throws InterruptedException
      */
     public static void gameDifficultyScreen() throws InterruptedException {
-        INPUT = "";
         SECTION_RUNNING = true;
         Tools.clearConsole();
         numEnemies = 1;
@@ -779,5 +772,37 @@ public class Screens {
             }
             TimeUnit.MILLISECONDS.sleep(1000 / INPUT_RATE);
         } while (SECTION_RUNNING);
+    }
+
+    /**
+     * Imprime el logo junto a los creditos del juego.
+     */
+    public static void credits() {
+        Tools.clearConsole();
+
+        System.out.print(
+                ""
+                + Tools.print(colorUI, "", "           ________________________          \n")
+                + Tools.print(colorUI, "", "          / ") + Tools.print(colorText, "", "╦ ╦╦   ╔═╗╔═╗╔═╗╔═╗╔╦╗") + Tools.print(colorUI, "", " \\        \n")
+                + Tools.print(colorUI, "", "         /  ") + Tools.print(colorText, "", "╠═╣║ ═ ╚═╗╠═╝║╣ ║╣  ║║") + Tools.print(colorUI, "", "  \\       \n")
+                + Tools.print(colorUI, "", "        /   ") + Tools.print(colorText, "", "╩ ╩╩   ╚═╝╩  ╚═╝╚═╝═╩╝") + Tools.print(colorUI, "", "   \\      \n")
+                + Tools.print(colorUI, "", "       /   ") + Tools.print(colorText, "", "╔╗╔╔═╗╦ ╦  ╦ ╦╔═╗╦  ╦╔═╗") + Tools.print(colorUI, "", "   \\     \n")
+                + Tools.print(colorUI, "", "      /    ") + Tools.print(colorText, "", "║║║║╣ ║║║  ║║║╠═╣╚╗╔╝║╣") + Tools.print(colorUI, "", "     \\    \n")
+                + Tools.print(colorUI, "", "     /     ") + Tools.print(colorText, "", "╝╚╝╚═╝╚╩╝  ╚╩╝╩ ╩ ╚╝ ╚═╝") + Tools.print(colorUI, "", "     \\   \n")
+                + Tools.print(colorUI, "", "    /  ") + Tools.print(colorText, "", "╔═╗╔═╗╦ ╦╦    ╦ ╦╦ ╦╔╗╔╔╦╗╔═╗╦═╗") + Tools.print(colorUI, "", "  \\  \n")
+                + Tools.print(colorUI, "", "   /   ") + Tools.print(colorText, "", "╚═╗║ ║║ ║║    ╠═╣║ ║║║║ ║ ║╣ ╠╦╝") + Tools.print(colorUI, "", "   \\ \n")
+                + Tools.print(colorUI, "", "  /    ") + Tools.print(colorText, "", "╚═╝╚═╝╚═╝╩═╝  ╩ ╩╚═╝╝╚╝ ╩ ╚═╝╩╚═") + Tools.print(colorUI, "", "    \\\n")
+                + Tools.print(colorUI, "", "  \\        ________________________        /\n")
+                + Tools.print(colorUI, "", "   \\______/                        \\______/\n"));
+
+        System.out.print("\n\n");
+
+        System.out.println("Game developed in JAVA by:");
+        System.out.println("- Maria Garriga");
+        System.out.println("- Mario Molina");
+        System.out.println("- Pau Pajaro");
+        System.out.println("- Victor Guillén");
+
+        System.out.println("");
     }
 }

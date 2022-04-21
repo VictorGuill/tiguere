@@ -16,9 +16,16 @@ import players.magician;
 import utilities.Tools;
 
 public class Play {
-     public static void playingGame() throws InterruptedException {
 
+    public static void playingGame() throws InterruptedException {
         boolean playingGame = true;
+        
+        INPUT = "";
+        
+        Screens.boardSizeScreen();
+        Screens.characterSelectorScreen();
+        Screens.gameDifficultyScreen();
+
         Board.printBoard(widthBoard, heightBoard);
         Board.showMenu();
 
@@ -80,7 +87,7 @@ public class Play {
 
         Screens.characterSelectorScreen();
         SECTION_RUNNING = true;
-        
+
         Player.setYpos(yTemp);
         Player.setXpos(xTemp);
 

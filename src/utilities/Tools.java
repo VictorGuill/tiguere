@@ -149,6 +149,23 @@ public class Tools {
         }
     }
 
+    /**
+     * Imprime el caracter de principio, el medio X veces y el final. Perfecto
+     * para imprimir lineas con valores fijos sin petar el codigo.
+     *
+     * @param start Caracter de prinpio.
+     * @param mid Caracter entre medio.
+     * @param size Cuantas veces se imprime el entre medio.
+     * @param end Caracter final
+     */
+    public static void printRow(char start, char mid, int size, char end, String color) {
+        System.out.print(print(color, "", String.valueOf(start)));
+        for (int i = 2; i < size; i++) {
+            System.out.print(print(color, "", String.valueOf(mid)));
+        }
+        System.out.print(print(color, "", String.valueOf(end)));
+    }
+
     //////////////// DETECT PLATFORM /////////////////
     private static String OS = System.getProperty("os.name").toLowerCase();
 
