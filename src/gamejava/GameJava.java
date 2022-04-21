@@ -75,6 +75,7 @@ public class GameJava {
                             keyInput.dispose(); //elimina ventana creada por JAVA
                             break;
                     }
+                    break;
                 case "escape":
                     isGameRunning = false;
                     keyInput.dispose(); //elimina ventana creada por JAVA
