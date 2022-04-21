@@ -8,10 +8,12 @@ import java.util.concurrent.TimeUnit;
  * @author mariagarriga
  */
 public class magician extends Player{
-    //spells list
     //Create potion
     
-    public static void motionSkill(int mov, String[][] board, Player[] playable, int character, int widthBoard, int heightBoard, String NULL_CELLS) throws InterruptedException {
+    /**
+     * Funció que permet al mag moure's x2
+     */
+    public static void motionSkill(String[][] board, Player[] playable, int character, int widthBoard, int heightBoard, String NULL_CELLS) throws InterruptedException {
         GameJava.INPUT = "";
         boolean motionSkills = true;
         
@@ -50,25 +52,17 @@ public class magician extends Player{
         } while (motionSkills);
     }
 }
+
 /*
+
 Magicians have a range of spells they can use, but they cannot carry weapons. 
 Their  special skill allows them to mix potions from their existing inventory 
 in order to create new ones. 
 They also have a driving motion skill which allows them to move forward a certain distance. 
 
 
-Attack enemy //atac especial
-
-Move around
-
-Take a potion //personatge
+Attack enemy //atac especial (?)
 
 Combine potions
-
-Pick up object //personatge
-
-Buy object //personatge
-
-Sell object //personatge
 
 */

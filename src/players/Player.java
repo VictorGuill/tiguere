@@ -14,6 +14,7 @@ public abstract class Player {
     public static int HP;
     public static int DMG;
     public static int kills;
+    public static int MAXHP = 100;
 
     public Player() {
     }
@@ -236,3 +237,10 @@ public abstract class Player {
     }
     
 }
+/*
+Take a potion //personatge
+
+Buy object //personatge
+
+Sell object //personatge
+*/

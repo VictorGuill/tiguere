@@ -5,11 +5,15 @@ package players;
  * @author mariagarriga
  */
 public class warrior extends Player {
-  
-    public static void ImproveWeapon (/*int weapon*/){
-        //return weapon
+
+    
+    /*
+    public static void ImproveWeapon (int weapon){
+        return weapon
     }
+    */
 }
+
 /*
 
 All of them have their own  inventory where they keep their weapons, magic potions 
@@ -20,12 +24,7 @@ Warriors are the only characters that can carry two weapons at the same time (on
 As they are really strong , they can also carry other objects. 
 Warriors have a  special skill that allows  them to improve their weapons thanks to their knowledge of different metals and minerals. 
 
-
-Attack enemy
-
-Move around
-
-Take potion
+Attack enemy //atacEspecial (?)
 
 Improve weapon
 

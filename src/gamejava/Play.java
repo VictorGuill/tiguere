@@ -71,7 +71,7 @@ public class Play {
                     break;
                 case "5":
                     if (Board.Character.equals((" " + GameJava.CHAR_MAGO + " "))){
-                        magician.motionSkill(1, board, playable, character, widthBoard, heightBoard, Board.voidSquare);
+                        magician.motionSkill(board, playable, character, widthBoard, heightBoard, Board.voidSquare);
                         Board.printBoard(widthBoard, heightBoard);
                         Board.showMenu();
                     }
@@ -92,6 +92,5 @@ public class Play {
         Player.setXpos(xTemp);
 
         board[yTemp][xTemp] = Board.Character;
-
     }
 }
