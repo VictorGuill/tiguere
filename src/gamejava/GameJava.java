@@ -47,7 +47,7 @@ public class GameJava {
         Screens.printWaitScreen(); //pantalla de espera para empezar
         Screens.loadingAnimation(); //animacion de carga
         Screens.startMenu(menuOption); //pantalla menu
-
+        INPUT = "";
         do {
             switch (INPUT) {
                 case "up":
