@@ -19,9 +19,9 @@ public class Play {
 
     public static void playingGame() throws InterruptedException {
         boolean playingGame = true;
-        
+
         INPUT = "";
-        
+
         Screens.boardSizeScreen();
         Screens.characterSelectorScreen();
         Screens.gameDifficultyScreen();
@@ -70,7 +70,7 @@ public class Play {
                     playingGame = false;
                     break;
                 case "5":
-                    if (Board.Character.equals((" " + GameJava.CHAR_MAGO + " "))){
+                    if (Board.Character.equals((" " + GameJava.CHAR_MAGO + " "))) {
                         magician.motionSkill(1, board, playable, character, widthBoard, heightBoard, Board.voidSquare);
                         Board.printBoard(widthBoard, heightBoard);
                         Board.showMenu();
@@ -87,6 +87,9 @@ public class Play {
 
         Screens.characterSelectorScreen();
         SECTION_RUNNING = true;
+
+        Board.printBoard(widthBoard, heightBoard);
+        Board.showMenu();
 
         Player.setYpos(yTemp);
         Player.setXpos(xTemp);

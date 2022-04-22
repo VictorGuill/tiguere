@@ -203,6 +203,7 @@ public class Screens {
             }
             TimeUnit.MILLISECONDS.sleep(1000 / INPUT_RATE);
         } while (SECTION_RUNNING);
+        secondSelection = 1;
     }
 
     /**
