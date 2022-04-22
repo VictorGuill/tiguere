@@ -281,8 +281,17 @@ public class Board {
             }
          
             else{
-                Character = ("\\" + GameJava.CHAR_MAGO + " ");
-            }  
+                Character = ("|" + GameJava.CHAR_MAGO + " ");
+            }
+            
+        }
+        else {
+            if(direction.equals("right")){
+                Character = (" " + GameJava.CHAR_SACERDOTE + "/");
+            }
+            else{
+                Character = ("\\" + GameJava.CHAR_SACERDOTE + " ");
+            }
         }
         return Character;
     }
