@@ -277,21 +277,12 @@ public class Board {
             
         } else if (GameJava.character == 1) {
             if(direction.equals("right")){
-                Character = (" " + GameJava.CHAR_MAGO + "/");
+                Character = (" " + GameJava.CHAR_MAGO + "|");
             }
+         
             else{
                 Character = ("\\" + GameJava.CHAR_MAGO + " ");
-            }
-            
-        } else {
-            if(direction.equals("right")){
-                Character = (" " + GameJava.CHAR_SACERDOTE + "/");
-            }
-            else{
-                Character = ("\\" + GameJava.CHAR_SACERDOTE + " ");
-            }
-            
-           
+            }  
         }
         return Character;
     }
@@ -351,9 +342,10 @@ public class Board {
         randomPositions(GameJava.numEnemies, height - 1, width - 1, (" " + GameJava.CHAR_ENEMY + " "));
         
         //Inicialitzem els valors
-        GameJava.board[0][0] = Character;
-        Player.xpos = 0;
+        GameJava.board[0][1] = Character;
+        Player.xpos = 1;
         Player.ypos = 0;
+        Player.direction= "right";
         Player.kills = 0;
         Player.sackOfCoins = 0;
         Player.HP = 100;
