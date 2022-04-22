@@ -1,6 +1,7 @@
 package gamejava;
 
 import java.util.concurrent.TimeUnit;
+import players.Enemies;
 
 public class GameJava {
 
@@ -18,11 +19,30 @@ public class GameJava {
             numCoins = 1;
     public static boolean SECTION_RUNNING = true;
     public static String[][] board;
+<<<<<<< Updated upstream
+=======
+    public static magician m1 = new magician();
+    public static priest p1 = new priest();
+    public static warrior w1 = new warrior();
+    
+    public static Enemies e1 = new Enemies();
+    public static Enemies e2 = new Enemies();
+    public static Enemies e3 = new Enemies();
+    public static Enemies e4 = new Enemies();
+    public static Enemies e5 = new Enemies();
+    public static Enemies e6 = new Enemies();
+
+    public static Player[] playable;
+    public static Enemies[] enemies;
+    
+    
+>>>>>>> Stashed changes
 
     public static void main(String[] args) throws InterruptedException {
 
         InputListener keyInput = new InputListener(); //crea y abre la ventana java
         boolean isGameRunning = true;
+<<<<<<< Updated upstream
 
         /////////////////////////////////////////////////////
         //////////////   EMPIEZA EL PROGRAMA   //////////////
@@ -125,6 +145,30 @@ public class GameJava {
      * @throws InterruptedException
      */
     public static void boardSizeScreen() throws InterruptedException {
+=======
+        playable = new Player[3];
+        playable[0] = w1;
+        playable[1] = m1;
+        playable[2] = p1;
+        
+        enemies = new Enemies[6];
+        enemies[0] = e1;
+        enemies[1] = e2;
+        enemies[2] = e3;
+        enemies[3] = e4;
+        enemies[4] = e5;
+        enemies[5] = e6;
+        
+        
+        
+        
+        /////////////////////////////////////////////////////
+        //////////////   EMPIEZA EL PROGRAMA   //////////////
+        /////////////////////////////////////////////////////
+       // Screens.printWaitScreen(); //pantalla de espera para empezar
+        //Screens.loadingAnimation(); //animacion de carga
+        Screens.startMenu(menuOption); //pantalla menu
+>>>>>>> Stashed changes
         INPUT = "";
         SECTION_RUNNING = true;
         Tools.clearConsole();
