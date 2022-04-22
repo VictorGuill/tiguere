@@ -21,7 +21,10 @@ public class Board {
     public static boolean firstCharacter = true;
     public static String Character,
             voidSquare = "░░░",
-            voidCharacterSides = "░";
+            voidCharacterSides = "░",
+            bgColor = "green",
+            coinColor = "yellow",
+            enemyColor = "red";
     
 
     public static void printBoard(int wBoard, int hBoard) {
@@ -297,7 +300,18 @@ public class Board {
     }
 
     public static void printPosition(int row, int column) {
-        System.out.print(GameJava.board[column][row]);
+        if (Player.getXpos() == row && Player.getYpos() == column) {
+            System.out.print(saveCharacter(Player.direction));
+        } else if (GameJava.board[column][row].equals(voidSquare)) {
+            System.out.print(Tools.print(bgColor, "", GameJava.board[column][row]));
+        } else if (GameJava.board[column][row].equals(" " + GameJava.CHAR_COIN + " ")) {
+            System.out.print(Tools.print(coinColor, "", GameJava.board[column][row]));
+        } else if (GameJava.board[column][row].equals(" " + GameJava.CHAR_GUERRERO + " ")
+                || GameJava.board[column][row].equals(" " + GameJava.CHAR_MAGO + " ")
+                || GameJava.board[column][row].equals(" " + GameJava.CHAR_SACERDOTE + " ")
+                || GameJava.board[column][row].equals(" " + GameJava.CHAR_ENEMY + " ")) {
+            System.out.print(Tools.print(enemyColor, "", GameJava.board[column][row]));
+        }
     }
 
     public static int randomCoin() {
