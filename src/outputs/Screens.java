@@ -71,79 +71,56 @@ public class Screens {
      * @throws InterruptedException
      */
     public static void boardSizeScreen() throws InterruptedException {
+
         int valorInicial = (MIN_BOARD_SIZE + MAX_BOARD_SIZE) / 2;
-        SECTION_RUNNING = true;
+        boolean menuActive = true;
+
         Tools.clearConsole();
-        menuOption = 1;
+
         if (firstTime) {
             widthBoard = valorInicial;
             heightBoard = valorInicial;
-            Screens.boardSizeScreen(valorInicial, valorInicial, menuOption);
+            Screens.boardSizeScreen(valorInicial, valorInicial);
             firstTime = false;
             Board.firstPrint = true;
         } else {
-            Screens.boardSizeScreen(widthBoard, heightBoard, menuOption);
+            Screens.boardSizeScreen(widthBoard, heightBoard);
             Board.firstPrint = true;
         }
 
         do {
             switch (INPUT) {
                 case "up":
-                    if (menuOption == 1) {
-                        if (widthBoard > MIN_BOARD_SIZE) {
-                            widthBoard--;
-                            Screens.boardSizeScreen(widthBoard, heightBoard, menuOption);
-                        }
-                    } else if (menuOption == 2) {
-                        if (heightBoard > MIN_BOARD_SIZE) {
-                            heightBoard--;
-                            Screens.boardSizeScreen(widthBoard, heightBoard, menuOption);
-                        }
+                    if (heightBoard < MAX_BOARD_SIZE) {
+                        heightBoard++;
+                        Screens.boardSizeScreen(widthBoard, heightBoard);
                     }
-                    INPUT = "";
                     break;
                 case "down":
-                    if (menuOption == 1) {
-                        if (widthBoard < MAX_BOARD_SIZE) {
-                            widthBoard++;
-                            Screens.boardSizeScreen(widthBoard, heightBoard, menuOption);
-                        }
-                    } else if (menuOption == 2) {
-                        if (heightBoard < MAX_BOARD_SIZE) {
-                            heightBoard++;
-                            Screens.boardSizeScreen(widthBoard, heightBoard, menuOption);
-                        }
+                    if (heightBoard > MIN_BOARD_SIZE) {
+                        heightBoard--;
+                        Screens.boardSizeScreen(widthBoard, heightBoard);
                     }
-                    INPUT = "";
                     break;
                 case "left":
-                    if (menuOption > 1) {
-                        menuOption--;
-                        Screens.boardSizeScreen(widthBoard, heightBoard, menuOption);
+                    if (widthBoard > MIN_BOARD_SIZE) {
+                        widthBoard--;
+                        Screens.boardSizeScreen(widthBoard, heightBoard);
                     }
-                    INPUT = "";
                     break;
                 case "right":
-                    if (menuOption < 3) {
-                        menuOption++;
-                        Screens.boardSizeScreen(widthBoard, heightBoard, menuOption);
-                    } else if (menuOption == 3) {
-                        SECTION_RUNNING = false;
+                    if (widthBoard < MAX_BOARD_SIZE) {
+                        widthBoard++;
+                        Screens.boardSizeScreen(widthBoard, heightBoard);
                     }
-                    INPUT = "";
                     break;
                 case "enter":
-                    if (menuOption < 3) {
-                        menuOption++;
-                        Screens.boardSizeScreen(widthBoard, heightBoard, menuOption);
-                    } else if (menuOption == 3) {
-                        SECTION_RUNNING = false;
-                    }
-                    INPUT = "";
+                    menuActive = false;
                     break;
             }
+            INPUT = "";
             TimeUnit.MILLISECONDS.sleep(1000 / INPUT_RATE);
-        } while (SECTION_RUNNING);
+        } while (menuActive);
     }
 
     /**
@@ -612,81 +589,46 @@ public class Screens {
      * @param optionSelected Indica si estamos en la columna izquierda, derecha
      * o el boton ENTER.
      */
-    public static void boardSizeScreen(int wValue, int hValue, int optionSelected) {
+    public static void boardSizeScreen(int wValue, int hValue) {
         Tools.clearConsole();
 
-        for (int i = 0; i < h; i++) {
-            if (i == 0) {
-                Tools.printRow('╔', '═', w, '╗', colorUI);
-            } else if (i == h - 1) {
-                Tools.printRow('╚', '═', w, '╝', colorUI);
-            } else if (i == 2) {
-                System.out.print(Tools.print(colorUI, "", "║               "));
-                System.out.print(Tools.print("blue", colorText, " BOARD  SIZE "));
-                System.out.print(Tools.print(colorUI, "", "               ║"));
-            } else if (i == 4) {
-                System.out.print(Tools.print(colorUI, "", "║               "));
-                if (wValue <= GameJava.MIN_BOARD_SIZE) {
-                    System.out.print("  ");
-                } else {
-                    System.out.print(Tools.print(colorUI, "", spaceSingleDigit(wValue - 1)));
-                }
-                System.out.print("                ");
-                if (hValue <= GameJava.MIN_BOARD_SIZE) {
-                    System.out.print("  ");
-                } else {
-                    System.out.print(Tools.print(colorUI, "", spaceSingleDigit(hValue - 1)));
-                }
-                System.out.print(Tools.print(colorUI, "", "        ║"));
-            } else if (i == 5) {
-                System.out.print(Tools.print(colorUI, "", "║"));
-                System.out.print(Tools.print(colorText, "", "       WIDTH: "));
-                System.out.print(Tools.print(colorUI, "", "║"));
-                if (optionSelected == 1) {
-                    System.out.print(Tools.print("white", "red", spaceSingleDigit(wValue)));
-                } else {
-                    System.out.print(Tools.print("white", "", spaceSingleDigit(wValue)));
-                }
-                System.out.print(Tools.print(colorUI, "", "║"));
-                System.out.print(Tools.print(colorText, "", "      HEIGHT: "));
-                System.out.print(Tools.print(colorUI, "", "║"));
-                if (optionSelected == 2) {
-                    System.out.print(Tools.print("white", "red", spaceSingleDigit(hValue)));
-                } else {
-                    System.out.print(Tools.print("white", "", spaceSingleDigit(hValue)));
-                }
-                System.out.print(Tools.print(colorUI, "", "║       ║"));
-            } else if (i == 6) {
-                System.out.print(Tools.print(colorUI, "", "║               "));
-                if (wValue >= GameJava.MAX_BOARD_SIZE) {
-                    System.out.print("  ");
-                } else {
-                    System.out.print(Tools.print(colorUI, "", spaceSingleDigit(wValue + 1)));
-                }
-                System.out.print("                ");
-                if (hValue >= GameJava.MAX_BOARD_SIZE) {
-                    System.out.print("  ");
-                } else {
-                    System.out.print(Tools.print(colorUI, "", spaceSingleDigit(hValue + 1)));
-                }
-                System.out.print(Tools.print(colorUI, "", "        ║"));
-            } else if (i == 9) {
-                if (optionSelected == 3) {
-                    System.out.print(Tools.print(colorUI, "", "║                 "));
-                    System.out.print(Tools.print("white", "red", " N E X T "));
-                    System.out.print(Tools.print(colorUI, "", "                 ║"));
-                } else {
-                    System.out.print(Tools.print(colorUI, "", "║                  N E X T                  ║"));
-                }
-            } else {
-                for (int j = 0; j < w; j++) {
-                    if (j == 0 || j == w - 1) {
-                        System.out.print(Tools.print(colorUI, "", "║"));
-                    } else {
-                        System.out.print(" ");
-                    }
-                }
+        //cada casilla pasa de valer 1 a el ancho del heuco determinado por el Board
+        int voidSize = wValue * Board.voidSquare.length();
 
+        //╔╗ ╔═╗╔═╗╦═╗╔╦╗  ╔═╗╦╔═╗╔═╗   ╔════╦════╗
+        System.out.print(Tools.print(colorText, "", "╔╗ ╔═╗╔═╗╦═╗╔╦╗  ╔═╗╦╔═╗╔═╗"));
+        System.out.print(Tools.print(colorUI, "", "   ╔═w══╦═h══╗\n"));
+
+        //╠╩╗║ ║╠═╣╠╦╝ ║║  ╚═╗║╔═╝║╣    ║ 15 X 15 ║
+        System.out.print(Tools.print(colorText, "", "╠╩╗║ ║╠═╣╠╦╝ ║║  ╚═╗║╔═╝║╣ "));
+        System.out.print(Tools.print(colorUI, "", "   ║ "));
+        System.out.print(Tools.print(colorText, "", String.valueOf(wValue)));
+        System.out.print(Tools.print(colorUI, "", " X "));
+        System.out.print(Tools.print(colorText, "", String.valueOf(hValue)));
+        System.out.print(Tools.print(colorUI, "", " ║\n"));
+
+        //╚═╝╚═╝╩ ╩╩╚══╩╝  ╚═╝╩╚═╝╚═╝   ╚════╩════╝
+        System.out.print(Tools.print(colorText, "", "╚═╝╚═╝╩ ╩╩╚══╩╝  ╚═╝╩╚═╝╚═╝"));
+        System.out.print(Tools.print(colorUI, "", "   ╚════╩════╝\n"));
+
+        for (int i = 1; i <= hValue; i++) {
+
+            switch (i) {
+                case 1:
+                    Tools.printRow('╔', '═', voidSize + 2, '╗', colorUI);
+                    break;
+                default:
+                    //Como SWITCH no acepta variables en el case, usamos un if
+                    //en el default para ver si estamos en la ultima iteracion
+                    if (i == hValue) {
+                        Tools.printRow('╚', '═', voidSize + 2, '╝', colorUI);
+                    } else {
+                        System.out.print(Tools.print(colorUI, "", "║"));
+                        for (int j = 1; j <= voidSize; j++) {
+                            System.out.print(Tools.print(Board.bgColor, "", Board.voidCharacterSides));
+                        }
+                        System.out.print(Tools.print(colorUI, "", "║"));
+                    }
             }
             System.out.println("");
         }
@@ -842,5 +784,4 @@ public class Screens {
             return String.valueOf(number);
         }
     }
-
 }
