@@ -327,7 +327,7 @@ public class Screens {
      */
     public static void startMenu(int menuOption) {
         Tools.clearConsole();
-
+        
         for (int i = 1; i <= h; i++) {
             //utilitzamos un if para detectar la ultima linea porque switch no funciona con variables
 
@@ -357,35 +357,53 @@ public class Screens {
                     break;
                 case 6: //║    > PLAY       │ Survive agaist the │    ║
                     if (menuOption == 1) {
-                        System.out.print(Tools.print(colorUI, "", "║    > "));
+                        System.out.print(Tools.print(colorUI, "", "║    " + Tools.sc("►") + " "));
                         System.out.print(Tools.print("white", "red", "PLAY"));
-                        System.out.print(Tools.print(colorUI, "", "       │ Survive agaist the │    ║"));
+                        System.out.print(Tools.print(colorUI, "", "       │ "));
+                        System.out.print(Tools.print(colorText, "", "Survive agaist the"));
+                        System.out.print(Tools.print(colorUI, "", " │    ║"));
                     } else if (menuOption == 2) {
-                        System.out.print(Tools.print(colorUI, "", "║     PLAY        │ Learn the basics   │    ║"));
+                        System.out.print(Tools.print(colorUI, "", "║     PLAY        │ "));
+                        System.out.print(Tools.print(colorText, "", "Learn the basics"));
+                        System.out.print(Tools.print(colorUI, "", "   │    ║"));
                     } else if (menuOption == 3) {
-                        System.out.print(Tools.print(colorUI, "", "║     PLAY        │ Bye bye...         │    ║"));
+                        System.out.print(Tools.print(colorUI, "", "║     PLAY        │ "));
+                        System.out.print(Tools.print(colorText, "", "Bye bye..."));
+                        System.out.print(Tools.print(colorUI, "", "         │    ║"));
                     }
                     break;
                 case 7: //║     TUTORIAL    │ creatures of this  │    ║
                     if (menuOption == 2) {
-                        System.out.print(Tools.print(colorUI, "", "║    > "));
+                        System.out.print(Tools.print(colorUI, "", "║    " + Tools.sc("►") + " "));
                         System.out.print(Tools.print("white", "red", "TUTORIAL"));
-                        System.out.print(Tools.print(colorUI, "", "   │ to play & archive  │    ║"));
+                        System.out.print(Tools.print(colorUI, "", "   │ "));
+                        System.out.print(Tools.print(colorText, "", "to play & archive"));
+                        System.out.print(Tools.print(colorUI, "", "  │    ║"));
                     } else if (menuOption == 1) {
-                        System.out.print(Tools.print(colorUI, "", "║     TUTORIAL    │ creatures of this  │    ║"));
+                        System.out.print(Tools.print(colorUI, "", "║     TUTORIAL    │ "));
+                        System.out.print(Tools.print(colorText, "", "creatures of this"));
+                        System.out.print(Tools.print(colorUI, "", "  │    ║"));
                     } else if (menuOption == 3) {
-                        System.out.print(Tools.print(colorUI, "", "║     TUTORIAL    │ I guess you aren't │    ║"));
+                        System.out.print(Tools.print(colorUI, "", "║     TUTORIAL    │ "));
+                        System.out.print(Tools.print(colorText, "", "I guess you aren't"));
+                        System.out.print(Tools.print(colorUI, "", " │    ║"));
                     }
                     break;
                 case 8: //║     EXIT        │ world. If you can. │    ║
                     if (menuOption == 3) {
-                        System.out.print(Tools.print(colorUI, "", "║    > "));
+                        System.out.print(Tools.print(colorUI, "", "║    " + Tools.sc("►") + " "));
                         System.out.print(Tools.print("white", "red", "EXIT"));
-                        System.out.print(Tools.print(colorUI, "", "       │ strong enought.    │    ║"));
+                        System.out.print(Tools.print(colorUI, "", "       │ "));
+                        System.out.print(Tools.print(colorText, "", "strong enought."));
+                        System.out.print(Tools.print(colorUI, "", "    │    ║"));
                     } else if (menuOption == 1) {
-                        System.out.print(Tools.print(colorUI, "", "║     EXIT        │ world. If you can. │    ║"));
+                        System.out.print(Tools.print(colorUI, "", "║     EXIT        │ "));
+                        System.out.print(Tools.print(colorText, "", "world. If you can."));
+                        System.out.print(Tools.print(colorUI, "", " │    ║"));
                     } else if (menuOption == 2) {
-                        System.out.print(Tools.print(colorUI, "", "║     EXIT        │ good scores.       │    ║"));
+                        System.out.print(Tools.print(colorUI, "", "║     EXIT        │ "));
+                        System.out.print(Tools.print(colorText, "", "good scores."));
+                        System.out.print(Tools.print(colorUI, "", "       │    ║"));
                     }
                     break;
                 case 9:
@@ -402,7 +420,9 @@ public class Screens {
             }
             System.out.println("");
         }
-        System.out.println("[Añadir explicacion teclas]");
+        //String convert (sc) (cambia los caracteres problematicos dependiendo el entorno donde se ejecuta)
+        //Si dividimos la linea en varios System.out, se percive un retraso al aparece la linea en consola muy molesto.
+        System.out.println(Tools.print(colorUI, "", "   [") + Tools.print(colorText, "", Tools.sc("↑↓")) + Tools.print(colorUI, "", "] - Select") + Tools.print(colorUI, "", "\t  [") + Tools.print(colorText, "", "ENTER") + Tools.print(colorUI, "", "] - Accept"));
     }
 
     /**
@@ -419,124 +439,154 @@ public class Screens {
 
             switch (i) {
                 case 1:
-                    System.out.print(Tools.print(colorUI, "", "╔═══════════════════════════════════════════╗"));
+                    System.out.print(Tools.print(colorUI, "", "╔════════════════════════════════════════╗"));
+                    break;
+                case 2:
+                    System.out.print(Tools.print(colorUI, "", "║                                        ╚╗"));
+                    break;
+                case 3:
+                    System.out.print(Tools.print(colorUI, "", "║                                         ╚╗"));
                     break;
                 case 4: //║            ╦  ┌─┐┌─┐┌┬┐┬┌┐┌┌─┐            ║
                     System.out.print(Tools.print(colorUI, "", "║"));
                     switch (counter) {
                         case 0:
-                            System.out.print(Tools.print(colorUI, "", "            ┬  ┌─┐┌─┐┌┬┐┬┌┐┌┌─┐            "));
+                            System.out.print(Tools.print(colorUI, "", "            ┬  ┌─┐┌─┐┌┬┐┬┌┐┌┌─┐           "));
+                            System.out.print(Tools.print(colorUI, "", "╚╗"));
                             break;
                         case 1:
                             System.out.print(Tools.print(colorText, "", "            ╦  "));
-                            System.out.print(Tools.print(colorUI, "", "┌─┐┌─┐┌┬┐┬┌┐┌┌─┐            "));
+                            System.out.print(Tools.print(colorUI, "", "┌─┐┌─┐┌┬┐┬┌┐┌┌─┐           "));
+                            System.out.print(Tools.print(colorUI, "", "╚╗"));
                             break;
                         case 2:
                             System.out.print(Tools.print(colorText, "", "            ╦  ╔═╗"));
-                            System.out.print(Tools.print(colorUI, "", "┌─┐┌┬┐┬┌┐┌┌─┐            "));
+                            System.out.print(Tools.print(colorUI, "", "┌─┐┌┬┐┬┌┐┌┌─┐           "));
+                            System.out.print(Tools.print(colorUI, "", "╚╗"));
                             break;
                         case 3:
                             System.out.print(Tools.print(colorText, "", "            ╦  ╔═╗╔═╗"));
-                            System.out.print(Tools.print(colorUI, "", "┌┬┐┬┌┐┌┌─┐            "));
+                            System.out.print(Tools.print(colorUI, "", "┌┬┐┬┌┐┌┌─┐           "));
+                            System.out.print(Tools.print(colorUI, "", "╚╗"));
                             break;
                         case 4:
                             System.out.print(Tools.print(colorText, "", "            ╦  ╔═╗╔═╗╔╦╗"));
-                            System.out.print(Tools.print(colorUI, "", "┬┌┐┌┌─┐            "));
+                            System.out.print(Tools.print(colorUI, "", "┬┌┐┌┌─┐           "));
+                            System.out.print(Tools.print(colorUI, "", "╚╗"));
                             break;
                         case 5:
                             System.out.print(Tools.print(colorText, "", "            ╦  ╔═╗╔═╗╔╦╗╦"));
-                            System.out.print(Tools.print(colorUI, "", "┌┐┌┌─┐            "));
+                            System.out.print(Tools.print(colorUI, "", "┌┐┌┌─┐           "));
+                            System.out.print(Tools.print(colorUI, "", "╚╗"));
                             break;
                         case 6:
                             System.out.print(Tools.print(colorText, "", "            ╦  ╔═╗╔═╗╔╦╗╦╔╗╔"));
-                            System.out.print(Tools.print(colorUI, "", "┌─┐            "));
+                            System.out.print(Tools.print(colorUI, "", "┌─┐           "));
+                            System.out.print(Tools.print(colorUI, "", "╚╗"));
                             break;
                         case 7:
-                            System.out.print(Tools.print(colorText, "", "            ╦  ╔═╗╔═╗╔╦╗╦╔╗╔╔═╗            "));
+                            System.out.print(Tools.print(colorText, "", "            ╦  ╔═╗╔═╗╔╦╗╦╔╗╔╔═╗           "));
+                            System.out.print(Tools.print(colorUI, "", "╚╗"));
                             break;
                         case 8:
-                            System.out.print(Tools.print(colorText, "", "               ╔╦╗╔═╗╔╗╔╔═╗                "));
+                            System.out.print(Tools.print(colorText, "", "               ╔╦╗╔═╗╔╗╔╔═╗               "));
+                            System.out.print(Tools.print(colorUI, "", "╚╗"));
                             break;
                     }
-                    System.out.print(Tools.print(colorUI, "", "║"));
                     break;
                 case 5: //║            ║  │ │├─┤ │││││││ ┬            ║
                     System.out.print(Tools.print(colorUI, "", "║"));
                     switch (counter) {
                         case 0:
                             System.out.print(Tools.print(colorUI, "", "            │  │ │├─┤ │││││││ ┬            "));
+                            System.out.print(Tools.print(colorUI, "", "║"));
                             break;
                         case 1:
                             System.out.print(Tools.print(colorText, "", "            ║  "));
                             System.out.print(Tools.print(colorUI, "", "│ │├─┤ │││││││ ┬            "));
+                            System.out.print(Tools.print(colorUI, "", "║"));
                             break;
                         case 2:
                             System.out.print(Tools.print(colorText, "", "            ║  ║ ║"));
                             System.out.print(Tools.print(colorUI, "", "├─┤ │││││││ ┬            "));
+                            System.out.print(Tools.print(colorUI, "", "║"));
                             break;
                         case 3:
                             System.out.print(Tools.print(colorText, "", "            ║  ║ ║╠═╣"));
                             System.out.print(Tools.print(colorUI, "", " │││││││ ┬            "));
+                            System.out.print(Tools.print(colorUI, "", "║"));
                             break;
                         case 4:
                             System.out.print(Tools.print(colorText, "", "            ║  ║ ║╠═╣ ║║"));
                             System.out.print(Tools.print(colorUI, "", "│││││ ┬            "));
+                            System.out.print(Tools.print(colorUI, "", "║"));
                             break;
                         case 5:
                             System.out.print(Tools.print(colorText, "", "            ║  ║ ║╠═╣ ║║║"));
                             System.out.print(Tools.print(colorUI, "", "││││ ┬            "));
+                            System.out.print(Tools.print(colorUI, "", "║"));
                             break;
                         case 6:
                             System.out.print(Tools.print(colorText, "", "            ║  ║ ║╠═╣ ║║║║║║"));
                             System.out.print(Tools.print(colorUI, "", "│ ┬            "));
+                            System.out.print(Tools.print(colorUI, "", "║"));
                             break;
                         case 7:
                             System.out.print(Tools.print(colorText, "", "            ║  ║ ║╠═╣ ║║║║║║║ ╦            "));
+                            System.out.print(Tools.print(colorUI, "", "║"));
                             break;
                         case 8:
                             System.out.print(Tools.print(colorText, "", "                ║║║ ║║║║║╣                 "));
+                            System.out.print(Tools.print(colorUI, "", "║"));
                             break;
                     }
-                    System.out.print(Tools.print(colorUI, "", "║"));
                     break;
                 case 6: //║            ╩═╝└─┘┴ ┴─┴┘┴┘└┘└─┘            ║
                     System.out.print(Tools.print(colorUI, "", "║"));
                     switch (counter) {
                         case 0:
                             System.out.print(Tools.print(colorUI, "", "            ┴─┘└─┘┴ ┴─┴┘┴┘└┘└─┘            "));
+                            System.out.print(Tools.print(colorUI, "", "║"));
                             break;
                         case 1:
                             System.out.print(Tools.print(colorText, "", "            ╩═╝"));
                             System.out.print(Tools.print(colorUI, "", "└─┘┴ ┴─┴┘┴┘└┘└─┘            "));
+                            System.out.print(Tools.print(colorUI, "", "║"));
                             break;
                         case 2:
                             System.out.print(Tools.print(colorText, "", "            ╩═╝╚═╝"));
                             System.out.print(Tools.print(colorUI, "", "┴ ┴─┴┘┴┘└┘└─┘            "));
+                            System.out.print(Tools.print(colorUI, "", "║"));
                             break;
                         case 3:
                             System.out.print(Tools.print(colorText, "", "            ╩═╝╚═╝╩ ╩"));
                             System.out.print(Tools.print(colorUI, "", "─┴┘┴┘└┘└─┘            "));
+                            System.out.print(Tools.print(colorUI, "", "║"));
                             break;
                         case 4:
                             System.out.print(Tools.print(colorText, "", "            ╩═╝╚═╝╩ ╩═╩╝"));
                             System.out.print(Tools.print(colorUI, "", "┴┘└┘└─┘            "));
+                            System.out.print(Tools.print(colorUI, "", "║"));
                             break;
                         case 5:
                             System.out.print(Tools.print(colorText, "", "            ╩═╝╚═╝╩ ╩═╩╝╩"));
                             System.out.print(Tools.print(colorUI, "", "┘└┘└─┘            "));
+                            System.out.print(Tools.print(colorUI, "", "║"));
                             break;
                         case 6:
                             System.out.print(Tools.print(colorText, "", "            ╩═╝╚═╝╩ ╩═╩╝╩╝╚╝"));
                             System.out.print(Tools.print(colorUI, "", "└─┘            "));
+                            System.out.print(Tools.print(colorUI, "", "║"));
                             break;
                         case 7:
                             System.out.print(Tools.print(colorText, "", "            ╩═╝╚═╝╩ ╩═╩╝╩╝╚╝╚═╝            "));
+                            System.out.print(Tools.print(colorUI, "", "║"));
                             break;
                         case 8:
                             System.out.print(Tools.print(colorText, "", "               ═╩╝╚═╝╝╚╝╚═╝                "));
+                            System.out.print(Tools.print(colorUI, "", "║"));
                             break;
                     }
-                    System.out.print(Tools.print(colorUI, "", "║"));
                     break;
                 case 8: //║        [██████████████████▒______]        ║
                     System.out.print(Tools.print(colorUI, "", "║"));
@@ -641,11 +691,11 @@ public class Screens {
                     //en el default para ver si estamos en la ultima iteracion
                     if (i == hValue) {
                         Tools.printRow('╚', '═', voidSize + 2, '╝', colorUI);
-                            } else {
+                    } else {
                         System.out.print(Tools.print(colorUI, "", "║"));
                         for (int j = 1; j <= voidSize; j++) {
-                                System.out.print(Tools.print(Board.bgColor, "", Board.voidCharacterSides));
-                            }
+                            System.out.print(Tools.print(Board.bgColor, "", Board.voidCharacterSides));
+                        }
                         System.out.print(Tools.print(colorUI, "", "║"));
                     }
             }
