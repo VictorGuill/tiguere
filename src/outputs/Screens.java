@@ -89,19 +89,38 @@ public class Screens {
         }
 
         do {
+            if (Tools.isRunningCMD()) {
+                switch (INPUT) {
+                    case "up":
+                        if (heightBoard > MIN_BOARD_SIZE) {
+                            heightBoard--;
+                            Screens.boardSizeScreen(widthBoard, heightBoard);
+                        }
+                        break;
+                    case "down":
+                        if (heightBoard < MAX_BOARD_SIZE) {
+                            heightBoard++;
+                            Screens.boardSizeScreen(widthBoard, heightBoard);
+                        }
+                        break;
+                }
+            } else {
+                switch (INPUT) {
+                    case "up":
+                        if (heightBoard < MAX_BOARD_SIZE) {
+                            heightBoard++;
+                            Screens.boardSizeScreen(widthBoard, heightBoard);
+                        }
+                        break;
+                    case "down":
+                        if (heightBoard > MIN_BOARD_SIZE) {
+                            heightBoard--;
+                            Screens.boardSizeScreen(widthBoard, heightBoard);
+                        }
+                        break;
+                }
+            }
             switch (INPUT) {
-                case "up":
-                    if (heightBoard < MAX_BOARD_SIZE) {
-                        heightBoard++;
-                        Screens.boardSizeScreen(widthBoard, heightBoard);
-                    }
-                    break;
-                case "down":
-                    if (heightBoard > MIN_BOARD_SIZE) {
-                        heightBoard--;
-                        Screens.boardSizeScreen(widthBoard, heightBoard);
-                    }
-                    break;
                 case "left":
                     if (widthBoard > MIN_BOARD_SIZE) {
                         widthBoard--;
@@ -622,11 +641,11 @@ public class Screens {
                     //en el default para ver si estamos en la ultima iteracion
                     if (i == hValue) {
                         Tools.printRow('╚', '═', voidSize + 2, '╝', colorUI);
-                    } else {
+                            } else {
                         System.out.print(Tools.print(colorUI, "", "║"));
                         for (int j = 1; j <= voidSize; j++) {
-                            System.out.print(Tools.print(Board.bgColor, "", Board.voidCharacterSides));
-                        }
+                                System.out.print(Tools.print(Board.bgColor, "", Board.voidCharacterSides));
+                            }
                         System.out.print(Tools.print(colorUI, "", "║"));
                     }
             }
