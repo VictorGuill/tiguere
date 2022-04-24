@@ -11,6 +11,7 @@ import static gamejava.GameJava.widthBoard;
 import java.util.concurrent.TimeUnit;
 import outputs.Board;
 import outputs.Screens;
+import players.Enemies;
 import players.Player;
 import players.magician;
 import utilities.Tools;
@@ -33,36 +34,43 @@ public class Play {
             switch (INPUT) {
                 case "up":
                     Player.movYPositive(1, board, playable, character, widthBoard, heightBoard, Board.voidSquare);
+                    Enemies.moveEnemies(GameJava.numEnemies,GameJava.board,GameJava.enemies, widthBoard, heightBoard, Board.voidSquare);
                     Board.printBoard(widthBoard, heightBoard);
                     Board.showMenu();
                     INPUT = "";
                     break;
                 case "down":
                     Player.movYNegative(1, board, playable, character, widthBoard, heightBoard, Board.voidSquare);
+                    Enemies.moveEnemies(GameJava.numEnemies,GameJava.board,GameJava.enemies, widthBoard, heightBoard, Board.voidSquare);
                     Board.printBoard(widthBoard, heightBoard);
                     Board.showMenu();
                     INPUT = "";
                     break;
                 case "left":
                     Player.movXNegative(1, board, playable, character, widthBoard, heightBoard, Board.voidSquare);
+                    Enemies.moveEnemies(GameJava.numEnemies,GameJava.board,GameJava.enemies, widthBoard, heightBoard, Board.voidSquare);
                     Board.printBoard(widthBoard, heightBoard);
                     Board.showMenu();
                     INPUT = "";
                     break;
                 case "right":
                     Player.movXPositive(1, board, playable, character, widthBoard, heightBoard, Board.voidSquare);
+                    Enemies.moveEnemies(GameJava.numEnemies,GameJava.board,GameJava.enemies, widthBoard, heightBoard, Board.voidSquare);
                     Board.printBoard(widthBoard, heightBoard);
                     Board.showMenu();
                     INPUT = "";
                     break;
                 case "1":
                     Player.basicAttack(board, playable, character, widthBoard, heightBoard, (" " + GameJava.CHAR_ENEMY + " "));
+                    Enemies.moveEnemies(GameJava.numEnemies,GameJava.board,GameJava.enemies, widthBoard, heightBoard, Board.voidSquare);
                     break;
                 case "2":
                     changeCharacter(playable);
+                    Enemies.moveEnemies(GameJava.numEnemies,GameJava.board,GameJava.enemies, widthBoard, heightBoard, Board.voidSquare);
                     break;
                 case "3":
                     Player.pickUpCoin(board, playable, character, widthBoard, heightBoard, (" " + GameJava.CHAR_COIN + " "));
+                    Enemies.moveEnemies(GameJava.numEnemies,GameJava.board,GameJava.enemies, widthBoard, heightBoard, Board.voidSquare);
                     break;
                 case "4": //exit
                     Tools.clearConsole();
@@ -72,11 +80,14 @@ public class Play {
                 case "5":
                     if (Board.Character.equals((" " + GameJava.CHAR_MAGO + " "))) {
                         magician.motionSkill(1, board, playable, character, widthBoard, heightBoard, Board.voidSquare);
+                        Enemies.moveEnemies(GameJava.numEnemies,GameJava.board,GameJava.enemies, widthBoard, heightBoard, Board.voidSquare);
                         Board.printBoard(widthBoard, heightBoard);
                         Board.showMenu();
                     }
+                    
                     break;
             }
+            
             TimeUnit.MILLISECONDS.sleep(1000 / INPUT_RATE);
         } while (playingGame);
     }

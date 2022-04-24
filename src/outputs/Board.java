@@ -20,6 +20,7 @@ public class Board {
     public static boolean firstPrint = true;
     public static boolean firstCharacter = true;
     public static String Character,
+            Enemy,
             voidSquare = "░░░",
             voidCharacterSides = "░",
             bgColor = "green",
@@ -34,6 +35,7 @@ public class Board {
         Tools.clearConsole();
         
         Character = saveCharacter("right");
+        Enemy = saveEnemy();
         if (firstPrint) {
             GameJava.numCoins= randomCoin();
             GameJava.board = new String[hBoard][wBoard];
@@ -298,7 +300,10 @@ public class Board {
         }
         return Character;
     }
-
+    public static String saveEnemy(){
+        Enemy = (" " + GameJava.CHAR_ENEMY + " ");
+        return Enemy;
+    }
     public static void printPosition(int row, int column) {
         if (Player.getXpos() == row && Player.getYpos() == column) {
             System.out.print(saveCharacter(Player.direction));
@@ -315,12 +320,16 @@ public class Board {
     }
 
     public static int randomCoin() {
-        if (GameJava.numEnemies == 1 || GameJava.numEnemies == 2) {
-            GameJava.numCoins = Tools.random(1, 2);
-        } else if (GameJava.numEnemies == 3 || GameJava.numEnemies == 4) {
-            GameJava.numCoins = Tools.random(3, 4);
-        } else {
-            GameJava.numCoins = Tools.random(5, 6);
+        switch (GameJava.difficultSelection) {
+            case 1:
+                GameJava.numCoins = Tools.random(1, 2);
+                break;
+            case 2:
+                GameJava.numCoins = Tools.random(3, 4);
+                break;
+            default:
+                GameJava.numCoins = Tools.random(5, 6);
+                break;
         }
         return GameJava.numCoins;
     }

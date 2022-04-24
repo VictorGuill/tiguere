@@ -233,6 +233,7 @@ public class Screens {
                 case "right":
                 case "enter":
                     //dependiendo la dificultad, hay un rango de enemigos que apareceran
+                    GameJava.difficultSelection = menuOption;
                     switch (menuOption) {
                         case 1: //easy
                             numEnemies = Tools.random(1, 2);
