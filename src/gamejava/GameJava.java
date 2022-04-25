@@ -102,6 +102,7 @@ public class GameJava {
                     keyInput.dispose(); //elimina ventana creada por JAVA
                     break;
             }
+            INPUT = "";
             TimeUnit.MILLISECONDS.sleep(1000 / INPUT_RATE);
         } while (isGameRunning);
     }
