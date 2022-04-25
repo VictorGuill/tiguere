@@ -27,19 +27,17 @@ public class Board {
             bgColor = "green",
             coinColor = "yellow",
             enemyColor = "red";
-    
 
     public static void printBoard(int wBoard, int hBoard) {
-    int hueco = voidSquare.length();
-        
-        
+        int hueco = voidSquare.length();
+
         Tools.clearConsole();
-        
+
         Character = saveCharacter("right");
         Enemy = saveEnemy();
         Coin = (" "+ GameJava.CHAR_COIN +" ");
         if (firstPrint) {
-            GameJava.numCoins= randomCoin();
+            GameJava.numCoins = randomCoin();
             GameJava.board = new String[hBoard][wBoard];
             setMap(wBoard, hBoard);
             firstPrint = false;
@@ -119,7 +117,7 @@ public class Board {
                                 System.out.print("L");
                             } else if (j == wBoard + 9) {
                                 System.out.print("S");
-                            }  else {
+                            } else {
                                 System.out.print(" ");
                             }
                         }
@@ -156,7 +154,7 @@ public class Board {
                         System.out.print(Tools.print(Screens.colorUI, "", "╣"));
                     }
                 }
-            } else if (i > 5 && i < 10){
+            } else if (i > 5 && i < 10) {
                 switch (i) {
                     case 6:
                         for (int j = 0; j < wBoard + 20; j++) {
@@ -185,7 +183,7 @@ public class Board {
                                 System.out.print(Tools.print(colorUI, "", "║"));
                             } else if (j == wBoard + 17) {
                                 System.out.print(Tools.print(colorUI, "", "║"));
-                            }  else if (j == wBoard + 3) {
+                            } else if (j == wBoard + 3) {
                                 System.out.print("H");
                             } else if (j == wBoard + 4) {
                                 System.out.print("P");
@@ -207,7 +205,7 @@ public class Board {
                                 System.out.print(Tools.print(colorUI, "", "║"));
                             } else if (j == wBoard + 19) {
                                 System.out.print(Tools.print(colorUI, "", "║"));
-                            }  else if (j == wBoard + 3) {
+                            } else if (j == wBoard + 3) {
                                 System.out.print("L");
                             } else if (j == wBoard + 4) {
                                 System.out.print("V");
@@ -215,7 +213,7 @@ public class Board {
                                 System.out.print("L");
                             } else if (j == wBoard + 7) {
                                 System.out.print(String.valueOf(Player.LV));
-                            }  else {
+                            } else {
                                 System.out.print(" ");
                             }
                         }
@@ -236,8 +234,7 @@ public class Board {
                             }
                         }
                         break;
-                        
-                    
+
                 }
             } else if (i == 10) {
                 for (int j = 0; j < wBoard + 20; j++) {
@@ -253,7 +250,7 @@ public class Board {
                         System.out.print(Tools.print(Screens.colorUI, "", "╝"));
                     }
                 }
-            }else {
+            } else {
                 for (int j = 0; j < wBoard + 2; j++) {
                     if (j == 0 || j == wBoard + 1) {
                         System.out.print(Tools.print(colorUI, "", "║"));
@@ -273,39 +270,62 @@ public class Board {
                 + "3 - PICK UP OBJECT  4 - EXIT ");
     }
 
-       public static String saveCharacter(String direction) {
+    public static String saveCharacter(String direction) {
         if (GameJava.character == 0) {
-            if(direction.equals("right")){
+            if (direction.equals("right")) {
                 Character = (" " + GameJava.CHAR_GUERRERO + "/");
-            }
-            else{
+            } else {
                 Character = ("\\" + GameJava.CHAR_GUERRERO + " ");
             }
-            
+
         } else if (GameJava.character == 1) {
-            if(direction.equals("right")){
+            if (direction.equals("right")) {
                 Character = (" " + GameJava.CHAR_MAGO + "|");
             }
             else{
                 Character = ("|" + GameJava.CHAR_MAGO + " ");
             }
-            
-        }
-        else {
-            if(direction.equals("right")){
+
+        } else {
+            if (direction.equals("right")) {
                 Character = (" " + GameJava.CHAR_SACERDOTE + "/");
-            }
-            else{
+            } else {
                 Character = ("\\" + GameJava.CHAR_SACERDOTE + " ");
             }
         }
         return Character;
     }
-    public static String saveEnemy(){
+
+    public static String saveEnemy() {
         Enemy = (" " + GameJava.CHAR_ENEMY + " ");
         return Enemy;
     }
+
     public static void printPosition(int row, int column) {
+        int printDistance = 4;
+
+        if (Player.getYpos() - printDistance <= column
+                && Player.getYpos() + printDistance >= column
+                && Player.getXpos() - printDistance <= row
+                && Player.getXpos() + printDistance >= row) {
+            if (Player.getXpos() == row && Player.getYpos() == column) {
+                System.out.print(saveCharacter(Player.direction));
+            } else if (GameJava.board[column][row].equals(voidSquare)) {
+                System.out.print(Tools.print(bgColor, "", GameJava.board[column][row]));
+            } else if (GameJava.board[column][row].equals(" " + GameJava.CHAR_COIN + " ")) {
+                System.out.print(Tools.print(coinColor, "", GameJava.board[column][row]));
+            } else if (GameJava.board[column][row].equals(" " + GameJava.CHAR_GUERRERO + " ")
+                    || GameJava.board[column][row].equals(" " + GameJava.CHAR_MAGO + " ")
+                    || GameJava.board[column][row].equals(" " + GameJava.CHAR_SACERDOTE + " ")
+                    || GameJava.board[column][row].equals(" " + GameJava.CHAR_ENEMY + " ")) {
+                System.out.print(Tools.print(enemyColor, "", GameJava.board[column][row]));
+            }
+        } else {
+            System.out.print("   ");
+        }
+
+
+        /*
         if (Player.getXpos() == row && Player.getYpos() == column) {
             System.out.print(saveCharacter(Player.direction));
         } else if (GameJava.board[column][row].equals(voidSquare)) {
@@ -318,6 +338,7 @@ public class Board {
                 || GameJava.board[column][row].equals(" " + GameJava.CHAR_ENEMY + " ")) {
             System.out.print(Tools.print(enemyColor, "", GameJava.board[column][row]));
         }
+         */
     }
 
     public static int randomCoin() {
@@ -373,12 +394,12 @@ public class Board {
         }
         randomPositions(GameJava.numCoins, height - 1, width - 1, (" " + GameJava.CHAR_COIN + " "));
         randomPositions(GameJava.numEnemies, height - 1, width - 1, (" " + GameJava.CHAR_ENEMY + " "));
-        
+
         //Inicialitzem els valors
         GameJava.board[0][1] = Character;
         Player.xpos = 1;
         Player.ypos = 0;
-        Player.direction= "right";
+        Player.direction = "right";
         Player.kills = 0;
         Player.sackOfCoins = 0;
         Player.HP = 100;
