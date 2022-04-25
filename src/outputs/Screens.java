@@ -49,6 +49,7 @@ public class Screens {
             TimeUnit.MILLISECONDS.sleep(1000 / INPUT_RATE);
             counter++;
         } while (INPUT.equals(""));
+        INPUT = "";
     }
 
     /**
@@ -60,6 +61,9 @@ public class Screens {
         for (int i = 0; i <= 8; i++) {
             Tools.clearConsole();
             loadingStartScreen(i);
+            if (GameJava.INPUT.equals("enter")) {
+                i = h;
+            }
             TimeUnit.MILLISECONDS.sleep(250);
         }
         TimeUnit.MILLISECONDS.sleep(500);
@@ -328,7 +332,7 @@ public class Screens {
      */
     public static void startMenu(int menuOption) {
         Tools.clearConsole();
-        
+
         for (int i = 1; i <= h; i++) {
             //utilitzamos un if para detectar la ultima linea porque switch no funciona con variables
 
@@ -437,7 +441,7 @@ public class Screens {
 
         for (int i = 1; i <= h; i++) {
             //utilitzamos un if para detectar la ultima linea porque switch no funciona con variables
-
+            
             switch (i) {
                 case 1:
                     System.out.print(Tools.print(colorUI, "", "╔════════════════════════════════════════╗"));
@@ -665,21 +669,11 @@ public class Screens {
         //cada casilla pasa de valer 1 a el ancho del heuco determinado por el Board
         int voidSize = wValue * Board.voidSquare.length();
 
-        //╔╗ ╔═╗╔═╗╦═╗╔╦╗  ╔═╗╦╔═╗╔═╗   ╔════╦════╗
-        System.out.print(Tools.print(colorText, "", "╔╗ ╔═╗╔═╗╦═╗╔╦╗  ╔═╗╦╔═╗╔═╗"));
-        System.out.print(Tools.print(colorUI, "", "   ╔═w══╦═h══╗\n"));
+        System.out.println(Tools.print(colorText, "", "╔╗ ╔═╗╔═╗╦═╗╔╦╗  ╔═╗╦╔═╗╔═╗"));
+        System.out.println(Tools.print(colorText, "", "╠╩╗║ ║╠═╣╠╦╝ ║║  ╚═╗║╔═╝║╣    ") + "Min: " + MIN_BOARD_SIZE);
+        System.out.println(Tools.print(colorText, "", "╚═╝╚═╝╩ ╩╩╚══╩╝  ╚═╝╩╚═╝╚═╝   ") + "Max: " + MAX_BOARD_SIZE);
 
-        //╠╩╗║ ║╠═╣╠╦╝ ║║  ╚═╗║╔═╝║╣    ║ 15 X 15 ║
-        System.out.print(Tools.print(colorText, "", "╠╩╗║ ║╠═╣╠╦╝ ║║  ╚═╗║╔═╝║╣ "));
-        System.out.print(Tools.print(colorUI, "", "   ║ "));
-        System.out.print(Tools.print(colorText, "", String.valueOf(wValue)));
-        System.out.print(Tools.print(colorUI, "", " X "));
-        System.out.print(Tools.print(colorText, "", String.valueOf(hValue)));
-        System.out.print(Tools.print(colorUI, "", " ║\n"));
-
-        //╚═╝╚═╝╩ ╩╩╚══╩╝  ╚═╝╩╚═╝╚═╝   ╚════╩════╝
-        System.out.print(Tools.print(colorText, "", "╚═╝╚═╝╩ ╩╩╚══╩╝  ╚═╝╩╚═╝╚═╝"));
-        System.out.print(Tools.print(colorUI, "", "   ╚════╩════╝\n"));
+        hValue += 2;
 
         for (int i = 1; i <= hValue; i++) {
 
@@ -691,7 +685,42 @@ public class Screens {
                     //Como SWITCH no acepta variables en el case, usamos un if
                     //en el default para ver si estamos en la ultima iteracion
                     if (i == hValue) {
-                        Tools.printRow('╚', '═', voidSize + 2, '╝', colorUI);
+                        System.out.print(Tools.print(colorUI, "", "╚"));
+                        for (int j = 0; j < voidSize / 2; j++) {
+                            if (j == (voidSize / 2) - 1) {
+                                System.out.print(Tools.print(colorUI, "", "╗"));
+                            } else {
+                                System.out.print(Tools.print(colorUI, "", "═"));
+                            }
+                        }
+                        System.out.print(Tools.print(colorText, "", String.valueOf(wValue)));
+                        System.out.print(Tools.print(colorUI, "", "╔"));
+                        for (int j = 0; j < (voidSize / 2) - 3; j++) {
+                            System.out.print(Tools.print(colorUI, "", "═"));
+                        }
+                        if (wValue % 2 == 0) {
+                            System.out.print(Tools.print(colorUI, "", "╝"));
+                        } else {
+                            System.out.print(Tools.print(colorUI, "", "═╝"));
+                        }
+                    } else if (i == (hValue / 2) - 1) {
+                        System.out.print(Tools.print(colorUI, "", "║"));
+                        for (int j = 1; j <= voidSize; j++) {
+                            System.out.print(Tools.print(Board.bgColor, "", Board.voidCharacterSides));
+                        }
+                        System.out.print(Tools.print(colorUI, "", "╚"));
+                    } else if (i == hValue / 2) {
+                        System.out.print(Tools.print(colorUI, "", "║"));
+                        for (int j = 1; j <= voidSize; j++) {
+                            System.out.print(Tools.print(Board.bgColor, "", Board.voidCharacterSides));
+                        }
+                        System.out.print(Tools.print(colorText, "", String.valueOf(hValue - 2)));
+                    } else if (i == (hValue / 2) + 1) {
+                        System.out.print(Tools.print(colorUI, "", "║"));
+                        for (int j = 1; j <= voidSize; j++) {
+                            System.out.print(Tools.print(Board.bgColor, "", Board.voidCharacterSides));
+                        }
+                        System.out.print(Tools.print(colorUI, "", "╔"));
                     } else {
                         System.out.print(Tools.print(colorUI, "", "║"));
                         for (int j = 1; j <= voidSize; j++) {
