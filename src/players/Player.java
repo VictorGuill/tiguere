@@ -5,6 +5,7 @@ import outputs.Board;
 import gamejava.GameJava;
 
 
+
 public abstract class Player {
     public static int LV;
     public static int sackOfCoins;
@@ -24,15 +25,21 @@ public abstract class Player {
     /*
         Metodes mov , augmenta una casella en cas de que la seguent casella sigui un "-"
         nullsCells = constant del main que indicara que es troba a les caselles nul·les.
+        Variable direction es mandarà a la funció Board.Character, aquesta funció retornarà el String del jugador amb una espasa mirant en la direcció
+        que es mou el jugador.
+        En cas de que pasi per sobre d'una moneda aquesta s'esborrara i sumarà 1 al recompte de monedes del jugador
     */
     public static void movXPositive(int mov, String[][] board, Player[]playable, int character, int widthBoard, int heightBoard, String NULL_CELLS){
        String nextPosition = nextXPositive(board,playable,character,widthBoard,heightBoard,mov);
-       if(nextPosition.equals(NULL_CELLS)){
+       if(nextPosition.equals(NULL_CELLS)||nextPosition.equals(Board.Coin)){
         board[playable[character].getYpos()][playable[character].getXpos()] = NULL_CELLS;
         Player.xpos += mov;
         direction = "right";
         Board.saveCharacter(direction);
         board[playable[character].getYpos()][playable[character].getXpos()] = Board.Character;
+        if(nextPosition.equals(Board.Coin)){
+            gainCoins();
+        }
        }
        if(Player.xpos==widthBoard-1){
         direction = "left";
@@ -42,13 +49,17 @@ public abstract class Player {
     }
     public static void movXNegative(int mov, String[][] board, Player[]playable, int character, int widthBoard, int heigthBoard, String NULL_CELLS){
        String nextPosition = nextXNegative(board,playable,character,widthBoard,heigthBoard,mov);
-       if(nextPosition.equals(NULL_CELLS)){
+       if(nextPosition.equals(NULL_CELLS)||nextPosition.equals(Board.Coin)){
         board[playable[character].getYpos()][playable[character].getXpos()] = NULL_CELLS;
         Player.xpos -= mov;
         direction = "left";
         Board.saveCharacter(direction);
         board[playable[character].getYpos()][playable[character].getXpos()] = Board.Character;
+        if(nextPosition.equals(Board.Coin)){
+            gainCoins();
+        }
        }
+
        if(Player.xpos==0){
         direction = "right";
         Board.saveCharacter(direction);
@@ -57,24 +68,28 @@ public abstract class Player {
     }
     public static void movYPositive(int mov, String[][] board, Player[]playable, int character, int widthBoard, int heigthBoard, String NULL_CELLS){
        String nextPosition = nextYPositive(board,playable,character,widthBoard,heigthBoard,mov);
-       if(nextPosition.equals(NULL_CELLS)){
+       if(nextPosition.equals(NULL_CELLS)||nextPosition.equals(Board.Coin)){
          board[playable[character].getYpos()][playable[character].getXpos()] = NULL_CELLS;
         Player.ypos -= mov;
         Board.saveCharacter(direction);
         board[playable[character].getYpos()][playable[character].getXpos()] = Board.Character;
+        if(nextPosition.equals(Board.Coin)){
+            gainCoins();
+        }
        }
     }
     public static void movYNegative(int mov, String[][] board, Player[]playable, int character, int widthBoard, int heigthBoard, String NULL_CELLS){
        String nextPosition = nextYNegative(board,playable,character,widthBoard,heigthBoard,mov);
-       if(nextPosition.equals(NULL_CELLS)){
+       if(nextPosition.equals(NULL_CELLS)||nextPosition.equals(Board.Coin)){
          board[playable[character].getYpos()][playable[character].getXpos()] = NULL_CELLS;
         Player.ypos += mov;
         Board.saveCharacter(direction);
         board[playable[character].getYpos()][playable[character].getXpos()] = Board.Character;
-       }
+        if(nextPosition.equals(Board.Coin)){
+            gainCoins();
+        }
+       }  
     }
-    
-    
     
     /*
         Mètodes nextPosition que ens retornen el contingut de la seguent casella, 
@@ -117,6 +132,7 @@ public abstract class Player {
        return nextPosition;
     }
     
+    // pickUpCoin compara la seguent posició de l'array i en cas de que hi hagi una moneda l'esborra del mapa i suma 1 al recompte de monedes
     public static void pickUpCoin(String[][] board, Player[]playable, int character, int widthBoard, int heigthBoard, String NULL_CELLS) {
         boolean isCoin = false;
         int x = getXpos();

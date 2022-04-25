@@ -21,6 +21,7 @@ public class Board {
     public static boolean firstCharacter = true;
     public static String Character,
             Enemy,
+            Coin,
             voidSquare = "░░░",
             voidCharacterSides = "░",
             bgColor = "green",
@@ -36,6 +37,7 @@ public class Board {
         
         Character = saveCharacter("right");
         Enemy = saveEnemy();
+        Coin = (" "+ GameJava.CHAR_COIN +" ");
         if (firstPrint) {
             GameJava.numCoins= randomCoin();
             GameJava.board = new String[hBoard][wBoard];
@@ -284,7 +286,6 @@ public class Board {
             if(direction.equals("right")){
                 Character = (" " + GameJava.CHAR_MAGO + "|");
             }
-         
             else{
                 Character = ("|" + GameJava.CHAR_MAGO + " ");
             }
