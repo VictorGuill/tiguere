@@ -266,8 +266,13 @@ public class Board {
     }
 
     public static void showMenu() {
-        System.out.println("1 - ATACK           2 - CHANGE CHARACTER  \n"
-                + "3 - PICK UP OBJECT  4 - EXIT ");
+        if (GameJava.character == 1){
+            System.out.println("1 - ATACK           2 - CHANGE CHARACTER  \n"
+                + "3 - PICK UP OBJECT  5 - MOVE*2 ");
+        } else {
+            System.out.println("1 - ATACK           2 - CHANGE CHARACTER  \n"
+                + "3 - PICK UP OBJECT");
+        }
     }
 
     public static String saveCharacter(String direction) {

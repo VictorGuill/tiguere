@@ -2,8 +2,6 @@
 package gamejava;
 
 import outputs.Screens;
-import outputs.Board;
-import utilities.Tools;
 import utilities.InputListener;
 import players.Player;
 import players.magician;
@@ -24,8 +22,8 @@ public class GameJava {
             character = 1, //personage del jugador
             widthBoard,
             heightBoard,
-            numEnemies = 1, //numero de enemigos dependiendo la dificultad
-            numCoins = 1,
+            numEnemies, //numero de enemigos dependiendo la dificultad
+            numCoins,
             difficultSelection;
     public static boolean SECTION_RUNNING = true;
     public static String[][] board;
@@ -84,7 +82,11 @@ public class GameJava {
                 case "enter":
                     switch (menuOption) {
                         case 1: //play
+                            Play.playingGame = true;
                             Play.playingGame();
+                            Screens.credits();
+                            isGameRunning = false;
+                            keyInput.dispose(); //elimina ventana creada por JAVA
                             break;
                         case 2: //tutorial
                             break;
@@ -100,7 +102,6 @@ public class GameJava {
                     keyInput.dispose(); //elimina ventana creada por JAVA
                     break;
             }
-            INPUT = "";
             TimeUnit.MILLISECONDS.sleep(1000 / INPUT_RATE);
         } while (isGameRunning);
     }

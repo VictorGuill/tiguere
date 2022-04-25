@@ -8,7 +8,6 @@ package players;
 
 import gamejava.GameJava;
 import outputs.Board;
-import static players.Player.direction;
 import utilities.Tools;
 
 
@@ -112,12 +111,6 @@ public class Enemies {
         }
        return nextPosition;
     }
-    
-    
-    
-    
-   
-    
      
     public static void randomEnemyMovement(int mov, String[][] board, Enemies[]playable, int character, int widthBoard, int heigthBoard, String NULL_CELLS, int x, int y) {
         int probability = 0;

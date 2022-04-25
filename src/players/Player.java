@@ -15,6 +15,7 @@ public abstract class Player {
     public static int HP;
     public static int DMG;
     public static int kills;
+    public static int MAXHP = 300;
 
     public Player() {
     }
@@ -135,8 +136,10 @@ public abstract class Player {
     // pickUpCoin compara la seguent posició de l'array i en cas de que hi hagi una moneda l'esborra del mapa i suma 1 al recompte de monedes
     public static void pickUpCoin(String[][] board, Player[]playable, int character, int widthBoard, int heigthBoard, String NULL_CELLS) {
         boolean isCoin = false;
+        
         int x = getXpos();
         int y = getYpos();
+        
         String nextXPositive = nextXPositive(board,playable,character,widthBoard,heigthBoard,1);
         String nextXNegative = nextXNegative(board,playable,character,widthBoard,heigthBoard,1);
         String nextYPositive = nextYPositive(board,playable,character,widthBoard,heigthBoard,1);
@@ -146,22 +149,18 @@ public abstract class Player {
             if (nextXPositive.equals(NULL_CELLS)) {
                 GameJava.board[y][x+1] = Board.voidSquare;
                 sackOfCoins++;
-                GameJava.numCoins--;
                 isCoin = true;
             } else if(nextXNegative.equals(NULL_CELLS)) {
                 GameJava.board[y][x-1] = Board.voidSquare;
                 sackOfCoins++;
-                GameJava.numCoins--;
                 isCoin = true;
             } else if (nextYPositive.equals(NULL_CELLS)){
                 GameJava.board[y-1][x] = Board.voidSquare;
                 sackOfCoins++;
-                GameJava.numCoins--;
                 isCoin = true;
             } else if(nextYNegative.equals(NULL_CELLS)) {
                 GameJava.board[y+1][x] = Board.voidSquare;
                 sackOfCoins++;
-                GameJava.numCoins--;
                 isCoin = true;
             } else {
                 isCoin = true;
@@ -186,22 +185,18 @@ public abstract class Player {
             if (nextXPositive.equals(NULL_CELLS)){
                 GameJava.board[y][x+1] = Board.voidSquare;
                 kills++;
-                GameJava.numEnemies--;
                 isAttack = false;
             } else if (nextXNegative.equals(NULL_CELLS)){
                 GameJava.board[y][x-1] = Board.voidSquare;
                 kills++;
-                GameJava.numEnemies--;
                 isAttack = false;
             } else if (nextYPositive.equals(NULL_CELLS)){
                 GameJava.board[y-1][x] = Board.voidSquare;
                 kills++;
-                GameJava.numEnemies--;
                 isAttack = false;
             } else if (nextYNegative.equals(NULL_CELLS)){
                 GameJava.board[y+1][x] = Board.voidSquare;
                 kills++;
-                GameJava.numEnemies--;
                 isAttack = false;
             } else {
                 isAttack = false;

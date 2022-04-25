@@ -3,6 +3,7 @@ package outputs;
 import gamejava.GameJava;
 import utilities.Tools;
 import static gamejava.GameJava.*;
+import gamejava.Play;
 import java.util.concurrent.TimeUnit;
 
 public class Screens {
@@ -240,13 +241,13 @@ public class Screens {
                     GameJava.difficultSelection = menuOption;
                     switch (menuOption) {
                         case 1: //easy
-                            numEnemies = Tools.random(1, 2);
+                            GameJava.numEnemies = Tools.random(1, 2);
                             break;
                         case 2: //medium
-                            numEnemies = Tools.random(2, 3);
+                            GameJava.numEnemies = Tools.random(2, 3);
                             break;
                         case 3: //hard
-                            numEnemies = Tools.random(4, 6);
+                            GameJava.numEnemies = Tools.random(4, 6);
                             break;
                     }
                     Tools.clearConsole();
@@ -258,6 +259,50 @@ public class Screens {
         } while (SECTION_RUNNING);
     }
 
+    /**
+     * Menú de la pantalla final.
+     *
+     * @throws InterruptedException
+     */
+    public static void endGameScreen() throws InterruptedException {
+        boolean endingGame = true;
+        Tools.clearConsole();
+        Screens.endGame(menuOption);
+        int menuEnding;
+        
+        menuEnding = 1;
+        do {
+            switch (INPUT) {
+                case "up":
+                    if (menuEnding > 1) {
+                        menuEnding--;
+                        Screens.endGame(menuEnding);
+                        INPUT = "";
+                    }
+                    break;
+                case "down":
+                    if (menuEnding < 2) {
+                        menuEnding++;
+                        menuEnding = 2;
+                        Screens.endGame(menuEnding);
+                        INPUT = "";
+                    }
+                    break;
+                case "enter":
+                    Tools.clearConsole();
+                    endingGame = false;
+                    if (menuEnding == 1) {
+                        Play.playingGame();
+                    } else {
+                        Play.playingGame = false;
+                        INPUT = "4";
+                    }
+                    break;
+            }
+            TimeUnit.MILLISECONDS.sleep(1000 / INPUT_RATE);
+        } while (endingGame);
+    }
+    
     /**
      * Imprime el logo junto a los creditos del juego.
      */
@@ -287,7 +332,7 @@ public class Screens {
         System.out.println("- Pau Pajaro");
         System.out.println("- Victor Guillén");
 
-        System.out.println("");
+        System.out.println();
     }
 
     //
@@ -660,8 +705,6 @@ public class Screens {
      *
      * @param wValue Valor de anchura.
      * @param hValue Valor de altura.
-     * @param optionSelected Indica si estamos en la columna izquierda, derecha
-     * o el boton ENTER.
      */
     public static void boardSizeScreen(int wValue, int hValue) {
         Tools.clearConsole();
@@ -865,6 +908,62 @@ public class Screens {
                     }
                 }
 
+            }
+            System.out.println("");
+        }
+    }
+    
+    /**
+     * Imprime la pantalla final.
+     * "YOU WIN"
+     * @param menuOption Indica la posición selecionada, si PLAY AGAIN o EXIT.
+     */
+    public static void endGame (int menuoption) {
+        Tools.clearConsole();
+
+        for (int i = 0; i < h; i++) {
+            if (i == 0) {
+                Tools.printRow('╔', '═', w, '╗', colorUI);
+            } else if (i == h - 1) {
+                Tools.printRow('╚', '═', w, '╝', colorUI);
+            } else if (i == 3) {
+                System.out.print(Tools.print(colorUI, "", "║       " ));
+                System.out.print(Tools.print(colorText, "", "╚╦╝ ╔═╗ ╦ ╦     ╦ ╦ ╦ ╦ ╔═╗ ╔"));
+                System.out.print(Tools.print(colorUI, "","       ║"));
+            } else if (i == 4) {
+                System.out.print(Tools.print(colorUI, "", "║        " ));
+                System.out.print(Tools.print(colorText, "", "║  ║ ║ ║ ║     ║ ║ ║ ║ ║ ║ ║"));
+                System.out.print(Tools.print(colorUI, "","       ║"));
+            } else if (i == 5) {
+                System.out.print(Tools.print(colorUI, "", "║        "));
+                System.out.print(Tools.print(colorText, "", "╩  ╚═╝ ╚═╝     ╚═╩═╝ ╩ ╝ ╚═╝"));
+                System.out.print(Tools.print(colorUI, "","       ║"));
+            } else if (i == 8) {
+                if (menuoption == 1) {
+                    System.out.print(Tools.print(colorUI, "", "║           "));
+                    System.out.print(Tools.print("white", "red", " P L A Y   A G A I N "));
+                    System.out.print(Tools.print(colorUI, "", "           ║"));
+                } else {
+                    System.out.print(Tools.print(colorUI, "", "║            P L A Y   A G A I N            ║"));
+                    
+                }
+            } else if (i == 9) {
+                if (menuoption == 2) {
+                    System.out.print(Tools.print(colorUI, "", "║                 "));
+                    System.out.print(Tools.print("white", "red", " E X I T "));
+                    System.out.print(Tools.print(colorUI, "", "                 ║"));
+                } else {
+                    System.out.print(Tools.print(colorUI, "", "║                  E X I T                  ║"));
+                    
+                }
+            } else {
+                for (int j = 0; j < w; j++) {
+                    if (j == 0 || j == w - 1) {
+                        System.out.print(Tools.print(colorUI, "", "║"));
+                    } else {
+                        System.out.print(" ");
+                    }
+                }
             }
             System.out.println("");
         }
