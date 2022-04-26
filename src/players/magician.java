@@ -1,4 +1,5 @@
 package players;
+
 import outputs.Board;
 import gamejava.GameJava;
 import java.util.concurrent.TimeUnit;
@@ -7,42 +8,38 @@ import java.util.concurrent.TimeUnit;
  *
  * @author mariagarriga
  */
-public class magician extends Player{
-    
-    
+public class magician extends Player {
+
     /**
      * HABILIDADES ESPECIALES DE MOVIMIENTO.
-     * 
-     * Cuando usamos el mago tenemos la posibilidad de movernos dos casillas a la vez.
+     *
+     * Cuando usamos el mago tenemos la posibilidad de movernos dos casillas a
+     * la vez.
      */
     public static void motionSkill(int mov, String[][] board, Player[] playable, int character, int widthBoard, int heightBoard, String NULL_CELLS) throws InterruptedException {
         GameJava.INPUT = "";
         boolean motionSkills = true;
-        
+
         do {
             switch (GameJava.INPUT) {
                 case "up":
                     movYPositive(2, board, playable, character, widthBoard, heightBoard, Board.voidSquare);
                     Board.printBoard(widthBoard, heightBoard);
-                    Board.showMenu();
                     GameJava.INPUT = "";
                     break;
                 case "down":
                     movYNegative(2, board, playable, character, widthBoard, heightBoard, Board.voidSquare);
                     Board.printBoard(widthBoard, heightBoard);
-                    Board.showMenu();
                     GameJava.INPUT = "";
                     break;
                 case "left":
                     movXNegative(2, board, playable, character, widthBoard, heightBoard, Board.voidSquare);
                     Board.printBoard(widthBoard, heightBoard);
-                    Board.showMenu();
                     GameJava.INPUT = "";
                     break;
                 case "right":
                     movXPositive(2, board, playable, character, widthBoard, heightBoard, Board.voidSquare);
                     Board.printBoard(widthBoard, heightBoard);
-                    Board.showMenu();
                     GameJava.INPUT = "";
                     break;
                 case "5":

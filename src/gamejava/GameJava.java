@@ -1,4 +1,3 @@
-
 package gamejava;
 
 import outputs.Screens;

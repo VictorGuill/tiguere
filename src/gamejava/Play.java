@@ -17,10 +17,11 @@ import players.magician;
 import utilities.Tools;
 
 public class Play {
+
     public static boolean playingGame;
 
     public static void playingGame() throws InterruptedException {
-        int objects; 
+        int objects;
 
         INPUT = "";
         Screens.boardSizeScreen();
@@ -28,18 +29,16 @@ public class Play {
         Screens.gameDifficultyScreen();
 
         Board.printBoard(widthBoard, heightBoard);
-        Board.showMenu();
-        Enemies.setEnemiesDirection(board,widthBoard,heightBoard, Board.voidSquare);
+        Enemies.setEnemiesDirection(board, widthBoard, heightBoard, Board.voidSquare);
         objects = GameJava.numCoins + GameJava.numEnemies;
 
         do {
             switch (INPUT) {
                 case "up":
                     Player.movYPositive(1, board, playable, character, widthBoard, heightBoard, Board.voidSquare);
-                    Enemies.moveEnemies(GameJava.numEnemies,GameJava.board,GameJava.enemies, widthBoard, heightBoard, Board.voidSquare);
+                    Enemies.moveEnemies(GameJava.numEnemies, GameJava.board, GameJava.enemies, widthBoard, heightBoard, Board.voidSquare);
                     Board.printBoard(widthBoard, heightBoard);
-                    Board.showMenu();
-                    if (objects == Player.kills + Player.sackOfCoins){
+                    if (objects == Player.kills + Player.sackOfCoins) {
                         Tools.clearConsole();
                         Screens.endGameScreen();
                     }
@@ -47,10 +46,9 @@ public class Play {
                     break;
                 case "down":
                     Player.movYNegative(1, board, playable, character, widthBoard, heightBoard, Board.voidSquare);
-                    Enemies.moveEnemies(GameJava.numEnemies,GameJava.board,GameJava.enemies, widthBoard, heightBoard, Board.voidSquare);
+                    Enemies.moveEnemies(GameJava.numEnemies, GameJava.board, GameJava.enemies, widthBoard, heightBoard, Board.voidSquare);
                     Board.printBoard(widthBoard, heightBoard);
-                    Board.showMenu();
-                    if (objects == Player.kills + Player.sackOfCoins){
+                    if (objects == Player.kills + Player.sackOfCoins) {
                         Tools.clearConsole();
                         Screens.endGameScreen();
                     }
@@ -58,10 +56,9 @@ public class Play {
                     break;
                 case "left":
                     Player.movXNegative(1, board, playable, character, widthBoard, heightBoard, Board.voidSquare);
-                    Enemies.moveEnemies(GameJava.numEnemies,GameJava.board,GameJava.enemies, widthBoard, heightBoard, Board.voidSquare);
+                    Enemies.moveEnemies(GameJava.numEnemies, GameJava.board, GameJava.enemies, widthBoard, heightBoard, Board.voidSquare);
                     Board.printBoard(widthBoard, heightBoard);
-                    Board.showMenu();
-                    if (objects == Player.kills + Player.sackOfCoins){
+                    if (objects == Player.kills + Player.sackOfCoins) {
                         Tools.clearConsole();
                         Screens.endGameScreen();
                     }
@@ -69,35 +66,35 @@ public class Play {
                     break;
                 case "right":
                     Player.movXPositive(1, board, playable, character, widthBoard, heightBoard, Board.voidSquare);
-                    Enemies.moveEnemies(GameJava.numEnemies,GameJava.board,GameJava.enemies, widthBoard, heightBoard, Board.voidSquare);
+                    Enemies.moveEnemies(GameJava.numEnemies, GameJava.board, GameJava.enemies, widthBoard, heightBoard, Board.voidSquare);
                     Board.printBoard(widthBoard, heightBoard);
-                    Board.showMenu();
-                    if (objects == Player.kills + Player.sackOfCoins){
+                    if (objects == Player.kills + Player.sackOfCoins) {
                         Tools.clearConsole();
                         Screens.endGameScreen();
                     }
                     INPUT = "";
                     break;
                 case "1":
-                    Player.basicAttack(board, playable, character, widthBoard, heightBoard,Board.EnemyRight,Board.EnemyLeft,Board.Enemy);
-                    Enemies.moveEnemies(GameJava.numEnemies,GameJava.board,GameJava.enemies, widthBoard, heightBoard, Board.voidSquare);
-                    if (objects == Player.kills + Player.sackOfCoins){
+                    Player.basicAttack(board, playable, character, widthBoard, heightBoard, Board.EnemyRight, Board.EnemyLeft, Board.Enemy);
+                    Enemies.moveEnemies(GameJava.numEnemies, GameJava.board, GameJava.enemies, widthBoard, heightBoard, Board.voidSquare);
+                    if (objects == Player.kills + Player.sackOfCoins) {
                         Tools.clearConsole();
                         Screens.endGameScreen();
                     }
                     break;
                 case "2":
-                    changeCharacter(playable);
-                    Enemies.moveEnemies(GameJava.numEnemies,GameJava.board,GameJava.enemies, widthBoard, heightBoard, Board.voidSquare);
-                    if (objects == Player.kills + Player.sackOfCoins){
+                    Screens.characterSelectorScreen();
+                    Board.printBoard(widthBoard, heightBoard);
+                    Enemies.moveEnemies(GameJava.numEnemies, GameJava.board, GameJava.enemies, widthBoard, heightBoard, Board.voidSquare);
+                    if (objects == Player.kills + Player.sackOfCoins) {
                         Tools.clearConsole();
                         Screens.endGameScreen();
                     }
                     break;
                 case "3":
                     Player.pickUpCoin(board, playable, character, widthBoard, heightBoard, (" " + GameJava.CHAR_COIN + " "));
-                    Enemies.moveEnemies(GameJava.numEnemies,GameJava.board,GameJava.enemies, widthBoard, heightBoard, Board.voidSquare);
-                    if (objects == Player.kills + Player.sackOfCoins){
+                    Enemies.moveEnemies(GameJava.numEnemies, GameJava.board, GameJava.enemies, widthBoard, heightBoard, Board.voidSquare);
+                    if (objects == Player.kills + Player.sackOfCoins) {
                         Tools.clearConsole();
                         Screens.endGameScreen();
                     }
@@ -110,31 +107,13 @@ public class Play {
                 case "5":
                     if (GameJava.character == 1) {
                         magician.motionSkill(1, board, playable, character, widthBoard, heightBoard, Board.voidSquare);
-                        Enemies.moveEnemies(GameJava.numEnemies,GameJava.board,GameJava.enemies, widthBoard, heightBoard, Board.voidSquare);
+                        Enemies.moveEnemies(GameJava.numEnemies, GameJava.board, GameJava.enemies, widthBoard, heightBoard, Board.voidSquare);
                         Board.printBoard(widthBoard, heightBoard);
-                        Board.showMenu();
                     }
                     break;
             }
-            Enemies.setEnemiesDirection(board,widthBoard,heightBoard, Board.voidSquare);
+            Enemies.setEnemiesDirection(board, widthBoard, heightBoard, Board.voidSquare);
             TimeUnit.MILLISECONDS.sleep(1000 / INPUT_RATE);
         } while (playingGame);
-    }
-
-    public static void changeCharacter(Player[] playable) throws InterruptedException {
-        int yTemp = playable[character].getYpos();
-        int xTemp = playable[character].getXpos();
-
-        Screens.characterSelectorScreen();
-        SECTION_RUNNING = true;
-
-        Board.printBoard(widthBoard, heightBoard);
-        Board.showMenu();
-
-        Player.setYpos(yTemp);
-        Player.setXpos(xTemp);
-
-        board[yTemp][xTemp] = Board.Character;
-
     }
 }

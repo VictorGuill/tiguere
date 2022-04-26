@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package outputs;
 
 import gamejava.GameJava;
@@ -10,10 +5,6 @@ import utilities.Tools;
 import players.Player;
 import static outputs.Screens.colorUI;
 
-/**
- *
- * @author Paxsem
- */
 public class Board {
 
     public static String HP[] = new String[10];
@@ -37,7 +28,7 @@ public class Board {
 
         Character = saveCharacter("right");
         Enemy = saveEnemy();
-        Coin = (" "+ GameJava.CHAR_COIN +" ");
+        Coin = (" " + GameJava.CHAR_COIN + " ");
         if (firstPrint) {
             GameJava.numCoins = randomCoin();
             GameJava.board = new String[hBoard][wBoard];
@@ -59,15 +50,7 @@ public class Board {
                     }
                 }
             } else if (i == hBoard + 1) {
-                for (int j = 0; j < (wBoard * hueco) + 2; j++) {
-                    if (j == 0) {
-                        System.out.print(Tools.print(Screens.colorUI, "", "╚"));
-                    } else if (j == (wBoard * hueco) + 1) {
-                        System.out.print(Tools.print(Screens.colorUI, "", "╝"));
-                    } else {
-                        System.out.print(Tools.print(Screens.colorUI, "", "═"));
-                    }
-                }
+                Tools.printRow('╚', '═', (wBoard * hueco) + 2, '╝', Screens.colorUI);
             } else if (i > 0 && i < 5) {
                 switch (i) {
                     case 2:
@@ -78,20 +61,12 @@ public class Board {
                                 printPosition(j - 1, i - 1);
                             } else if (j == (wBoard + 1)) {
                                 System.out.print(Tools.print(colorUI, "", "║"));
-                            } else if (j == wBoard + 19) {
+                            } else if (j == wBoard + 15) {
                                 System.out.print(Tools.print(colorUI, "", "║"));
                             } else if (j == wBoard + 3) {
                                 System.out.print(Player.sackOfCoins);
                             } else if (j == wBoard + 5) {
-                                System.out.print("C");
-                            } else if (j == wBoard + 6) {
-                                System.out.print("O");
-                            } else if (j == wBoard + 7) {
-                                System.out.print("I");
-                            } else if (j == wBoard + 8) {
-                                System.out.print("N");
-                            } else if (j == wBoard + 9) {
-                                System.out.print("S");
+                                System.out.print("COINS");
                             } else {
                                 System.out.print(" ");
                             }
@@ -105,20 +80,12 @@ public class Board {
                                 printPosition(j - 1, i - 1);
                             } else if (j == (wBoard + 1)) {
                                 System.out.print(Tools.print(colorUI, "", "║"));
-                            } else if (j == wBoard + 19) {
+                            } else if (j == wBoard + 15) {
                                 System.out.print(Tools.print(colorUI, "", "║"));
                             } else if (j == wBoard + 3) {
                                 System.out.print(Player.kills);
                             } else if (j == wBoard + 5) {
-                                System.out.print("K");
-                            } else if (j == wBoard + 6) {
-                                System.out.print("I");
-                            } else if (j == wBoard + 7) {
-                                System.out.print("L");
-                            } else if (j == wBoard + 8) {
-                                System.out.print("L");
-                            } else if (j == wBoard + 9) {
-                                System.out.print("S");
+                                System.out.print("KILLS");
                             } else {
                                 System.out.print(" ");
                             }
@@ -264,43 +231,40 @@ public class Board {
             }
             System.out.println("");
         }
-
+        showMenu();
     }
 
     public static void showMenu() {
-        if (GameJava.character == 1){
+        if (GameJava.character == 1) {
             System.out.println("1 - ATACK           2 - CHANGE CHARACTER  \n"
-                + "3 - PICK UP OBJECT  5 - MOVE*2 ");
+                    + "3 - PICK UP OBJECT  5 - MOVE*2 ");
         } else {
             System.out.println("1 - ATACK           2 - CHANGE CHARACTER  \n"
-                + "3 - PICK UP OBJECT");
+                    + "3 - PICK UP OBJECT");
         }
     }
 
     public static String saveCharacter(String direction) {
-        if (GameJava.character == 0) {
-            if (direction.equals("right")) {
-                Character = (" " + GameJava.CHAR_GUERRERO + "/");
-            } else {
-                Character = ("\\" + GameJava.CHAR_GUERRERO + " ");
-            }
-
-        } else if (GameJava.character == 1) {
-            if (direction.equals("right")) {
-                Character = (" " + GameJava.CHAR_MAGO + "|");
-            }
-            else{
-                Character = ("|" + GameJava.CHAR_MAGO + " ");
-            }
-
-        } else {
-            if (direction.equals("right")) {
-                Character = (" " + GameJava.CHAR_SACERDOTE + "/");
-            } else {
-                Character = ("\\" + GameJava.CHAR_SACERDOTE + " ");
-            }
+        switch (GameJava.character) {
+            case 0:
+                if (direction.equals("right")) {
+                    return Character = (" " + GameJava.CHAR_GUERRERO + "/");
+                } else {
+                    return Character = ("\\" + GameJava.CHAR_GUERRERO + " ");
+                }
+            case 1:
+                if (direction.equals("right")) {
+                    return Character = (" " + GameJava.CHAR_MAGO + "|");
+                } else {
+                    return Character = ("|" + GameJava.CHAR_MAGO + " ");
+                }
+            default:
+                if (direction.equals("right")) {
+                    return Character = (" " + GameJava.CHAR_SACERDOTE + "/");
+                } else {
+                    return Character = ("\\" + GameJava.CHAR_SACERDOTE + " ");
+                }
         }
-        return Character;
     }
 
     public static String saveEnemy() {
@@ -332,37 +296,17 @@ public class Board {
         } else {
             System.out.print("   ");
         }
-
-
-        /*
-        if (Player.getXpos() == row && Player.getYpos() == column) {
-            System.out.print(saveCharacter(Player.direction));
-        } else if (GameJava.board[column][row].equals(voidSquare)) {
-            System.out.print(Tools.print(bgColor, "", GameJava.board[column][row]));
-        } else if (GameJava.board[column][row].equals(" " + GameJava.CHAR_COIN + " ")) {
-            System.out.print(Tools.print(coinColor, "", GameJava.board[column][row]));
-        } else if (GameJava.board[column][row].equals(" " + GameJava.CHAR_GUERRERO + " ")
-                || GameJava.board[column][row].equals(" " + GameJava.CHAR_MAGO + " ")
-                || GameJava.board[column][row].equals(" " + GameJava.CHAR_SACERDOTE + " ")
-                || GameJava.board[column][row].equals(" " + GameJava.CHAR_ENEMY + " ")) {
-            System.out.print(Tools.print(enemyColor, "", GameJava.board[column][row]));
-        }
-         */
     }
 
     public static int randomCoin() {
         switch (GameJava.difficultSelection) {
             case 1:
-                GameJava.numCoins = Tools.random(1, 2);
-                break;
+                return GameJava.numCoins = Tools.random(1, 2);
             case 2:
-                GameJava.numCoins = Tools.random(3, 4);
-                break;
+                return GameJava.numCoins = Tools.random(3, 4);
             default:
-                GameJava.numCoins = Tools.random(5, 6);
-                break;
+                return GameJava.numCoins = Tools.random(5, 6);
         }
-        return GameJava.numCoins;
     }
 
     public static void randomPositions(int number, int rowLimit, int columnLimit, String icon) {
@@ -380,23 +324,11 @@ public class Board {
         } while (counter < number);
     }
 
-    // method check if string is null or empty
-    public static boolean isNullEmpty(String str) {
-
-        // check if string is null
-        if (str == null) {
-            return true;
-        } // check if string is empty
-        else {
-            return str.isEmpty();
-        }
-    }
-
     public static void setMap(int width, int height) {
 
         for (int i = 0; i < height; i++) {
             for (int j = 0; j < width; j++) {
-                if (isNullEmpty(GameJava.board[i][j])) {
+                if (GameJava.board[i][j] == null) {
                     GameJava.board[i][j] = voidSquare;
                 }
             }

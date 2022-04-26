@@ -268,14 +268,13 @@ public class Screens {
     public static void endGameScreen() throws InterruptedException {
         int menuEnding;
         boolean endingGame = true;
-        
+
         Tools.clearConsole();
         if (Player.HP == 0) {
             Screens.youLoseScreen(1);
         } else {
             Screens.youWinScreen(1);
         }
-        
 
         menuEnding = 1;
         do {
@@ -350,9 +349,6 @@ public class Screens {
         System.out.println();
     }
 
-
-
-    
     //////////////////////////////////////
     // Funciones que imprimen fotogramas
     // segun los valores que reciben.
@@ -991,7 +987,7 @@ public class Screens {
      */
     public static void youLoseScreen(int menuEnding) {
         Tools.clearConsole();
-        
+
         for (int i = 0; i < h; i++) {
             if (i == 0) {
                 Tools.printRow('╔', '═', w, '╗', colorUI);

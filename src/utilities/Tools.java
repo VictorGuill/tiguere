@@ -250,7 +250,7 @@ public class Tools {
         for (int i = 0; i < newLines; i++) {
             System.out.println("");
         }
-        */
+         */
         //Es mejor hardcoded porque usa menos system.out y va más rapido a la hora de imprimir 
         //(ya que aparte usamos mucho system.out para el juego, cuantos menos mejor)
         System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");

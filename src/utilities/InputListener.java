@@ -12,7 +12,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 
 public class InputListener extends JFrame implements KeyListener {
-    
+
     Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize(); //libreria para obtener tamaño pantalla
     double width = screenSize.getWidth();   //obtiene el ancho de la pantalla en px
     double height = screenSize.getHeight(); //obtiene el alto de la pantalla en px
@@ -39,7 +39,7 @@ public class InputListener extends JFrame implements KeyListener {
                 //System.out.println("Venatana con foco");
                 focusLabel.setText("Playing");
             }
-            
+
             @Override
             public void windowLostFocus(WindowEvent e) {
                 //System.out.println("Venatana sin foco");
@@ -48,7 +48,7 @@ public class InputListener extends JFrame implements KeyListener {
         });
         this.add(focusLabel); //añade el titulo (label) creado a la ventana
     }
-    
+
     @Override
     public void keyPressed(KeyEvent e) { //detecta tecla pulsada
         switch (e.getKeyCode()) {
@@ -107,7 +107,7 @@ public class InputListener extends JFrame implements KeyListener {
     @Override
     public void keyTyped(KeyEvent e) {
     }
-    
+
     @Override
     public void keyReleased(KeyEvent e) {
     }
