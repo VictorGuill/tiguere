@@ -29,6 +29,7 @@ public class Play {
 
         Board.printBoard(widthBoard, heightBoard);
         Board.showMenu();
+        Enemies.setEnemiesDirection(board,widthBoard,heightBoard, Board.voidSquare);
         objects = GameJava.numCoins + GameJava.numEnemies;
 
         do {
@@ -78,7 +79,7 @@ public class Play {
                     INPUT = "";
                     break;
                 case "1":
-                    Player.basicAttack(board, playable, character, widthBoard, heightBoard, (" " + GameJava.CHAR_ENEMY + " "));
+                    Player.basicAttack(board, playable, character, widthBoard, heightBoard,Board.EnemyRight,Board.EnemyLeft,Board.Enemy);
                     Enemies.moveEnemies(GameJava.numEnemies,GameJava.board,GameJava.enemies, widthBoard, heightBoard, Board.voidSquare);
                     if (objects == Player.kills + Player.sackOfCoins){
                         Tools.clearConsole();
@@ -115,7 +116,7 @@ public class Play {
                     }
                     break;
             }
-            
+            Enemies.setEnemiesDirection(board,widthBoard,heightBoard, Board.voidSquare);
             TimeUnit.MILLISECONDS.sleep(1000 / INPUT_RATE);
         } while (playingGame);
     }

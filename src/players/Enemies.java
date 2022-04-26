@@ -151,9 +151,25 @@ public class Enemies {
         
         for (int i = 0; i < board.length; i++ ){
             for (int j = 0; j < board[i].length; j++) {
-                if (board[i][j].equals(Board.Enemy)) {
+                if (board[i][j].equals(Board.Enemy)||board[i][j].equals(Board.EnemyRight)||board[i][j].equals(Board.EnemyLeft)) {
                     randomEnemyMovement(1,board,enemies,enemyNum, widthBoard,heigthBoard,NULL_CELLS,j,i);
                     enemyNum++;
+                }
+            }
+        }
+        setEnemiesDirection(board,widthBoard,heigthBoard, Board.voidSquare);
+    }
+    
+    public static void setEnemiesDirection(String[][]board,int widthBoard, int heigthBoard, String NULL_CELLS){
+        for (int i = 0; i < board.length; i++) {
+          for (int j = 0; j < board[i].length; j++) {
+		if (board[i][j].equals(Board.Enemy)||board[i][j].equals(Board.EnemyRight)||board[i][j].equals(Board.EnemyLeft)) {
+                    if (j<=Player.xpos){
+                        board[i][j] = Board.EnemyRight;
+                    }
+ 		    else {
+                        board[i][j] = Board.EnemyLeft;
+                    }
                 }
             }
         }

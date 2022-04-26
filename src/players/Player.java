@@ -170,7 +170,7 @@ public abstract class Player {
     }
    
     ///Mètode basicAttack que retorna un dany a un enemic en base al nivell del personatge i el seu dany base.
-    public static void basicAttack(String[][] board, Player[]playable,int character,int widthBoard ,int heigthBoard, String NULL_CELLS){
+    public static void basicAttack(String[][] board, Player[]playable,int character,int widthBoard ,int heigthBoard, String EnemyRight, String EnemyLeft, String Enemy){
         boolean isAttack;
         
         int x = getXpos();
@@ -182,19 +182,19 @@ public abstract class Player {
         String nextYNegative = nextYNegative(board,playable,character,widthBoard,heigthBoard,1);
         
         do {
-            if (nextXPositive.equals(NULL_CELLS)){
+            if (nextXPositive.equals(EnemyRight)||nextXPositive.equals(EnemyLeft)||nextXPositive.equals(Enemy)){
                 GameJava.board[y][x+1] = Board.voidSquare;
                 kills++;
                 isAttack = false;
-            } else if (nextXNegative.equals(NULL_CELLS)){
+            } else if (nextXNegative.equals(EnemyRight)||nextXNegative.equals(EnemyLeft)||nextXNegative.equals(Enemy)){
                 GameJava.board[y][x-1] = Board.voidSquare;
                 kills++;
                 isAttack = false;
-            } else if (nextYPositive.equals(NULL_CELLS)){
+            } else if (nextYPositive.equals(EnemyRight)||nextYPositive.equals(EnemyLeft)||nextYPositive.equals(Enemy)){
                 GameJava.board[y-1][x] = Board.voidSquare;
                 kills++;
                 isAttack = false;
-            } else if (nextYNegative.equals(NULL_CELLS)){
+            } else if (nextYNegative.equals(EnemyRight)||nextYNegative.equals(EnemyLeft)||nextYNegative.equals(Enemy)){
                 GameJava.board[y+1][x] = Board.voidSquare;
                 kills++;
                 isAttack = false;

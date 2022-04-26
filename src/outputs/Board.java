@@ -22,6 +22,8 @@ public class Board {
     public static String Character,
             Enemy,
             Coin,
+            EnemyRight = (" " + GameJava.CHAR_ENEMY + "/"),
+            EnemyLeft = ("\\" + GameJava.CHAR_ENEMY + " "),
             voidSquare = "░░░",
             voidCharacterSides = "░",
             bgColor = "green",
@@ -322,7 +324,9 @@ public class Board {
             } else if (GameJava.board[column][row].equals(" " + GameJava.CHAR_GUERRERO + " ")
                     || GameJava.board[column][row].equals(" " + GameJava.CHAR_MAGO + " ")
                     || GameJava.board[column][row].equals(" " + GameJava.CHAR_SACERDOTE + " ")
-                    || GameJava.board[column][row].equals(" " + GameJava.CHAR_ENEMY + " ")) {
+                    || GameJava.board[column][row].equals(" " + GameJava.CHAR_ENEMY + " ")
+                    || GameJava.board[column][row].equals(" " + GameJava.CHAR_ENEMY + "/")
+                    || GameJava.board[column][row].equals("\\" + GameJava.CHAR_ENEMY + " ")) {
                 System.out.print(Tools.print(enemyColor, "", GameJava.board[column][row]));
             }
         } else {
