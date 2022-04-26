@@ -266,17 +266,15 @@ public class Screens {
      * @throws InterruptedException
      */
     public static void endGameScreen() throws InterruptedException {
-        int menuEnding;
+        int menuEnding = 1;
         boolean endingGame = true;
 
-        Tools.clearConsole();
         if (Player.HP == 0) {
             Screens.youLoseScreen(1);
         } else {
             Screens.youWinScreen(1);
         }
 
-        menuEnding = 1;
         do {
             switch (INPUT) {
                 case "up":
@@ -308,7 +306,7 @@ public class Screens {
                     if (menuEnding == 1) {
                         Play.playingGame();
                     } else {
-                        Play.playingGame = false;
+                        Play.isPlayingGame = false;
                         INPUT = "4";
                     }
                     break;
@@ -759,26 +757,26 @@ public class Screens {
                         }
                     } else if (i == (hValue / 2) - 1) {
                         System.out.print(Tools.print(colorUI, "", "║"));
-                        for (int j = 1; j <= voidSize; j++) {
-                            System.out.print(Tools.print(Board.bgColor, "", Board.voidCharacterSides));
+                        for (int j = 1; j <= wValue; j++) {
+                            System.out.print(Tools.print(Board.bgColor, "", Board.voidSquare));
                         }
                         System.out.print(Tools.print(colorUI, "", "╚"));
                     } else if (i == hValue / 2) {
                         System.out.print(Tools.print(colorUI, "", "║"));
-                        for (int j = 1; j <= voidSize; j++) {
-                            System.out.print(Tools.print(Board.bgColor, "", Board.voidCharacterSides));
+                        for (int j = 1; j <= wValue; j++) {
+                            System.out.print(Tools.print(Board.bgColor, "", Board.voidSquare));
                         }
                         System.out.print(Tools.print(colorText, "", String.valueOf(hValue - 2)));
                     } else if (i == (hValue / 2) + 1) {
                         System.out.print(Tools.print(colorUI, "", "║"));
-                        for (int j = 1; j <= voidSize; j++) {
-                            System.out.print(Tools.print(Board.bgColor, "", Board.voidCharacterSides));
+                        for (int j = 1; j <= wValue; j++) {
+                            System.out.print(Tools.print(Board.bgColor, "", Board.voidSquare));
                         }
                         System.out.print(Tools.print(colorUI, "", "╔"));
                     } else {
                         System.out.print(Tools.print(colorUI, "", "║"));
-                        for (int j = 1; j <= voidSize; j++) {
-                            System.out.print(Tools.print(Board.bgColor, "", Board.voidCharacterSides));
+                        for (int j = 1; j <= wValue; j++) {
+                            System.out.print(Tools.print(Board.bgColor, "", Board.voidSquare));
                         }
                         System.out.print(Tools.print(colorUI, "", "║"));
                     }

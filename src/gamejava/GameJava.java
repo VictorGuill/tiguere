@@ -66,7 +66,6 @@ public class GameJava {
                 case "enter":
                     switch (menuOption) {
                         case 1: //play
-                            Play.playingGame = true;
                             Play.playingGame();
                             Screens.credits();
                             isGameRunning = false;

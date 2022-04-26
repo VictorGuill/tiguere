@@ -16,11 +16,88 @@ public class Board {
             EnemyRight = (" " + GameJava.CHAR_ENEMY + "/"),
             EnemyLeft = ("\\" + GameJava.CHAR_ENEMY + " "),
             voidSquare = "░░░",
-            voidCharacterSides = "░",
             bgColor = "green",
             coinColor = "yellow",
             enemyColor = "red";
 
+    /**
+     * Llena el Board de casilla vacias y, despues, añade las coins e enemigos.
+     *
+     * @param width Anchura del Board.
+     * @param height Altura del Board.
+     */
+    public static void setMap(int width, int height) {
+
+        for (int i = 0; i < height; i++) {
+            for (int j = 0; j < width; j++) {
+                if (GameJava.board[i][j] == null) {
+                    GameJava.board[i][j] = voidSquare;
+                }
+            }
+        }
+        randomPositions(GameJava.numCoins, height - 1, width - 1, (" " + GameJava.CHAR_COIN + " "));
+        randomPositions(GameJava.numEnemies, height - 1, width - 1, (" " + GameJava.CHAR_ENEMY + " "));
+
+        //Inicialitzem els valors
+        GameJava.board[0][1] = Character;
+        Player.xpos = 1;
+        Player.ypos = 0;
+        Player.direction = "right";
+        Player.kills = 0;
+        Player.sackOfCoins = 0;
+        Player.HP = 100;
+        Player.LV = 1;
+    }
+
+    /**
+     * Crea la cantidad de monedas dependiendo la dificultad. Si tenemos una
+     * dificultad invalida ("IMPOSIBLE"), establece 4 coins.
+     *
+     * @return Un entero entre el margen que hay.
+     */
+    public static int randomCoin() {
+        switch (GameJava.difficultSelection) {
+            case 1:
+                return GameJava.numCoins = Tools.random(1, 2);
+            case 2:
+                return GameJava.numCoins = Tools.random(3, 4);
+            case 3:
+                return GameJava.numCoins = Tools.random(5, 6);
+        }
+        return GameJava.numCoins = 4;
+    }
+
+    /*
+    Mejorar comentarios de los atributos de abajo.
+     */
+    /**
+     * Escribe el String que recibe en una posicion aleatoria del Board.
+     *
+     * @param number Cantidad de objetos.
+     * @param rowLimit Limite de fila.
+     * @param columnLimit Limite de columna.
+     * @param icon Tipo de casilla (Vacia,Enemigo,Moneda...).
+     */
+    public static void randomPositions(int number, int rowLimit, int columnLimit, String icon) {
+        int counter = 0;
+        int rowPosition, columnPosition;
+        do {
+            rowPosition = Tools.random(0, rowLimit);
+            columnPosition = Tools.random(0, columnLimit);
+            if (GameJava.board[rowPosition][columnPosition].equals(voidSquare)) {
+                GameJava.board[rowPosition][columnPosition] = icon;
+                counter++;
+            }
+
+        } while (counter < number);
+    }
+
+    /**
+     * Imprime el tablero de juego + HUD.
+     *
+     * @param wBoard Anchura del tablero.
+     * @param hBoard Altura del tablero.
+     */
     public static void printBoard(int wBoard, int hBoard) {
         int hueco = voidSquare.length();
 
@@ -97,7 +174,6 @@ public class Board {
                                 System.out.print(Tools.print(colorUI, "", "║"));
                             } else if (j < wBoard + 1) {
                                 printPosition(j - 1, i - 1);
-
                             } else if (j == (wBoard + 1)) {
                                 System.out.print(Tools.print(colorUI, "", "║"));
                             } else if (j == wBoard + 19) {
@@ -131,7 +207,6 @@ public class Board {
                                 System.out.print(Tools.print(colorUI, "", "║"));
                             } else if (j < wBoard + 1) {
                                 printPosition(j - 1, i - 1);
-
                             } else if (j == (wBoard + 1)) {
                                 System.out.print(Tools.print(colorUI, "", "║"));
                             } else if (j == wBoard + 19) {
@@ -147,17 +222,12 @@ public class Board {
                                 System.out.print(Tools.print(colorUI, "", "║"));
                             } else if (j < wBoard + 1) {
                                 printPosition(j - 1, i - 1);
-
                             } else if (j == (wBoard + 1)) {
                                 System.out.print(Tools.print(colorUI, "", "║"));
-                            } else if (j == wBoard + 17) {
+                            } else if (j == wBoard + 15) {
                                 System.out.print(Tools.print(colorUI, "", "║"));
                             } else if (j == wBoard + 3) {
-                                System.out.print("H");
-                            } else if (j == wBoard + 4) {
-                                System.out.print("P");
-                            } else if (j == wBoard + 6) {
-                                System.out.print(String.valueOf(Player.HP));
+                                System.out.print("HP" + String.valueOf(Player.HP));
                             } else {
                                 System.out.print(" ");
                             }
@@ -169,19 +239,12 @@ public class Board {
                                 System.out.print(Tools.print(colorUI, "", "║"));
                             } else if (j < wBoard + 1) {
                                 printPosition(j - 1, i - 1);
-
                             } else if (j == (wBoard + 1)) {
                                 System.out.print(Tools.print(colorUI, "", "║"));
-                            } else if (j == wBoard + 19) {
+                            } else if (j == wBoard + 15) {
                                 System.out.print(Tools.print(colorUI, "", "║"));
                             } else if (j == wBoard + 3) {
-                                System.out.print("L");
-                            } else if (j == wBoard + 4) {
-                                System.out.print("V");
-                            } else if (j == wBoard + 5) {
-                                System.out.print("L");
-                            } else if (j == wBoard + 7) {
-                                System.out.print(String.valueOf(Player.LV));
+                                System.out.print("LVL " + String.valueOf(Player.LV));
                             } else {
                                 System.out.print(" ");
                             }
@@ -193,7 +256,6 @@ public class Board {
                                 System.out.print(Tools.print(colorUI, "", "║"));
                             } else if (j < wBoard + 1) {
                                 printPosition(j - 1, i - 1);
-
                             } else if (j == (wBoard + 1)) {
                                 System.out.print(Tools.print(colorUI, "", "║"));
                             } else if (j == wBoard + 19) {
@@ -234,51 +296,71 @@ public class Board {
         showMenu();
     }
 
+    /**
+     * Imprime menu de acciones disponibles dependiendo el personaje.
+     */
     public static void showMenu() {
         if (GameJava.character == 1) {
-            System.out.println("1 - ATACK           2 - CHANGE CHARACTER  \n"
-                    + "3 - PICK UP OBJECT  5 - MOVE*2 ");
+            System.out.println("1 - ATACK\t\t2 - CHANGE CHARACTER  \n"
+                    + "3 - PICK UP OBJECT\t4 - EXIT\t5 - MOVE*2 ");
         } else {
-            System.out.println("1 - ATACK           2 - CHANGE CHARACTER  \n"
-                    + "3 - PICK UP OBJECT");
+            System.out.println("1 - ATACK\t\t2 - CHANGE CHARACTER  \n"
+                    + "3 - PICK UP OBJECT\t4 - EXIT");
         }
     }
 
+    /**
+     * Guarda la direcion del jugador.
+     *
+     * @param direction right/left.
+     * @return String con el jugador mirando en la posicion correcta.
+     */
     public static String saveCharacter(String direction) {
         switch (GameJava.character) {
-            case 0:
-                if (direction.equals("right")) {
-                    return Character = (" " + GameJava.CHAR_GUERRERO + "/");
-                } else {
-                    return Character = ("\\" + GameJava.CHAR_GUERRERO + " ");
+            case 0://GUERRERO
+                switch (direction) {
+                    case "right":
+                        return Character = (" " + GameJava.CHAR_GUERRERO + "/");
+                    case "left":
+                        return Character = ("\\" + GameJava.CHAR_GUERRERO + " ");
                 }
-            case 1:
-                if (direction.equals("right")) {
-                    return Character = (" " + GameJava.CHAR_MAGO + "|");
-                } else {
-                    return Character = ("|" + GameJava.CHAR_MAGO + " ");
+            case 1://MAGO
+                switch (direction) {
+                    case "right":
+                        return Character = (" " + GameJava.CHAR_MAGO + "|");
+                    case "left":
+                        return Character = ("|" + GameJava.CHAR_MAGO + " ");
                 }
-            default:
-                if (direction.equals("right")) {
-                    return Character = (" " + GameJava.CHAR_SACERDOTE + "/");
-                } else {
-                    return Character = ("\\" + GameJava.CHAR_SACERDOTE + " ");
+            case 2://SACERDOTE
+                switch (direction) {
+                    case "right":
+                        return Character = (" " + GameJava.CHAR_SACERDOTE + "/");
+                    case "left":
+                        return Character = ("\\" + GameJava.CHAR_SACERDOTE + " ");
                 }
         }
+        return "";
+        /*
+        No me convence esta solucion, creo que cada subclase de player 
+        deberia tener un atributo CHAR donde esta su caracter guardado y
+        en otro CHAR guardar el tipo tipo de arma que tiene. gunLeft \   gunRight /
+        Asi en esta funcion simplemente un if RIGHT or LEFT y devolvemos arma y char del this.personaje.        
+         */
     }
 
-    public static String saveEnemy() {
-        Enemy = (" " + GameJava.CHAR_ENEMY + " ");
-        return Enemy;
-    }
-
+     /*
+    DELETE COMENT. Mejorar esta funcion, muy dificil de leer.
+    */
+    /**
+     * Lee el array Board e imprime el caracter y color correspondiente.
+     *
+     * @param row Casilla de la fila que estamos leyendo. X
+     * @param column Columna en la que estamos. Y
+     */
     public static void printPosition(int row, int column) {
         int printDistance = 4;
 
-        if (Player.getYpos() - printDistance <= column
-                && Player.getYpos() + printDistance >= column
-                && Player.getXpos() - printDistance <= row
-                && Player.getXpos() + printDistance >= row) {
+        if (Player.getYpos() - printDistance <= column && Player.getYpos() + printDistance >= column && Player.getXpos() - printDistance <= row && Player.getXpos() + printDistance >= row) {
             if (Player.getXpos() == row && Player.getYpos() == column) {
                 System.out.print(saveCharacter(Player.direction));
             } else if (GameJava.board[column][row].equals(voidSquare)) {
@@ -298,53 +380,12 @@ public class Board {
         }
     }
 
-    public static int randomCoin() {
-        switch (GameJava.difficultSelection) {
-            case 1:
-                return GameJava.numCoins = Tools.random(1, 2);
-            case 2:
-                return GameJava.numCoins = Tools.random(3, 4);
-            default:
-                return GameJava.numCoins = Tools.random(5, 6);
-        }
+    /*
+    DELETE COMENT. No entiendo que hace esta funcion, 
+    creo que nada, per si la borro, los enemigos no tienen espada. (by Victor)
+     */
+    public static String saveEnemy() {
+        Enemy = (" " + GameJava.CHAR_ENEMY + " ");
+        return Enemy;
     }
-
-    public static void randomPositions(int number, int rowLimit, int columnLimit, String icon) {
-        int counter = 0;
-        int rowPosition, columnPosition;
-        do {
-            rowPosition = Tools.random(0, rowLimit);
-            columnPosition = Tools.random(0, columnLimit);
-            if (GameJava.board[rowPosition][columnPosition].equals(voidSquare)) {
-                GameJava.board[rowPosition][columnPosition] = icon;
-
-                ++counter;
-            }
-
-        } while (counter < number);
-    }
-
-    public static void setMap(int width, int height) {
-
-        for (int i = 0; i < height; i++) {
-            for (int j = 0; j < width; j++) {
-                if (GameJava.board[i][j] == null) {
-                    GameJava.board[i][j] = voidSquare;
-                }
-            }
-        }
-        randomPositions(GameJava.numCoins, height - 1, width - 1, (" " + GameJava.CHAR_COIN + " "));
-        randomPositions(GameJava.numEnemies, height - 1, width - 1, (" " + GameJava.CHAR_ENEMY + " "));
-
-        //Inicialitzem els valors
-        GameJava.board[0][1] = Character;
-        Player.xpos = 1;
-        Player.ypos = 0;
-        Player.direction = "right";
-        Player.kills = 0;
-        Player.sackOfCoins = 0;
-        Player.HP = 100;
-        Player.LV = 1;
-    }
-
 }
