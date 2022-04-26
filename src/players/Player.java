@@ -18,150 +18,200 @@ public abstract class Player {
     public Player() {
     }
 
-    //Mètodes
-    //NULL_CELLS y mov son dos constantes, mov determina el numero de casillas que se podra mover el personaje y NULL_CELLS son los huecos del array que en teoria no hay nada.
-    /*
-        Metodes mov , augmenta una casella en cas de que la seguent casella sigui un "-"
-        nullsCells = constant del main que indicara que es troba a les caselles nul·les.
-        Variable direction es mandarà a la funció Board.Character, aquesta funció retornarà el String del jugador amb una espasa mirant en la direcció
-        que es mou el jugador.
-        En cas de que pasi per sobre d'una moneda aquesta s'esborrara i sumarà 1 al recompte de monedes del jugador
+    //Métodos
+    
+  
+    /**
+     * Función que hace avanzar una posición en horizontal en caso de que la casilla siguiente sea nula o contenga una moneda(al posicionarse por encima se sumara 1 a las coins totales y se borrara)
+     *  @param mov
      */
-    public static void movXPositive(int mov, String[][] board, Player[] playable, int character, int widthBoard, int heightBoard, String NULL_CELLS) {
-        String nextPosition = nextXPositive(board, playable, character, widthBoard, heightBoard, mov);
-        if (nextPosition.equals(NULL_CELLS) || nextPosition.equals(Board.Coin)) {
-            board[playable[character].getYpos()][playable[character].getXpos()] = NULL_CELLS;
+    public static void movXPositive(int mov) {
+        String nextPosition = nextXPositive(mov);
+        /*
+            En caso de que la siguiente casilla sea un vacio o una moneda entrara, después cojera la casilla donde te encuentres actualmente y la 
+            establecera como un voidSquare , sumará 1 en la xpos y mandara a saveCharacter el string right que pondra la espada del jugador mirando hacia la derecha
+            Finalmente guardara el personaje en la nueva posición
+        */
+        if (nextPosition.equals(Board.voidSquare) || nextPosition.equals(Board.Coin)) {
+            GameJava.board[Player.getYpos()][Player.getXpos()] = Board.voidSquare;
             Player.xpos += mov;
             direction = "right";
             Board.saveCharacter(direction);
-            board[playable[character].getYpos()][playable[character].getXpos()] = Board.Character;
+            GameJava.board[Player.getYpos()][Player.getXpos()] = Board.Character;
+            
+            //En caso de que la siguiente casilla sea una moneda sumara 1 al recuento de monedas y al colocarse encima borrara la coin del mapa.
+            
             if (nextPosition.equals(Board.Coin)) {
                 gainCoins();
             }
         }
-        if (Player.xpos == widthBoard - 1) {
+        
+        // En caso de llegar a los limites derechos del mapa dara la vuelta a la posición de la espada utilizando la función saveCharacter del Board
+        
+        if (Player.xpos == GameJava.widthBoard - 1) {
             direction = "left";
             Board.saveCharacter(direction);
-            board[playable[character].getYpos()][playable[character].getXpos()] = Board.Character;
+            GameJava.board[Player.getYpos()][Player.getXpos()] = Board.Character;
         }
     }
+    /**
+     * Función que hace retroceder una posición en horizontal en caso de que la casilla siguiente sea nula o contenga una moneda(al posicionarse por encima se sumara 1 a las coins totales y se borrara)
+     *  @param mov
+     */
 
-    public static void movXNegative(int mov, String[][] board, Player[] playable, int character, int widthBoard, int heigthBoard, String NULL_CELLS) {
-        String nextPosition = nextXNegative(board, playable, character, widthBoard, heigthBoard, mov);
-        if (nextPosition.equals(NULL_CELLS) || nextPosition.equals(Board.Coin)) {
-            board[playable[character].getYpos()][playable[character].getXpos()] = NULL_CELLS;
+    public static void movXNegative(int mov) {
+        String nextPosition = nextXNegative(mov);
+        
+        // Funcionamiento similar a movXPositive solo que está vez hacia el lado izquiero del tablero, saveCharacter pondrá la espada mirando hacia la izquierda
+        
+        if (nextPosition.equals(Board.voidSquare) || nextPosition.equals(Board.Coin)) {
+            GameJava.board[Player.getYpos()][Player.getXpos()] = Board.voidSquare;
             Player.xpos -= mov;
             direction = "left";
             Board.saveCharacter(direction);
-            board[playable[character].getYpos()][playable[character].getXpos()] = Board.Character;
+            GameJava.board[Player.getYpos()][Player.getXpos()] = Board.Character;
             if (nextPosition.equals(Board.Coin)) {
                 gainCoins();
             }
         }
-
+        //En caso de llegar a los limites izquierdos del tablero cambiara la dirección de la espada hacia la derecha
+        
         if (Player.xpos == 0) {
             direction = "right";
             Board.saveCharacter(direction);
-            board[playable[character].getYpos()][playable[character].getXpos()] = Board.Character;
+            GameJava.board[Player.getYpos()][Player.getXpos()] = Board.Character;
         }
     }
-
-    public static void movYPositive(int mov, String[][] board, Player[] playable, int character, int widthBoard, int heigthBoard, String NULL_CELLS) {
-        String nextPosition = nextYPositive(board, playable, character, widthBoard, heigthBoard, mov);
-        if (nextPosition.equals(NULL_CELLS) || nextPosition.equals(Board.Coin)) {
-            board[playable[character].getYpos()][playable[character].getXpos()] = NULL_CELLS;
+    /**
+     * Función que hace avanzar una posición en vertical en caso de que la casilla siguiente sea nula o contenga una moneda(al posicionarse por encima se sumara 1 a las coins totales y se borrara)
+     *  @param mov
+     */
+    public static void movYPositive(int mov) {
+        String nextPosition = nextYPositive(mov);
+        
+        //Funcionamiento similar a las dos funciones anteriores solo que esta vez en el eje de la y positivas (como es un array al subir una fila su numero desciende)
+        //En este caso la dirección de la espada se queda igual que en el ultimo movimiento en horizontal
+        
+        if (nextPosition.equals(Board.voidSquare) || nextPosition.equals(Board.Coin)) {
+            GameJava.board[Player.getYpos()][Player.getXpos()] = Board.voidSquare;
             Player.ypos -= mov;
             Board.saveCharacter(direction);
-            board[playable[character].getYpos()][playable[character].getXpos()] = Board.Character;
+            GameJava.board[Player.getYpos()][Player.getXpos()] = Board.Character;
             if (nextPosition.equals(Board.Coin)) {
                 gainCoins();
             }
         }
     }
+    /**
+     * Función que hace retroceder una posición en vertical en caso de que la casilla siguiente sea nula o contenga una moneda(al posicionarse por encima se sumara 1 a las coins totales y se borrara)
+     *  @param mov
+     */
 
-    public static void movYNegative(int mov, String[][] board, Player[] playable, int character, int widthBoard, int heigthBoard, String NULL_CELLS) {
-        String nextPosition = nextYNegative(board, playable, character, widthBoard, heigthBoard, mov);
-        if (nextPosition.equals(NULL_CELLS) || nextPosition.equals(Board.Coin)) {
-            board[playable[character].getYpos()][playable[character].getXpos()] = NULL_CELLS;
+    public static void movYNegative(int mov) {
+        String nextPosition = nextYNegative(mov);
+        
+        //Funcionamiento similar a las dos funciones anteriores solo que esta vez en el eje de la y negativas (como es un array al bajar una fila su numero asciende)
+        
+        if (nextPosition.equals(Board.voidSquare) || nextPosition.equals(Board.Coin)) {
+            GameJava.board[Player.getYpos()][Player.getXpos()] = Board.voidSquare;
             Player.ypos += mov;
             Board.saveCharacter(direction);
-            board[playable[character].getYpos()][playable[character].getXpos()] = Board.Character;
+            GameJava.board[Player.getYpos()][Player.getXpos()] = Board.Character;
             if (nextPosition.equals(Board.Coin)) {
                 gainCoins();
             }
         }
     }
 
-    /*
-        Mètodes nextPosition que ens retornen el contingut de la seguent casella, 
-        en cas de que es surti de la graella ens retornarà el String = "DON'T EXISTS".
+    /**
+     * Función que te retorna que hay en la siguiente posición en horizontal del array basandose en la xpos y ypos del Player
+     * @param mov
+     * @return nextPostition
      */
-    public static String nextXPositive(String[][] board, Player[] playable, int character, int widthBoard, int heigthBoard, int mov) {
+    public static String nextXPositive(int mov) {
         String nextPosition = "DON'T EXISTS";
-        int xTemp = playable[character].getXpos() + mov;
+        int xTemp = Player.getXpos() + mov;
 
-        if (xTemp >= 0 && xTemp <= widthBoard - 1) {
-            nextPosition = board[playable[character].getYpos()][xTemp];
+        if (xTemp >= 0 && xTemp <= GameJava.widthBoard - 1) {
+            nextPosition = GameJava.board[Player.getYpos()][xTemp];
+        }
+        return nextPosition;
+    }
+     /**
+     * Función que te retorna que hay en la anterior posición en horizontal del array basandose en la xpos y ypos del Player
+     * @param mov
+     * @return nextPostition
+     */
+
+    public static String nextXNegative(int mov) {
+        String nextPosition = "DON'T EXISTS";
+        int xTemp = Player.getXpos() - mov;
+
+        if (xTemp >= 0 && xTemp <= GameJava.widthBoard - 1) {
+            nextPosition = GameJava.board[Player.getYpos()][xTemp];
+        }
+        return nextPosition;
+    }
+      /**
+     * Función que te retorna que hay en la anterior posición en vertical del array basandose en la xpos y ypos del Player
+     * @param mov
+     * @return nextPostition
+     */
+
+    public static String nextYNegative(int mov) {
+        String nextPosition = "DON'T EXISTS";
+        int yTemp = Player.getYpos() + mov;
+
+        if (yTemp >= 0 && yTemp <= GameJava.heightBoard - 1) {
+            nextPosition = GameJava.board[yTemp][Player.getXpos()];
+        }
+        return nextPosition;
+    }
+    
+     /**
+     * Función que te retorna que hay en la siguiente posición en vertical del array basandose en la xpos y ypos del Player
+     * @param mov
+     * @return nextPostition
+     */
+    public static String nextYPositive(int mov) {
+        String nextPosition = "DON'T EXISTS";
+        int yTemp = Player.getYpos() - mov;
+
+        if (yTemp >= 0 && yTemp <= GameJava.heightBoard - 1) {
+            nextPosition = GameJava.board[yTemp][Player.getXpos()];
         }
         return nextPosition;
     }
 
-    public static String nextXNegative(String[][] board, Player[] playable, int character, int widthBoard, int heigthBoard, int mov) {
-        String nextPosition = "DON'T EXISTS";
-        int xTemp = playable[character].getXpos() - mov;
-
-        if (xTemp >= 0 && xTemp <= widthBoard - 1) {
-            nextPosition = board[playable[character].getYpos()][xTemp];
-        }
-        return nextPosition;
-    }
-
-    public static String nextYNegative(String[][] board, Player[] playable, int character, int widthBoard, int heigthBoard, int mov) {
-        String nextPosition = "DON'T EXISTS";
-        int yTemp = playable[character].getYpos() + mov;
-
-        if (yTemp >= 0 && yTemp <= heigthBoard - 1) {
-            nextPosition = board[yTemp][playable[character].getXpos()];
-        }
-        return nextPosition;
-    }
-
-    public static String nextYPositive(String[][] board, Player[] playable, int character, int widthBoard, int heigthBoard, int mov) {
-        String nextPosition = "DON'T EXISTS";
-        int yTemp = playable[character].getYpos() - mov;
-
-        if (yTemp >= 0 && yTemp <= heigthBoard - 1) {
-            nextPosition = board[yTemp][playable[character].getXpos()];
-        }
-        return nextPosition;
-    }
-
-    // pickUpCoin compara la seguent posició de l'array i en cas de que hi hagi una moneda l'esborra del mapa i suma 1 al recompte de monedes
-    public static void pickUpCoin(String[][] board, Player[] playable, int character, int widthBoard, int heigthBoard, String NULL_CELLS) {
+    
+    /**
+     * Compara la siguiente casilla en relación a la xPos y yPos del Player, en caso de que haya una moneda la borra del array y suma 1 al recuento de monedas del jugador
+     */
+    public static void pickUpCoin() {
         boolean isCoin = false;
 
         int x = getXpos();
         int y = getYpos();
 
-        String nextXPositive = nextXPositive(board, playable, character, widthBoard, heigthBoard, 1);
-        String nextXNegative = nextXNegative(board, playable, character, widthBoard, heigthBoard, 1);
-        String nextYPositive = nextYPositive(board, playable, character, widthBoard, heigthBoard, 1);
-        String nextYNegative = nextYNegative(board, playable, character, widthBoard, heigthBoard, 1);
+        String nextXPositive = nextXPositive(1);
+        String nextXNegative = nextXNegative(1);
+        String nextYPositive = nextYPositive(1);
+        String nextYNegative = nextYNegative(1);
 
         do {
-            if (nextXPositive.equals(NULL_CELLS)) {
+            if (nextXPositive.equals(Board.Coin)) {
                 GameJava.board[y][x + 1] = Board.voidSquare;
                 sackOfCoins++;
                 isCoin = true;
-            } else if (nextXNegative.equals(NULL_CELLS)) {
+            } else if (nextXNegative.equals(Board.Coin)) {
                 GameJava.board[y][x - 1] = Board.voidSquare;
                 sackOfCoins++;
                 isCoin = true;
-            } else if (nextYPositive.equals(NULL_CELLS)) {
+            } else if (nextYPositive.equals(Board.Coin)) {
                 GameJava.board[y - 1][x] = Board.voidSquare;
                 sackOfCoins++;
                 isCoin = true;
-            } else if (nextYNegative.equals(NULL_CELLS)) {
+            } else if (nextYNegative.equals(Board.Coin)) {
                 GameJava.board[y + 1][x] = Board.voidSquare;
                 sackOfCoins++;
                 isCoin = true;
@@ -172,32 +222,35 @@ public abstract class Player {
 
     }
 
-    ///Mètode basicAttack que retorna un dany a un enemic en base al nivell del personatge i el seu dany base.
-    public static void basicAttack(String[][] board, Player[] playable, int character, int widthBoard, int heigthBoard, String EnemyRight, String EnemyLeft, String Enemy) {
+   /**
+    * Método que inicia un ataque en caso de que la siguiente casilla en relación con el personaje sea uno de los posibles enemigos (estado normal 
+    * o cuando se encuentra mirando en alguna de las posiciones posibles
+    */
+    public static void basicAttack() {
         boolean isAttack;
 
         int x = getXpos();
         int y = getYpos();
 
-        String nextXPositive = nextXPositive(board, playable, character, widthBoard, heigthBoard, 1);
-        String nextXNegative = nextXNegative(board, playable, character, widthBoard, heigthBoard, 1);
-        String nextYPositive = nextYPositive(board, playable, character, widthBoard, heigthBoard, 1);
-        String nextYNegative = nextYNegative(board, playable, character, widthBoard, heigthBoard, 1);
+        String nextXPositive = nextXPositive(1);
+        String nextXNegative = nextXNegative(1);
+        String nextYPositive = nextYPositive(1);
+        String nextYNegative = nextYNegative(1);
 
         do {
-            if (nextXPositive.equals(EnemyRight) || nextXPositive.equals(EnemyLeft) || nextXPositive.equals(Enemy)) {
+            if (nextXPositive.equals(Board.EnemyRight) || nextXPositive.equals(Board.EnemyLeft) || nextXPositive.equals(Board.Enemy)) {
                 GameJava.board[y][x + 1] = Board.voidSquare;
                 kills++;
                 isAttack = false;
-            } else if (nextXNegative.equals(EnemyRight) || nextXNegative.equals(EnemyLeft) || nextXNegative.equals(Enemy)) {
+            } else if (nextXNegative.equals(Board.EnemyRight) || nextXNegative.equals(Board.EnemyLeft) || nextXNegative.equals(Board.Enemy)) {
                 GameJava.board[y][x - 1] = Board.voidSquare;
                 kills++;
                 isAttack = false;
-            } else if (nextYPositive.equals(EnemyRight) || nextYPositive.equals(EnemyLeft) || nextYPositive.equals(Enemy)) {
+            } else if (nextYPositive.equals(Board.EnemyRight) || nextYPositive.equals(Board.EnemyLeft) || nextYPositive.equals(Board.Enemy)) {
                 GameJava.board[y - 1][x] = Board.voidSquare;
                 kills++;
                 isAttack = false;
-            } else if (nextYNegative.equals(EnemyRight) || nextYNegative.equals(EnemyLeft) || nextYNegative.equals(Enemy)) {
+            } else if (nextYNegative.equals(Board.EnemyRight) || nextYNegative.equals(Board.EnemyLeft) || nextYNegative.equals(Board.Enemy)) {
                 GameJava.board[y + 1][x] = Board.voidSquare;
                 kills++;
                 isAttack = false;

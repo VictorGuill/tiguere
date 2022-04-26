@@ -16,30 +16,30 @@ public class magician extends Player {
      * Cuando usamos el mago tenemos la posibilidad de movernos dos casillas a
      * la vez.
      */
-    public static void motionSkill(int mov, String[][] board, Player[] playable, int character, int widthBoard, int heightBoard, String NULL_CELLS) throws InterruptedException {
+    public static void motionSkill(int mov) throws InterruptedException {
         GameJava.INPUT = "";
         boolean motionSkills = true;
 
         do {
             switch (GameJava.INPUT) {
                 case "up":
-                    movYPositive(2, board, playable, character, widthBoard, heightBoard, Board.voidSquare);
-                    Board.printBoard(widthBoard, heightBoard);
+                    movYPositive(2);
+                    Board.printBoard(GameJava.widthBoard, GameJava.heightBoard);
                     GameJava.INPUT = "";
                     break;
                 case "down":
-                    movYNegative(2, board, playable, character, widthBoard, heightBoard, Board.voidSquare);
-                    Board.printBoard(widthBoard, heightBoard);
+                    movYNegative(2);
+                    Board.printBoard(GameJava.widthBoard, GameJava.heightBoard);
                     GameJava.INPUT = "";
                     break;
                 case "left":
-                    movXNegative(2, board, playable, character, widthBoard, heightBoard, Board.voidSquare);
-                    Board.printBoard(widthBoard, heightBoard);
+                    movXNegative(2);
+                    Board.printBoard(GameJava.widthBoard, GameJava.heightBoard);
                     GameJava.INPUT = "";
                     break;
                 case "right":
-                    movXPositive(2, board, playable, character, widthBoard, heightBoard, Board.voidSquare);
-                    Board.printBoard(widthBoard, heightBoard);
+                    movXPositive(2);
+                    Board.printBoard(GameJava.widthBoard, GameJava.heightBoard);
                     GameJava.INPUT = "";
                     break;
                 case "5":

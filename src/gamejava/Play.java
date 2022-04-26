@@ -38,27 +38,27 @@ public class Play {
         do {
             switch (INPUT) {
                 case "up":
-                    Player.movYPositive(1, board, playable, character, widthBoard, heightBoard, Board.voidSquare);
+                    Player.movYPositive(1);
                     Enemies.moveEnemies(GameJava.numEnemies, GameJava.board, GameJava.enemies, widthBoard, heightBoard, Board.voidSquare);
                     Board.printBoard(widthBoard, heightBoard);
                     break;
                 case "down":
-                    Player.movYNegative(1, board, playable, character, widthBoard, heightBoard, Board.voidSquare);
+                    Player.movYNegative(1);
                     Enemies.moveEnemies(GameJava.numEnemies, GameJava.board, GameJava.enemies, widthBoard, heightBoard, Board.voidSquare);
                     Board.printBoard(widthBoard, heightBoard);
                     break;
                 case "left":
-                    Player.movXNegative(1, board, playable, character, widthBoard, heightBoard, Board.voidSquare);
+                    Player.movXNegative(1);
                     Enemies.moveEnemies(GameJava.numEnemies, GameJava.board, GameJava.enemies, widthBoard, heightBoard, Board.voidSquare);
                     Board.printBoard(widthBoard, heightBoard);
                     break;
                 case "right":
-                    Player.movXPositive(1, board, playable, character, widthBoard, heightBoard, Board.voidSquare);
+                    Player.movXPositive(1);
                     Enemies.moveEnemies(GameJava.numEnemies, GameJava.board, GameJava.enemies, widthBoard, heightBoard, Board.voidSquare);
                     Board.printBoard(widthBoard, heightBoard);
                     break;
                 case "1":
-                    Player.basicAttack(board, playable, character, widthBoard, heightBoard, Board.EnemyRight, Board.EnemyLeft, Board.Enemy);
+                    Player.basicAttack();
                     Enemies.moveEnemies(GameJava.numEnemies, GameJava.board, GameJava.enemies, widthBoard, heightBoard, Board.voidSquare);
                     break;
                 case "2":
@@ -67,7 +67,7 @@ public class Play {
                     Enemies.moveEnemies(GameJava.numEnemies, GameJava.board, GameJava.enemies, widthBoard, heightBoard, Board.voidSquare);
                     break;
                 case "3":
-                    Player.pickUpCoin(board, playable, character, widthBoard, heightBoard, (" " + GameJava.CHAR_COIN + " "));
+                    Player.pickUpCoin();
                     Enemies.moveEnemies(GameJava.numEnemies, GameJava.board, GameJava.enemies, widthBoard, heightBoard, Board.voidSquare);
                     break;
                 case "4": //exit
@@ -76,7 +76,7 @@ public class Play {
                     break;
                 case "5":
                     if (GameJava.character == 1) {
-                        magician.motionSkill(1, board, playable, character, widthBoard, heightBoard, Board.voidSquare);
+                        magician.motionSkill(1);
                         Enemies.moveEnemies(GameJava.numEnemies, GameJava.board, GameJava.enemies, widthBoard, heightBoard, Board.voidSquare);
                         Board.printBoard(widthBoard, heightBoard);
                     }
