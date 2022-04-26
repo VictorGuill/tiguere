@@ -107,7 +107,7 @@ public class Play {
                     playingGame = false;
                     break;*/
                 case "5":
-                    if (Board.Character.equals((" " + GameJava.CHAR_MAGO + " "))) {
+                    if (GameJava.character == 1) {
                         magician.motionSkill(1, board, playable, character, widthBoard, heightBoard, Board.voidSquare);
                         Enemies.moveEnemies(GameJava.numEnemies,GameJava.board,GameJava.enemies, widthBoard, heightBoard, Board.voidSquare);
                         Board.printBoard(widthBoard, heightBoard);
