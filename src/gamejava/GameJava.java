@@ -30,12 +30,6 @@ public class GameJava {
     public static magician m1 = new magician();
     public static priest p1 = new priest();
     public static warrior w1 = new warrior();
-    public static Enemies e1 = new Enemies();
-    public static Enemies e2 = new Enemies();
-    public static Enemies e3 = new Enemies();
-    public static Enemies e4 = new Enemies();
-    public static Enemies e5 = new Enemies();
-    public static Enemies e6 = new Enemies();
 
     public static Player[] playable;
     public static Enemies[] enemies;
@@ -48,15 +42,6 @@ public class GameJava {
         playable[0] = w1;
         playable[1] = m1;
         playable[2] = p1;
-        
-        enemies = new Enemies[6];
-        enemies[0] = e1;
-        enemies[1] = e2;
-        enemies[2] = e3;
-        enemies[3] = e4;
-        enemies[4] = e5;
-        enemies[5] = e6;
-        
 
         /////////////////////////////////////////////////////
         //////////////   EMPIEZA EL PROGRAMA   //////////////

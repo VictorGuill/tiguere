@@ -6,8 +6,6 @@ package players;
  */
 public class warrior extends Player {
   
-    public static void ImproveWeapon (){
-    }
 }
 
 /*
