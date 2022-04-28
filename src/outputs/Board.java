@@ -1,9 +1,9 @@
 package outputs;
 
-import gamejava.GameJava;
-import utilities.Tools;
-import players.Player;
+import gamejava.*;
 import static outputs.Screens.colorUI;
+import utilities.*;
+import players.*;
 
 public class Board {
 
@@ -39,14 +39,15 @@ public class Board {
         randomPositions(GameJava.numEnemies, height - 1, width - 1, (" " + GameJava.CHAR_ENEMY + " "));
 
         //Inicialitzem els valors
-        GameJava.board[0][1] = Character;
-        Player.xpos = 1;
+        GameJava.board[0][0] = Character;
+        Player.xpos = 0;
         Player.ypos = 0;
         Player.direction = "right";
         Player.kills = 0;
         Player.sackOfCoins = 0;
         Player.HP = 100;
         Player.LV = 1;
+        Player.DMG = 20;
     }
 
     /**
@@ -224,10 +225,17 @@ public class Board {
                                 printPosition(j - 1, i - 1);
                             } else if (j == (wBoard + 1)) {
                                 System.out.print(Tools.print(colorUI, "", "║"));
-                            } else if (j == wBoard + 15) {
+                            } else if (j == wBoard + 14) {
                                 System.out.print(Tools.print(colorUI, "", "║"));
                             } else if (j == wBoard + 3) {
-                                System.out.print("HP" + String.valueOf(Player.HP));
+                                if (Player.HP>= 100) {
+                                    System.out.print("HP " + String.valueOf(Player.HP));
+                                } else if (Player.HP >= 10) {
+                                    System.out.print("HP  " + String.valueOf(Player.HP));
+                                } else {
+                                    System.out.print("HP   " + String.valueOf(Player.HP));
+                                }
+                                
                             } else {
                                 System.out.print(" ");
                             }
@@ -387,5 +395,390 @@ public class Board {
     public static String saveEnemy() {
         Enemy = (" " + GameJava.CHAR_ENEMY + " ");
         return Enemy;
+    }
+    public static void printRing(String character, String enemy) {
+        Tools.clearConsole();
+        int alto = 15;
+        int ancho = 20;
+
+        for (int i = 0; i < alto; i++) {
+            if (i == 0) {
+                for (int j = 0; j < (ancho * 3) - 8; j++) {
+                    if (j == 0) {
+                        System.out.print(Tools.print(Screens.colorUI, "", "╔"));
+                    } else if (j == (ancho * 3) - 22) {
+                        System.out.print(Tools.print(Screens.colorUI, "", "╦"));
+                    } else if (j == (ancho * 3) - 9) {
+                        System.out.print(Tools.print(Screens.colorUI, "", "╗"));
+                    } else if (j == 13) {
+                        System.out.print(Tools.print(Screens.colorUI, "", "╦"));
+                    } else {
+                        System.out.print(Tools.print(Screens.colorUI, "", "═"));
+                    }
+                }
+            } else if (i == alto - 1) {
+                for (int j = 0; j < (ancho * 3) - 8; j++) {
+                    if (j == 0) {
+                        System.out.print(Tools.print(Screens.colorUI, "", "╚"));
+                    } else if (j == (ancho * 3) - 22) {
+                        System.out.print(Tools.print(Screens.colorUI, "", "╩"));
+                    } else if (j == 13) {
+                        System.out.print(Tools.print(Screens.colorUI, "", "╩"));
+                    } else if (j == (ancho * 3) - 9) {
+                        System.out.print(Tools.print(Screens.colorUI, "", "╝"));
+                    } else {
+                        System.out.print(Tools.print(Screens.colorUI, "", "═"));
+                    }
+                }
+            } else if (i == 5) {
+                for (int j = 0; j < ancho; j++) {
+                    if (j == 0) {
+                        System.out.print(Tools.print(colorUI, "", "║"));
+                    } else if (j > 4 && j < ancho - 5) {
+                        if (j == ancho - 6) {
+                            System.out.print(Tools.print(Screens.colorUI, "", "║"));
+                        } else if (j == 5) {
+                            System.out.print(Tools.print(Screens.colorUI, "", "║"));
+                        } else if (j > 5 && j < 10) {
+                            if (Player.HP > 90) {
+                                if (j == 6) {
+                                    System.out.print(Tools.print("green", "", (" " + "██")));
+                                } else if (j == 9) {
+                                    System.out.print(Tools.print("green", "", ("██" + " ")));
+                                } else {
+                                    System.out.print(Tools.print("green", "", "███"));
+                                }
+                            } else if (Player.HP > 80) {
+                                if (j == 6) {
+                                    System.out.print(Tools.print("green", "", (" " + " █")));
+                                } else if (j == 9) {
+                                    System.out.print(Tools.print("green", "", ("██" + " ")));
+                                } else {
+                                    System.out.print(Tools.print("green", "", "███"));
+                                }
+                            } else if (Player.HP > 70) {
+                                if (j == 6) {
+                                    System.out.print(Tools.print("green", "", (" " + "  ")));
+                                } else if (j == 9) {
+                                    System.out.print(Tools.print("green", "", ("██" + " ")));
+                                } else {
+                                    System.out.print(Tools.print("green", "", "███"));
+                                }
+                            } else if (Player.HP > 60) {
+                                if (j == 6) {
+                                    System.out.print(Tools.print("green", "", ("   ")));
+                                } else if (j == 7) {
+                                    System.out.print(Tools.print("green", "", (" ██")));
+                                } else if (j == 9) {
+                                    System.out.print(Tools.print("green", "", ("██ ")));
+                                } else {
+                                    System.out.print(Tools.print("green", "", "███"));
+                                }
+                            } else if (Player.HP > 50) {
+                                if (j == 6) {
+                                    System.out.print(Tools.print("green", "", ("   ")));
+                                } else if (j == 7) {
+                                    System.out.print(Tools.print("green", "", ("  █")));
+                                } else if (j == 9) {
+                                    System.out.print(Tools.print("green", "", ("██" + " ")));
+                                } else {
+                                    System.out.print(Tools.print("green", "", "███"));
+                                }
+                            } else if (Player.HP > 40) {
+                                if (j == 6) {
+                                    System.out.print(Tools.print("green", "", ("   ")));
+                                } else if (j == 7) {
+                                    System.out.print(Tools.print("green", "", ("   ")));
+                                } else if (j == 9) {
+                                    System.out.print(Tools.print("yellow", "", ("██" + " ")));
+                                } else {
+                                    System.out.print(Tools.print("yellow", "", "███"));
+                                }
+                            } else if (Player.HP > 30) {
+                                if (j == 6) {
+                                    System.out.print(Tools.print("green", "", ("   ")));
+                                } else if (j == 7) {
+                                    System.out.print(Tools.print("green", "", ("   ")));
+                                } else if (j == 8) {
+                                    System.out.print(Tools.print("yellow", "", (" ██")));
+                                } else if (j == 9) {
+                                    System.out.print(Tools.print("yellow", "", ("██" + " ")));
+                                }
+                            } else if (Player.HP > 20) {
+                                if (j == 6) {
+                                    System.out.print(Tools.print("green", "", ("   ")));
+                                } else if (j == 7) {
+                                    System.out.print(Tools.print("green", "", ("   ")));
+                                } else if (j == 8) {
+                                    System.out.print(Tools.print("red", "", ("  █")));
+                                } else if (j == 9) {
+                                    System.out.print(Tools.print("red", "", ("██" + " ")));
+                                }
+                            } else if (Player.HP > 10) {
+                                if (j == 6) {
+                                    System.out.print(Tools.print("red", "", ("   ")));
+                                } else if (j == 7) {
+                                    System.out.print(Tools.print("red", "", ("   ")));
+                                } else if (j == 8) {
+                                    System.out.print(Tools.print("red", "", ("   ")));
+                                } else if (j == 9) {
+                                    System.out.print(Tools.print("red", "", ("██" + " ")));
+                                }
+                            } else if (Player.HP > 0) {
+                                if (j == 6) {
+                                    System.out.print(Tools.print("green", "", ("   ")));
+                                } else if (j == 7) {
+                                    System.out.print(Tools.print("green", "", ("   ")));
+                                } else if (j == 8) {
+                                    System.out.print(Tools.print("green", "", ("   ")));
+                                } else if (j == 9) {
+                                    System.out.print(Tools.print("red", "", ("█" + "  ")));
+                                }
+                            } else if (Player.HP <= 0) {
+                                System.out.print(Tools.print("red", "", ("   ")));
+                            }
+                        } else if (j >= 10 && j < 14) {
+                            if (Enemies.HP > 90) {
+                                if (j == 10) {
+                                    System.out.print(Tools.print("green", "", (" " + "██")));
+                                } else if (j == 13) {
+                                    System.out.print(Tools.print("green", "", ("██" + " ")));
+                                } else {
+                                    System.out.print(Tools.print("green", "", "███"));
+                                }
+                            } else if (Enemies.HP > 80) {
+                                if (j == 10) {
+                                    System.out.print(Tools.print("green", "", (" " + " █")));
+                                } else if (j == 13) {
+                                    System.out.print(Tools.print("green", "", ("██" + " ")));
+                                } else {
+                                    System.out.print(Tools.print("green", "", "███"));
+                                }
+                            } else if (Enemies.HP > 70) {
+                                if (j == 10) {
+                                    System.out.print(Tools.print("green", "", (" " + "  ")));
+                                } else if (j == 13) {
+                                    System.out.print(Tools.print("green", "", ("██" + " ")));
+                                } else {
+                                    System.out.print(Tools.print("green", "", "███"));
+                                }
+                            } else if (Enemies.HP > 60) {
+                                if (j == 10) {
+                                    System.out.print(Tools.print("green", "", ("   ")));
+                                } else if (j == 11) {
+                                    System.out.print(Tools.print("green", "", (" ██")));
+                                } else if (j == 13) {
+                                    System.out.print(Tools.print("green", "", ("██ ")));
+                                } else {
+                                    System.out.print(Tools.print("green", "", "███"));
+                                }
+                            } else if (Enemies.HP > 50) {
+                                if (j == 10) {
+                                    System.out.print(Tools.print("green", "", ("   ")));
+                                } else if (j == 11) {
+                                    System.out.print(Tools.print("green", "", ("  █")));
+                                } else if (j == 13) {
+                                    System.out.print(Tools.print("green", "", ("██" + " ")));
+                                } else {
+                                    System.out.print(Tools.print("green", "", "███"));
+                                }
+                            } else if (Enemies.HP > 40) {
+                                if (j == 10) {
+                                    System.out.print(Tools.print("green", "", ("   ")));
+                                } else if (j == 11) {
+                                    System.out.print(Tools.print("green", "", ("   ")));
+                                } else if (j == 13) {
+                                    System.out.print(Tools.print("yellow", "", ("██" + " ")));
+                                } else {
+                                    System.out.print(Tools.print("yellow", "", "███"));
+                                }
+                            } else if (Enemies.HP > 30) {
+                                if (j == 10) {
+                                    System.out.print(Tools.print("green", "", ("   ")));
+                                } else if (j == 11) {
+                                    System.out.print(Tools.print("green", "", ("   ")));
+                                } else if (j == 12) {
+                                    System.out.print(Tools.print("yellow", "", (" ██")));
+                                } else if (j == 13) {
+                                    System.out.print(Tools.print("yellow", "", ("██" + " ")));
+                                }
+                            } else if (Enemies.HP > 20) {
+                                if (j == 10) {
+                                    System.out.print(Tools.print("green", "", ("   ")));
+                                } else if (j == 11) {
+                                    System.out.print(Tools.print("green", "", ("   ")));
+                                } else if (j == 12) {
+                                    System.out.print(Tools.print("red", "", ("  █")));
+                                } else if (j == 13) {
+                                    System.out.print(Tools.print("red", "", ("██" + " ")));
+                                }
+                            } else if (Enemies.HP > 10) {
+                                if (j == 10) {
+                                    System.out.print(Tools.print("red", "", ("   ")));
+                                } else if (j == 11) {
+                                    System.out.print(Tools.print("red", "", ("   ")));
+                                } else if (j == 12) {
+                                    System.out.print(Tools.print("red", "", ("   ")));
+                                } else if (j == 13) {
+                                    System.out.print(Tools.print("red", "", ("██" + " ")));
+                                }
+                            } else if (Enemies.HP > 0) {
+                                if (j == 10) {
+                                    System.out.print(Tools.print("green", "", ("   ")));
+                                } else if (j == 11) {
+                                    System.out.print(Tools.print("green", "", ("   ")));
+                                } else if (j == 12) {
+                                    System.out.print(Tools.print("green", "", ("   ")));
+                                } else if (j == 13) {
+                                    System.out.print(Tools.print("red", "", ("█" + "  ")));
+                                }
+                            } else if (Enemies.HP <= 0) {
+                                System.out.print(Tools.print("red", "", ("   ")));
+                            }
+                        } else {
+                            System.out.print("   ");
+                        }
+                    } else if (j == ancho - 1) {
+                        System.out.print(Tools.print(colorUI, "", "║"));
+                    } else {
+                        System.out.print("   ");
+                    }
+                }
+            } else if (i == 6) {
+                for (int j = 0; j < ancho; j++) {
+                    if (j == 0) {
+                        System.out.print(Tools.print(colorUI, "", "║"));
+                    } else if (j > 0 && j <= 4) {
+                        if (j == 1) {
+                            System.out.print(" DMG    " + Player.DMG + "  ");
+                        } else {
+                            System.out.print("");
+                        }
+
+                    } else if (j > 4 && j < ancho - 5) {
+                        if (j == ancho - 6) {
+                            System.out.print(Tools.print(Screens.colorUI, "", "║"));
+                        } else if (j == 5) {
+                            System.out.print(Tools.print(Screens.colorUI, "", "║"));
+                        } else {
+                            System.out.print(voidSquare);
+                        }
+                    } else if (j >= ancho - 5 && j < ancho - 1) {
+                        if (j == ancho - 5) {
+                            System.out.print(" DMG    " + Enemies.attack + "  ");
+                        } else {
+                            System.out.print("");
+                        }
+
+                    } else if (j == ancho - 1) {
+                        System.out.print(Tools.print(colorUI, "", "║"));
+                    } else {
+                        System.out.print("   ");
+                    }
+                }
+            } else if (i == 7) {
+                for (int j = 0; j < ancho; j++) {
+                    if (j == 0) {
+                        System.out.print(Tools.print(colorUI, "", "║"));
+                    } else if (j > 0 && j <= 4) {
+                        if (j == 1) {
+                            if (Player.HP >= 100) {
+                                System.out.print(" HP " + Player.HP + "/" + Player.MAXHP + " ");
+                            } else if (Player.HP < 10) {
+                                System.out.print(" HP " + Player.HP + "/" + Player.MAXHP + "   ");
+                            } else {
+                                System.out.print(" HP " + Player.HP + "/" + Player.MAXHP + "  ");
+                            }
+
+                        } else {
+                            System.out.print("");
+                        }
+
+                    } else if (j > 4 && j < ancho - 5) {
+                        if (j == ancho - 6) {
+                            System.out.print(Tools.print(Screens.colorUI, "", "║"));
+                        } else if (j == 5) {
+                            System.out.print(Tools.print(Screens.colorUI, "", "║"));
+                        } else if (j == 7) {
+                            System.out.print(Character);
+                        } else if (j == ancho - 8) {
+                            System.out.print(Enemy);
+                        } else {
+                            System.out.print(voidSquare);
+                        }
+                    } else if (j >= ancho - 5 && j < ancho - 1) {
+                        if (j == ancho - 5) {
+                            if (Enemies.HP >= 100) {
+                                System.out.print(" HP " + Enemies.HP + "/" + Enemies.maxHP + " ");
+                            } else if (Enemies.HP < 10) {
+                                System.out.print(" HP " + Enemies.HP + "/" + Enemies.maxHP + "   ");
+                            } else {
+                                System.out.print(" HP " + Enemies.HP + "/" + Enemies.maxHP + "  ");
+                            }
+
+                        } else {
+                            System.out.print("");
+                        }
+
+                    } else if (j == ancho - 1) {
+                        System.out.print(Tools.print(colorUI, "", "║"));
+                    } else {
+                        System.out.print("   ");
+                    }
+                }
+            } else if (i == 8) {
+                for (int j = 0; j < ancho; j++) {
+                    if (j == 0) {
+                        System.out.print(Tools.print(colorUI, "", "║"));
+                    } else if (j > 0 && j <= 4) {
+                        if (j == 1) {
+                            System.out.print(" LVL    " + Player.LV + "   ");
+                        } else {
+                            System.out.print("");
+                        }
+
+                    } else if (j > 4 && j < ancho - 5) {
+                        if (j == ancho - 6) {
+                            System.out.print(Tools.print(Screens.colorUI, "", "║"));
+                        } else if (j == 5) {
+                            System.out.print(Tools.print(Screens.colorUI, "", "║"));
+                        } else {
+                            System.out.print(voidSquare);
+                        }
+                    } else if (j >= ancho - 5 && j < ancho - 1) {
+                        if (j == ancho - 5) {
+                            System.out.print(" LVL    " + Enemies.LVL + "   ");
+                        } else {
+                            System.out.print("");
+                        }
+
+                    } else if (j == ancho - 1) {
+                        System.out.print(Tools.print(colorUI, "", "║"));
+                    } else {
+                        System.out.print("   ");
+                    }
+                }
+            } else {
+                for (int j = 0; j < ancho; j++) {
+                    if (j == 0) {
+                        System.out.print(Tools.print(colorUI, "", "║"));
+                    } else if (j > 4 && j < ancho - 5) {
+                        if (j == ancho - 6) {
+                            System.out.print(Tools.print(Screens.colorUI, "", "║"));
+                        } else if (j == 5) {
+                            System.out.print(Tools.print(Screens.colorUI, "", "║"));
+                        } else {
+                            System.out.print(voidSquare);
+                        }
+                    } else if (j == ancho - 1) {
+                        System.out.print(Tools.print(colorUI, "", "║"));
+                    } else {
+                        System.out.print("   ");
+                    }
+
+                }
+            }
+            System.out.println("");
+        }
     }
 }

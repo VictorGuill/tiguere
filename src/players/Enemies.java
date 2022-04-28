@@ -14,6 +14,10 @@ public class Enemies {
 
     public static int xpos;
     public static int ypos;
+    public static int HP;
+    public static int attack;
+    public static int LVL;
+    public static int maxHP = 100;
 
     public Enemies() {
 

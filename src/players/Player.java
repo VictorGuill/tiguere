@@ -2,6 +2,11 @@ package players;
 
 import outputs.Board;
 import gamejava.GameJava;
+import static gamejava.GameJava.INPUT;
+import static gamejava.GameJava.INPUT_RATE;
+import gamejava.Play;
+import java.util.concurrent.TimeUnit;
+import outputs.Screens;
 
 public abstract class Player {
 
@@ -242,7 +247,7 @@ public abstract class Player {
      * relación con el personaje sea uno de los posibles enemigos (estado normal
      * o cuando se encuentra mirando en alguna de las posiciones posibles
      */
-    public static void basicAttack() {
+    public static void basicAttack() throws InterruptedException {
         boolean isAttack;
 
         int x = getXpos();
@@ -256,24 +261,75 @@ public abstract class Player {
         do {
             if (nextXPositive.equals(Board.EnemyRight) || nextXPositive.equals(Board.EnemyLeft) || nextXPositive.equals(Board.Enemy)) {
                 GameJava.board[y][x + 1] = Board.voidSquare;
+                whileAttack();
                 kills++;
                 isAttack = false;
             } else if (nextXNegative.equals(Board.EnemyRight) || nextXNegative.equals(Board.EnemyLeft) || nextXNegative.equals(Board.Enemy)) {
                 GameJava.board[y][x - 1] = Board.voidSquare;
+                whileAttack();
                 kills++;
                 isAttack = false;
             } else if (nextYPositive.equals(Board.EnemyRight) || nextYPositive.equals(Board.EnemyLeft) || nextYPositive.equals(Board.Enemy)) {
                 GameJava.board[y - 1][x] = Board.voidSquare;
+                whileAttack();
                 kills++;
                 isAttack = false;
             } else if (nextYNegative.equals(Board.EnemyRight) || nextYNegative.equals(Board.EnemyLeft) || nextYNegative.equals(Board.Enemy)) {
                 GameJava.board[y + 1][x] = Board.voidSquare;
+                whileAttack();
                 kills++;
                 isAttack = false;
             } else {
                 isAttack = false;
             }
         } while (isAttack);
+    }
+    public static void whileAttack() throws InterruptedException {
+        boolean stillCombat = true;
+        INPUT = "";
+        int torn = 1;
+        Enemies e = new Enemies();
+        e.HP = 100;
+        e.LVL = 1;
+        e.attack = 15;
+        Board.printRing(Board.Character, Board.Enemy); 
+        do {
+            if (Player.HP <= 0){
+                    Screens.endGameScreen();
+            }
+            if (e.HP > 0 && Player.HP > 0) {
+                if (torn == 1){
+                    switch(INPUT){
+                        case "1":
+                            e.HP -= Player.DMG;
+                            Board.printRing(Board.Character, Board.Enemy); 
+                            INPUT = "";
+                            torn++;
+                            TimeUnit.MILLISECONDS.sleep(20000 / INPUT_RATE);
+                            break;
+                    }
+                } else {
+                    Player.HP -= e.attack;
+                    if(Player.HP < 0) {
+                        Player.HP = 0;
+                    }
+                    torn = 1;
+                    Board.printRing(Board.Character, Board.Enemy);
+                    TimeUnit.MILLISECONDS.sleep(20000 / INPUT_RATE);
+                    
+                }
+            } else {
+                stillCombat = false;
+                e.HP = 100;
+                e.LVL = 1;
+                e.attack = 15;
+            }
+        
+        TimeUnit.MILLISECONDS.sleep(10000 / INPUT_RATE);   
+        }while(stillCombat);
+        INPUT = "";
+        Board.printBoard(GameJava.widthBoard, GameJava.heightBoard);
+        
     }
 
     public static void gainCoins() {
