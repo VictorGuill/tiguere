@@ -4,10 +4,6 @@ import outputs.Board;
 import gamejava.GameJava;
 import java.util.concurrent.TimeUnit;
 
-/**
- *
- * @author mariagarriga
- */
 public class magician extends Player {
 
     /**
@@ -23,30 +19,26 @@ public class magician extends Player {
         do {
             switch (GameJava.INPUT) {
                 case "up":
-                    movYPositive(2);
-                    Board.printBoard(GameJava.widthBoard, GameJava.heightBoard);
-                    GameJava.INPUT = "";
+                    movYPositive(mov);
+                    Board.printBoard();
                     break;
                 case "down":
-                    movYNegative(2);
-                    Board.printBoard(GameJava.widthBoard, GameJava.heightBoard);
-                    GameJava.INPUT = "";
+                    movYNegative(mov);
+                    Board.printBoard();
                     break;
                 case "left":
-                    movXNegative(2);
-                    Board.printBoard(GameJava.widthBoard, GameJava.heightBoard);
-                    GameJava.INPUT = "";
+                    movXNegative(mov);
+                    Board.printBoard();
                     break;
                 case "right":
-                    movXPositive(2);
-                    Board.printBoard(GameJava.widthBoard, GameJava.heightBoard);
-                    GameJava.INPUT = "";
+                    movXPositive(mov);
+                    Board.printBoard();
                     break;
                 case "5":
                     motionSkills = false;
-                    GameJava.INPUT = "";
                     break;
             }
+            GameJava.INPUT = "";
             TimeUnit.MILLISECONDS.sleep(1000 / GameJava.INPUT_RATE);
         } while (motionSkills);
     }
@@ -59,4 +51,4 @@ Their  special skill allows them to mix potions from their existing inventory
 in order to create new ones. 
 They also have a driving motion skill which allows them to move forward a certain distance. 
 
-*/
+ */

@@ -14,7 +14,7 @@ public class GameJava {
     public static int MIN_BOARD_SIZE = 10, MAX_BOARD_SIZE = 20; //maximo y minimo permitido valores tamaño tablero
     public static char CHAR_GUERRERO = '¥', CHAR_MAGO = '£', CHAR_SACERDOTE = '±', CHAR_ENEMY = '¤', CHAR_COIN = '$';
 
-    public static int INPUT_RATE = 20; //delay entre consultas del input
+    public static int INPUT_RATE =20; //delay entre consultas del input
     public static String INPUT = ""; //guarda la ultima tecla pulsada
     public static int menuOption = 1,
             secondSelection = 1, //valor para cuando hay mas de una selecion en un menu (Ej: choose caracter)

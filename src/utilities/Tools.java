@@ -19,7 +19,6 @@ public class Tools {
     /**
      * Imprime un String con colores
      *
-     * @author Victor Guillén Alcaraz
      * @param color Indica el color del texto.
      * @param bg Indica el color de fondo.
      * @param text El String a imprimir.
@@ -109,7 +108,6 @@ public class Tools {
     /**
      * Recibe los caracteres y imprime una barra de carga.
      *
-     * @author Victor Guillén Alcaraz
      * @param lenght INT: Largada de la barra
      * @param loaded INT: Parte carga de la barra
      * @param start Char inicio. Ej: '[' '(' '{'
@@ -135,7 +133,6 @@ public class Tools {
      * detecta la plataforma y utiliza el metodo correspondiente. Si no hay
      * compatibilidad, utiliza el metodo de imprimir saltos de linea.
      *
-     * @author Victor Guillén Alcaraz
      */
     public static void clearConsole() {
         if (isRunningCMD() == true) {

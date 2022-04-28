@@ -2,11 +2,6 @@ package gamejava;
 
 import static gamejava.GameJava.INPUT;
 import static gamejava.GameJava.INPUT_RATE;
-import static gamejava.GameJava.board;
-import static gamejava.GameJava.character;
-import static gamejava.GameJava.heightBoard;
-import static gamejava.GameJava.playable;
-import static gamejava.GameJava.widthBoard;
 import java.util.concurrent.TimeUnit;
 import outputs.Board;
 import outputs.Screens;
@@ -31,44 +26,44 @@ public class Play {
         Screens.characterSelectorScreen();
         Screens.gameDifficultyScreen();
 
-        Board.printBoard(widthBoard, heightBoard);
-        Enemies.setEnemiesDirection(board, widthBoard, heightBoard, Board.voidSquare);
+        Board.printBoard();
+        Enemies.setEnemiesDirection();
         objects = GameJava.numCoins + GameJava.numEnemies;
 
         do {
             switch (INPUT) {
                 case "up":
                     Player.movYPositive(1);
-                    Enemies.moveEnemies(GameJava.numEnemies, GameJava.board, GameJava.enemies, widthBoard, heightBoard, Board.voidSquare);
-                    Board.printBoard(widthBoard, heightBoard);
+                    Enemies.moveEnemies();
+                    Board.printBoard();
                     break;
                 case "down":
                     Player.movYNegative(1);
-                    Enemies.moveEnemies(GameJava.numEnemies, GameJava.board, GameJava.enemies, widthBoard, heightBoard, Board.voidSquare);
-                    Board.printBoard(widthBoard, heightBoard);
+                    Enemies.moveEnemies();
+                    Board.printBoard();
                     break;
                 case "left":
                     Player.movXNegative(1);
-                    Enemies.moveEnemies(GameJava.numEnemies, GameJava.board, GameJava.enemies, widthBoard, heightBoard, Board.voidSquare);
-                    Board.printBoard(widthBoard, heightBoard);
+                    Enemies.moveEnemies();
+                    Board.printBoard();
                     break;
                 case "right":
                     Player.movXPositive(1);
-                    Enemies.moveEnemies(GameJava.numEnemies, GameJava.board, GameJava.enemies, widthBoard, heightBoard, Board.voidSquare);
-                    Board.printBoard(widthBoard, heightBoard);
+                    Enemies.moveEnemies();
+                    Board.printBoard();
                     break;
                 case "1":
                     Player.basicAttack();
-                    Enemies.moveEnemies(GameJava.numEnemies, GameJava.board, GameJava.enemies, widthBoard, heightBoard, Board.voidSquare);
+                    Enemies.moveEnemies();
                     break;
                 case "2":
                     Screens.characterSelectorScreen();
-                    Board.printBoard(widthBoard, heightBoard);
-                    Enemies.moveEnemies(GameJava.numEnemies, GameJava.board, GameJava.enemies, widthBoard, heightBoard, Board.voidSquare);
+                    Board.printBoard();
+                    Enemies.moveEnemies();
                     break;
                 case "3":
                     Player.pickUpCoin();
-                    Enemies.moveEnemies(GameJava.numEnemies, GameJava.board, GameJava.enemies, widthBoard, heightBoard, Board.voidSquare);
+                    Enemies.moveEnemies();
                     break;
                 case "4": //exit
                     Screens.startMenu(1);
@@ -76,9 +71,9 @@ public class Play {
                     break;
                 case "5":
                     if (GameJava.character == 1) {
-                        magician.motionSkill(1);
-                        Enemies.moveEnemies(GameJava.numEnemies, GameJava.board, GameJava.enemies, widthBoard, heightBoard, Board.voidSquare);
-                        Board.printBoard(widthBoard, heightBoard);
+                        magician.motionSkill(2);
+                        Enemies.moveEnemies();
+                        Board.printBoard();
                     }
                     break;
             }
@@ -86,7 +81,7 @@ public class Play {
             if (objects == Player.kills + Player.sackOfCoins) {
                 Screens.endGameScreen();
             }
-            Enemies.setEnemiesDirection(board, widthBoard, heightBoard, Board.voidSquare);
+            Enemies.setEnemiesDirection();
             TimeUnit.MILLISECONDS.sleep(1000 / INPUT_RATE);
         } while (isPlayingGame);
     }

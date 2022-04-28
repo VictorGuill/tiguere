@@ -1,9 +1,5 @@
 package players;
 
-/**
- *
- * @author mariagarriga
- */
 public class warrior extends Player {
 
 }

@@ -4,7 +4,6 @@ import outputs.Board;
 import gamejava.GameJava;
 import static gamejava.GameJava.INPUT;
 import static gamejava.GameJava.INPUT_RATE;
-import gamejava.Play;
 import java.util.concurrent.TimeUnit;
 import outputs.Screens;
 
@@ -284,39 +283,40 @@ public abstract class Player {
             }
         } while (isAttack);
     }
+
     public static void whileAttack() throws InterruptedException {
         boolean stillCombat = true;
         INPUT = "";
-        int torn = 1;
+        boolean playerTurn = true;
         Enemies e = new Enemies();
         e.HP = 100;
         e.LVL = 1;
         e.attack = 15;
-        Board.printRing(Board.Character, Board.Enemy); 
+        Screens.printRing(Board.Character, Board.Enemy, playerTurn);
         do {
-            if (Player.HP <= 0){
-                    Screens.endGameScreen();
+            if (Player.HP <= 0) {
+                Screens.endGameScreen();
             }
             if (e.HP > 0 && Player.HP > 0) {
-                if (torn == 1){
-                    switch(INPUT){
+                if (playerTurn) {
+                    switch (INPUT) {
                         case "1":
+                            playerTurn = false;
                             e.HP -= Player.DMG;
-                            Board.printRing(Board.Character, Board.Enemy); 
+                            Screens.printRing(Board.Character, Board.Enemy, playerTurn);
                             INPUT = "";
-                            torn++;
                             TimeUnit.MILLISECONDS.sleep(20000 / INPUT_RATE);
                             break;
                     }
                 } else {
                     Player.HP -= e.attack;
-                    if(Player.HP < 0) {
+                    if (Player.HP < 0) {
                         Player.HP = 0;
                     }
-                    torn = 1;
-                    Board.printRing(Board.Character, Board.Enemy);
+                    playerTurn = true;
+                    Screens.printRing(Board.Character, Board.Enemy, playerTurn);
                     TimeUnit.MILLISECONDS.sleep(20000 / INPUT_RATE);
-                    
+
                 }
             } else {
                 stillCombat = false;
@@ -324,12 +324,12 @@ public abstract class Player {
                 e.LVL = 1;
                 e.attack = 15;
             }
-        
-        TimeUnit.MILLISECONDS.sleep(10000 / INPUT_RATE);   
-        }while(stillCombat);
+
+            TimeUnit.MILLISECONDS.sleep(10000 / INPUT_RATE);
+        } while (stillCombat);
         INPUT = "";
-        Board.printBoard(GameJava.widthBoard, GameJava.heightBoard);
-        
+        Board.printBoard();
+
     }
 
     public static void gainCoins() {
