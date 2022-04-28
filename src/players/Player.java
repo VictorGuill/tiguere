@@ -17,7 +17,7 @@ public abstract class Player {
     public static int HP;
     public static int DMG;
     public static int kills;
-    public static int MAXHP = 300;
+    public static int MAXHP = 100;
 
     public Player() {
     }
@@ -284,6 +284,14 @@ public abstract class Player {
         } while (isAttack);
     }
 
+    /**
+     * Método que se inicia cuando se ataca a un enemigo. Inicializa el enemigo
+     * e imprime el tablero de combate. El combate funciona por turnos y el
+     * personaje se cura al 100, sube de nivel y aumenta su daño en 2 al matar a
+     * un enemigo.
+     *
+     * @throws InterruptedException
+     */
     public static void whileAttack() throws InterruptedException {
         boolean stillCombat = true;
         INPUT = "";
@@ -320,6 +328,9 @@ public abstract class Player {
                 }
             } else {
                 stillCombat = false;
+                Player.HP = 100;
+                Player.LV++;
+                Player.DMG += 2;
                 e.HP = 100;
                 e.LVL = 1;
                 e.attack = 15;
