@@ -30,14 +30,14 @@ public abstract class Player {
      *
      * @param mov Cantidad de casillas a mover en la direccion.
      */
-    public static void movXPositive(int mov) {
+  public static void movXPositive(int mov) {
         String nextPosition = nextXPositive(mov);
         /*
             En caso de que la siguiente casilla sea un vacio o una moneda entrara, después cojera la casilla donde te encuentres actualmente y la 
             establecera como un voidSquare , sumará 1 en la xpos y mandara a saveCharacter el string right que pondra la espada del jugador mirando hacia la derecha
             Finalmente guardara el personaje en la nueva posición
          */
-        if (nextPosition.equals(Board.voidSquare) || nextPosition.equals(Board.Coin)) {
+        if (nextPosition.equals(Board.voidSquare) || nextPosition.equals(Board.Coin)||nextPosition.equals(Board.PotionHP)||nextPosition.equals (Board.visiblePotion)) {
             GameJava.board[Player.getYpos()][Player.getXpos()] = Board.voidSquare;
             Player.xpos += mov;
             direction = "right";
@@ -47,6 +47,19 @@ public abstract class Player {
             //En caso de que la siguiente casilla sea una moneda sumara 1 al recuento de monedas y al colocarse encima borrara la coin del mapa.
             if (nextPosition.equals(Board.Coin)) {
                 gainCoins();
+            }
+            
+            //En caso de que la siguiente casilla sea una pocion de HP te sumara 50 HP a la vida del jugador, en caso 
+            else if (nextPosition.equals(Board.PotionHP)){
+                Player.HP += 50;
+                
+                if(Player.HP > Player.MAXHP){
+                   Player.HP = MAXHP;
+                }   
+            }
+            //En caso de haber una pocion que augmente la visiblidad del personaje , augmentara el rango a mostrar en el tablero
+            else if (nextPosition.equals(Board.visiblePotion)){
+                Board.printDistance += 1; 
             }
         }
 
@@ -69,7 +82,7 @@ public abstract class Player {
         String nextPosition = nextXNegative(mov);
 
         // Funcionamiento similar a movXPositive solo que está vez hacia el lado izquiero del tablero, saveCharacter pondrá la espada mirando hacia la izquierda
-        if (nextPosition.equals(Board.voidSquare) || nextPosition.equals(Board.Coin)) {
+        if (nextPosition.equals(Board.voidSquare) || nextPosition.equals(Board.Coin)||nextPosition.equals(Board.PotionHP)||nextPosition.equals (Board.visiblePotion)) {
             GameJava.board[Player.getYpos()][Player.getXpos()] = Board.voidSquare;
             Player.xpos -= mov;
             direction = "left";
@@ -77,6 +90,18 @@ public abstract class Player {
             GameJava.board[Player.getYpos()][Player.getXpos()] = Board.Character;
             if (nextPosition.equals(Board.Coin)) {
                 gainCoins();
+            }
+            
+            else if (nextPosition.equals(Board.PotionHP)){
+                Player.HP += 50;
+                
+                if(Player.HP > Player.MAXHP){
+                   Player.HP = MAXHP;
+                }   
+            }
+            
+            else if (nextPosition.equals(Board.visiblePotion)){
+                Board.printDistance += 1; 
             }
         }
         //En caso de llegar a los limites izquierdos del tablero cambiara la dirección de la espada hacia la derecha
@@ -100,13 +125,25 @@ public abstract class Player {
 
         //Funcionamiento similar a las dos funciones anteriores solo que esta vez en el eje de la y positivas (como es un array al subir una fila su numero desciende)
         //En este caso la dirección de la espada se queda igual que en el ultimo movimiento en horizontal
-        if (nextPosition.equals(Board.voidSquare) || nextPosition.equals(Board.Coin)) {
+        if (nextPosition.equals(Board.voidSquare) || nextPosition.equals(Board.Coin)||nextPosition.equals(Board.PotionHP)||nextPosition.equals (Board.visiblePotion)) {
             GameJava.board[Player.getYpos()][Player.getXpos()] = Board.voidSquare;
             Player.ypos -= mov;
             Board.saveCharacter(direction);
             GameJava.board[Player.getYpos()][Player.getXpos()] = Board.Character;
             if (nextPosition.equals(Board.Coin)) {
                 gainCoins();
+            }
+            
+            else if (nextPosition.equals(Board.PotionHP)){
+                Player.HP += 50;
+                
+                if(Player.HP > Player.MAXHP){
+                   Player.HP = MAXHP;
+                }   
+            }
+            
+            else if (nextPosition.equals(Board.visiblePotion)){
+                Board.printDistance += 1; 
             }
         }
     }
@@ -122,13 +159,25 @@ public abstract class Player {
         String nextPosition = nextYNegative(mov);
 
         //Funcionamiento similar a las dos funciones anteriores solo que esta vez en el eje de la y negativas (como es un array al bajar una fila su numero asciende)
-        if (nextPosition.equals(Board.voidSquare) || nextPosition.equals(Board.Coin)) {
+        if (nextPosition.equals(Board.voidSquare) || nextPosition.equals(Board.Coin)||nextPosition.equals(Board.PotionHP)||nextPosition.equals (Board.visiblePotion)) {
             GameJava.board[Player.getYpos()][Player.getXpos()] = Board.voidSquare;
             Player.ypos += mov;
             Board.saveCharacter(direction);
             GameJava.board[Player.getYpos()][Player.getXpos()] = Board.Character;
             if (nextPosition.equals(Board.Coin)) {
                 gainCoins();
+            }
+            
+            else if (nextPosition.equals(Board.PotionHP)){
+                Player.HP += 50;
+                
+                if(Player.HP > Player.MAXHP){
+                   Player.HP = MAXHP;
+                }   
+            }
+            
+            else if (nextPosition.equals(Board.visiblePotion)){
+                Board.printDistance += 1; 
             }
         }
     }

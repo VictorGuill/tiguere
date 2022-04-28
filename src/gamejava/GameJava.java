@@ -12,7 +12,7 @@ import players.Enemies;
 public class GameJava {
 
     public static int MIN_BOARD_SIZE = 10, MAX_BOARD_SIZE = 20; //maximo y minimo permitido valores tamaño tablero
-    public static char CHAR_GUERRERO = '¥', CHAR_MAGO = '£', CHAR_SACERDOTE = '±', CHAR_ENEMY = '¤', CHAR_COIN = '$';
+    public static char CHAR_GUERRERO = '¥', CHAR_MAGO = '£', CHAR_SACERDOTE = '±', CHAR_ENEMY = '¤', CHAR_COIN = '$',CHAR_POTION_HP ='¶',CHAR_VISIBLE_POTION ='÷';
 
     public static int INPUT_RATE =20; //delay entre consultas del input
     public static String INPUT = ""; //guarda la ultima tecla pulsada
@@ -23,7 +23,10 @@ public class GameJava {
             heightBoard,
             numEnemies, //numero de enemigos dependiendo la dificultad
             numCoins,
-            difficultSelection;
+            difficultSelection,
+            numHP_Potions,
+            numVisiblePotions;
+    
     public static boolean SECTION_RUNNING = true;
     public static String[][] board;
     public static magician m1 = new magician();

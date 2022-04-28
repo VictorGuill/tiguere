@@ -10,15 +10,20 @@ public class Board {
     public static String HP[] = new String[10];
     public static boolean firstPrint = true;
     public static boolean firstCharacter = true;
+    public static int printDistance = 4;
     public static String Character,
             Enemy = (" " + GameJava.CHAR_ENEMY + " "),
             Coin,
             EnemyRight = (" " + GameJava.CHAR_ENEMY + "/"),
             EnemyLeft = ("\\" + GameJava.CHAR_ENEMY + " "),
+            PotionHP = (" " + GameJava.CHAR_POTION_HP + " "),
+            visiblePotion = (" " + GameJava.CHAR_VISIBLE_POTION + " "),
             voidSquare = "░░░",
             bgColor = "green",
             coinColor = "yellow",
-            enemyColor = "red";
+            enemyColor = "red",
+            potionColor="blue";
+    
 
     /**
      * Llena el Board de casilla vacias y, despues, añade las coins e enemigos.
@@ -37,6 +42,8 @@ public class Board {
         }
         randomPositions(GameJava.numCoins, height - 1, width - 1, (" " + GameJava.CHAR_COIN + " "));
         randomPositions(GameJava.numEnemies, height - 1, width - 1, (" " + GameJava.CHAR_ENEMY + " "));
+        randomPositions(GameJava.numHP_Potions,height - 1, width - 1,PotionHP);
+        randomPositions(GameJava.numVisiblePotions,height - 1, width - 1,visiblePotion);
 
         //Inicialitzem els valors
         GameJava.board[0][0] = Character;
@@ -66,6 +73,30 @@ public class Board {
                 return GameJava.numCoins = Tools.random(5, 6);
         }
         return GameJava.numCoins = 4;
+    }
+    
+    public static int randomHP_Potion() {
+        switch (GameJava.difficultSelection) {
+            case 1:
+                return GameJava.numHP_Potions = Tools.random(0, 1);
+            case 2:
+                return GameJava.numHP_Potions = Tools.random(1, 3);
+            case 3:
+                return GameJava.numHP_Potions = Tools.random(3, 4);
+        }
+        return GameJava.numHP_Potions = 4;
+    }
+    
+    public static int randomVisiblePotion() {
+        switch (GameJava.difficultSelection) {
+            case 1:
+                return GameJava.numVisiblePotions = Tools.random(0, 1);
+            case 2:
+                return GameJava.numVisiblePotions = Tools.random(1, 2);
+            case 3:
+                return GameJava.numVisiblePotions = Tools.random(2, 3);
+        }
+        return GameJava.numVisiblePotions = 4;
     }
 
     /*
@@ -109,6 +140,8 @@ public class Board {
         Coin = (" " + GameJava.CHAR_COIN + " ");
         if (firstPrint) {
             GameJava.numCoins = randomCoin();
+            GameJava.numHP_Potions = randomHP_Potion();
+            GameJava.numVisiblePotions = randomVisiblePotion();
             GameJava.board = new String[hBoard][wBoard];
             setMap(wBoard, hBoard);
             firstPrint = false;
@@ -366,8 +399,6 @@ public class Board {
      * @param column Columna en la que estamos. Y
      */
     public static void printPosition(int row, int column) {
-        int printDistance = 4;
-
         if (Player.getYpos() - printDistance <= column && Player.getYpos() + printDistance >= column && Player.getXpos() - printDistance <= row && Player.getXpos() + printDistance >= row) {
             if (Player.getXpos() == row && Player.getYpos() == column) {
                 System.out.print(saveCharacter(Player.direction));
@@ -375,12 +406,16 @@ public class Board {
                 System.out.print(Tools.print(bgColor, "", GameJava.board[column][row]));
             } else if (GameJava.board[column][row].equals(" " + GameJava.CHAR_COIN + " ")) {
                 System.out.print(Tools.print(coinColor, "", GameJava.board[column][row]));
+            } else if(GameJava.board[column][row].equals(PotionHP)){
+                System.out.print(Tools.print(potionColor, "", GameJava.board[column][row]));
+            } else if(GameJava.board[column][row].equals(visiblePotion)){
+                System.out.print(Tools.print(potionColor, "", GameJava.board[column][row]));
             } else if (GameJava.board[column][row].equals(" " + GameJava.CHAR_GUERRERO + " ")
                     || GameJava.board[column][row].equals(" " + GameJava.CHAR_MAGO + " ")
                     || GameJava.board[column][row].equals(" " + GameJava.CHAR_SACERDOTE + " ")
                     || GameJava.board[column][row].equals(" " + GameJava.CHAR_ENEMY + " ")
                     || GameJava.board[column][row].equals(" " + GameJava.CHAR_ENEMY + "/")
-                    || GameJava.board[column][row].equals("\\" + GameJava.CHAR_ENEMY + " ")) {
+                    || GameJava.board[column][row].equals("\\" + GameJava.CHAR_ENEMY + " ")){
                 System.out.print(Tools.print(enemyColor, "", GameJava.board[column][row]));
             }
         } else {
