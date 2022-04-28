@@ -259,20 +259,19 @@ public class Screens {
                         } else {
                             Screens.youWinScreen(menuEnding);
                         }
-                        INPUT = "";
                     }
+                    INPUT = "";
                     break;
                 case "down":
                     if (menuEnding < 2) {
                         menuEnding++;
-                        menuEnding = 2;
                         if (Player.HP == 0) {
                             Screens.youLoseScreen(menuEnding);
                         } else {
                             Screens.youWinScreen(menuEnding);
                         }
-                        INPUT = "";
                     }
+                    INPUT = "";
                     break;
                 case "enter":
                     Tools.clearConsole();
@@ -810,7 +809,7 @@ public class Screens {
                 System.out.print(Tools.print(colorText, "", "WARRIOR"));
                 System.out.print(Tools.print(colorUI, "", "     MAGICIAN     PRIEST       ║\n"));
 
-                System.out.println(Tools.print(colorUI, "", "║        " + Tools.print(colorText, "", Tools.sc("↑")) + Tools.print(colorUI, "", "                                  ║")));
+                System.out.println(Tools.print(colorUI, "", "║        " + Tools.print(colorText, "", Tools.sc("▲")) + Tools.print(colorUI, "", "                                  ║")));
                 break;
             case 1:
                 System.out.print(Tools.print(colorUI, "", "║"));
@@ -833,7 +832,7 @@ public class Screens {
                 System.out.print(Tools.print(colorText, "", "MAGICIAN"));
                 System.out.print(Tools.print(colorUI, "", "     PRIEST       ║\n"));
 
-                System.out.println(Tools.print(colorUI, "", "║                    " + Tools.print(colorText, "", Tools.sc("↑")) + Tools.print(colorUI, "", "                      ║")));
+                System.out.println(Tools.print(colorUI, "", "║                    " + Tools.print(colorText, "", Tools.sc("▲")) + Tools.print(colorUI, "", "                      ║")));
                 break;
             case 2:
                 System.out.print(Tools.print(colorUI, "", "║"));
@@ -855,7 +854,7 @@ public class Screens {
                 System.out.print(Tools.print(colorText, "", "PRIEST"));
                 System.out.print(Tools.print(colorUI, "", "       ║\n"));
 
-                System.out.println(Tools.print(colorUI, "", "║                                " + Tools.print(colorText, "", Tools.sc("↑")) + Tools.print(colorUI, "", "          ║")));
+                System.out.println(Tools.print(colorUI, "", "║                                " + Tools.print(colorText, "", Tools.sc("▲")) + Tools.print(colorUI, "", "          ║")));
                 break;
         }
         System.out.println(Tools.print(colorUI, "", "╚═══════════════════════════════════════════╝"));
@@ -909,21 +908,21 @@ public class Screens {
                 System.out.print(Tools.print("green", "", "EASY"));
                 System.out.print(Tools.print(colorUI, "", "       MEDIUM        HARD        ║\n"));
 
-                System.out.println(Tools.print(colorUI, "", "║       " + Tools.print("green", "", Tools.sc("↑")) + Tools.print(colorUI, "", "                                   ║")));
+                System.out.println(Tools.print(colorUI, "", "║       " + Tools.print("green", "", Tools.sc("▲")) + Tools.print(colorUI, "", "                                   ║")));
                 break;
             case 2:
                 System.out.print(Tools.print(colorUI, "", "║      EASY       "));
                 System.out.print(Tools.print("yellow", "", "MEDIUM"));
                 System.out.print(Tools.print(colorUI, "", "        HARD        ║\n"));
 
-                System.out.println(Tools.print(colorUI, "", "║                    " + Tools.print("yellow", "", Tools.sc("↑")) + Tools.print(colorUI, "", "                      ║")));
+                System.out.println(Tools.print(colorUI, "", "║                    " + Tools.print("yellow", "", Tools.sc("▲")) + Tools.print(colorUI, "", "                      ║")));
                 break;
             case 3:
                 System.out.print(Tools.print(colorUI, "", "║      EASY       MEDIUM        "));
                 System.out.print(Tools.print("red", "", "HARD"));
                 System.out.print(Tools.print(colorUI, "", "        ║\n"));
 
-                System.out.println(Tools.print(colorUI, "", "║                                " + Tools.print("red", "", Tools.sc("↑")) + Tools.print(colorUI, "", "          ║")));
+                System.out.println(Tools.print(colorUI, "", "║                                " + Tools.print("red", "", Tools.sc("▲")) + Tools.print(colorUI, "", "          ║")));
                 break;
         }
         System.out.println(Tools.print(colorUI, "", "╚═══════════════════════════════════════════╝"));
@@ -934,55 +933,47 @@ public class Screens {
      *
      * @param menuEnding Indica la posición selecionada, si PLAY AGAIN o EXIT.
      */
-    public static void youWinScreen(int menuEnding) {
+    public static void youWinScreen(int optionSelected) {
         Tools.clearConsole();
 
-        for (int i = 0; i < h; i++) {
-            if (i == 0) {
-                Tools.printRow('╔', '═', w, '╗', colorUI);
-            } else if (i == h - 1) {
-                Tools.printRow('╚', '═', w, '╝', colorUI);
-            } else if (i == 3) {
-                System.out.print(Tools.print(colorUI, "", "║       "));
-                System.out.print(Tools.print(colorText, "", "╚╦╝ ╔═╗ ╦ ╦     ╦ ╦ ╦ ╦ ╔═╗ ╔"));
-                System.out.print(Tools.print(colorUI, "", "       ║"));
-            } else if (i == 4) {
-                System.out.print(Tools.print(colorUI, "", "║        "));
-                System.out.print(Tools.print(colorText, "", "║  ║ ║ ║ ║     ║ ║ ║ ║ ║ ║ ║"));
-                System.out.print(Tools.print(colorUI, "", "       ║"));
-            } else if (i == 5) {
-                System.out.print(Tools.print(colorUI, "", "║        "));
-                System.out.print(Tools.print(colorText, "", "╩  ╚═╝ ╚═╝     ╚═╩═╝ ╩ ╝ ╚═╝"));
-                System.out.print(Tools.print(colorUI, "", "       ║"));
-            } else if (i == 8) {
-                if (menuEnding == 1) {
-                    System.out.print(Tools.print(colorUI, "", "║           "));
-                    System.out.print(Tools.print("white", "red", " P L A Y   A G A I N "));
-                    System.out.print(Tools.print(colorUI, "", "           ║"));
-                } else {
-                    System.out.print(Tools.print(colorUI, "", "║            P L A Y   A G A I N            ║"));
+        System.out.println(Tools.print(colorUI, "", "╔════════════════════════════════════════╗"));
+        System.out.println(Tools.print(colorUI, "", "║                                        ╚╗"));
+        System.out.println(Tools.print(colorUI, "", "║                                         ╚╗"));
 
-                }
-            } else if (i == 9) {
-                if (menuEnding == 2) {
-                    System.out.print(Tools.print(colorUI, "", "║                 "));
-                    System.out.print(Tools.print("white", "red", " E X I T "));
-                    System.out.print(Tools.print(colorUI, "", "                 ║"));
-                } else {
-                    System.out.print(Tools.print(colorUI, "", "║                  E X I T                  ║"));
+        System.out.print(Tools.print(colorUI, "", "║       "));
+        System.out.print(Tools.print(colorText, "", "╚╦╝ ╔═╗ ╦ ╦     ╦ ╦ ╦ ╦ ╔═╗ ╔"));
+        System.out.print(Tools.print(colorUI, "", "      ╚╗\n"));
 
-                }
-            } else {
-                for (int j = 0; j < w; j++) {
-                    if (j == 0 || j == w - 1) {
-                        System.out.print(Tools.print(colorUI, "", "║"));
-                    } else {
-                        System.out.print(" ");
-                    }
-                }
-            }
-            System.out.println("");
+        System.out.print(Tools.print(colorUI, "", "║       "));
+        System.out.print(Tools.print(colorText, "", " ║  ║ ║ ║ ║     ║ ║ ║ ║ ║ ║ ║"));
+        System.out.print(Tools.print(colorUI, "", "       ║\n"));
+
+        System.out.print(Tools.print(colorUI, "", "║        "));
+        System.out.print(Tools.print(colorText, "", "╩  ╚═╝ ╚═╝     ╚═╩═╝ ╩ ╝ ╚═╝"));
+        System.out.print(Tools.print(colorUI, "", "       ║\n"));
+
+        System.out.print(Tools.print(colorUI, "", "║                                           ║\n"));
+        System.out.print(Tools.print(colorUI, "", "║                                           ║\n"));
+
+        switch (optionSelected) {
+            case 1:
+                System.out.print(Tools.print(colorUI, "", "║           "));
+                System.out.print(Tools.print("white", "red", " P L A Y   A G A I N "));
+                System.out.print(Tools.print(colorUI, "", "           ║\n"));
+
+                System.out.print(Tools.print(colorUI, "", "║                  E X I T                  ║"));
+                break;
+            case 2:
+
+                System.out.print(Tools.print(colorUI, "", "║            P L A Y   A G A I N            ║\n"));
+
+                System.out.print(Tools.print(colorUI, "", "║                 "));
+                System.out.print(Tools.print("white", "red", " E X I T "));
+                System.out.print(Tools.print(colorUI, "", "                 ║"));
+                break;
         }
+
+        System.out.println(Tools.print(colorUI, "", "\n╚═══════════════════════════════════════════╝"));
     }
 
     /**
@@ -990,55 +981,46 @@ public class Screens {
      *
      * @param menuEnding Indica la posición selecionada, si PLAY AGAIN o EXIT.
      */
-    public static void youLoseScreen(int menuEnding) {
+    public static void youLoseScreen(int optionSelected) {
         Tools.clearConsole();
 
-        for (int i = 0; i < h; i++) {
-            if (i == 0) {
-                Tools.printRow('╔', '═', w, '╗', colorUI);
-            } else if (i == h - 1) {
-                Tools.printRow('╚', '═', w, '╝', colorUI);
-            } else if (i == 3) {
-                System.out.print(Tools.print(colorUI, "", "║      "));
-                System.out.print(Tools.print(colorText, "", "╚╦╝ ╔═╗ ╦ ╦     ╦   ╔═╗ ╔═╗ ╔═╗"));
-                System.out.print(Tools.print(colorUI, "", "      ║"));
-            } else if (i == 4) {
-                System.out.print(Tools.print(colorUI, "", "║       "));
-                System.out.print(Tools.print(colorText, "", "║  ║ ║ ║ ║     ║   ║ ║ ╚═╗ ║╣ "));
-                System.out.print(Tools.print(colorUI, "", "      ║"));
-            } else if (i == 5) {
-                System.out.print(Tools.print(colorUI, "", "║       "));
-                System.out.print(Tools.print(colorText, "", "╩  ╚═╝ ╚═╝     ╩═╝ ╚═╝ ╚═╝ ╚═╝"));
-                System.out.print(Tools.print(colorUI, "", "      ║"));
-            } else if (i == 8) {
-                if (menuEnding == 1) {
-                    System.out.print(Tools.print(colorUI, "", "║           "));
-                    System.out.print(Tools.print("white", "red", " P L A Y   A G A I N "));
-                    System.out.print(Tools.print(colorUI, "", "           ║"));
-                } else {
-                    System.out.print(Tools.print(colorUI, "", "║            P L A Y   A G A I N            ║"));
+        System.out.println(Tools.print(colorUI, "", "╔════════════════════════════════════════╗"));
+        System.out.println(Tools.print(colorUI, "", "║                                        ╚╗"));
+        System.out.println(Tools.print(colorUI, "", "║                                         ╚╗"));
 
-                }
-            } else if (i == 9) {
-                if (menuEnding == 2) {
-                    System.out.print(Tools.print(colorUI, "", "║                 "));
-                    System.out.print(Tools.print("white", "red", " E X I T "));
-                    System.out.print(Tools.print(colorUI, "", "                 ║"));
-                } else {
-                    System.out.print(Tools.print(colorUI, "", "║                  E X I T                  ║"));
+        System.out.print(Tools.print(colorUI, "", "║       "));
+        System.out.print(Tools.print(colorText, "", "╚╦╝ ╔═╗ ╦ ╦     ╦   ╔═╗ ╔═╗ ╔═╗"));
+        System.out.print(Tools.print(colorUI, "", "    ╚╗\n"));
 
-                }
-            } else {
-                for (int j = 0; j < w; j++) {
-                    if (j == 0 || j == w - 1) {
-                        System.out.print(Tools.print(colorUI, "", "║"));
-                    } else {
-                        System.out.print(" ");
-                    }
-                }
-            }
-            System.out.println("");
+        System.out.print(Tools.print(colorUI, "", "║       "));
+        System.out.print(Tools.print(colorText, "", " ║  ║ ║ ║ ║     ║   ║ ║ ╚═╗ ║╣ "));
+        System.out.print(Tools.print(colorUI, "", "     ║\n"));
+
+        System.out.print(Tools.print(colorUI, "", "║       "));
+        System.out.print(Tools.print(colorText, "", " ╩  ╚═╝ ╚═╝     ╩═╝ ╚═╝ ╚═╝ ╚═╝"));
+        System.out.print(Tools.print(colorUI, "", "     ║\n"));
+
+        System.out.print(Tools.print(colorUI, "", "║                                           ║\n"));
+        System.out.print(Tools.print(colorUI, "", "║                                           ║\n"));
+
+        switch (optionSelected) {
+            case 1:
+                System.out.print(Tools.print(colorUI, "", "║           "));
+                System.out.print(Tools.print("white", "red", " P L A Y   A G A I N "));
+                System.out.print(Tools.print(colorUI, "", "           ║\n"));
+
+                System.out.print(Tools.print(colorUI, "", "║                  E X I T                  ║"));
+                break;
+            case 2:
+                System.out.print(Tools.print(colorUI, "", "║            P L A Y   A G A I N            ║\n"));
+
+                System.out.print(Tools.print(colorUI, "", "║                 "));
+                System.out.print(Tools.print("white", "red", " E X I T "));
+                System.out.print(Tools.print(colorUI, "", "                 ║"));
+                break;
         }
+
+        System.out.println(Tools.print(colorUI, "", "\n╚═══════════════════════════════════════════╝"));
     }
 
     /**
@@ -1055,10 +1037,21 @@ public class Screens {
         }
     }
 
+    /**
+     * Imprime el ring de la pantalla de pelea.
+     *
+     * @param character
+     * @param enemy
+     * @param playerTurn
+     */
     public static void printRing(String character, String enemy, boolean playerTurn) {
         Tools.clearConsole();
-        System.out.println(playerTurn);
-        int alto = 15;
+
+        System.out.println(Tools.print(colorText, "", "╔╗ ╔═╗╔╦╗╔╦╗╦  ╔═╗"));
+        System.out.println(Tools.print(colorText, "", "╠╩╗╠═╣ ║  ║ ║  ║╣ "));
+        System.out.println(Tools.print(colorText, "", "╚═╝╩ ╩ ╩  ╩ ╩═╝╚═╝"));
+
+        int alto = 8;
         int ancho = 20;
 
         for (int i = 0; i < alto; i++) {
@@ -1090,7 +1083,7 @@ public class Screens {
                         System.out.print(Tools.print(Screens.colorUI, "", "═"));
                     }
                 }
-            } else if (i == 5) {
+            } else if (i == 2) {
                 for (int j = 0; j < ancho; j++) {
                     if (j == 0) {
                         System.out.print(Tools.print(colorUI, "", "║"));
@@ -1304,17 +1297,14 @@ public class Screens {
                         System.out.print("   ");
                     }
                 }
-            } else if (i == 6) {
+            } else if (i == 3) {
                 for (int j = 0; j < ancho; j++) {
                     if (j == 0) {
                         System.out.print(Tools.print(colorUI, "", "║"));
                     } else if (j > 0 && j <= 4) {
                         if (j == 1) {
                             System.out.print(" DMG    " + Player.DMG + "  ");
-                        } else {
-                            System.out.print("");
                         }
-
                     } else if (j > 4 && j < ancho - 5) {
                         if (j == ancho - 6) {
                             System.out.print(Tools.print(Screens.colorUI, "", "║"));
@@ -1326,34 +1316,29 @@ public class Screens {
                     } else if (j >= ancho - 5 && j < ancho - 1) {
                         if (j == ancho - 5) {
                             System.out.print(" DMG    " + Enemies.attack + "  ");
-                        } else {
-                            System.out.print("");
                         }
-
                     } else if (j == ancho - 1) {
                         System.out.print(Tools.print(colorUI, "", "║"));
                     } else {
                         System.out.print("   ");
                     }
                 }
-            } else if (i == 7) {
+            } else if (i == 4) {
                 for (int j = 0; j < ancho; j++) {
                     if (j == 0) {
                         System.out.print(Tools.print(colorUI, "", "║"));
                     } else if (j > 0 && j <= 4) {
                         if (j == 1) {
-                            if (Player.HP >= 100) {
+                            if (Player.HP <= 0) {
+                                System.out.print(" HP  0/" + Player.MAXHP + "  ");
+                            } else if (Player.HP >= 100) {
                                 System.out.print(" HP " + Player.HP + "/" + Player.MAXHP + " ");
                             } else if (Player.HP < 10) {
                                 System.out.print(" HP " + Player.HP + "/" + Player.MAXHP + "   ");
                             } else {
                                 System.out.print(" HP " + Player.HP + "/" + Player.MAXHP + "  ");
                             }
-
-                        } else {
-                            System.out.print("");
                         }
-
                     } else if (j > 4 && j < ancho - 5) {
                         if (j == ancho - 6) {
                             System.out.print(Tools.print(Screens.colorUI, "", "║"));
@@ -1368,35 +1353,30 @@ public class Screens {
                         }
                     } else if (j >= ancho - 5 && j < ancho - 1) {
                         if (j == ancho - 5) {
-                            if (Enemies.HP >= 100) {
+                            if (Enemies.HP <= 0) {
+                                System.out.print(" HP  0/" + Enemies.maxHP + "  ");
+                            } else if (Enemies.HP >= 100) {
                                 System.out.print(" HP " + Enemies.HP + "/" + Enemies.maxHP + " ");
                             } else if (Enemies.HP < 10) {
                                 System.out.print(" HP " + Enemies.HP + "/" + Enemies.maxHP + "   ");
                             } else {
                                 System.out.print(" HP " + Enemies.HP + "/" + Enemies.maxHP + "  ");
                             }
-
-                        } else {
-                            System.out.print("");
                         }
-
                     } else if (j == ancho - 1) {
                         System.out.print(Tools.print(colorUI, "", "║"));
                     } else {
                         System.out.print("   ");
                     }
                 }
-            } else if (i == 8) {
+            } else if (i == 5) {
                 for (int j = 0; j < ancho; j++) {
                     if (j == 0) {
                         System.out.print(Tools.print(colorUI, "", "║"));
                     } else if (j > 0 && j <= 4) {
                         if (j == 1) {
                             System.out.print(" LVL    " + Player.LV + "   ");
-                        } else {
-                            System.out.print("");
                         }
-
                     } else if (j > 4 && j < ancho - 5) {
                         if (j == ancho - 6) {
                             System.out.print(Tools.print(Screens.colorUI, "", "║"));
@@ -1408,14 +1388,9 @@ public class Screens {
                     } else if (j >= ancho - 5 && j < ancho - 1) {
                         if (j == ancho - 5) {
                             System.out.print(" LVL    " + Enemies.LVL + "   ");
-                        } else {
-                            System.out.print("");
                         }
-
                     } else if (j == ancho - 1) {
                         System.out.print(Tools.print(colorUI, "", "║"));
-                    } else {
-                        System.out.print("   ");
                     }
                 }
             } else {
@@ -1435,11 +1410,9 @@ public class Screens {
                     } else {
                         System.out.print("   ");
                     }
-
                 }
             }
             System.out.println("");
         }
     }
-
 }
