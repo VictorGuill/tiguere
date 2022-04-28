@@ -453,7 +453,12 @@ public class Screens {
         }
         //String convert (sc) (cambia los caracteres problematicos dependiendo el entorno donde se ejecuta)
         //Si dividimos la linea en varios System.out, se percive un retraso al aparece la linea en consola muy molesto.
-        System.out.println(Tools.print(colorUI, "", "   [") + Tools.print(colorText, "", Tools.sc("↑↓")) + Tools.print(colorUI, "", "] - Select") + Tools.print(colorUI, "", "\t  [") + Tools.print(colorText, "", "ENTER") + Tools.print(colorUI, "", "] - Accept"));
+        System.out.println(Tools.print(colorUI, "", "   [") 
+                + Tools.print(colorText, "", Tools.sc("↑↓")) 
+                + Tools.print(colorUI, "", "] - Select") 
+                + Tools.print(colorUI, "", "\t  [") 
+                + Tools.print(colorText, "", "ENTER") 
+                + Tools.print(colorUI, "", "] - Accept"));
     }
 
     /**

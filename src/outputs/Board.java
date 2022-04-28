@@ -1,6 +1,7 @@
 package outputs;
 
 import gamejava.*;
+import static outputs.Screens.colorText;
 import static outputs.Screens.colorUI;
 import utilities.*;
 import players.*;
@@ -346,14 +347,36 @@ public class Board {
      */
     public static void showMenu() {
         if (GameJava.character == 1) {
-            System.out.println("1 - ATACK\t\t2 - CHANGE CHARACTER  \n"
-                    + "3 - PICK UP OBJECT\t4 - MOVE*2\tESC - EXIT ");
+            System.out.println(Tools.print(colorUI, "", "[") + Tools.print(colorText, "", "1") 
+                + Tools.print(colorUI, "", "] - ") + Tools.print(colorText, "", "ATACK")
+                + Tools.print(colorUI, "", "\t[")  + Tools.print(colorText, "", "2") 
+                + Tools.print(colorUI, "", "] - ") + Tools.print(colorText, "", "CHANGE CHARACTER") 
+                + Tools.print(colorUI, "", "\n[")  + Tools.print(colorText, "", "3") 
+                + Tools.print(colorUI, "", "] - ") + Tools.print(colorText, "", "PICK UP OBJECT") 
+                + Tools.print(colorUI, "", "\t[")  + Tools.print(colorText, "", "4") 
+                + Tools.print(colorUI, "", "] - ") + Tools.print(colorText, "", "MOVEx2") 
+                + Tools.print(colorUI, "", "\t[")  + Tools.print(colorText, "", "ESC") 
+                + Tools.print(colorUI, "", "] - ") + Tools.print(colorText, "", "EXIT"));
         } else if (GameJava.character == 2 ){
-            System.out.println("1 - ATACK\t\t2 - CHANGE CHARACTER  \n"
-                    + "3 - PICK UP OBJECT\t4 - HEAL\tESC - EXIT");
+            System.out.println(Tools.print(colorUI, "", "[") + Tools.print(colorText, "", "1") 
+                + Tools.print(colorUI, "", "] - ") + Tools.print(colorText, "", "ATACK")
+                + Tools.print(colorUI, "", "\t[")  + Tools.print(colorText, "", "2") 
+                + Tools.print(colorUI, "", "] - ") + Tools.print(colorText, "", "CHANGE CHARACTER") 
+                + Tools.print(colorUI, "", "\n[")  + Tools.print(colorText, "", "3") 
+                + Tools.print(colorUI, "", "] - ") + Tools.print(colorText, "", "PICK UP OBJECT") 
+                + Tools.print(colorUI, "", "\t[")  + Tools.print(colorText, "", "4") 
+                + Tools.print(colorUI, "", "] - ") + Tools.print(colorText, "", "HEAL") 
+                + Tools.print(colorUI, "", "\t[")  + Tools.print(colorText, "", "ESC") 
+                + Tools.print(colorUI, "", "] - ") + Tools.print(colorText, "", "EXIT"));
         } else {
-            System.out.println("1 - ATACK\t\t2 - CHANGE CHARACTER  \n"
-                    + "3 - PICK UP OBJECT\tESC - EXIT");
+            System.out.println(Tools.print(colorUI, "", "[") + Tools.print(colorText, "", "1") 
+                + Tools.print(colorUI, "", "] - ") + Tools.print(colorText, "", "ATACK")
+                + Tools.print(colorUI, "", "\t[")  + Tools.print(colorText, "", "2") 
+                + Tools.print(colorUI, "", "] - ") + Tools.print(colorText, "", "CHANGE CHARACTER") 
+                + Tools.print(colorUI, "", "\n[")  + Tools.print(colorText, "", "3") 
+                + Tools.print(colorUI, "", "] - ") + Tools.print(colorText, "", "PICK UP OBJECT")
+                + Tools.print(colorUI, "", "\t[")  + Tools.print(colorText, "", "ESC") 
+                + Tools.print(colorUI, "", "] - ") + Tools.print(colorText, "", "EXIT"));
         }
     }
 
