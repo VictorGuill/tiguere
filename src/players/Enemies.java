@@ -34,8 +34,6 @@ public class Enemies {
     }
 
     public static void movXPositive(int mov, int x, int y) {
-        int width = GameJava.widthBoard,
-                height = GameJava.heightBoard;
         
         String nextPosition = nextXPositive(mov, x, y);
         if (nextPosition.equals(Board.voidSquare)) {
@@ -47,9 +45,7 @@ public class Enemies {
     }
 
     public static void movXNegative(int mov, int x, int y) {
-        int width = GameJava.widthBoard,
-                height = GameJava.heightBoard;
-        
+
         String nextPosition = nextXNegative(mov, x, y);
         if (nextPosition.equals(Board.voidSquare)) {
             GameJava.board[y][x] = Board.voidSquare;
@@ -59,8 +55,6 @@ public class Enemies {
     }
 
     public static void movYPositive(int mov, int x, int y) {
-        int width = GameJava.widthBoard,
-                height = GameJava.heightBoard;
         
         String nextPosition = nextYPositive(mov, x, y);
         if (nextPosition.equals(Board.voidSquare)) {
@@ -71,8 +65,7 @@ public class Enemies {
     }
 
     public static void movYNegative(int mov, int x, int y) {
-        int width = GameJava.widthBoard,
-                height = GameJava.heightBoard;
+
         String nextPosition = nextYNegative(mov, x, y);
         if (nextPosition.equals(Board.voidSquare)) {
             GameJava.board[y][x] = Board.voidSquare;

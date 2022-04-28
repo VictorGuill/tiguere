@@ -4,6 +4,7 @@ import outputs.Board;
 import gamejava.GameJava;
 import static gamejava.GameJava.INPUT;
 import static gamejava.GameJava.INPUT_RATE;
+import gamejava.Play;
 import java.util.concurrent.TimeUnit;
 import outputs.Screens;
 
@@ -306,26 +307,23 @@ public abstract class Player {
         String nextYPositive = nextYPositive(1);
         String nextYNegative = nextYNegative(1);
 
+        Play.numBattles++;
         do {
             if (nextXPositive.equals(Board.EnemyRight) || nextXPositive.equals(Board.EnemyLeft) || nextXPositive.equals(Board.Enemy)) {
                 GameJava.board[y][x + 1] = Board.voidSquare;
                 whileAttack();
-                kills++;
                 isAttack = false;
             } else if (nextXNegative.equals(Board.EnemyRight) || nextXNegative.equals(Board.EnemyLeft) || nextXNegative.equals(Board.Enemy)) {
                 GameJava.board[y][x - 1] = Board.voidSquare;
                 whileAttack();
-                kills++;
                 isAttack = false;
             } else if (nextYPositive.equals(Board.EnemyRight) || nextYPositive.equals(Board.EnemyLeft) || nextYPositive.equals(Board.Enemy)) {
                 GameJava.board[y - 1][x] = Board.voidSquare;
                 whileAttack();
-                kills++;
                 isAttack = false;
             } else if (nextYNegative.equals(Board.EnemyRight) || nextYNegative.equals(Board.EnemyLeft) || nextYNegative.equals(Board.Enemy)) {
                 GameJava.board[y + 1][x] = Board.voidSquare;
                 whileAttack();
-                kills++;
                 isAttack = false;
             } else {
                 isAttack = false;
@@ -346,45 +344,44 @@ public abstract class Player {
         INPUT = "";
         boolean playerTurn = true;
         Enemies e = new Enemies();
-        e.HP = 100;
-        e.LVL = 1;
+        Enemies.HP = 100;
+        Enemies.LVL = 1;
         e.attack = 15;
         Screens.printRing(Board.Character, Board.Enemy, playerTurn);
         do {
-            if (Player.HP <= 0) {
-                Screens.endGameScreen();
-            }
+            
             if (e.HP > 0 && Player.HP > 0) {
                 if (playerTurn) {
                     switch (INPUT) {
                         case "1":
                             playerTurn = false;
-                            e.HP -= Player.DMG;
+                            Enemies.HP -= Player.DMG;
+                            if (Enemies.HP <= 0) {
+                                Enemies.HP = 0;
+                                kills++;
+                                LV++;
+                                DMG += 2;
+                            }
                             Screens.printRing(Board.Character, Board.Enemy, playerTurn);
                             INPUT = "";
                             TimeUnit.MILLISECONDS.sleep(20000 / INPUT_RATE);
                             break;
                     }
                 } else {
-                    Player.HP -= e.attack;
+                    Player.HP -= Enemies.attack;
                     if (Player.HP < 0) {
                         Player.HP = 0;
                     }
                     playerTurn = true;
                     Screens.printRing(Board.Character, Board.Enemy, playerTurn);
                     TimeUnit.MILLISECONDS.sleep(20000 / INPUT_RATE);
-
                 }
             } else {
                 stillCombat = false;
-                Player.HP = 100;
-                Player.LV++;
-                Player.DMG += 2;
-                e.HP = 100;
-                e.LVL = 1;
-                e.attack = 15;
+                Enemies.HP = 100;
+                Enemies.LVL = 1;
+                Enemies.attack = 15;
             }
-
             TimeUnit.MILLISECONDS.sleep(10000 / INPUT_RATE);
         } while (stillCombat);
         INPUT = "";

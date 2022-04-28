@@ -34,7 +34,7 @@ public class magician extends Player {
                     movXPositive(mov);
                     Board.printBoard();
                     break;
-                case "5":
+                case "4":
                     motionSkills = false;
                     break;
             }

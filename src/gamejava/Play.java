@@ -8,11 +8,12 @@ import outputs.Screens;
 import players.Enemies;
 import players.Player;
 import players.magician;
+import players.priest;
 
 public class Play {
 
     public static boolean isPlayingGame;
-
+    public static int numBattles;
     /**
      * Imprime el tablero y se encarga de escuchar el INPUT del usuario.
      *
@@ -29,7 +30,7 @@ public class Play {
         Board.printBoard();
         Enemies.setEnemiesDirection();
         objects = GameJava.numCoins + GameJava.numEnemies;
-
+        numBattles = 0;
         do {
             switch (INPUT) {
                 case "up":
@@ -65,24 +66,32 @@ public class Play {
                     Player.pickUpCoin();
                     Enemies.moveEnemies();
                     break;
-                case "4": //exit
-                    Screens.startMenu(1);
-                    isPlayingGame = false;
-                    break;
-                case "5":
-                    if (GameJava.character == 1) {
+                case "4": //curarse
+                    if (GameJava.character == 2) {
+                        priest.HealCharacter();
+                        Enemies.moveEnemies();
+                        Board.printBoard();
+                    } else if (GameJava.character == 1) {
                         magician.motionSkill(2);
                         Enemies.moveEnemies();
                         Board.printBoard();
                     }
                     break;
+                case "escape":
+                case "0": //exit
+                    Screens.startMenu(1);
+                    isPlayingGame = false;
+                    break;
             }
             INPUT = "";
-            if (objects == Player.kills + Player.sackOfCoins) {
-                Screens.endGameScreen();
-            }
             Enemies.setEnemiesDirection();
             TimeUnit.MILLISECONDS.sleep(1000 / INPUT_RATE);
+            if (objects == numBattles + Player.sackOfCoins) {
+                Screens.endGameScreen();
+                Screens.startMenu(1);
+                isPlayingGame = false;
+                Screens.startMenu(1);
+            }
         } while (isPlayingGame);
     }
 }

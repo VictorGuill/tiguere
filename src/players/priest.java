@@ -22,12 +22,12 @@ public class priest extends Player {
      * o menos la vida al revivivr personaje.
      */
     public static void ReviveCharacter() {
-        if (Player.LV >= 3) {
+        if (Player.LV >= 5) {
             Player.HP = Player.MAXHP;
-        } else if (Player.LV == 2) {
-            Player.HP = 200;
+        } else if (Player.LV == 3 || Player.LV == 4) {
+            Player.HP += Player.MAXHP*0.7;
         } else {
-            Player.HP = 100;
+            Player.HP += Player.MAXHP*0.5;
         }
     }
 }

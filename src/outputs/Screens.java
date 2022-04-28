@@ -280,7 +280,6 @@ public class Screens {
                         Play.playingGame();
                     } else {
                         Play.isPlayingGame = false;
-                        INPUT = "4";
                     }
                     break;
             }
@@ -960,13 +959,10 @@ public class Screens {
                 System.out.print(Tools.print(colorUI, "", "║           "));
                 System.out.print(Tools.print("white", "red", " P L A Y   A G A I N "));
                 System.out.print(Tools.print(colorUI, "", "           ║\n"));
-
                 System.out.print(Tools.print(colorUI, "", "║                  E X I T                  ║"));
                 break;
             case 2:
-
                 System.out.print(Tools.print(colorUI, "", "║            P L A Y   A G A I N            ║\n"));
-
                 System.out.print(Tools.print(colorUI, "", "║                 "));
                 System.out.print(Tools.print("white", "red", " E X I T "));
                 System.out.print(Tools.print(colorUI, "", "                 ║"));
@@ -978,27 +974,25 @@ public class Screens {
 
     /**
      * Imprime la pantalla final."YOU LOSE"
-     *
-     * @param menuEnding Indica la posición selecionada, si PLAY AGAIN o EXIT.
-     */
+      */
     public static void youLoseScreen(int optionSelected) {
         Tools.clearConsole();
 
         System.out.println(Tools.print(colorUI, "", "╔════════════════════════════════════════╗"));
         System.out.println(Tools.print(colorUI, "", "║                                        ╚╗"));
         System.out.println(Tools.print(colorUI, "", "║                                         ╚╗"));
-
-        System.out.print(Tools.print(colorUI, "", "║       "));
+        
+        System.out.print(Tools.print(colorUI, "", "║      "));
         System.out.print(Tools.print(colorText, "", "╚╦╝ ╔═╗ ╦ ╦     ╦   ╔═╗ ╔═╗ ╔═╗"));
-        System.out.print(Tools.print(colorUI, "", "    ╚╗\n"));
+        System.out.print(Tools.print(colorUI, "", "     ╚╗\n"));
 
-        System.out.print(Tools.print(colorUI, "", "║       "));
+        System.out.print(Tools.print(colorUI, "", "║      "));
         System.out.print(Tools.print(colorText, "", " ║  ║ ║ ║ ║     ║   ║ ║ ╚═╗ ║╣ "));
-        System.out.print(Tools.print(colorUI, "", "     ║\n"));
+        System.out.print(Tools.print(colorUI, "", "      ║\n"));
 
-        System.out.print(Tools.print(colorUI, "", "║       "));
+        System.out.print(Tools.print(colorUI, "", "║      "));
         System.out.print(Tools.print(colorText, "", " ╩  ╚═╝ ╚═╝     ╩═╝ ╚═╝ ╚═╝ ╚═╝"));
-        System.out.print(Tools.print(colorUI, "", "     ║\n"));
+        System.out.print(Tools.print(colorUI, "", "      ║\n"));
 
         System.out.print(Tools.print(colorUI, "", "║                                           ║\n"));
         System.out.print(Tools.print(colorUI, "", "║                                           ║\n"));
@@ -1021,20 +1015,6 @@ public class Screens {
         }
 
         System.out.println(Tools.print(colorUI, "", "\n╚═══════════════════════════════════════════╝"));
-    }
-
-    /**
-     * Coje un int y le añade un 0 si es solo 1 digito.
-     *
-     * @param number Numero a formatear.
-     * @return String formateada.
-     */
-    public static String spaceSingleDigit(int number) {
-        if (number < 10) {
-            return "0" + String.valueOf(number);
-        } else {
-            return String.valueOf(number);
-        }
     }
 
     /**
