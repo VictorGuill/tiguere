@@ -11,7 +11,7 @@ public class Board {
     public static boolean firstPrint = true;
     public static boolean firstCharacter = true;
     public static String Character,
-            Enemy,
+            Enemy = (" " + GameJava.CHAR_ENEMY + " "),
             Coin,
             EnemyRight = (" " + GameJava.CHAR_ENEMY + "/"),
             EnemyLeft = ("\\" + GameJava.CHAR_ENEMY + " "),
@@ -106,7 +106,6 @@ public class Board {
         Tools.clearConsole();
 
         Character = saveCharacter("right");
-        Enemy = saveEnemy();
         Coin = (" " + GameJava.CHAR_COIN + " ");
         if (firstPrint) {
             GameJava.numCoins = randomCoin();
@@ -229,14 +228,14 @@ public class Board {
                             } else if (j == wBoard + 14) {
                                 System.out.print(Tools.print(colorUI, "", "║"));
                             } else if (j == wBoard + 3) {
-                                if (Player.HP>= 100) {
+                                if (Player.HP >= 100) {
                                     System.out.print("HP " + String.valueOf(Player.HP));
                                 } else if (Player.HP >= 10) {
                                     System.out.print("HP  " + String.valueOf(Player.HP));
                                 } else {
                                     System.out.print("HP   " + String.valueOf(Player.HP));
                                 }
-                                
+
                             } else {
                                 System.out.print(" ");
                             }
@@ -357,9 +356,9 @@ public class Board {
          */
     }
 
-     /*
+    /*
     DELETE COMENT. Mejorar esta funcion, muy dificil de leer.
-    */
+     */
     /**
      * Lee el array Board e imprime el caracter y color correspondiente.
      *
@@ -388,13 +387,4 @@ public class Board {
             System.out.print("   ");
         }
     }
-
-    /*
-    DELETE COMENT. No entiendo que hace esta funcion, 
-    creo que nada, per si la borro, los enemigos no tienen espada. (by Victor)
-     */
-    public static String saveEnemy() {
-        Enemy = (" " + GameJava.CHAR_ENEMY + " ");
-        return Enemy;
-    }
-    }
+}
