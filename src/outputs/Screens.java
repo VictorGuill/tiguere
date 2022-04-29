@@ -322,6 +322,27 @@ public class Screens {
         System.out.println();
     }
 
+    /**
+     * Pantalla de espera inicial. No continua hasta recibir un INPUT.
+     *
+     * @throws InterruptedException
+     */
+    public static void tutorialScreen() throws InterruptedException {
+        boolean showingMenu = true;
+        INPUT = "";
+        Tools.clearConsole();
+        printTutorialScreen();
+        do {
+            switch (INPUT) {
+                case "enter":
+                    showingMenu = false;
+                    break;
+            }
+            INPUT = "";
+            TimeUnit.MILLISECONDS.sleep(1000 / INPUT_RATE);
+        } while (showingMenu);
+    }
+
     //////////////////////////////////////
     // Funciones que imprimen fotogramas
     // segun los valores que reciben.
@@ -456,11 +477,11 @@ public class Screens {
         }
         //String convert (sc) (cambia los caracteres problematicos dependiendo el entorno donde se ejecuta)
         //Si dividimos la linea en varios System.out, se percive un retraso al aparece la linea en consola muy molesto.
-        System.out.println(Tools.print(colorUI, "", "   [") 
-                + Tools.print(colorText, "", Tools.sc("↑↓")) 
-                + Tools.print(colorUI, "", "] - Select") 
-                + Tools.print(colorUI, "", "\t  [") 
-                + Tools.print(colorText, "", "ENTER") 
+        System.out.println(Tools.print(colorUI, "", "   [")
+                + Tools.print(colorText, "", Tools.sc("↑↓"))
+                + Tools.print(colorUI, "", "] - Select")
+                + Tools.print(colorUI, "", "\t  [")
+                + Tools.print(colorText, "", "ENTER")
                 + Tools.print(colorUI, "", "] - Accept"));
     }
 
@@ -982,14 +1003,14 @@ public class Screens {
 
     /**
      * Imprime la pantalla final."YOU LOSE"
-      */
+     */
     public static void youLoseScreen(int optionSelected) {
         Tools.clearConsole();
 
         System.out.println(Tools.print(colorUI, "", "╔════════════════════════════════════════╗"));
         System.out.println(Tools.print(colorUI, "", "║                                        ╚╗"));
         System.out.println(Tools.print(colorUI, "", "║                                         ╚╗"));
-        
+
         System.out.print(Tools.print(colorUI, "", "║      "));
         System.out.print(Tools.print(colorText, "", "╚╦╝ ╔═╗ ╦ ╦     ╦   ╔═╗ ╔═╗ ╔═╗"));
         System.out.print(Tools.print(colorUI, "", "     ╚╗\n"));
@@ -1035,16 +1056,14 @@ public class Screens {
     public static void printRing(String character, String enemy, boolean playerTurn) {
         Tools.clearConsole();
 
-        
-        
-        if (playerTurn){
+        if (playerTurn) {
             System.out.println(Tools.print(colorText, "", "╔╗ ╔═╗╔╦╗╔╦╗╦  ╔═╗     " + Tools.print("green", "", "┬ ┬┌─┐┬ ┬┬─┐  ┌┬┐┬ ┬┬─┐┌┐┌")));
             System.out.println(Tools.print(colorText, "", "╠╩╗╠═╣ ║  ║ ║  ║╣      " + Tools.print("green", "", "└┬┘│ ││ │├┬┘   │ │ │├┬┘│││")));
-            System.out.println(Tools.print(colorText, "", "╚═╝╩ ╩ ╩  ╩ ╩═╝╚═╝     " + Tools.print("green", "", " ┴ └─┘└─┘┴└─   ┴ └─┘┴└─┘└┘")));       
+            System.out.println(Tools.print(colorText, "", "╚═╝╩ ╩ ╩  ╩ ╩═╝╚═╝     " + Tools.print("green", "", " ┴ └─┘└─┘┴└─   ┴ └─┘┴└─┘└┘")));
         } else {
             System.out.println(Tools.print(colorText, "", "╔╗ ╔═╗╔╦╗╔╦╗╦  ╔═╗    " + Tools.print("red", "", "┌─┐┌┐┌┌─┐┌┬┐┬ ┬  ┌┬┐┬ ┬┬─┐┌┐┌")));
             System.out.println(Tools.print(colorText, "", "╠╩╗╠═╣ ║  ║ ║  ║╣     " + Tools.print("red", "", "├┤ │││├┤ │││└┬┘   │ │ │├┬┘│││")));
-            System.out.println(Tools.print(colorText, "", "╚═╝╩ ╩ ╩  ╩ ╩═╝╚═╝    " + Tools.print("red", "", "└─┘┘└┘└─┘┴ ┴ ┴    ┴ └─┘┴└─┘└┘"))); 
+            System.out.println(Tools.print(colorText, "", "╚═╝╩ ╩ ╩  ╩ ╩═╝╚═╝    " + Tools.print("red", "", "└─┘┘└┘└─┘┴ ┴ ┴    ┴ └─┘┴└─┘└┘")));
         }
         int alto = 8;
         int ancho = 20;
@@ -1340,9 +1359,9 @@ public class Screens {
                         } else if (j == 5) {
                             System.out.print(Tools.print(Screens.colorUI, "", "║"));
                         } else if (j == 7) {
-                            System.out.print(Tools.print("yellow","",Character));
+                            System.out.print(Tools.print("yellow", "", Character));
                         } else if (j == ancho - 8) {
-                            System.out.print(Tools.print("red","",Enemy));
+                            System.out.print(Tools.print("red", "", Enemy));
                         } else {
                             System.out.print(voidSquare);
                         }
@@ -1415,5 +1434,34 @@ public class Screens {
     public static void showAttackMenu() {
         System.out.println(Tools.print(colorUI, "", "[") + Tools.print(colorText, "", "1") 
                 + Tools.print(colorUI, "", "] - ") + Tools.print(colorText, "", "BASIC ATTACK"));
+    }
+
+    public static void printTutorialScreen() {
+        Tools.clearConsole();
+
+        System.out.println(""
+                + "────┐ ┌┬┐┬ ┬┌┬┐┌─┐┬─┐┬┌─┐┬  \n"
+                + "    ┤  │ │ │ │ │ │├┬┘│├─┤│  \n"
+                + "────┘  ┴ └─┘ ┴ └─┘┴└─┴┴ ┴┴─┘\n"
+                + " \n"
+                + "Welcome to HI-SPEED NEW WAVE: SOUL HUNTER.\n"
+                + "\n"
+                + "Your mission here is to collect all \n"
+                + "the coins and defeat your enemies.\n"
+                + "\n"
+                + "CONTROLS:\n"
+                + "	Use ↑↓←→ or WASD  to move.\n"
+                + "\n"
+                + "GAME SYMBOLS:\n"
+                + "	► Enemies: ╠0┘\n"
+                + "	► Coins: $\n"
+                + "	► Health potion: ♥\n"
+                + "	► Vision potion: ¶\n"
+                + "	\n"
+                + "Under your current screen, \n"
+                + "you got the avaible controls.\n"
+                + "[1] - ATACK	[2] - CHANGE CHARACTER\n"
+                + "\n"
+                + "Press ENTER to exit...");
     }
 }

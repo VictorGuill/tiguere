@@ -71,6 +71,8 @@ public class GameJava {
                             Play.playingGame();
                             break;
                         case 2: //tutorial
+                            Screens.tutorialScreen();
+                        Screens.startMenu(menuOption);
                             break;
                         case 3: //exit
                             Screens.credits();
