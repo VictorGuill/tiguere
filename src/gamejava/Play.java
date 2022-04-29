@@ -86,7 +86,7 @@ public class Play {
             INPUT = "";
             Enemies.setEnemiesDirection();
             TimeUnit.MILLISECONDS.sleep(1000 / INPUT_RATE);
-            if (objects == numBattles + Player.sackOfCoins) {
+            if (objects == numBattles + Player.sackOfCoins || Player.HP == 0) {
                 Screens.endGameScreen();
                 Screens.startMenu(1);
                 isPlayingGame = false;
