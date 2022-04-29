@@ -322,9 +322,7 @@ public abstract class Player {
         INPUT = "";
         boolean playerTurn = true;
         Enemies e = new Enemies();
-        Enemies.HP = 100;
-        Enemies.LVL = 1;
-        e.attack = 15;
+        Enemies.setUpEnemy(e);
         Screens.printRing(Board.Character, Board.Enemy, playerTurn);
         do {
             
@@ -356,9 +354,7 @@ public abstract class Player {
                 }
             } else {
                 stillCombat = false;
-                Enemies.HP = 100;
-                Enemies.LVL = 1;
-                Enemies.attack = 15;
+                Enemies.setUpEnemy(e);
             }
             TimeUnit.MILLISECONDS.sleep(10000 / INPUT_RATE);
         } while (stillCombat);

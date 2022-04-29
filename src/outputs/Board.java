@@ -15,10 +15,8 @@ public class Board {
             CHAR_COIN = '$',
             CHAR_POTION_HP ='¶',
             CHAR_VISIBLE_POTION ='÷';
-
-    public static String HP[] = new String[10];
-    public static boolean firstPrint = true;
-    public static boolean firstCharacter = true;
+    public static boolean firstPrint = true,
+            firstCharacter = true;
     public static int printDistance = 4;
     public static String Character,
             Enemy = (" " + CHAR_ENEMY + " "),

@@ -220,10 +220,10 @@ public class Screens {
                             GameJava.numEnemies = Tools.random(1, 2);
                             break;
                         case 2: //medium
-                            GameJava.numEnemies = Tools.random(2, 3);
+                            GameJava.numEnemies = Tools.random(3, 4);
                             break;
                         case 3: //hard
-                            GameJava.numEnemies = Tools.random(4, 6);
+                            GameJava.numEnemies = Tools.random(5, 6);
                             break;
                     }
                     showingMenu = false;
@@ -1032,10 +1032,17 @@ public class Screens {
     public static void printRing(String character, String enemy, boolean playerTurn) {
         Tools.clearConsole();
 
-        System.out.println(Tools.print(colorText, "", "╔╗ ╔═╗╔╦╗╔╦╗╦  ╔═╗"));
-        System.out.println(Tools.print(colorText, "", "╠╩╗╠═╣ ║  ║ ║  ║╣ "));
-        System.out.println(Tools.print(colorText, "", "╚═╝╩ ╩ ╩  ╩ ╩═╝╚═╝"));
-
+        
+        
+        if (playerTurn){
+            System.out.println(Tools.print(colorText, "", "╔╗ ╔═╗╔╦╗╔╦╗╦  ╔═╗     " + Tools.print("green", "", "┬ ┬┌─┐┬ ┬┬─┐  ┌┬┐┬ ┬┬─┐┌┐┌")));
+            System.out.println(Tools.print(colorText, "", "╠╩╗╠═╣ ║  ║ ║  ║╣      " + Tools.print("green", "", "└┬┘│ ││ │├┬┘   │ │ │├┬┘│││")));
+            System.out.println(Tools.print(colorText, "", "╚═╝╩ ╩ ╩  ╩ ╩═╝╚═╝     " + Tools.print("green", "", " ┴ └─┘└─┘┴└─   ┴ └─┘┴└─┘└┘")));       
+        } else {
+            System.out.println(Tools.print(colorText, "", "╔╗ ╔═╗╔╦╗╔╦╗╦  ╔═╗    " + Tools.print("red", "", "┌─┐┌┐┌┌─┐┌┬┐┬ ┬  ┌┬┐┬ ┬┬─┐┌┐┌")));
+            System.out.println(Tools.print(colorText, "", "╠╩╗╠═╣ ║  ║ ║  ║╣     " + Tools.print("red", "", "├┤ │││├┤ │││└┬┘   │ │ │├┬┘│││")));
+            System.out.println(Tools.print(colorText, "", "╚═╝╩ ╩ ╩  ╩ ╩═╝╚═╝    " + Tools.print("red", "", "└─┘┘└┘└─┘┴ ┴ ┴    ┴ └─┘┴└─┘└┘"))); 
+        }
         int alto = 8;
         int ancho = 20;
 
@@ -1330,9 +1337,9 @@ public class Screens {
                         } else if (j == 5) {
                             System.out.print(Tools.print(Screens.colorUI, "", "║"));
                         } else if (j == 7) {
-                            System.out.print(Character);
+                            System.out.print(Tools.print("yellow","",Character));
                         } else if (j == ancho - 8) {
-                            System.out.print(Enemy);
+                            System.out.print(Tools.print("red","",Enemy));
                         } else {
                             System.out.print(voidSquare);
                         }

@@ -18,13 +18,13 @@ public class GameJava {
     public static int menuOption = 1,
             secondSelection = 1, //valor para cuando hay mas de una selecion en un menu (Ej: choose caracter)
             character = 1, //personage del jugador
-            widthBoard,
-            heightBoard,
+            widthBoard, // amplada del tablero
+            heightBoard, // altura del tablero
             numEnemies, //numero de enemigos dependiendo la dificultad
-            numCoins,
-            difficultSelection,
-            numHP_Potions,
-            numVisiblePotions;
+            numCoins, // numero de monedas que aparecen en el tablero
+            difficultSelection, // escoge la dificultad del juego
+            numHP_Potions, // numero de pociones que te curan
+            numVisiblePotions; // numero de pociones de aumento de visibilidad
     
     public static boolean SECTION_RUNNING = true;
     public static String[][] board;
