@@ -189,6 +189,10 @@ public class Tools {
                     return 30;
                 case '▼':
                     return 31;
+                case '♥':
+                    return 3;
+                case '¶':
+                    return 20;
                 default:
                     return character;
             }
