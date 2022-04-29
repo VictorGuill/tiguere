@@ -14,7 +14,13 @@ public class Enemies {
     public Enemies() {
 
     }
-
+    
+    /**
+     * Movera el enemigo (en el eje positivo horizontalmente) en caso de que la siguente casilla sea un voidSquare que es una casilla vacia
+     * @param mov numeros de casillas a moverse por el personaje
+     * @param x posición en x del enemigo
+     * @param y posición en y del enemigo
+     */
 
     public static void movXPositive(int mov, int x, int y) {
 
@@ -26,6 +32,13 @@ public class Enemies {
         }
 
     }
+    
+      /**
+     * Movera el enemigo (en el eje negativo horizontalmente) en caso de que la siguente casilla sea un voidSquare que es una casilla vacia
+     * @param mov numeros de casillas a moverse por el personaje
+     * @param x posición en x del enemigo
+     * @param y posición en y del enemigo
+     */
 
     public static void movXNegative(int mov, int x, int y) {
 
@@ -36,6 +49,13 @@ public class Enemies {
             GameJava.board[y][x] = Board.Enemy;
         }
     }
+    
+      /**
+     * Movera el enemigo (en el eje positivo verticalmente) en caso de que la siguente casilla sea un voidSquare que es una casilla vacia
+     * @param mov numeros de casillas a moverse por el personaje
+     * @param x posición en x del enemigo
+     * @param y posición en y del enemigo
+     */
 
     public static void movYPositive(int mov, int x, int y) {
 
@@ -46,7 +66,13 @@ public class Enemies {
             GameJava.board[y][x] = Board.Enemy;
         }
     }
-
+    
+      /**
+     * Movera el enemigo (en el eje negativo verticalmente) en caso de que la siguente casilla sea un voidSquare que es una casilla vacia
+     * @param mov numeros de casillas a moverse por el personaje
+     * @param x posición en x del enemigo
+     * @param y posición en y del enemigo
+     */
     public static void movYNegative(int mov, int x, int y) {
 
         String nextPosition = nextYNegative(mov, x, y);
@@ -61,6 +87,14 @@ public class Enemies {
         Mètodes nextPosition que ens retornen el contingut de la seguent casella, 
         en cas de que es surti de la graella ens retornarà el String = "DON'T EXISTS".
      */
+    
+    /**
+     * Funcion que devuelve lo que hay en la casilla siguiente del personaje si se mueve hacia la derecha
+     * @param mov numeros de casillas a moverse por el personaje
+     * @param x posición en x del enemigo
+     * @param y posición en y del enemigo
+     * @return nextPosition Que hay en la siguiente casilla del personaje 
+     */
     public static String nextXPositive(int mov, int x, int y) {
         String nextPosition = "DON'T EXISTS";
         int width = GameJava.widthBoard;
@@ -71,7 +105,14 @@ public class Enemies {
         }
         return nextPosition;
     }
-
+    
+        /**
+     * Funcion que devuelve lo que hay en la casilla siguiente del personaje si se mueve hacia la izquierda
+     * @param mov numeros de casillas a moverse por el personaje
+     * @param x posición en x del enemigo
+     * @param y posición en y del enemigo
+     * @return nextPosition Que hay en la siguiente casilla del personaje 
+     */
     public static String nextXNegative(int mov, int x, int y) {
         String nextPosition = "DON'T EXISTS";
         int width = GameJava.widthBoard;
@@ -83,6 +124,13 @@ public class Enemies {
         return nextPosition;
     }
 
+        /**
+     * Funcion que devuelve lo que hay en la casilla siguiente del personaje si se mueve hacia abajo
+     * @param mov numeros de casillas a moverse por el personaje
+     * @param x posición en x del enemigo
+     * @param y posición en y del enemigo
+     * @return nextPosition Que hay en la siguiente casilla del personaje 
+     */
     public static String nextYNegative(int mov, int x, int y) {
         String nextPosition = "DON'T EXISTS";
         int height = GameJava.heightBoard;
@@ -93,7 +141,14 @@ public class Enemies {
         }
         return nextPosition;
     }
-
+    
+        /**
+     * Funcion que devuelve lo que hay en la casilla siguiente del personaje si se mueve hacia arriba
+     * @param mov numeros de casillas a moverse por el personaje
+     * @param x posición en x del enemigo
+     * @param y posición en y del enemigo
+     * @return nextPosition Que hay en la siguiente casilla del personaje 
+     */
     public static String nextYPositive(int mov, int x, int y) {
         String nextPosition = "DON'T EXISTS";
         int height = GameJava.heightBoard;
@@ -104,6 +159,14 @@ public class Enemies {
         }
         return nextPosition;
     }
+    
+    /**
+     * Funcion que movera aleatoriamente el personaje 1 casilla en cualquier dirección , con una probabilidad de no moverse (esta probabilidad se reduce a medida 
+     * que augmenta la dificultad)
+     * @param mov numeros de casillas a moverse por el personaje
+     * @param x posición en x del enemigo
+     * @param y posición en y del enemigo
+     */
 
     public static void randomEnemyMovement(int mov, int x, int y) {
         int probability = 0;
@@ -139,7 +202,11 @@ public class Enemies {
                 break;
         }
     }
-
+    
+    /**
+     * Funcion que buscara en el tablero a un enemigo y le hará moverse con la función randomEnemyMovement , y con la setEnemiDirection 
+     * cambaiara la vista del personaje
+     */
     public static void moveEnemies() {
         int enemyNum = 0;
         String board[][] = GameJava.board;
@@ -154,7 +221,10 @@ public class Enemies {
         }
         setEnemiesDirection();
     }
-
+    /**
+     * Función que buscara todos los enemigos del array , despues comparará su posición con la de tu y finalmente cambiara su vista para situarlo mirando hacia ti
+     */
+ 
     public static void setEnemiesDirection() {
         String[][] board = GameJava.board;
 
@@ -170,6 +240,11 @@ public class Enemies {
             }
         }
     }
+    
+    /**
+     * En referencia a la dificultat se determinaran unas caracteristicas para luchar contra él
+     * @param e enemigo creado a la hora de luchar contra él 
+     */
 
     public static void setUpEnemy(Enemies e) {
         Enemies.HP = 100;
