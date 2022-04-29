@@ -45,31 +45,9 @@ public abstract class Player {
             Board.saveCharacter(direction);
             GameJava.board[Player.getYpos()][Player.getXpos()] = Board.Character;
 
-            //En caso de que la siguiente casilla sea una moneda sumara 1 al recuento de monedas y al colocarse encima borrara la coin del mapa.
-            if (nextPosition.equals(Board.Coin)) {
-                gainCoins();
-            }
-            
-            //En caso de que la siguiente casilla sea una pocion de HP te sumara 50 HP a la vida del jugador, en caso 
-            else if (nextPosition.equals(Board.PotionHP)){
-                Player.HP += 50;
-                
-                if(Player.HP > Player.MAXHP){
-                   Player.HP = MAXHP;
-                }   
-            }
-            //En caso de haber una pocion que augmente la visiblidad del personaje , augmentara el rango a mostrar en el tablero
-            else if (nextPosition.equals(Board.visiblePotion)){
-                Board.printDistance += 1; 
-            }
+            nextObject(nextPosition);
         }
-
-        // En caso de llegar a los limites derechos del mapa dara la vuelta a la posición de la espada utilizando la función saveCharacter del Board
-        if (Player.xpos == GameJava.widthBoard - 1) {
-            direction = "left";
-            Board.saveCharacter(direction);
-            GameJava.board[Player.getYpos()][Player.getXpos()] = Board.Character;
-        }
+        wallR_Direction();
     }
 
     /**
@@ -89,29 +67,11 @@ public abstract class Player {
             direction = "left";
             Board.saveCharacter(direction);
             GameJava.board[Player.getYpos()][Player.getXpos()] = Board.Character;
-            if (nextPosition.equals(Board.Coin)) {
-                gainCoins();
-            }
             
-            else if (nextPosition.equals(Board.PotionHP)){
-                Player.HP += 50;
-                
-                if(Player.HP > Player.MAXHP){
-                   Player.HP = MAXHP;
-                }   
-            }
-            
-            else if (nextPosition.equals(Board.visiblePotion)){
-                Board.printDistance += 1; 
-            }
-        }
-        //En caso de llegar a los limites izquierdos del tablero cambiara la dirección de la espada hacia la derecha
+            nextObject(nextPosition);
 
-        if (Player.xpos == 0) {
-            direction = "right";
-            Board.saveCharacter(direction);
-            GameJava.board[Player.getYpos()][Player.getXpos()] = Board.Character;
         }
+        wallL_Direction();
     }
 
     /**
@@ -131,21 +91,8 @@ public abstract class Player {
             Player.ypos -= mov;
             Board.saveCharacter(direction);
             GameJava.board[Player.getYpos()][Player.getXpos()] = Board.Character;
-            if (nextPosition.equals(Board.Coin)) {
-                gainCoins();
-            }
             
-            else if (nextPosition.equals(Board.PotionHP)){
-                Player.HP += 50;
-                
-                if(Player.HP > Player.MAXHP){
-                   Player.HP = MAXHP;
-                }   
-            }
-            
-            else if (nextPosition.equals(Board.visiblePotion)){
-                Board.printDistance += 1; 
-            }
+            nextObject(nextPosition);
         }
     }
 
@@ -165,21 +112,8 @@ public abstract class Player {
             Player.ypos += mov;
             Board.saveCharacter(direction);
             GameJava.board[Player.getYpos()][Player.getXpos()] = Board.Character;
-            if (nextPosition.equals(Board.Coin)) {
-                gainCoins();
-            }
             
-            else if (nextPosition.equals(Board.PotionHP)){
-                Player.HP += 50;
-                
-                if(Player.HP > Player.MAXHP){
-                   Player.HP = MAXHP;
-                }   
-            }
-            
-            else if (nextPosition.equals(Board.visiblePotion)){
-                Board.printDistance += 1; 
-            }
+            nextObject(nextPosition);
         }
     }
 
@@ -249,6 +183,50 @@ public abstract class Player {
             nextPosition = GameJava.board[yTemp][Player.getXpos()];
         }
         return nextPosition;
+    }
+    /**
+     * Funcion que ejecutara diferentes métodos en relacion al objeto que recojes de la siguiente posición
+     * @param nextPosition que objeto hay en la siguiente casilla 
+     */
+    
+    public static void nextObject(String nextPosition){
+             if (nextPosition.equals(Board.Coin)) {
+                gainCoins();
+            }
+            
+            else if (nextPosition.equals(Board.PotionHP)){
+                Player.HP += 50;
+                
+                if(Player.HP > Player.MAXHP){
+                   Player.HP = MAXHP;
+                }   
+            }
+        
+            else if (nextPosition.equals(Board.visiblePotion)){
+                Board.printDistance += 1; 
+            }
+    }
+    
+    /**
+     * Función que en caso de llegar al lado derecho del mapa cambiara la dirección de la espada
+     */
+    public static void wallR_Direction(){
+        if (Player.xpos == GameJava.widthBoard - 1) {
+            direction = "left";
+            Board.saveCharacter(direction);
+            GameJava.board[Player.getYpos()][Player.getXpos()] = Board.Character;
+        }
+    }
+    /**
+     * Función que en caso de llegar a los limites derechos del tablero cambiara la dirección de la espada hacia la izquierda
+     */
+    
+    public static void wallL_Direction(){
+        if (Player.xpos == 0) {
+            direction = "right";
+            Board.saveCharacter(direction);
+            GameJava.board[Player.getYpos()][Player.getXpos()] = Board.Character;
+        }
     }
 
     /**
