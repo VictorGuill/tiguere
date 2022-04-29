@@ -323,7 +323,7 @@ public class Screens {
     }
 
     /**
-     * Pantalla de espera inicial. No continua hasta recibir un INPUT.
+     * Pantalla con las instruciones del juego.
      *
      * @throws InterruptedException
      */
@@ -1430,38 +1430,44 @@ public class Screens {
         }
         showAttackMenu();
     }
-    
+
     public static void showAttackMenu() {
-        System.out.println(Tools.print(colorUI, "", "[") + Tools.print(colorText, "", "1") 
+        System.out.println(Tools.print(colorUI, "", "[") + Tools.print(colorText, "", "1")
                 + Tools.print(colorUI, "", "] - ") + Tools.print(colorText, "", "BASIC ATTACK"));
     }
 
+    /**
+     * Imprime la pantalla del tutorial.
+     */
     public static void printTutorialScreen() {
         Tools.clearConsole();
 
-        System.out.println(""
-                + "────┐ ┌┬┐┬ ┬┌┬┐┌─┐┬─┐┬┌─┐┬  \n"
-                + "    ┤  │ │ │ │ │ │├┬┘│├─┤│  \n"
-                + "────┘  ┴ └─┘ ┴ └─┘┴└─┴┴ ┴┴─┘\n"
-                + " \n"
-                + "Welcome to HI-SPEED NEW WAVE: SOUL HUNTER.\n"
-                + "\n"
-                + "Your mission here is to collect all \n"
-                + "the coins and defeat your enemies.\n"
-                + "\n"
-                + "CONTROLS:\n"
-                + "	Use ↑↓←→ or WASD  to move.\n"
-                + "\n"
-                + "GAME SYMBOLS:\n"
-                + "	► Enemies: ╠0┘\n"
-                + "	► Coins: $\n"
-                + "	► Health potion: ♥\n"
-                + "	► Vision potion: ¶\n"
-                + "	\n"
-                + "Under your current screen, \n"
-                + "you got the avaible controls.\n"
-                + "[1] - ATACK	[2] - CHANGE CHARACTER\n"
-                + "\n"
-                + "Press ENTER to exit...");
+        System.out.println(Tools.print(colorText, "", "────┐ ┌┬┐┬ ┬┌┬┐┌─┐┬─┐┬┌─┐┬  "));
+        System.out.println(Tools.print(colorText, "", "    ┤  │ │ │ │ │ │├┬┘│├─┤│  "));
+        System.out.println(Tools.print(colorText, "", "────┘  ┴ └─┘ ┴ └─┘┴└─┴┴ ┴┴─┘"));
+        System.out.println("");
+        System.out.println(Tools.print(colorUI, "", "Welcome to ") + Tools.print(colorText, "", "HI-SPEED NEW WAVE: SOUL HUNTER"));
+        System.out.println("");
+        System.out.println(Tools.print(colorUI, "", "Your mission here is to collect all "));
+        System.out.println(Tools.print(colorUI, "", "the coins and defeat your enemies."));
+        System.out.println("");
+        System.out.println(Tools.print(colorText, "", "CONTROLS:"));
+        System.out.print(Tools.print(colorUI, "", "	Use " + Tools.print(colorText, "", Tools.sc("↑↓←→ "))));
+        System.out.print(Tools.print(colorUI, "", "or "));
+        System.out.print(Tools.print(colorText, "", "WASD"));
+        System.out.print(Tools.print(colorUI, "", " to move."));
+        System.out.println("");
+        System.out.println(Tools.print(colorText, "", "GAME SYMBOLS:"));
+        System.out.println(Tools.print(colorUI, "", "	" + Tools.sc("►") + " Enemies: ╠0┘"));
+        System.out.println(Tools.print(colorUI, "", "	" + Tools.sc("►") + " Coins: $"));
+        System.out.println(Tools.print(colorUI, "", "	" + Tools.sc("►") + " Health potion: ") + Tools.print(colorUI, Enemy, Tools.sc("♥")));
+        System.out.println(Tools.print(colorUI, "", "	" + Tools.sc("►") + " Vision potion: ") + Tools.print(colorUI, Enemy, Tools.sc("¶")));
+        System.out.println("");
+        System.out.println(Tools.print(colorUI, "", "Under your current screen, "));
+        System.out.println(Tools.print(colorUI, "", "you got the avaible controls."));
+        System.out.println(Tools.print(colorUI, "", "you got the avaible controls."));
+        System.out.println(Tools.print(colorUI, "", "[1] - ATACK	[2] - CHANGE CHARACTER"));
+        System.out.println("");
+        System.out.println(Tools.print(colorUI, "", "Press ENTER to exit..."));
     }
 }
