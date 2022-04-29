@@ -14,7 +14,7 @@ public static char CHAR_GUERRERO = '¥',
             CHAR_ENEMY = '0', 
             CHAR_COIN = '$',
             CHAR_POTION_HP =Tools.UniversalCharacter('♥'),
-            CHAR_VISIBLE_POTION ='¶';
+            CHAR_VISIBLE_POTION =Tools.UniversalCharacter('¶');
 
     public static String HP[] = new String[10];
     public static boolean firstPrint = true;
