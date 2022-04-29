@@ -1361,7 +1361,7 @@ public class Screens {
                         } else if (j == 7) {
                             System.out.print(Tools.print("yellow", "", Character));
                         } else if (j == ancho - 8) {
-                            System.out.print(Tools.print("red", "", Enemy));
+                            System.out.print(Tools.print("red", "", Board.EnemyLeft));
                         } else {
                             System.out.print(voidSquare);
                         }

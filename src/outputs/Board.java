@@ -14,7 +14,7 @@ public static char CHAR_GUERRERO = '¥',
             CHAR_ENEMY = '0', 
             CHAR_COIN = '$',
             CHAR_POTION_HP =Tools.UniversalCharacter('♥'),
-            CHAR_VISIBLE_POTION ='¶';
+            CHAR_VISIBLE_POTION =Tools.UniversalCharacter('¶');
 
     public static String HP[] = new String[10];
     public static boolean firstPrint = true;
@@ -23,8 +23,8 @@ public static char CHAR_GUERRERO = '¥',
     public static String Character,
             Enemy = (" " + CHAR_ENEMY + " "),
             Coin,
-            EnemyRight = (Tools.print(Screens.enemieArmorColor, "", "╠") + Tools.print(Screens.enemieColor, "", String.valueOf(CHAR_ENEMY)) +Tools.print(Screens.enemieSword, "", "┘")),
-            EnemyLeft = (Tools.print(Screens.enemieSword, "", "└") +Tools.print(Screens.enemieColor, "", String.valueOf(CHAR_ENEMY)) + Tools.print(Screens.enemieArmorColor, "", "╣")),
+            EnemyLeft = (Tools.print(Screens.enemieArmorColor, "", "╠") + Tools.print(Screens.enemieColor, "", String.valueOf(CHAR_ENEMY)) +Tools.print(Screens.enemieSword, "", "┘")),
+            EnemyRight = (Tools.print(Screens.enemieSword, "", "└") +Tools.print(Screens.enemieColor, "", String.valueOf(CHAR_ENEMY)) + Tools.print(Screens.enemieArmorColor, "", "╣")),
             PotionHP = (" " + CHAR_POTION_HP + " "),
             visiblePotion = (" " + CHAR_VISIBLE_POTION + " "),
             voidSquare = "░░░",
