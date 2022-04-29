@@ -8,21 +8,23 @@ import players.*;
 
 public class Board {
     
-    public static char CHAR_GUERRERO = '¥', 
+public static char CHAR_GUERRERO = '¥', 
             CHAR_MAGO = '£', 
             CHAR_SACERDOTE = '±', 
-            CHAR_ENEMY = '¤', 
+            CHAR_ENEMY = '0', 
             CHAR_COIN = '$',
-            CHAR_POTION_HP ='¶',
-            CHAR_VISIBLE_POTION ='÷';
-    public static boolean firstPrint = true,
-            firstCharacter = true;
+            CHAR_POTION_HP =Tools.UniversalCharacter('♥'),
+            CHAR_VISIBLE_POTION ='¶';
+
+    public static String HP[] = new String[10];
+    public static boolean firstPrint = true;
+    public static boolean firstCharacter = true;
     public static int printDistance = 4;
     public static String Character,
             Enemy = (" " + CHAR_ENEMY + " "),
             Coin,
-            EnemyRight = (" " + CHAR_ENEMY + "/"),
-            EnemyLeft = ("\\" + CHAR_ENEMY + " "),
+            EnemyRight = (Tools.print(Screens.enemieArmorColor, "", "╠") + Tools.print(Screens.enemieColor, "", String.valueOf(CHAR_ENEMY)) +Tools.print(Screens.enemieSword, "", "┘")),
+            EnemyLeft = (Tools.print(Screens.enemieSword, "", "└") +Tools.print(Screens.enemieColor, "", String.valueOf(CHAR_ENEMY)) + Tools.print(Screens.enemieArmorColor, "", "╣")),
             PotionHP = (" " + CHAR_POTION_HP + " "),
             visiblePotion = (" " + CHAR_VISIBLE_POTION + " "),
             voidSquare = "░░░",
@@ -441,9 +443,9 @@ public class Board {
             } else if (GameJava.board[column][row].equals(" " + CHAR_GUERRERO + " ")
                     || GameJava.board[column][row].equals(" " + CHAR_MAGO + " ")
                     || GameJava.board[column][row].equals(" " + CHAR_SACERDOTE + " ")
-                    || GameJava.board[column][row].equals(" " + CHAR_ENEMY + " ")
-                    || GameJava.board[column][row].equals(" " + CHAR_ENEMY + "/")
-                    || GameJava.board[column][row].equals("\\" + CHAR_ENEMY + " ")){
+                    || GameJava.board[column][row].equals(Enemy)
+                    || GameJava.board[column][row].equals(EnemyLeft)
+                    || GameJava.board[column][row].equals(EnemyRight)){
                 System.out.print(Tools.print(enemyColor, "", GameJava.board[column][row]));
             }
         } else {

@@ -15,7 +15,10 @@ public class Screens {
 
     public static String colorUI = "cyan",
             colorText = "yellow",
-            colorHighlight = "red";
+            colorHighlight = "red",
+            enemieArmorColor = "red",
+            enemieColor = "green",
+            enemieSword = "red";
 
     public static int w = 45, h = 11;
     public static boolean firstTime = true;
