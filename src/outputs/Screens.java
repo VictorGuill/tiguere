@@ -1406,5 +1406,11 @@ public class Screens {
             }
             System.out.println("");
         }
+        showAttackMenu();
+    }
+    
+    public static void showAttackMenu() {
+        System.out.println(Tools.print(colorUI, "", "[") + Tools.print(colorText, "", "1") 
+                + Tools.print(colorUI, "", "] - ") + Tools.print(colorText, "", "BASIC ATTACK"));
     }
 }
