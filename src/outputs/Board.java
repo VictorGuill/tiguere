@@ -7,32 +7,33 @@ import utilities.*;
 import players.*;
 
 public class Board {
-    
-public static char CHAR_GUERRERO = '¥', 
-            CHAR_MAGO = '£', 
-            CHAR_SACERDOTE = '±', 
-            CHAR_ENEMY = '0', 
+
+    public static char CHAR_GUERRERO = '¥',
+            CHAR_MAGO = '£',
+            CHAR_SACERDOTE = '±',
+            CHAR_ENEMY = '0',
             CHAR_COIN = '$',
-            CHAR_POTION_HP =Tools.UniversalCharacter('♥'),
-            CHAR_VISIBLE_POTION =Tools.UniversalCharacter('¶');
+            CHAR_POTION_HP = Tools.UniversalCharacter('♥'),
+            CHAR_VISIBLE_POTION = Tools.UniversalCharacter('¶');
 
     public static String HP[] = new String[10];
     public static boolean firstPrint = true;
     public static boolean firstCharacter = true;
     public static int printDistance = 4;
     public static String Character,
-            Enemy = (" " + CHAR_ENEMY + " "),
+            Enemy = (Tools.print(Screens.enemieArmorColor, "", "╠") + CHAR_ENEMY + Tools.print(Screens.enemieArmorColor, "", "╣")),
             Coin,
-            EnemyLeft = (Tools.print(Screens.enemieArmorColor, "", "╠") + Tools.print(Screens.enemieColor, "", String.valueOf(CHAR_ENEMY)) +Tools.print(Screens.enemieSword, "", "┘")),
-            EnemyRight = (Tools.print(Screens.enemieSword, "", "└") +Tools.print(Screens.enemieColor, "", String.valueOf(CHAR_ENEMY)) + Tools.print(Screens.enemieArmorColor, "", "╣")),
+            EnemyLeft = (Tools.print(Screens.enemieArmorColor, "", "╠") + Tools.print(Screens.enemieColor, "", String.valueOf(CHAR_ENEMY)) + Tools.print(Screens.enemieSword, "", "┘")),
+            EnemyRight = (Tools.print(Screens.enemieSword, "", "└") + Tools.print(Screens.enemieColor, "", String.valueOf(CHAR_ENEMY)) + Tools.print(Screens.enemieArmorColor, "", "╣")),
             PotionHP = (" " + CHAR_POTION_HP + " "),
             visiblePotion = (" " + CHAR_VISIBLE_POTION + " "),
             voidSquare = "░░░",
             bgColor = "green",
             coinColor = "yellow",
             enemyColor = "red",
-            potionColor="blue";
-    
+            healthPotionColor = "red",
+            visionPotionColor = "purple";
+
     /**
      * Llena el Board de casilla vacias y, despues, añade las coins e enemigos.
      *
@@ -49,9 +50,9 @@ public static char CHAR_GUERRERO = '¥',
             }
         }
         randomPositions(GameJava.numCoins, height - 1, width - 1, (" " + CHAR_COIN + " "));
-        randomPositions(GameJava.numEnemies, height - 1, width - 1, (" " + CHAR_ENEMY + " "));
-        randomPositions(GameJava.numHP_Potions,height - 1, width - 1,PotionHP);
-        randomPositions(GameJava.numVisiblePotions,height - 1, width - 1,visiblePotion);
+        randomPositions(GameJava.numEnemies, height - 1, width - 1, (Enemy));
+        randomPositions(GameJava.numHP_Potions, height - 1, width - 1, PotionHP);
+        randomPositions(GameJava.numVisiblePotions, height - 1, width - 1, visiblePotion);
 
         //Inicialitzem els valors
         GameJava.board[0][0] = Character;
@@ -82,7 +83,7 @@ public static char CHAR_GUERRERO = '¥',
         }
         return GameJava.numCoins = 4;
     }
-    
+
     public static int randomHP_Potion() {
         switch (GameJava.difficultSelection) {
             case 1:
@@ -94,7 +95,7 @@ public static char CHAR_GUERRERO = '¥',
         }
         return GameJava.numHP_Potions = 4;
     }
-    
+
     public static int randomVisiblePotion() {
         switch (GameJava.difficultSelection) {
             case 1:
@@ -347,36 +348,36 @@ public static char CHAR_GUERRERO = '¥',
      */
     public static void showMenu() {
         if (GameJava.character == 1) {
-            System.out.println(Tools.print(colorUI, "", "[") + Tools.print(colorText, "", "1") 
-                + Tools.print(colorUI, "", "] - ") + Tools.print(colorText, "", "ATACK")
-                + Tools.print(colorUI, "", "\t[")  + Tools.print(colorText, "", "2") 
-                + Tools.print(colorUI, "", "] - ") + Tools.print(colorText, "", "CHANGE CHARACTER") 
-                + Tools.print(colorUI, "", "\n[")  + Tools.print(colorText, "", "3") 
-                + Tools.print(colorUI, "", "] - ") + Tools.print(colorText, "", "PICK UP OBJECT") 
-                + Tools.print(colorUI, "", "\t[")  + Tools.print(colorText, "", "4") 
-                + Tools.print(colorUI, "", "] - ") + Tools.print(colorText, "", "MOVEx2") 
-                + Tools.print(colorUI, "", "\t[")  + Tools.print(colorText, "", "ESC") 
-                + Tools.print(colorUI, "", "] - ") + Tools.print(colorText, "", "EXIT"));
-        } else if (GameJava.character == 2 ){
-            System.out.println(Tools.print(colorUI, "", "[") + Tools.print(colorText, "", "1") 
-                + Tools.print(colorUI, "", "] - ") + Tools.print(colorText, "", "ATACK")
-                + Tools.print(colorUI, "", "\t[")  + Tools.print(colorText, "", "2") 
-                + Tools.print(colorUI, "", "] - ") + Tools.print(colorText, "", "CHANGE CHARACTER") 
-                + Tools.print(colorUI, "", "\n[")  + Tools.print(colorText, "", "3") 
-                + Tools.print(colorUI, "", "] - ") + Tools.print(colorText, "", "PICK UP OBJECT") 
-                + Tools.print(colorUI, "", "\t[")  + Tools.print(colorText, "", "4") 
-                + Tools.print(colorUI, "", "] - ") + Tools.print(colorText, "", "HEAL") 
-                + Tools.print(colorUI, "", "\t[")  + Tools.print(colorText, "", "ESC") 
-                + Tools.print(colorUI, "", "] - ") + Tools.print(colorText, "", "EXIT"));
+            System.out.println(Tools.print(colorUI, "", "[") + Tools.print(colorText, "", "1")
+                    + Tools.print(colorUI, "", "] - ") + Tools.print(colorText, "", "ATACK")
+                    + Tools.print(colorUI, "", "\t[") + Tools.print(colorText, "", "2")
+                    + Tools.print(colorUI, "", "] - ") + Tools.print(colorText, "", "CHANGE CHARACTER")
+                    + Tools.print(colorUI, "", "\n[") + Tools.print(colorText, "", "3")
+                    + Tools.print(colorUI, "", "] - ") + Tools.print(colorText, "", "PICK UP OBJECT")
+                    + Tools.print(colorUI, "", "\t[") + Tools.print(colorText, "", "4")
+                    + Tools.print(colorUI, "", "] - ") + Tools.print(colorText, "", "MOVEx2")
+                    + Tools.print(colorUI, "", "\t[") + Tools.print(colorText, "", "ESC")
+                    + Tools.print(colorUI, "", "] - ") + Tools.print(colorText, "", "EXIT"));
+        } else if (GameJava.character == 2) {
+            System.out.println(Tools.print(colorUI, "", "[") + Tools.print(colorText, "", "1")
+                    + Tools.print(colorUI, "", "] - ") + Tools.print(colorText, "", "ATACK")
+                    + Tools.print(colorUI, "", "\t[") + Tools.print(colorText, "", "2")
+                    + Tools.print(colorUI, "", "] - ") + Tools.print(colorText, "", "CHANGE CHARACTER")
+                    + Tools.print(colorUI, "", "\n[") + Tools.print(colorText, "", "3")
+                    + Tools.print(colorUI, "", "] - ") + Tools.print(colorText, "", "PICK UP OBJECT")
+                    + Tools.print(colorUI, "", "\t[") + Tools.print(colorText, "", "4")
+                    + Tools.print(colorUI, "", "] - ") + Tools.print(colorText, "", "HEAL")
+                    + Tools.print(colorUI, "", "\t[") + Tools.print(colorText, "", "ESC")
+                    + Tools.print(colorUI, "", "] - ") + Tools.print(colorText, "", "EXIT"));
         } else {
-            System.out.println(Tools.print(colorUI, "", "[") + Tools.print(colorText, "", "1") 
-                + Tools.print(colorUI, "", "] - ") + Tools.print(colorText, "", "ATACK")
-                + Tools.print(colorUI, "", "\t[")  + Tools.print(colorText, "", "2") 
-                + Tools.print(colorUI, "", "] - ") + Tools.print(colorText, "", "CHANGE CHARACTER") 
-                + Tools.print(colorUI, "", "\n[")  + Tools.print(colorText, "", "3") 
-                + Tools.print(colorUI, "", "] - ") + Tools.print(colorText, "", "PICK UP OBJECT")
-                + Tools.print(colorUI, "", "\t[")  + Tools.print(colorText, "", "ESC") 
-                + Tools.print(colorUI, "", "] - ") + Tools.print(colorText, "", "EXIT"));
+            System.out.println(Tools.print(colorUI, "", "[") + Tools.print(colorText, "", "1")
+                    + Tools.print(colorUI, "", "] - ") + Tools.print(colorText, "", "ATACK")
+                    + Tools.print(colorUI, "", "\t[") + Tools.print(colorText, "", "2")
+                    + Tools.print(colorUI, "", "] - ") + Tools.print(colorText, "", "CHANGE CHARACTER")
+                    + Tools.print(colorUI, "", "\n[") + Tools.print(colorText, "", "3")
+                    + Tools.print(colorUI, "", "] - ") + Tools.print(colorText, "", "PICK UP OBJECT")
+                    + Tools.print(colorUI, "", "\t[") + Tools.print(colorText, "", "ESC")
+                    + Tools.print(colorUI, "", "] - ") + Tools.print(colorText, "", "EXIT"));
         }
     }
 
@@ -436,16 +437,16 @@ public static char CHAR_GUERRERO = '¥',
                 System.out.print(Tools.print(bgColor, "", GameJava.board[column][row]));
             } else if (GameJava.board[column][row].equals(" " + CHAR_COIN + " ")) {
                 System.out.print(Tools.print(coinColor, "", GameJava.board[column][row]));
-            } else if(GameJava.board[column][row].equals(PotionHP)){
-                System.out.print(Tools.print(potionColor, "", GameJava.board[column][row]));
-            } else if(GameJava.board[column][row].equals(visiblePotion)){
-                System.out.print(Tools.print(potionColor, "", GameJava.board[column][row]));
+            } else if (GameJava.board[column][row].equals(PotionHP)) {
+                System.out.print(Tools.print(healthPotionColor, "", GameJava.board[column][row]));
+            } else if (GameJava.board[column][row].equals(visiblePotion)) {
+                System.out.print(Tools.print(visionPotionColor, "", GameJava.board[column][row]));
             } else if (GameJava.board[column][row].equals(" " + CHAR_GUERRERO + " ")
                     || GameJava.board[column][row].equals(" " + CHAR_MAGO + " ")
                     || GameJava.board[column][row].equals(" " + CHAR_SACERDOTE + " ")
                     || GameJava.board[column][row].equals(Enemy)
                     || GameJava.board[column][row].equals(EnemyLeft)
-                    || GameJava.board[column][row].equals(EnemyRight)){
+                    || GameJava.board[column][row].equals(EnemyRight)) {
                 System.out.print(Tools.print(enemyColor, "", GameJava.board[column][row]));
             }
         } else {
