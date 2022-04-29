@@ -31,7 +31,7 @@ public abstract class Player {
      *
      * @param mov Cantidad de casillas a mover en la direccion.
      */
-  public static void movXPositive(int mov) {
+    public static void movXPositive(int mov) {
         String nextPosition = nextXPositive(mov);
         /*
             En caso de que la siguiente casilla sea un vacio o una moneda entrara, después cojera la casilla donde te encuentres actualmente y la 
@@ -285,7 +285,6 @@ public abstract class Player {
         String nextYPositive = nextYPositive(1);
         String nextYNegative = nextYNegative(1);
 
-        Play.numBattles++;
         do {
             if (nextXPositive.equals(Board.EnemyRight) || nextXPositive.equals(Board.EnemyLeft) || nextXPositive.equals(Board.Enemy)) {
                 GameJava.board[y][x + 1] = Board.voidSquare;
@@ -325,7 +324,6 @@ public abstract class Player {
         Enemies.setUpEnemy(e);
         Screens.printRing(Board.Character, Board.Enemy, playerTurn);
         do {
-            
             if (e.HP > 0 && Player.HP > 0) {
                 if (playerTurn) {
                     switch (INPUT) {
@@ -337,6 +335,9 @@ public abstract class Player {
                                 kills++;
                                 LV++;
                                 DMG += 2;
+                                Play.numBattles++; //sumamos 1 batalla
+                                priest.numHeals = 0; //reseteamos que se pueda curar
+       
                             }
                             Screens.printRing(Board.Character, Board.Enemy, playerTurn);
                             INPUT = "";
@@ -347,6 +348,8 @@ public abstract class Player {
                     Player.HP -= Enemies.attack;
                     if (Player.HP < 0) {
                         Player.HP = 0;
+                        Play.numBattles++; //sumamos 1 batalla
+                        priest.numHeals = 0; //reseteamos que se pueda curar
                     }
                     playerTurn = true;
                     Screens.printRing(Board.Character, Board.Enemy, playerTurn);
