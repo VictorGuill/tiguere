@@ -93,7 +93,7 @@ public class Board {
             case 3:
                 return GameJava.numHP_Potions = Tools.random(3, 4);
         }
-        return GameJava.numHP_Potions = 4;
+        return GameJava.numHP_Potions;
     }
 
     public static int randomVisiblePotion() {
@@ -105,7 +105,7 @@ public class Board {
             case 3:
                 return GameJava.numVisiblePotions = Tools.random(2, 3);
         }
-        return GameJava.numVisiblePotions = 4;
+        return GameJava.numVisiblePotions;
     }
 
     /*
