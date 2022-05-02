@@ -20,25 +20,34 @@ public class magician extends Player {
             switch (GameJava.INPUT) {
                 case "up":
                     movYPositive(mov);
+                    Enemies.moveEnemies();
                     Board.printBoard();
                     break;
                 case "down":
                     movYNegative(mov);
+                    Enemies.moveEnemies();
                     Board.printBoard();
                     break;
                 case "left":
                     movXNegative(mov);
+                    Enemies.moveEnemies();
                     Board.printBoard();
                     break;
                 case "right":
                     movXPositive(mov);
+                    Enemies.moveEnemies();
                     Board.printBoard();
+                    break;
+                case "1":
+                    Player.basicAttack();
+                    Enemies.moveEnemies();
                     break;
                 case "4":
                     motionSkills = false;
                     break;
             }
             GameJava.INPUT = "";
+            Enemies.setEnemiesDirection();
             TimeUnit.MILLISECONDS.sleep(1000 / GameJava.INPUT_RATE);
         } while (motionSkills);
     }
