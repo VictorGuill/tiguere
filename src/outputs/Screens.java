@@ -229,6 +229,49 @@ public class Screens {
                             GameJava.numEnemies = Tools.random(5, 6);
                             break;
                     }
+                    switch(GameJava.numEnemies){
+                        case 1:
+                            enemies = new Enemies[1];
+                            enemies[0] = new Enemies();
+                            break;
+                        case 2: 
+                            enemies = new Enemies[2];
+                            enemies[0] = new Enemies();
+                            enemies[1] = new Enemies();
+                            break;
+                        case 3:
+                            enemies = new Enemies[3];
+                            enemies[0] = new Enemies();
+                            enemies[1] = new Enemies();
+                            enemies[2] = new Enemies();
+                            break;
+                        case 4: 
+                            enemies = new Enemies[4];
+                            enemies[0] = new Enemies();
+                            enemies[1] = new Enemies();
+                            enemies[2] = new Enemies();
+                            enemies[3] = new Enemies();
+                            break;
+                        case 5: 
+                            enemies = new Enemies[5];
+                            enemies[0] = new Enemies();
+                            enemies[1] = new Enemies();
+                            enemies[2] = new Enemies();
+                            enemies[3] = new Enemies();
+                            enemies[4] = new Enemies();
+                            break;
+                        case 6: 
+                            enemies = new Enemies[6];
+                            enemies[0] = new Enemies();
+                            enemies[1] = new Enemies();
+                            enemies[2] = new Enemies();
+                            enemies[3] = new Enemies();
+                            enemies[4] = new Enemies();
+                            enemies[5] = new Enemies();
+                            break;
+                            
+                            
+                    }
                     showingMenu = false;
                     break;
             }
@@ -1053,7 +1096,7 @@ public class Screens {
      * @param enemy
      * @param playerTurn
      */
-    public static void printRing(String character, String enemy, boolean playerTurn) {
+    /*public static void printRing(String character, String enemy, boolean playerTurn) {
         Tools.clearConsole();
 
         if (playerTurn) {

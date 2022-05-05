@@ -39,7 +39,7 @@ public class magician extends Player {
                     Board.printBoard();
                     break;
                 case "1":
-                    Player.basicAttack();
+                    //Player.basicAttack();
                     Enemies.moveEnemies();
                     break;
                 case "4":

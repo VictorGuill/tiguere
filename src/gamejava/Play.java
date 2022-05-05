@@ -54,7 +54,7 @@ public class Play {
                     Board.printBoard();
                     break;
                 case "1":
-                    Player.basicAttack();
+                    //Player.basicAttack();
                     Enemies.moveEnemies();
                     break;
                 case "2":
@@ -80,6 +80,9 @@ public class Play {
                 case "escape":
                 case "0": //exit
                     Screens.startMenu(1);
+                    for (int i = 0; i < GameJava.enemies.length; i++) {
+                        System.out.println(GameJava.enemies[i].toString());  
+                    }
                     isPlayingGame = false;
                     break;
             }

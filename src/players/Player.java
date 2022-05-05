@@ -274,7 +274,7 @@ public abstract class Player {
      * relación con el personaje sea uno de los posibles enemigos (estado normal
      * o cuando se encuentra mirando en alguna de las posiciones posibles
      */
-    public static void basicAttack() throws InterruptedException {
+    /*public static void basicAttack() throws InterruptedException {
         boolean isAttack;
 
         int x = getXpos();
@@ -316,7 +316,7 @@ public abstract class Player {
      *
      * @throws InterruptedException
      */
-    public static void whileAttack() throws InterruptedException {
+    /*public static void whileAttack() throws InterruptedException {
         boolean stillCombat = true;
         INPUT = "";
         boolean playerTurn = true;
@@ -365,7 +365,7 @@ public abstract class Player {
         Board.printBoard();
 
     }
-
+*/
     public static void gainCoins() {
         sackOfCoins += 1;
     }

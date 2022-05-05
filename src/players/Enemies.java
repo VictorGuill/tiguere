@@ -6,9 +6,11 @@ import utilities.Tools;
 
 public class Enemies {
 
-    public static int HP,
+    public   int HP,
                     attack, 
                     LVL,
+            ypos,
+            xpos,
                     maxHP = 100;
 
     public Enemies() {
@@ -220,6 +222,7 @@ public class Enemies {
             }
         }
         setEnemiesDirection();
+        setEnemiesPostions();
     }
     /**
      * Función que buscara todos los enemigos del array , despues comparará su posición con la de tu y finalmente cambiara su vista para situarlo mirando hacia ti
@@ -247,7 +250,7 @@ public class Enemies {
      */
 
     public static void setUpEnemy(Enemies e) {
-        Enemies.HP = 100;
+        //Enemies.HP = 100;
         switch (GameJava.difficultSelection) {
             case 1:
                 e.LVL = 1;
@@ -263,5 +266,41 @@ public class Enemies {
                 break;
         }
     }
+    
+        public static void setEnemiesPostions(){
+           
+         int i =0;
+        while(i< GameJava.enemies.length)
+            for (int j = 0; j < GameJava.board.length; j++) {
+                for (int k = 0; k < GameJava.board[j].length; k++) {
+                    if(GameJava.board[j][k].equals(Board.Enemy)||GameJava.board[j][k].equals(Board.EnemyLeft)||GameJava.board[j][k].equals(Board.EnemyRight)){
+                        GameJava.enemies[i].setXpos(k);
+                        GameJava.enemies[i].setYpos(j);
+                        i++;
+                    }
+                }
+ 
+            }
+        
+    }
+
+    @Override
+    public String toString() {
+        return "Enemies{" + "ypos=" + ypos + ", xpos=" + xpos + '}';
+    }
+        
+        
+
+    public void setYpos(int ypos) {
+        this.ypos = ypos;
+    }
+
+    public void setXpos(int xpos) {
+        this.xpos = xpos;
+    }
+        
+        
+        
+        
 
 }
