@@ -269,12 +269,12 @@ public class Enemies {
         public static void setEnemiesPostions(){
            
          int i =0;
-        while(i< GameJava.enemies.length)
+        while(i< GameJava.enemies.size())
             for (int j = 0; j < GameJava.board.length; j++) {
                 for (int k = 0; k < GameJava.board[j].length; k++) {
                     if(GameJava.board[j][k].equals(Board.Enemy)||GameJava.board[j][k].equals(Board.EnemyLeft)||GameJava.board[j][k].equals(Board.EnemyRight)){
-                        GameJava.enemies[i].setXpos(k);
-                        GameJava.enemies[i].setYpos(j);
+                        GameJava.enemies.get(i).setXpos(k);
+                        GameJava.enemies.get(i).setYpos(j);
                         i++;
                     }
                 }

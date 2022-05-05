@@ -141,8 +141,8 @@ public class Board {
         int wBoard = GameJava.widthBoard, hBoard = GameJava.heightBoard;
 
         Tools.clearConsole();
-          for (int i = 0; i < GameJava.enemies.length; i++) {
-                        System.out.println(GameJava.enemies[i].toString());  
+          for (int i = 0; i < GameJava.enemies.size(); i++) {
+              System.out.println(GameJava.enemies.get(i));              
           }
         Character = saveCharacter("right");
         Coin = (" " + CHAR_COIN + " ");
@@ -432,6 +432,7 @@ public class Board {
      * @param column Columna en la que estamos. Y
      */
     public static void printPosition(int row, int column) {
+        printDistance = 100;
         if (Player.getYpos() - printDistance <= column && Player.getYpos() + printDistance >= column && Player.getXpos() - printDistance <= row && Player.getXpos() + printDistance >= row) {
             if (Player.getXpos() == row && Player.getYpos() == column) {
                 System.out.print(saveCharacter(Player.direction));

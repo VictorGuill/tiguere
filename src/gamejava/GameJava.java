@@ -1,5 +1,6 @@
 package gamejava;
 
+import java.util.ArrayList;
 import outputs.Screens;
 import utilities.InputListener;
 import players.Player;
@@ -33,7 +34,7 @@ public class GameJava {
     public static warrior w1 = new warrior();
 
     public static Player[] playable;
-    public static Enemies[] enemies;
+    public static ArrayList <Enemies>enemies = new ArrayList <Enemies>();
 
     public static void main(String[] args) throws InterruptedException {
         InputListener keyInput = new InputListener(); //crea y abre la ventana java
