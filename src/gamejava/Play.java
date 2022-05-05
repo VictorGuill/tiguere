@@ -29,9 +29,11 @@ public class Play {
 
         Board.printBoard();
         Enemies.setEnemiesDirection();
+        Enemies.setEnemiesPostions();
         objects = GameJava.numCoins + GameJava.numEnemies;
         numBattles = 0;
         do {
+            
             switch (INPUT) {
                 case "up":
                     Player.movYPositive(1);
@@ -80,9 +82,6 @@ public class Play {
                 case "escape":
                 case "0": //exit
                     Screens.startMenu(1);
-                    for (int i = 0; i < GameJava.enemies.length; i++) {
-                        System.out.println(GameJava.enemies[i].toString());  
-                    }
                     isPlayingGame = false;
                     break;
             }

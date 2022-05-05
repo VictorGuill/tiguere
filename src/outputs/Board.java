@@ -141,7 +141,9 @@ public class Board {
         int wBoard = GameJava.widthBoard, hBoard = GameJava.heightBoard;
 
         Tools.clearConsole();
-
+          for (int i = 0; i < GameJava.enemies.length; i++) {
+                        System.out.println(GameJava.enemies[i].toString());  
+          }
         Character = saveCharacter("right");
         Coin = (" " + CHAR_COIN + " ");
         if (firstPrint) {

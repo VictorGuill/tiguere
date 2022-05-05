@@ -222,7 +222,6 @@ public class Enemies {
             }
         }
         setEnemiesDirection();
-        setEnemiesPostions();
     }
     /**
      * Función que buscara todos los enemigos del array , despues comparará su posición con la de tu y finalmente cambiara su vista para situarlo mirando hacia ti
