@@ -7,11 +7,11 @@ import utilities.Tools;
 public class Enemies {
 
     public   int HP,
-                    attack, 
+                 attack, 
                     LVL,
             ypos,
-            xpos,
-                    maxHP = 100;
+            xpos;
+    public static int maxHP = 100;
 
     public Enemies() {
 
@@ -24,13 +24,15 @@ public class Enemies {
      * @param y posición en y del enemigo
      */
 
-    public static void movXPositive(int mov, int x, int y) {
-
+    public  void movXPositive(int mov, int i) {
+        int x = GameJava.enemies.get(i).getXpos();
+        int y = GameJava.enemies.get(i).getYpos();
+        
         String nextPosition = nextXPositive(mov, x, y);
         if (nextPosition.equals(Board.voidSquare)) {
-            GameJava.board[y][x] = Board.voidSquare;
-            x += mov;
-            GameJava.board[y][x] = Board.Enemy;
+              GameJava.board[GameJava.enemies.get(i).getYpos()][GameJava.enemies.get(i).getXpos()] = Board.voidSquare;
+            GameJava.enemies.get(i).xpos += mov;
+              GameJava.board[GameJava.enemies.get(i).getYpos()][GameJava.enemies.get(i).getXpos()] = Board.Enemy;
         }
 
     }
@@ -42,13 +44,14 @@ public class Enemies {
      * @param y posición en y del enemigo
      */
 
-    public static void movXNegative(int mov, int x, int y) {
-
+    public void movXNegative(int mov, int i) {
+        int x = GameJava.enemies.get(i).getXpos();
+        int y = GameJava.enemies.get(i).getYpos();
         String nextPosition = nextXNegative(mov, x, y);
         if (nextPosition.equals(Board.voidSquare)) {
-            GameJava.board[y][x] = Board.voidSquare;
-            x -= mov;
-            GameJava.board[y][x] = Board.Enemy;
+            GameJava.board[GameJava.enemies.get(i).getYpos()][GameJava.enemies.get(i).getXpos()] = Board.voidSquare;
+            GameJava.enemies.get(i).xpos -= mov;
+            GameJava.board[GameJava.enemies.get(i).getYpos()][GameJava.enemies.get(i).getXpos()] = Board.Enemy;
         }
     }
     
@@ -59,13 +62,15 @@ public class Enemies {
      * @param y posición en y del enemigo
      */
 
-    public static void movYPositive(int mov, int x, int y) {
-
+    public void movYPositive(int mov, int i) {
+        int x = GameJava.enemies.get(i).getXpos();
+        int y = GameJava.enemies.get(i).getYpos();
         String nextPosition = nextYPositive(mov, x, y);
+        
         if (nextPosition.equals(Board.voidSquare)) {
-            GameJava.board[y][x] = Board.voidSquare;
-            y -= mov;
-            GameJava.board[y][x] = Board.Enemy;
+            GameJava.board[GameJava.enemies.get(i).getYpos()][GameJava.enemies.get(i).getXpos()] = Board.voidSquare;
+            GameJava.enemies.get(i).ypos -= mov;
+            GameJava.board[GameJava.enemies.get(i).getYpos()][GameJava.enemies.get(i).getXpos()] = Board.Enemy;
         }
     }
     
@@ -75,13 +80,14 @@ public class Enemies {
      * @param x posición en x del enemigo
      * @param y posición en y del enemigo
      */
-    public static void movYNegative(int mov, int x, int y) {
-
+    public void movYNegative(int mov, int i) {
+        int x = GameJava.enemies.get(i).getXpos();
+        int y = GameJava.enemies.get(i).getYpos();
         String nextPosition = nextYNegative(mov, x, y);
         if (nextPosition.equals(Board.voidSquare)) {
-            GameJava.board[y][x] = Board.voidSquare;
-            y += mov;
-            GameJava.board[y][x] = Board.Enemy;
+            GameJava.board[GameJava.enemies.get(i).getYpos()][GameJava.enemies.get(i).getXpos()] = Board.voidSquare;
+            GameJava.enemies.get(i).ypos += mov;
+            GameJava.board[GameJava.enemies.get(i).getYpos()][GameJava.enemies.get(i).getXpos()] = Board.Enemy;
         }
     }
 
@@ -170,7 +176,7 @@ public class Enemies {
      * @param y posición en y del enemigo
      */
 
-    public static void randomEnemyMovement(int mov, int x, int y) {
+    public  void randomEnemyMovement(int mov , int i) {
         int probability = 0;
         int whereToMove = Tools.random(1, 4);
 
@@ -189,16 +195,16 @@ public class Enemies {
             case 1:
                 switch (whereToMove) {
                     case 1:
-                        Enemies.movYPositive(mov, x, y);
+                        GameJava.enemies.get(i).movYPositive(mov, i);
                         break;
                     case 2:
-                        Enemies.movXPositive(mov, x, y);
+                        GameJava.enemies.get(i).movXPositive(mov, i);
                         break;
                     case 3:
-                        Enemies.movYNegative(mov, x, y);
+                        GameJava.enemies.get(i).movYNegative(mov, i);
                         break;
                     case 4:
-                        Enemies.movXNegative(mov, x, y);
+                        GameJava.enemies.get(i).movXNegative(mov, i);
                         break;
                 }
                 break;
@@ -210,16 +216,8 @@ public class Enemies {
      * cambaiara la vista del personaje
      */
     public static void moveEnemies() {
-        int enemyNum = 0;
-        String board[][] = GameJava.board;
-
-        for (int i = 0; i < board.length; i++) {
-            for (int j = 0; j < board[i].length; j++) {
-                if (board[i][j].equals(Board.Enemy) || board[i][j].equals(Board.EnemyRight) || board[i][j].equals(Board.EnemyLeft)) {
-                    randomEnemyMovement(1, j, i);
-                    enemyNum++;
-                }
-            }
+        for (int i = 0; i < GameJava.enemies.size(); i++) {
+            GameJava.enemies.get(i).randomEnemyMovement(1,i);
         }
         setEnemiesDirection();
     }
@@ -297,6 +295,31 @@ public class Enemies {
     public void setXpos(int xpos) {
         this.xpos = xpos;
     }
+
+    public int getHP() {
+        return HP;
+    }
+
+    public int getAttack() {
+        return attack;
+    }
+
+    public int getLVL() {
+        return LVL;
+    }
+
+    public int getYpos() {
+        return ypos;
+    }
+
+    public int getXpos() {
+        return xpos;
+    }
+
+    public static int getMaxHP() {
+        return maxHP;
+    }
+    
         
         
         

@@ -83,6 +83,7 @@ public class Play {
                 case "0": //exit
                     Screens.startMenu(1);
                     isPlayingGame = false;
+                    GameJava.enemies.clear();
                     break;
             }
             INPUT = "";
@@ -93,6 +94,7 @@ public class Play {
                 Screens.startMenu(1);
                 isPlayingGame = false;
                 Screens.startMenu(1);
+                GameJava.enemies.clear();
             }
         } while (isPlayingGame);
     }
