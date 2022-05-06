@@ -292,21 +292,25 @@ public abstract class Player {
                 i = selectEnemy(x+1 ,y);
                 whileAttack(i);
                 isAttack = false;
+                GameJava.enemies.get(i).setIsAlive(false);
             } else if (nextXNegative.equals(Board.EnemyRight) || nextXNegative.equals(Board.EnemyLeft) || nextXNegative.equals(Board.Enemy)) {
                 GameJava.board[y][x - 1] = Board.voidSquare;
                 i = selectEnemy(x-1 ,y);
                 whileAttack(i);
                 isAttack = false;
+                GameJava.enemies.get(i).setIsAlive(false);
             } else if (nextYPositive.equals(Board.EnemyRight) || nextYPositive.equals(Board.EnemyLeft) || nextYPositive.equals(Board.Enemy)) {
                 GameJava.board[y - 1][x] = Board.voidSquare;
                 i = selectEnemy(x ,y-1);
                 whileAttack(i);
                 isAttack = false;
+                GameJava.enemies.get(i).setIsAlive(false);
             } else if (nextYNegative.equals(Board.EnemyRight) || nextYNegative.equals(Board.EnemyLeft) || nextYNegative.equals(Board.Enemy)) {
                 GameJava.board[y + 1][x] = Board.voidSquare;
                 i = selectEnemy(x ,y+1);
                 whileAttack(i);
                 isAttack = false;
+                GameJava.enemies.get(i).setIsAlive(false);
             } else {
                 isAttack = false;
             }

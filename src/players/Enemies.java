@@ -6,15 +6,16 @@ import utilities.Tools;
 
 public class Enemies {
 
-    public   int HP,
-                 attack, 
-                    LVL,
-            ypos,
-            xpos;
+    public  int HP,
+                attack, 
+                LVL,
+                ypos,
+                xpos;
+    public boolean isAlive;
     public static int maxHP = 100;
 
     public Enemies() {
-
+        this.isAlive=true;
     }
     
     /**
@@ -217,7 +218,10 @@ public class Enemies {
      */
     public static void moveEnemies() {
         for (int i = 0; i < GameJava.enemies.size(); i++) {
-            GameJava.enemies.get(i).randomEnemyMovement(1,i);
+            if(GameJava.enemies.get(i).isAlive){
+               GameJava.enemies.get(i).randomEnemyMovement(1,i);
+            }
+            
         }
         setEnemiesDirection();
     }
@@ -269,8 +273,7 @@ public class Enemies {
     }
     
         public static void setEnemiesPostions(){
-           
-         int i =0;
+        int i =0;
         while(i< GameJava.enemies.size())
             for (int j = 0; j < GameJava.board.length; j++) {
                 for (int k = 0; k < GameJava.board[j].length; k++) {
@@ -281,8 +284,7 @@ public class Enemies {
                     }
                 }
  
-            }
-        
+            } 
     }
 
     @Override
@@ -335,6 +337,11 @@ public class Enemies {
     public void setLVL(int LVL) {
         this.LVL = LVL;
     }
+
+    public void setIsAlive(boolean isAlive) {
+        this.isAlive = isAlive;
+    }
+    
 
 
     
