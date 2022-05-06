@@ -273,13 +273,14 @@ public abstract class Player {
      * Método que inicia un ataque en caso de que la siguiente casilla en
      * relación con el personaje sea uno de los posibles enemigos (estado normal
      * o cuando se encuentra mirando en alguna de las posiciones posibles
+     * @param <error>
      */
-    /*public static void basicAttack() throws InterruptedException {
+    public static void basicAttack() throws InterruptedException {
         boolean isAttack;
 
         int x = getXpos();
         int y = getYpos();
-
+        int i;
         String nextXPositive = nextXPositive(1);
         String nextXNegative = nextXNegative(1);
         String nextYPositive = nextYPositive(1);
@@ -288,19 +289,23 @@ public abstract class Player {
         do {
             if (nextXPositive.equals(Board.EnemyRight) || nextXPositive.equals(Board.EnemyLeft) || nextXPositive.equals(Board.Enemy)) {
                 GameJava.board[y][x + 1] = Board.voidSquare;
-                whileAttack();
+                i = selectEnemy(x+1 ,y);
+                whileAttack(i);
                 isAttack = false;
             } else if (nextXNegative.equals(Board.EnemyRight) || nextXNegative.equals(Board.EnemyLeft) || nextXNegative.equals(Board.Enemy)) {
                 GameJava.board[y][x - 1] = Board.voidSquare;
-                whileAttack();
+                i = selectEnemy(x-1 ,y);
+                whileAttack(i);
                 isAttack = false;
             } else if (nextYPositive.equals(Board.EnemyRight) || nextYPositive.equals(Board.EnemyLeft) || nextYPositive.equals(Board.Enemy)) {
                 GameJava.board[y - 1][x] = Board.voidSquare;
-                whileAttack();
+                i = selectEnemy(x ,y-1);
+                whileAttack(i);
                 isAttack = false;
             } else if (nextYNegative.equals(Board.EnemyRight) || nextYNegative.equals(Board.EnemyLeft) || nextYNegative.equals(Board.Enemy)) {
                 GameJava.board[y + 1][x] = Board.voidSquare;
-                whileAttack();
+                i = selectEnemy(x ,y+1);
+                whileAttack(i);
                 isAttack = false;
             } else {
                 isAttack = false;
@@ -316,22 +321,22 @@ public abstract class Player {
      *
      * @throws InterruptedException
      */
-    /*public static void whileAttack() throws InterruptedException {
+        public static void whileAttack(int i) throws InterruptedException {
         boolean stillCombat = true;
         INPUT = "";
         boolean playerTurn = true;
-        Enemies e = new Enemies();
-        Enemies.setUpEnemy(e);
-        Screens.printRing(Board.Character, Board.Enemy, playerTurn);
+        Enemies.setUpEnemy(i);
+        
+        Screens.printRing(Board.Character, Board.Enemy, playerTurn,i);
         do {
-            if (e.HP > 0 && Player.HP > 0) {
+            if (GameJava.enemies.get(i).HP > 0 && Player.HP > 0) {
                 if (playerTurn) {
                     switch (INPUT) {
                         case "1":
                             playerTurn = false;
-                            Enemies.HP -= Player.DMG;
-                            if (Enemies.HP <= 0) {
-                                Enemies.HP = 0;
+                            GameJava.enemies.get(i).HP-= Player.DMG;
+                            if (GameJava.enemies.get(i).HP <= 0) {
+                                GameJava.enemies.get(i).HP = 0;
                                 kills++;
                                 LV++;
                                 DMG += 2;
@@ -339,25 +344,24 @@ public abstract class Player {
                                 priest.numHeals = 0; //reseteamos que se pueda curar
        
                             }
-                            Screens.printRing(Board.Character, Board.Enemy, playerTurn);
+                            Screens.printRing(Board.Character, Board.Enemy, playerTurn,i);
                             INPUT = "";
                             TimeUnit.MILLISECONDS.sleep(20000 / INPUT_RATE);
                             break;
                     }
                 } else {
-                    Player.HP -= Enemies.attack;
+                    Player.HP -= GameJava.enemies.get(i).attack;
                     if (Player.HP < 0) {
                         Player.HP = 0;
                         Play.numBattles++; //sumamos 1 batalla
                         priest.numHeals = 0; //reseteamos que se pueda curar
                     }
                     playerTurn = true;
-                    Screens.printRing(Board.Character, Board.Enemy, playerTurn);
+                    Screens.printRing(Board.Character, Board.Enemy, playerTurn,i);
                     TimeUnit.MILLISECONDS.sleep(20000 / INPUT_RATE);
                 }
             } else {
                 stillCombat = false;
-                Enemies.setUpEnemy(e);
             }
             TimeUnit.MILLISECONDS.sleep(10000 / INPUT_RATE);
         } while (stillCombat);
@@ -365,7 +369,20 @@ public abstract class Player {
         Board.printBoard();
 
     }
-*/
+
+    public static int selectEnemy(int x , int y){
+        int enemyArrayPosition=0;
+        int yEnemy , xEnemy;
+        for (int i = 0; i < GameJava.enemies.size(); i++) {
+            xEnemy = GameJava.enemies.get(i).getXpos();
+            yEnemy = GameJava.enemies.get(i).getYpos();
+            
+            if(xEnemy == x && yEnemy == y){
+                enemyArrayPosition = i;
+            }
+        }
+        return enemyArrayPosition;
+    }
     public static void gainCoins() {
         sackOfCoins += 1;
     }

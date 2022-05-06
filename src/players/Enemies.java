@@ -246,20 +246,24 @@ public class Enemies {
      * @param e enemigo creado a la hora de luchar contra él 
      */
 
-    public static void setUpEnemy(Enemies e) {
-        //Enemies.HP = 100;
+    public static void setUpEnemy(int i) {
+        GameJava.enemies.get(i).setHP(100);
+        int attack;
         switch (GameJava.difficultSelection) {
             case 1:
-                e.LVL = 1;
-                e.attack = Tools.random(10, 13);
+                GameJava.enemies.get(i).setLVL(1);
+                attack = Tools.random(10, 13);
+                GameJava.enemies.get(i).setAttack(attack);
                 break;
             case 2:
-                e.LVL = 2;
-                e.attack = Tools.random(14, 17);
+                GameJava.enemies.get(i).setLVL(2);
+                attack = Tools.random(14, 17);
+                GameJava.enemies.get(i).setAttack(attack);
                 break;
             default:
-                e.LVL = 3;
-                e.attack = Tools.random(18, 20);
+                GameJava.enemies.get(i).setLVL(3);
+                attack = Tools.random(18, 20);
+                GameJava.enemies.get(i).setAttack(attack);
                 break;
         }
     }
@@ -319,6 +323,21 @@ public class Enemies {
     public static int getMaxHP() {
         return maxHP;
     }
+
+    public void setHP(int HP) {
+        this.HP = HP;
+    }
+
+    public void setAttack(int attack) {
+        this.attack = attack;
+    }
+
+    public void setLVL(int LVL) {
+        this.LVL = LVL;
+    }
+
+
+    
     
         
         

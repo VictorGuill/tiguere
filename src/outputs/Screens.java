@@ -1090,7 +1090,7 @@ public class Screens {
      * @param enemy
      * @param playerTurn
      */
-    /*public static void printRing(String character, String enemy, boolean playerTurn) {
+    public static void printRing(String character, String enemy, boolean playerTurn,int enemyPos) {
         Tools.clearConsole();
 
         if (playerTurn) {
@@ -1242,7 +1242,7 @@ public class Screens {
                                 System.out.print(Tools.print("red", "", ("   ")));
                             }
                         } else if (j >= 10 && j < 14) {
-                            if (Enemies.HP > 90) {
+                            if (GameJava.enemies.get(enemyPos).HP > 90) {
                                 if (j == 10) {
                                     System.out.print(Tools.print("green", "", (" " + "██")));
                                 } else if (j == 13) {
@@ -1250,7 +1250,7 @@ public class Screens {
                                 } else {
                                     System.out.print(Tools.print("green", "", "███"));
                                 }
-                            } else if (Enemies.HP > 80) {
+                            } else if (GameJava.enemies.get(enemyPos).HP > 80) {
                                 if (j == 10) {
                                     System.out.print(Tools.print("green", "", (" " + " █")));
                                 } else if (j == 13) {
@@ -1258,7 +1258,7 @@ public class Screens {
                                 } else {
                                     System.out.print(Tools.print("green", "", "███"));
                                 }
-                            } else if (Enemies.HP > 70) {
+                            } else if (GameJava.enemies.get(enemyPos).HP > 70) {
                                 if (j == 10) {
                                     System.out.print(Tools.print("green", "", (" " + "  ")));
                                 } else if (j == 13) {
@@ -1266,7 +1266,7 @@ public class Screens {
                                 } else {
                                     System.out.print(Tools.print("green", "", "███"));
                                 }
-                            } else if (Enemies.HP > 60) {
+                            } else if (GameJava.enemies.get(enemyPos).HP > 60) {
                                 if (j == 10) {
                                     System.out.print(Tools.print("green", "", ("   ")));
                                 } else if (j == 11) {
@@ -1276,7 +1276,7 @@ public class Screens {
                                 } else {
                                     System.out.print(Tools.print("green", "", "███"));
                                 }
-                            } else if (Enemies.HP > 50) {
+                            } else if (GameJava.enemies.get(enemyPos).HP > 50) {
                                 if (j == 10) {
                                     System.out.print(Tools.print("green", "", ("   ")));
                                 } else if (j == 11) {
@@ -1286,7 +1286,7 @@ public class Screens {
                                 } else {
                                     System.out.print(Tools.print("green", "", "███"));
                                 }
-                            } else if (Enemies.HP > 40) {
+                            } else if (GameJava.enemies.get(enemyPos).HP > 40) {
                                 if (j == 10) {
                                     System.out.print(Tools.print("green", "", ("   ")));
                                 } else if (j == 11) {
@@ -1296,7 +1296,7 @@ public class Screens {
                                 } else {
                                     System.out.print(Tools.print("yellow", "", "███"));
                                 }
-                            } else if (Enemies.HP > 30) {
+                            } else if (GameJava.enemies.get(enemyPos).HP > 30) {
                                 if (j == 10) {
                                     System.out.print(Tools.print("green", "", ("   ")));
                                 } else if (j == 11) {
@@ -1306,7 +1306,7 @@ public class Screens {
                                 } else if (j == 13) {
                                     System.out.print(Tools.print("yellow", "", ("██" + " ")));
                                 }
-                            } else if (Enemies.HP > 20) {
+                            } else if (GameJava.enemies.get(enemyPos).HP > 20) {
                                 if (j == 10) {
                                     System.out.print(Tools.print("green", "", ("   ")));
                                 } else if (j == 11) {
@@ -1316,7 +1316,7 @@ public class Screens {
                                 } else if (j == 13) {
                                     System.out.print(Tools.print("red", "", ("██" + " ")));
                                 }
-                            } else if (Enemies.HP > 10) {
+                            } else if (GameJava.enemies.get(enemyPos).HP > 10) {
                                 if (j == 10) {
                                     System.out.print(Tools.print("red", "", ("   ")));
                                 } else if (j == 11) {
@@ -1326,7 +1326,7 @@ public class Screens {
                                 } else if (j == 13) {
                                     System.out.print(Tools.print("red", "", ("██" + " ")));
                                 }
-                            } else if (Enemies.HP > 0) {
+                            } else if (GameJava.enemies.get(enemyPos).HP > 0) {
                                 if (j == 10) {
                                     System.out.print(Tools.print("green", "", ("   ")));
                                 } else if (j == 11) {
@@ -1336,7 +1336,7 @@ public class Screens {
                                 } else if (j == 13) {
                                     System.out.print(Tools.print("red", "", ("█" + "  ")));
                                 }
-                            } else if (Enemies.HP <= 0) {
+                            } else if (GameJava.enemies.get(enemyPos).HP <= 0) {
                                 System.out.print(Tools.print("red", "", ("   ")));
                             }
                         } else {
@@ -1366,7 +1366,7 @@ public class Screens {
                         }
                     } else if (j >= ancho - 5 && j < ancho - 1) {
                         if (j == ancho - 5) {
-                            System.out.print(" DMG    " + Enemies.attack + "  ");
+                            System.out.print(" DMG    " + GameJava.enemies.get(enemyPos).attack + "  ");
                         }
                     } else if (j == ancho - 1) {
                         System.out.print(Tools.print(colorUI, "", "║"));
@@ -1404,14 +1404,14 @@ public class Screens {
                         }
                     } else if (j >= ancho - 5 && j < ancho - 1) {
                         if (j == ancho - 5) {
-                            if (Enemies.HP <= 0) {
+                            if (GameJava.enemies.get(enemyPos).HP <= 0) {
                                 System.out.print(" HP  0/" + Enemies.maxHP + "  ");
-                            } else if (Enemies.HP >= 100) {
-                                System.out.print(" HP " + Enemies.HP + "/" + Enemies.maxHP + " ");
-                            } else if (Enemies.HP < 10) {
-                                System.out.print(" HP " + Enemies.HP + "/" + Enemies.maxHP + "   ");
+                            } else if (GameJava.enemies.get(enemyPos).HP >= 100) {
+                                System.out.print(" HP " + GameJava.enemies.get(enemyPos).HP + "/" + Enemies.maxHP + " ");
+                            } else if (GameJava.enemies.get(enemyPos).HP < 10) {
+                                System.out.print(" HP " + GameJava.enemies.get(enemyPos).HP + "/" + Enemies.maxHP + "   ");
                             } else {
-                                System.out.print(" HP " + Enemies.HP + "/" + Enemies.maxHP + "  ");
+                                System.out.print(" HP " + GameJava.enemies.get(enemyPos).HP + "/" + Enemies.maxHP + "  ");
                             }
                         }
                     } else if (j == ancho - 1) {
@@ -1438,7 +1438,7 @@ public class Screens {
                         }
                     } else if (j >= ancho - 5 && j < ancho - 1) {
                         if (j == ancho - 5) {
-                            System.out.print(" LVL    " + Enemies.LVL + "   ");
+                            System.out.print(" LVL    " + GameJava.enemies.get(enemyPos).LVL + "   ");
                         }
                     } else if (j == ancho - 1) {
                         System.out.print(Tools.print(colorUI, "", "║"));
