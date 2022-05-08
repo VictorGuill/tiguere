@@ -1557,10 +1557,17 @@ public class Screens {
      * @param scores Array dinamico con todos los scores.
      */
     public static void printScoresScreen(ArrayList<GameScores> scores) {
+        System.out.println("-----SCORES-----");
         if (scores.isEmpty()) {
-            System.out.println("Aun no hay scores guardados.");
+            for (int i = 0; i < 10; i++) {
+                if (i + 1 == 10) {
+                    //elimina 1 espacio para que quepa el 1 del 10.
+                    System.out.println(" " + (i + 1) + " - " + "Null");
+                } else {
+                    System.out.println("  " + (i + 1) + " - " + "Null");
+                }
+            }
         } else {
-            System.out.println("-----SCORES-----");
             for (int i = 0; i < 10; i++) {
                 try {
                     System.out.println("  " + (i + 1) + " - " + scores.get(i).getPoints() + " points.\t" + scores.get(i).getFormatedDate());
