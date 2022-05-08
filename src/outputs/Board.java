@@ -13,8 +13,8 @@ public class Board {
             CHAR_SACERDOTE = '±',
             CHAR_ENEMY = '0',
             CHAR_COIN = '$',
-            CHAR_POTION_HP = Tools.UniversalCharacter('♥'),
-            CHAR_VISIBLE_POTION = Tools.UniversalCharacter('¶');
+            CHAR_POTION_HP ='♥',
+            CHAR_VISIBLE_POTION = '¶';
 
     public static String HP[] = new String[10];
     public static boolean firstPrint = true;

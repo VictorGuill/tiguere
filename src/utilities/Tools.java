@@ -162,62 +162,7 @@ public class Tools {
         }
         System.out.print(print(color, "", String.valueOf(end)));
     }
-
-    /**
-     * Universal Character, funcion que imprime el caracter correcto segun la
-     * plataforma. Hay que añadir el caso en el switch.
-     *
-     * @param character Caracter a imprimir.
-     * @return Devuelve el caracter.
-     */
-    public static char UniversalCharacter(char character) {
-        if (Tools.isRunningCMD() && Tools.isWindows()) {
-            switch (character) {
-                case '↑':
-                    return 24;
-                case '↓':
-                    return 25;
-                case '→':
-                    return 26;
-                case '←':
-                    return 27;
-                case '►':
-                    return 16;
-                case '◄':
-                    return 17;
-                case '▲':
-                    return 30;
-                case '▼':
-                    return 31;
-                case '♥':
-                    return 3;
-                case '¶':
-                    return 20;
-                default:
-                    return character;
-            }
-        } else {
-            return character;
-        }
-    }
-
-    /**
-     * String convert. Takes String and uses Universal character to convert
-     * result.
-     *
-     * @param input
-     * @return
-     */
-    public static String sc(String input) {
-        StringBuilder stringBuilder = new StringBuilder();
-
-        for (int i = 0; i < input.length(); i++) {
-            stringBuilder.append(UniversalCharacter(input.charAt(i)));
-        }
-
-        String finalString = stringBuilder.toString();
-        return finalString;
-    }
+    
     //////////////// DETECT PLATFORM /////////////////
     private static String OS = System.getProperty("os.name").toLowerCase();
 
