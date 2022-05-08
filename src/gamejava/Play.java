@@ -2,6 +2,7 @@ package gamejava;
 
 import static gamejava.GameJava.INPUT;
 import static gamejava.GameJava.INPUT_RATE;
+import java.time.LocalDateTime;
 import java.util.concurrent.TimeUnit;
 import outputs.Board;
 import outputs.Screens;
@@ -14,6 +15,7 @@ public class Play {
 
     public static boolean isPlayingGame;
     public static int numBattles;
+
     /**
      * Imprime el tablero y se encarga de escuchar el INPUT del usuario.
      *
@@ -22,6 +24,8 @@ public class Play {
     public static void playingGame() throws InterruptedException {
         int objects;
         boolean isPlayingGame = true;
+        GameScores currentScore;
+
         INPUT = "";
         Screens.boardSizeScreen();
         Screens.characterSelectorScreen();
@@ -33,7 +37,7 @@ public class Play {
         objects = GameJava.numCoins + GameJava.numEnemies;
         numBattles = 0;
         do {
-            
+
             switch (INPUT) {
                 case "up":
                     Player.movYPositive(1);
@@ -80,7 +84,7 @@ public class Play {
                     }
                     break;
                 case "escape":
-                case "0": //exit
+                case "0": //exit               
                     Screens.startMenu(1);
                     isPlayingGame = false;
                     GameJava.enemies.clear();
@@ -90,6 +94,11 @@ public class Play {
             Enemies.setEnemiesDirection();
             TimeUnit.MILLISECONDS.sleep(1000 / INPUT_RATE);
             if (objects == numBattles + Player.sackOfCoins || Player.HP == 0) {
+                //crea un objeto del score actual y lo guarda en el archivo binario
+                currentScore = new GameScores(Player.sackOfCoins, Player.kills, GameJava.difficultSelection, Player.HP, LocalDateTime.now());
+                GameJava.scores.add(currentScore);
+                GameScores.writeFile(GameJava.scores);
+
                 Screens.endGameScreen();
                 Screens.startMenu(1);
                 isPlayingGame = false;

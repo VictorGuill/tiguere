@@ -3,7 +3,9 @@ package outputs;
 import gamejava.GameJava;
 import utilities.Tools;
 import static gamejava.GameJava.*;
+import gamejava.GameScores;
 import gamejava.Play;
+import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 import static outputs.Board.Character;
 import static outputs.Board.Enemy;
@@ -379,6 +381,27 @@ public class Screens {
         } while (showingMenu);
     }
 
+    /**
+     * Pantalla con los scores del juego.
+     *
+     * @throws InterruptedException
+     */
+    public static void scoresScreen(ArrayList<GameScores> scores) throws InterruptedException {
+        boolean showingMenu = true;
+        INPUT = "";
+        Tools.clearConsole();
+        printScoresScreen(scores);
+        do {
+            switch (INPUT) {
+                case "enter":
+                    showingMenu = false;
+                    break;
+            }
+            INPUT = "";
+            TimeUnit.MILLISECONDS.sleep(1000 / INPUT_RATE);
+        } while (showingMenu);
+    }
+
     //////////////////////////////////////
     // Funciones que imprimen fotogramas
     // segun los valores que reciben.
@@ -459,8 +482,12 @@ public class Screens {
                         System.out.print(Tools.print(colorUI, "", "   │    ║"));
                     } else if (menuOption == 3) {
                         System.out.print(Tools.print(colorUI, "", "║     PLAY        │ "));
-                        System.out.print(Tools.print(colorText, "", "Bye bye..."));
-                        System.out.print(Tools.print(colorUI, "", "         │    ║"));
+                        System.out.print(Tools.print(colorText, "", "Check the TOP 10"));
+                        System.out.print(Tools.print(colorUI, "", "   │    ║"));
+                    } else if (menuOption == 4) {
+                        System.out.print(Tools.print(colorUI, "", "║     PLAY        │ "));
+                        System.out.print(Tools.print(colorText, "", "Bye bye...      "));
+                        System.out.print(Tools.print(colorUI, "", "   │    ║"));
                     }
                     break;
                 case 7: //║     TUTORIAL    │ creatures of this  │    ║
@@ -476,29 +503,46 @@ public class Screens {
                         System.out.print(Tools.print(colorUI, "", "  │    ║"));
                     } else if (menuOption == 3) {
                         System.out.print(Tools.print(colorUI, "", "║     TUTORIAL    │ "));
-                        System.out.print(Tools.print(colorText, "", "I guess you aren't"));
-                        System.out.print(Tools.print(colorUI, "", " │    ║"));
+                        System.out.print(Tools.print(colorText, "", "scores archived"));
+                        System.out.print(Tools.print(colorUI, "", "    │    ║"));
+                    } else if (menuOption == 4) {
+                        System.out.print(Tools.print(colorUI, "", "║     TUTORIAL    │ "));
+                        System.out.print(Tools.print(colorText, "", "I guess you aren't "));
+                        System.out.print(Tools.print(colorUI, "", "│    ║"));
                     }
                     break;
-                case 8: //║     EXIT        │ world. If you can. │    ║
+                case 8: //║     SCORES      │ good scores.       │    ║
                     if (menuOption == 3) {
                         System.out.print(Tools.print(colorUI, "", "║    ► "));
-                        System.out.print(Tools.print("white", "red", "EXIT"));
-                        System.out.print(Tools.print(colorUI, "", "       │ "));
-                        System.out.print(Tools.print(colorText, "", "strong enought."));
-                        System.out.print(Tools.print(colorUI, "", "    │    ║"));
+                        System.out.print(Tools.print("white", "red", "SCORES"));
+                        System.out.print(Tools.print(colorUI, "", "     │ "));
+                        System.out.print(Tools.print(colorText, "", "in this game."));
+                        System.out.print(Tools.print(colorUI, "", "      │    ║"));
                     } else if (menuOption == 1) {
-                        System.out.print(Tools.print(colorUI, "", "║     EXIT        │ "));
+                        System.out.print(Tools.print(colorUI, "", "║     SCORES      │ "));
                         System.out.print(Tools.print(colorText, "", "world. If you can."));
                         System.out.print(Tools.print(colorUI, "", " │    ║"));
                     } else if (menuOption == 2) {
-                        System.out.print(Tools.print(colorUI, "", "║     EXIT        │ "));
+                        System.out.print(Tools.print(colorUI, "", "║     SCORES      │ "));
                         System.out.print(Tools.print(colorText, "", "good scores."));
                         System.out.print(Tools.print(colorUI, "", "       │    ║"));
+                    } else if (menuOption == 4) {
+                        System.out.print(Tools.print(colorUI, "", "║     SCORES      │ "));
+                        System.out.print(Tools.print(colorText, "", "strong enought."));
+                        System.out.print(Tools.print(colorUI, "", "    │    ║"));
                     }
                     break;
                 case 9:
                     System.out.print(Tools.print(colorUI, "", "║                 └────────────────────┘    ║"));
+                    break;
+                case 10:
+                    if (menuOption == 4) {
+                        System.out.print(Tools.print(colorUI, "", "║ ► "));
+                        System.out.print(Tools.print("white", "red", "EXIT"));
+                        System.out.print(Tools.print(colorUI, "", "                                    ║"));
+                    } else {
+                        System.out.print(Tools.print(colorUI, "", "║ EXIT                                      ║"));
+                    }
                     break;
                 default:
                     //Como SWITCH no acepta variables en el case, usamos un if
@@ -1505,5 +1549,31 @@ public class Screens {
         System.out.println(Tools.print(colorUI, "", "[1] - ATACK	[2] - CHANGE CHARACTER"));
         System.out.println("");
         System.out.println(Tools.print(colorUI, "", "Press ENTER to exit..."));
+    }
+
+    /**
+     * Imprime la pantalla de scores.
+     *
+     * @param scores Array dinamico con todos los scores.
+     */
+    public static void printScoresScreen(ArrayList<GameScores> scores) {
+        if (scores.isEmpty()) {
+            System.out.println("Aun no hay scores guardados.");
+        } else {
+            System.out.println("-----SCORES-----");
+            for (int i = 0; i < 10; i++) {
+                try {
+                    System.out.println("  " + (i + 1) + " - " + scores.get(i).getPoints() + " points.\t" + scores.get(i).getFormatedDate());
+                } catch (IndexOutOfBoundsException e) {
+                    if (i + 1 == 10) {
+                        //elimina 1 espacio para que quepa el 1 del 10.
+                        System.out.println(" " + (i + 1) + " - " + "Null");
+                    } else {
+                        System.out.println("  " + (i + 1) + " - " + "Null");
+                    }
+                }
+            }
+        }
+        System.out.println("Press ENTER to exit...");
     }
 }

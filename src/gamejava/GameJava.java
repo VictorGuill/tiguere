@@ -1,6 +1,8 @@
 package gamejava;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import outputs.Screens;
 import utilities.InputListener;
 import players.Player;
@@ -14,7 +16,7 @@ public class GameJava {
 
     public static int MIN_BOARD_SIZE = 10, MAX_BOARD_SIZE = 20; //maximo y minimo permitido valores tamaño tablero
 
-    public static int INPUT_RATE =20; //delay entre consultas del input
+    public static int INPUT_RATE = 20; //delay entre consultas del input
     public static String INPUT = ""; //guarda la ultima tecla pulsada
     public static int menuOption = 1,
             secondSelection = 1, //valor para cuando hay mas de una selecion en un menu (Ej: choose caracter)
@@ -26,7 +28,7 @@ public class GameJava {
             difficultSelection, // escoge la dificultad del juego
             numHP_Potions, // numero de pociones que te curan
             numVisiblePotions; // numero de pociones de aumento de visibilidad
-    
+
     public static boolean SECTION_RUNNING = true;
     public static String[][] board;
     public static magician m1 = new magician();
@@ -34,7 +36,8 @@ public class GameJava {
     public static warrior w1 = new warrior();
 
     public static Player[] playable;
-    public static ArrayList <Enemies>enemies = new ArrayList <Enemies>();
+    public static ArrayList<Enemies> enemies = new ArrayList<Enemies>();
+    public static ArrayList<GameScores> scores;
 
     public static void main(String[] args) throws InterruptedException {
         InputListener keyInput = new InputListener(); //crea y abre la ventana java
@@ -44,6 +47,14 @@ public class GameJava {
         playable[0] = w1;
         playable[1] = m1;
         playable[2] = p1;
+        
+        try {
+            //lee el archivo binario scores
+            scores = GameScores.readFile();
+        } catch (Exception e) {
+            //Si no encuentra el archivo, inicia el array vacio.
+            scores = new ArrayList<>();
+        }
 
         /////////////////////////////////////////////////////
         //////////////   EMPIEZA EL PROGRAMA   //////////////
@@ -61,7 +72,7 @@ public class GameJava {
                     }
                     break;
                 case "down":
-                    if (menuOption < 3) {
+                    if (menuOption < 4) {
                         menuOption++;
                         Screens.startMenu(menuOption);
                     }
@@ -73,9 +84,20 @@ public class GameJava {
                             break;
                         case 2: //tutorial
                             Screens.tutorialScreen();
-                        Screens.startMenu(menuOption);
+                            Screens.startMenu(menuOption);
                             break;
-                        case 3: //exit
+                        case 3:
+                            //sirve para ordenar el array de forma descendiente (mover de sitios a poder ser)
+                            Collections.sort(scores, new Comparator<GameScores>() {
+                                @Override
+                                public int compare(GameScores score1, GameScores score2) {
+                                    return Short.valueOf(score2.getPoints()).compareTo(score1.getPoints());
+                                }
+                            });
+                            Screens.scoresScreen(scores);
+                            Screens.startMenu(menuOption);
+                            break;
+                        case 4: //exit
                             Screens.credits();
                             isGameRunning = false;
                             keyInput.dispose(); //elimina ventana creada por JAVA
