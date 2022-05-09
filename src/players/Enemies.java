@@ -6,6 +6,7 @@ import utilities.Tools;
 
 public class Enemies {
 
+    /*cambiar*/
     public int HP,
             attack,
             LVL,

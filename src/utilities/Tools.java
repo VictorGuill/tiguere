@@ -200,7 +200,7 @@ public class Tools {
         //Es mejor hardcoded porque usa menos system.out y va más rapido a la hora de imprimir 
         //(ya que aparte usamos mucho system.out para el juego, cuantos menos mejor)
         System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
-        System.out.println("Recuerda que es mejor ejecutar el juego en una terminal.");
+        System.out.println(Tools.print("cyan", "", "Recuerda que es mejor ejecutar el juego en una terminal."));
     }
 
     /**
