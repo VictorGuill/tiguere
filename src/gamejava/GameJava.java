@@ -55,7 +55,7 @@ public class GameJava {
             //Si no encuentra el archivo, inicia el array vacio.
             scores = new ArrayList<>();
         }
-
+        
         /////////////////////////////////////////////////////
         //////////////   EMPIEZA EL PROGRAMA   //////////////
         /////////////////////////////////////////////////////
@@ -87,13 +87,7 @@ public class GameJava {
                             Screens.startMenu(menuOption);
                             break;
                         case 3:
-                            //sirve para ordenar el array de forma descendiente (mover de sitios a poder ser)
-                            Collections.sort(scores, new Comparator<GameScores>() {
-                                @Override
-                                public int compare(GameScores score1, GameScores score2) {
-                                    return Short.valueOf(score2.getPoints()).compareTo(score1.getPoints());
-                                }
-                            });
+                            GameScores.ordenarScores(scores);
                             Screens.scoresScreen(scores);
                             Screens.startMenu(menuOption);
                             break;

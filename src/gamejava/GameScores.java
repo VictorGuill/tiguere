@@ -1,5 +1,6 @@
 package gamejava;
 
+import static gamejava.GameJava.scores;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.io.File;
@@ -7,6 +8,8 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 public class GameScores {
 
@@ -392,4 +395,18 @@ public class GameScores {
         return scores;
     }
 
+    public static void resetScores(ArrayList<GameScores> scores) {
+        scores.clear();
+        writeFile(scores);
+    }
+
+    public static void ordenarScores(ArrayList<GameScores> scores) {
+        Collections.sort(scores, new Comparator<GameScores>() {
+            @Override
+            public int compare(GameScores score1, GameScores score2) {
+                return Short.valueOf(score2.getPoints()).compareTo(score1.getPoints());
+            }
+        });
+    }
+;
 }
