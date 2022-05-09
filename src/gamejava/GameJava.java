@@ -1,8 +1,6 @@
 package gamejava;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import outputs.Screens;
 import utilities.InputListener;
 import players.Player;
@@ -13,6 +11,7 @@ import java.util.concurrent.TimeUnit;
 import players.Enemies;
 
 public class GameJava {
+
 
     public static int MIN_BOARD_SIZE = 10, MAX_BOARD_SIZE = 20; //maximo y minimo permitido valores tamaño tablero
 

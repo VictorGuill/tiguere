@@ -11,7 +11,7 @@ public class Board {
     public static char CHAR_GUERRERO = '¥',
             CHAR_MAGO = '£',
             CHAR_SACERDOTE = '±',
-            CHAR_ENEMY = '0',
+            CHAR_ENEMY = '¤',
             CHAR_COIN = '$',
             CHAR_POTION_HP ='♥',
             CHAR_VISIBLE_POTION = '¶';

@@ -1,6 +1,5 @@
 package gamejava;
 
-import static gamejava.GameJava.scores;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.io.File;
@@ -407,6 +406,5 @@ public class GameScores {
                 return Short.valueOf(score2.getPoints()).compareTo(score1.getPoints());
             }
         });
-    }
-;
+    };
 }

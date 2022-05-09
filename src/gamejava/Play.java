@@ -68,9 +68,9 @@ public class Play {
                     Board.printBoard();
                     Enemies.moveEnemies();
                     break;
-                case "3":
-                    Player.pickUpCoin();
-                    Enemies.moveEnemies();
+                case "3": //esta broken
+                    //Player.pickUpCoin();
+                    //Enemies.moveEnemies();
                     break;
                 case "4": //curarse
                     if (GameJava.character == 2) {

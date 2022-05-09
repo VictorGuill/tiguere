@@ -6,45 +6,43 @@ import utilities.Tools;
 
 public class Enemies {
 
-    public  int HP,
-                attack, 
-                LVL,
-                ypos,
-                xpos;
+    public int HP,
+            attack,
+            LVL,
+            ypos,
+            xpos;
     public boolean isAlive;
     public static int maxHP = 100;
 
     public Enemies() {
-        this.isAlive=true;
+        this.isAlive = true;
     }
-    
-    /**
-     * Movera el enemigo (en el eje positivo horizontalmente) en caso de que la siguente casilla sea un voidSquare que es una casilla vacia
-     * @param mov numeros de casillas a moverse por el personaje
-     * @param x posición en x del enemigo
-     * @param y posición en y del enemigo
-     */
 
-    public  void movXPositive(int mov, int i) {
+    /**
+     * Movera el enemigo (en el eje positivo horizontalmente) en caso de que la
+     * siguente casilla sea un voidSquare que es una casilla vacia
+     *
+     * @param mov numeros de casillas a moverse por el personaje
+     */
+    public void movXPositive(int mov, int i) {
         int x = GameJava.enemies.get(i).getXpos();
         int y = GameJava.enemies.get(i).getYpos();
-        
+
         String nextPosition = nextXPositive(mov, x, y);
         if (nextPosition.equals(Board.voidSquare)) {
-              GameJava.board[GameJava.enemies.get(i).getYpos()][GameJava.enemies.get(i).getXpos()] = Board.voidSquare;
+            GameJava.board[GameJava.enemies.get(i).getYpos()][GameJava.enemies.get(i).getXpos()] = Board.voidSquare;
             GameJava.enemies.get(i).xpos += mov;
-              GameJava.board[GameJava.enemies.get(i).getYpos()][GameJava.enemies.get(i).getXpos()] = Board.Enemy;
+            GameJava.board[GameJava.enemies.get(i).getYpos()][GameJava.enemies.get(i).getXpos()] = Board.Enemy;
         }
 
     }
-    
-      /**
-     * Movera el enemigo (en el eje negativo horizontalmente) en caso de que la siguente casilla sea un voidSquare que es una casilla vacia
-     * @param mov numeros de casillas a moverse por el personaje
-     * @param x posición en x del enemigo
-     * @param y posición en y del enemigo
-     */
 
+    /**
+     * Movera el enemigo (en el eje negativo horizontalmente) en caso de que la
+     * siguente casilla sea un voidSquare que es una casilla vacia
+     *
+     * @param mov numeros de casillas a moverse por el personaje
+     */
     public void movXNegative(int mov, int i) {
         int x = GameJava.enemies.get(i).getXpos();
         int y = GameJava.enemies.get(i).getYpos();
@@ -55,31 +53,30 @@ public class Enemies {
             GameJava.board[GameJava.enemies.get(i).getYpos()][GameJava.enemies.get(i).getXpos()] = Board.Enemy;
         }
     }
-    
-      /**
-     * Movera el enemigo (en el eje positivo verticalmente) en caso de que la siguente casilla sea un voidSquare que es una casilla vacia
-     * @param mov numeros de casillas a moverse por el personaje
-     * @param x posición en x del enemigo
-     * @param y posición en y del enemigo
-     */
 
+    /**
+     * Movera el enemigo (en el eje positivo verticalmente) en caso de que la
+     * siguente casilla sea un voidSquare que es una casilla vacia
+     *
+     * @param mov numeros de casillas a moverse por el personaje
+     */
     public void movYPositive(int mov, int i) {
         int x = GameJava.enemies.get(i).getXpos();
         int y = GameJava.enemies.get(i).getYpos();
         String nextPosition = nextYPositive(mov, x, y);
-        
+
         if (nextPosition.equals(Board.voidSquare)) {
             GameJava.board[GameJava.enemies.get(i).getYpos()][GameJava.enemies.get(i).getXpos()] = Board.voidSquare;
             GameJava.enemies.get(i).ypos -= mov;
             GameJava.board[GameJava.enemies.get(i).getYpos()][GameJava.enemies.get(i).getXpos()] = Board.Enemy;
         }
     }
-    
-      /**
-     * Movera el enemigo (en el eje negativo verticalmente) en caso de que la siguente casilla sea un voidSquare que es una casilla vacia
+
+    /**
+     * Movera el enemigo (en el eje negativo verticalmente) en caso de que la
+     * siguente casilla sea un voidSquare que es una casilla vacia
+     *
      * @param mov numeros de casillas a moverse por el personaje
-     * @param x posición en x del enemigo
-     * @param y posición en y del enemigo
      */
     public void movYNegative(int mov, int i) {
         int x = GameJava.enemies.get(i).getXpos();
@@ -96,13 +93,14 @@ public class Enemies {
         Mètodes nextPosition que ens retornen el contingut de la seguent casella, 
         en cas de que es surti de la graella ens retornarà el String = "DON'T EXISTS".
      */
-    
     /**
-     * Funcion que devuelve lo que hay en la casilla siguiente del personaje si se mueve hacia la derecha
+     * Funcion que devuelve lo que hay en la casilla siguiente del personaje si
+     * se mueve hacia la derecha
+     *
      * @param mov numeros de casillas a moverse por el personaje
      * @param x posición en x del enemigo
      * @param y posición en y del enemigo
-     * @return nextPosition Que hay en la siguiente casilla del personaje 
+     * @return nextPosition Que hay en la siguiente casilla del personaje
      */
     public static String nextXPositive(int mov, int x, int y) {
         String nextPosition = "DON'T EXISTS";
@@ -114,13 +112,15 @@ public class Enemies {
         }
         return nextPosition;
     }
-    
-        /**
-     * Funcion que devuelve lo que hay en la casilla siguiente del personaje si se mueve hacia la izquierda
+
+    /**
+     * Funcion que devuelve lo que hay en la casilla siguiente del personaje si
+     * se mueve hacia la izquierda
+     *
      * @param mov numeros de casillas a moverse por el personaje
      * @param x posición en x del enemigo
      * @param y posición en y del enemigo
-     * @return nextPosition Que hay en la siguiente casilla del personaje 
+     * @return nextPosition Que hay en la siguiente casilla del personaje
      */
     public static String nextXNegative(int mov, int x, int y) {
         String nextPosition = "DON'T EXISTS";
@@ -133,12 +133,14 @@ public class Enemies {
         return nextPosition;
     }
 
-        /**
-     * Funcion que devuelve lo que hay en la casilla siguiente del personaje si se mueve hacia abajo
+    /**
+     * Funcion que devuelve lo que hay en la casilla siguiente del personaje si
+     * se mueve hacia abajo
+     *
      * @param mov numeros de casillas a moverse por el personaje
      * @param x posición en x del enemigo
      * @param y posición en y del enemigo
-     * @return nextPosition Que hay en la siguiente casilla del personaje 
+     * @return nextPosition Que hay en la siguiente casilla del personaje
      */
     public static String nextYNegative(int mov, int x, int y) {
         String nextPosition = "DON'T EXISTS";
@@ -150,13 +152,15 @@ public class Enemies {
         }
         return nextPosition;
     }
-    
-        /**
-     * Funcion que devuelve lo que hay en la casilla siguiente del personaje si se mueve hacia arriba
+
+    /**
+     * Funcion que devuelve lo que hay en la casilla siguiente del personaje si
+     * se mueve hacia arriba
+     *
      * @param mov numeros de casillas a moverse por el personaje
      * @param x posición en x del enemigo
      * @param y posición en y del enemigo
-     * @return nextPosition Que hay en la siguiente casilla del personaje 
+     * @return nextPosition Que hay en la siguiente casilla del personaje
      */
     public static String nextYPositive(int mov, int x, int y) {
         String nextPosition = "DON'T EXISTS";
@@ -168,16 +172,15 @@ public class Enemies {
         }
         return nextPosition;
     }
-    
-    /**
-     * Funcion que movera aleatoriamente el personaje 1 casilla en cualquier dirección , con una probabilidad de no moverse (esta probabilidad se reduce a medida 
-     * que augmenta la dificultad)
-     * @param mov numeros de casillas a moverse por el personaje
-     * @param x posición en x del enemigo
-     * @param y posición en y del enemigo
-     */
 
-    public  void randomEnemyMovement(int mov , int i) {
+    /**
+     * Funcion que movera aleatoriamente el personaje 1 casilla en cualquier
+     * dirección , con una probabilidad de no moverse (esta probabilidad se
+     * reduce a medida que augmenta la dificultad)
+     *
+     * @param mov numeros de casillas a moverse por el personaje
+     */
+    public void randomEnemyMovement(int mov, int i) {
         int probability = 0;
         int whereToMove = Tools.random(1, 4);
 
@@ -211,24 +214,28 @@ public class Enemies {
                 break;
         }
     }
-    
+
     /**
-     * Funcion que buscara en el tablero a un enemigo y le hará moverse con la función randomEnemyMovement , y con la setEnemiDirection 
-     * cambaiara la vista del personaje
+     * Funcion que buscara en el tablero a un enemigo y le hará moverse con la
+     * función randomEnemyMovement , y con la setEnemiDirection cambaiara la
+     * vista del personaje
      */
     public static void moveEnemies() {
         for (int i = 0; i < GameJava.enemies.size(); i++) {
-            if(GameJava.enemies.get(i).isAlive){
-               GameJava.enemies.get(i).randomEnemyMovement(1,i);
+            if (GameJava.enemies.get(i).isAlive) {
+                GameJava.enemies.get(i).randomEnemyMovement(1, i);
             }
-            
+
         }
         setEnemiesDirection();
     }
+
     /**
-     * Función que buscara todos los enemigos del array , despues comparará su posición con la de tu y finalmente cambiara su vista para situarlo mirando hacia ti
+     * Función que buscara todos los enemigos del array , despues comparará su
+     * posición con la de tu y finalmente cambiara su vista para situarlo
+     * mirando hacia ti
      */
- 
+
     public static void setEnemiesDirection() {
         String[][] board = GameJava.board;
 
@@ -244,12 +251,11 @@ public class Enemies {
             }
         }
     }
-    
-    /**
-     * En referencia a la dificultat se determinaran unas caracteristicas para luchar contra él
-     * @param e enemigo creado a la hora de luchar contra él 
-     */
 
+    /**
+     * En referencia a la dificultat se determinaran unas caracteristicas para
+     * luchar contra él
+     */
     public static void setUpEnemy(int i) {
         GameJava.enemies.get(i).setHP(100);
         int attack;
@@ -271,28 +277,27 @@ public class Enemies {
                 break;
         }
     }
-    
-        public static void setEnemiesPostions(){
-        int i =0;
-        while(i< GameJava.enemies.size())
+
+    public static void setEnemiesPostions() {
+        int i = 0;
+        while (i < GameJava.enemies.size()) {
             for (int j = 0; j < GameJava.board.length; j++) {
                 for (int k = 0; k < GameJava.board[j].length; k++) {
-                    if(GameJava.board[j][k].equals(Board.Enemy)||GameJava.board[j][k].equals(Board.EnemyLeft)||GameJava.board[j][k].equals(Board.EnemyRight)){
+                    if (GameJava.board[j][k].equals(Board.Enemy) || GameJava.board[j][k].equals(Board.EnemyLeft) || GameJava.board[j][k].equals(Board.EnemyRight)) {
                         GameJava.enemies.get(i).setXpos(k);
                         GameJava.enemies.get(i).setYpos(j);
                         i++;
                     }
                 }
- 
-            } 
+
+            }
+        }
     }
 
     @Override
     public String toString() {
         return "Enemies{" + "ypos=" + ypos + ", xpos=" + xpos + '}';
     }
-        
-        
 
     public void setYpos(int ypos) {
         this.ypos = ypos;
@@ -341,14 +346,5 @@ public class Enemies {
     public void setIsAlive(boolean isAlive) {
         this.isAlive = isAlive;
     }
-    
-
-
-    
-    
-        
-        
-        
-        
 
 }
