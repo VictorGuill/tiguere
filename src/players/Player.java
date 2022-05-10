@@ -203,7 +203,7 @@ public abstract class Player {
             }
         
             else if (nextPosition.equals(Board.visiblePotion)){
-                Board.printDistance += 1; 
+                Board.printDistance += 1;
             }
     }
     

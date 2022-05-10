@@ -432,7 +432,6 @@ public class Board {
      * @param column Columna en la que estamos. Y
      */
     public static void printPosition(int row, int column) {
-        printDistance = 100;
         if (Player.getYpos() - printDistance <= column && Player.getYpos() + printDistance >= column && Player.getXpos() - printDistance <= row && Player.getXpos() + printDistance >= row) {
             if (Player.getXpos() == row && Player.getYpos() == column) {
                 System.out.print(saveCharacter(Player.direction));
