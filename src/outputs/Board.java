@@ -353,10 +353,8 @@ public class Board {
             System.out.println(Tools.print(colorUI, "", "[") + Tools.print(colorText, "", "1")
                     + Tools.print(colorUI, "", "] - ") + Tools.print(colorText, "", "ATACK")
                     + Tools.print(colorUI, "", "\t[") + Tools.print(colorText, "", "2")
-                    + Tools.print(colorUI, "", "] - ") + Tools.print(colorText, "", "CHANGE CHARACTER")
-                    + Tools.print(colorUI, "", "\n[") + Tools.print(colorText, "", "3")
-                    + Tools.print(colorUI, "", "] - ") + Tools.print(colorText, "", "PICK UP OBJECT")
-                    + Tools.print(colorUI, "", "\t[") + Tools.print(colorText, "", "4")
+                    + Tools.print(colorUI, "", "] - ") + Tools.print(colorText, "", "CHANGE CHARACTER\n")
+                    + Tools.print(colorUI, "", "[") + Tools.print(colorText, "", "3")
                     + Tools.print(colorUI, "", "] - ") + Tools.print(colorText, "", "MOVEx2")
                     + Tools.print(colorUI, "", "\t[") + Tools.print(colorText, "", "ESC")
                     + Tools.print(colorUI, "", "] - ") + Tools.print(colorText, "", "EXIT"));
@@ -364,10 +362,8 @@ public class Board {
             System.out.println(Tools.print(colorUI, "", "[") + Tools.print(colorText, "", "1")
                     + Tools.print(colorUI, "", "] - ") + Tools.print(colorText, "", "ATACK")
                     + Tools.print(colorUI, "", "\t[") + Tools.print(colorText, "", "2")
-                    + Tools.print(colorUI, "", "] - ") + Tools.print(colorText, "", "CHANGE CHARACTER")
-                    + Tools.print(colorUI, "", "\n[") + Tools.print(colorText, "", "3")
-                    + Tools.print(colorUI, "", "] - ") + Tools.print(colorText, "", "PICK UP OBJECT")
-                    + Tools.print(colorUI, "", "\t[") + Tools.print(colorText, "", "4")
+                    + Tools.print(colorUI, "", "] - ") + Tools.print(colorText, "", "CHANGE CHARACTER\n")
+                    + Tools.print(colorUI, "", "[") + Tools.print(colorText, "", "3")
                     + Tools.print(colorUI, "", "] - ") + Tools.print(colorText, "", "HEAL")
                     + Tools.print(colorUI, "", "\t[") + Tools.print(colorText, "", "ESC")
                     + Tools.print(colorUI, "", "] - ") + Tools.print(colorText, "", "EXIT"));
@@ -375,10 +371,8 @@ public class Board {
             System.out.println(Tools.print(colorUI, "", "[") + Tools.print(colorText, "", "1")
                     + Tools.print(colorUI, "", "] - ") + Tools.print(colorText, "", "ATACK")
                     + Tools.print(colorUI, "", "\t[") + Tools.print(colorText, "", "2")
-                    + Tools.print(colorUI, "", "] - ") + Tools.print(colorText, "", "CHANGE CHARACTER")
-                    + Tools.print(colorUI, "", "\n[") + Tools.print(colorText, "", "3")
-                    + Tools.print(colorUI, "", "] - ") + Tools.print(colorText, "", "PICK UP OBJECT")
-                    + Tools.print(colorUI, "", "\t[") + Tools.print(colorText, "", "ESC")
+                    + Tools.print(colorUI, "", "] - ") + Tools.print(colorText, "", "CHANGE CHARACTER\n")
+                    + Tools.print(colorUI, "", "[") + Tools.print(colorText, "", "ESC")
                     + Tools.print(colorUI, "", "] - ") + Tools.print(colorText, "", "EXIT"));
         }
     }
