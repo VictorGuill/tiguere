@@ -24,3 +24,4 @@ java -Dfile.encoding=UTF-8 -jar "./dist/GameJava.jar"
 
 ::Restore original user code page on CMD
 chcp %_cp_%
+@pause

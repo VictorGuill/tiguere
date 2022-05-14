@@ -97,7 +97,7 @@ public class Play {
                 //crea un objeto del score actual y lo guarda en el archivo binario
                 currentScore = new GameScores(Player.sackOfCoins, Player.kills, GameJava.difficultSelection, Player.HP, LocalDateTime.now());
                 GameJava.scores.add(currentScore);
-                GameScores.writeFile(GameJava.scores);
+                GameScores.writeScore(currentScore,GameJava.scores.size());
 
                 Screens.endGameScreen();
                 Screens.startMenu(1);
