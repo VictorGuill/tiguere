@@ -1,5 +1,6 @@
 package gamejava;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import outputs.Screens;
 import utilities.InputListener;
@@ -36,7 +37,7 @@ public class GameJava {
 
     public static Player[] playable;
     public static ArrayList<Enemies> enemies = new ArrayList<Enemies>();
-    public static ArrayList<GameScores> scores;
+    public static ArrayList<GameScores> scores = new ArrayList<>();
 
     public static void main(String[] args) throws InterruptedException {
         InputListener keyInput = new InputListener(); //crea y abre la ventana java
@@ -47,13 +48,17 @@ public class GameJava {
         playable[1] = m1;
         playable[2] = p1;
         
-        try {
-            //lee el archivo binario scores
-            scores = GameScores.readFile();
-        } catch (Exception e) {
-            //Si no encuentra el archivo, inicia el array vacio.
-            scores = new ArrayList<>();
-        }
+        try{
+                BaseDades bd = new BaseDades();
+                    
+                    bd.writeArray();
+                
+                    bd.close();
+                }
+                catch(SQLException ex){
+                    System.out.println("No funciona");
+                }
+   
         
         /////////////////////////////////////////////////////
         //////////////   EMPIEZA EL PROGRAMA   //////////////
@@ -86,7 +91,6 @@ public class GameJava {
                             Screens.startMenu(menuOption);
                             break;
                         case 3:
-                            GameScores.ordenarScores(scores);
                             Screens.scoresScreen(scores);
                             Screens.startMenu(menuOption);
                             break;

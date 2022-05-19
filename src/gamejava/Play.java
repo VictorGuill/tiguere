@@ -2,7 +2,9 @@ package gamejava;
 
 import static gamejava.GameJava.INPUT;
 import static gamejava.GameJava.INPUT_RATE;
-import java.time.LocalDateTime;
+import static gamejava.GameJava.scores;
+import java.sql.SQLException;
+
 import java.util.concurrent.TimeUnit;
 import outputs.Board;
 import outputs.Screens;
@@ -89,9 +91,20 @@ public class Play {
                 TimeUnit.MILLISECONDS.sleep(1000 / INPUT_RATE);
                 if (objects == numBattles + Player.sackOfCoins || Player.HP == 0) {
                     //crea un objeto del score actual y lo guarda en el archivo binario
-                    currentScore = new GameScores(Player.sackOfCoins, Player.kills, GameJava.difficultSelection, Player.HP, LocalDateTime.now());
-                    GameJava.scores.add(currentScore);
-                    GameScores.writeScore(currentScore, GameJava.scores.size());
+                    
+                    if(Player.HP > 0){
+                    currentScore = new GameScores(Player.sackOfCoins, Player.kills, GameJava.difficultSelection, Player.HP);
+                    scores.add(currentScore);
+                    try{
+                        BaseDades bd = new BaseDades();
+                        bd.insertar();
+
+                        bd.close();
+                    }
+                    catch(SQLException ex){
+                        System.out.println("No funciona");
+                    }
+                }
 
                     Screens.endGameScreen();
                     Screens.startMenu(1);

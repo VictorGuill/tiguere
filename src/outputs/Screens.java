@@ -1627,7 +1627,7 @@ public class Screens {
         } else {
             for (int i = 0; i < 10; i++) {
                 try {
-                    System.out.println(Tools.print(colorUI, "", "  " + (i + 1) + " - " + scores.get(i).getPoints() + " points.\t" + scores.get(i).getFormatedDate()));
+                    System.out.println(Tools.print(colorUI, "", "  " + (i + 1) + " - " + scores.get(i).getPoints() + " points.\t" + scores.get(i).getDate()));
                 } catch (IndexOutOfBoundsException e) {
                     if (i + 1 == 10) {
                         //elimina 1 espacio para que quepa el 1 del 10.
