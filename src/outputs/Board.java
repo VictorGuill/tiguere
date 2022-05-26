@@ -13,7 +13,7 @@ public class Board {
             CHAR_SACERDOTE = '±',
             CHAR_ENEMY = '¤',
             CHAR_COIN = '$',
-            CHAR_POTION_HP ='♥',
+            CHAR_POTION_HP = '♥',
             CHAR_VISIBLE_POTION = '¶';
 
     public static String HP[] = new String[10];
@@ -141,9 +141,11 @@ public class Board {
         int wBoard = GameJava.widthBoard, hBoard = GameJava.heightBoard;
 
         Tools.clearConsole();
-          for (int i = 0; i < GameJava.enemies.size(); i++) {
+        /*  
+        for (int i = 0; i < GameJava.enemies.size(); i++) {
               System.out.println(GameJava.enemies.get(i));              
           }
+         */
         Character = saveCharacter("right");
         Coin = (" " + CHAR_COIN + " ");
         if (firstPrint) {
